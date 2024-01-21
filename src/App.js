@@ -15,13 +15,13 @@ function App() {
     <Router>
       <Navbar />
      
-      <div>
+      <div className="bg-cover bg-center w-full h-300" style={{ backgroundImage: `url=(https://i.pinimg.com/736x/56/75/db/5675db7bf9b6fa61121f7c94590a8d33.jpg)` }}>
         <Routes>
         <Route path="/" element={<Clothes/>} />
         <Route path="/about" element={<About/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/home" element={<Home/>} />
-          <Route path="/Details/:id" element={<Details/>} />
+          <Route path="/details/:id" element={<Details/>} />
 
           {/* <Route path="./components/Clothes" >
          <Clothes/>
