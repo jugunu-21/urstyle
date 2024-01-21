@@ -1,0 +1,32 @@
+[
+{
+    "id":"1",
+    "name": "Men's Casual Shirt",
+    "link": "https://www.amazon.in/fanideaz-Branded-Cotton-T-Shirts-Men_Navy_XL/dp/B0B8JLTLY7?keywords=clothes&qid=1705326385&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1&linkCode=ll1&tag=aaruhijugunu-21&linkId=7b865480ab934a1b02cf3a2e2debaf83&language=en_IN&ref_=as_li_ss_tl",
+ 
+    "image_url": "https://cdn.kobo.com/book-images/7c75b438-45cf-4c67-aa17-75a5a2e21e2d/1200/1200/False/the-power-of-your-subconscious-mind-62.jpg",
+    
+    "price": "$29.99"
+  },
+{
+    "id":"2",
+    "name": "Women's Summer Dress",
+    "link": "https://www.amazon.com/womens-summer-dress",
+    "image_url": "https://cdn.britannica.com/90/125990-050-F5E91F84/Lemuel-Gulliver-edition-illustration-Lilliput-Gullivers-Travels.jpg",
+    "price": "$39.99"
+  },
+{
+    "id":"3",
+    "name": "Kid's Graphic T-Shirt",
+    "link": "https://www.amazon.com/kids-graphic-tshirt",
+    "image_url": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1560816565l/48855.jpg",
+    "price": "$19.99"
+  },
+{
+    "id":"4",
+    "name": "Men's Slim Fit Jeans",
+    "link": "https://www.amazon.com/mens-slim-fit-jeans",
+    "image_url": "https://images.bookbybsf.com/hzTuIRlaz3KzeRdyFMEP2scUuSwmaENTBSWv9DlRgwQ/rs:fit:390:500:1/g:no/aHR0cHM6Ly9hc3NldHMuYm9va3NieWJzZi5jb20vcHJvZHVjdHMvTG92ZUxpZmVBbmRBbWJpdGlvblBCLndlYnA.webpg",
+    "price": "$49.99"
+  }
+]
