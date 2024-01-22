@@ -15,7 +15,7 @@ export default function Clothes() {
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
       {itemsData.map((item, index) => (
-        <div key={index} className="my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">
+        <div key={index} className="my-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">)
           <img className="max-w-64 max-h-64 rounded-t-lg align-middle ml-10 " src={item.image_url} alt="" />
           
           <br />
