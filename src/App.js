@@ -6,7 +6,8 @@ import Home from './components/Home';
 import Contact from './components/Contact';
 import Clothes from './components/Clothes';
 import Details from './components/Details';
-// import Clothes from './components/Clothes';
+//impo import Clothes from './components/Clothes';
+import Moredetails from './components/Moredetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route path="/contact" element={<Contact/>} />
           <Route path="/home" element={<Home/>} />
           <Route path="/details/:upperId/:lowerId" element={<Details />} />
-
+          <Route path="/moredetails/:id/:itemsArrayString" element={<Moredetails/>} />
 
 
           {/* <Route path="./components/Clothes" >
