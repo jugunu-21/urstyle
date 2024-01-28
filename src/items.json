@@ -1,4 +1,69 @@
 [
+  { "upper" :{
+
+  
+    "id":"7",
+    "name": "SIRIL Women's Rotto Butti Woven Causal Wear Regular Top",
+    "link": "https://amzn.to/3u16aIt",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51STzgHk8LL.jpg",
+    "price": "₹299  "
+   },
+  "lower" :{
+    "id":"8",
+    "name": "KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans",
+    "link": "https://amzn.to/3UkbLUK",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
+    "price": "₹474 "
+ } },
+  { "upper" :{
+
+  
+    "id":"9",
+    "name": "Women's Lantern Sleeve Tie Up Back Crop Blouse Top Cute Crop Tops",
+    "link": "https://amzn.to/492yIjG",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
+    "price": "₹349 "
+   },
+  "lower" :{
+    "id":"10",
+    "name": "ALYNE Women's Elastic Waist Pencil Bodycon Midi Skirt",
+    "link": "https://amzn.to/47PwIdj",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SY879_.jpg",
+    "price": " ₹265 "
+ } },
+  
+  { "upper" :{
+
+  
+    "id":"11",
+    "name": "Arrow Men's Shirt",
+    "link": "https://amzn.to/3SiQmIU",
+    "image_url": "https://m.media-amazon.com/images/I/613u9XcWxzL._SX679_.jpg",
+    "price": "  ₹1,198 "
+   },
+  "lower" :{
+    "id":"12",
+    "name": "Urbano Fashion Men's Slim Casual Pants",
+    "link": "https://amzn.to/3Hz7Zz8",
+    "image_url": "https://m.media-amazon.com/images/I/61j+rhZwPoL._SX679_.jpg",
+    "price": " ₹749 "
+ } },
+  { "upper" :{
+
+  
+    "id":"13",
+    "name": "HONNETE Women Stylish Long Sleeve Regular Coat for Winter Wear",
+    "link": "https://amzn.to/3UiyG2O",
+    "image_url": "https://m.media-amazon.com/images/I/81N1mDtoq5L._SY879_.jpg",
+    "price": "  ₹3,059 "
+   },
+  "lower" :{
+    "id":"14",
+    "name": "FableStreet Checkered Straight Fit Trousers - Beige",
+    "link": "https://amzn.to/3HBJWQc",
+    "image_url": "https://m.media-amazon.com/images/I/81CXEIC23-L._SY879_.jpg",
+    "price": " ₹2,186"
+ } },
 { "upper" :{
 
   
@@ -10,10 +75,10 @@
    },
   "lower" :{
     "id":"2",
-    "name": "Sleeves Bodycon Ribbed Mini Dress for Women",
-    "link": "https://amzn.to/3tTxV5E",
-    "image_url": "https://m.media-amazon.com/images/I/51MLWi8x-IL._SX679_.jpg",
-    "price": " ₹638"
+    "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
+    "link": "https://amzn.to/3vVyzA7",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
+    "price": "  ₹700"
  } },
 { 
   "upper":{
@@ -25,10 +90,10 @@
   },
  "lower":{
     "id":"4",
-    "name": "Zartha Men's Cotton Blend Casual Kurta Shirt",
-    "link": "https://amzn.to/42bo2N9",
-    "image_url": "https://m.media-amazon.com/images/I/513shjyv-tL._SY879_.jpg",
-    "price": " ₹450"
+    "name": "Vendoz Women Premium Ankle Length Casual Boots ",
+    "link": "https://amzn.to/48NQuXT",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
+    "price": " ₹659"
 }},
    { 
     "upper":{"id":"5",
@@ -40,10 +105,10 @@
    },
    "lower":{
     "id":"6",
-    "name": "Round Neck Short Sleeves T-Shirt",
-    "link": "https://amzn.to/3Hr1Gh7",
-    "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
-    "price": " ₹463"
+    "name": "Kraasa ReviveRetro White Sneakers for Men|Casual Shoes for Men|Streetwear Fashion Sneakers for Men",
+    "link": "https://amzn.to/488mLIl",
+    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
+    "price": "  ₹599"
 
    }
   }

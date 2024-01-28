@@ -14,9 +14,9 @@ export default function Clothes() {
   // };
 
   return (
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 '>
       {itemsData.map((item, index) => (
-        <div key={index} className="my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">
+        <div key={index} className="my-2 my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">
           {item.upper && item.upper.image_url && (
             <img className="max-w-64 max-h-64 rounded-t-lg align-middle ml-10" src={item.upper.image_url} alt="" />
           )}
