@@ -11,31 +11,31 @@ import itemsData from '../items.json';
 const Details = () => {
   const { upperId, lowerId } = useParams();
 
-  const upperItemId = upperId;
+  const upperItemId =upperId;
   const lowerItemId = lowerId;
 
-  const upperItem = itemsData.find((item) => item.upper.id === upperItemId);
-  const lowerItem = itemsData.find((item) => item.lower.id === lowerItemId);
+  const upperItem = itemsData?.find((item) => item?.upper?.id === upperItemId);
+  const lowerItem = itemsData?.find((item) => item?.lower?.id === lowerItemId);
 
-  if (!upperItem || !lowerItem) {
+  if (!upperItem && !lowerItem) {
     return <div>Item not found</div>;
   }
 
    const itemsArray = [
     {
       
-        id: upperItem.upper.id,
-        name: upperItem.upper.name,
-        link: upperItem.upper.link,
-        image_url: upperItem.upper.image_url,
-        price: upperItem.upper.price,
+        id: upperItem?.upper?.id,
+        name: upperItem?.upper?.name,
+        link: upperItem?.upper?.link,
+        image_url: upperItem?.upper?.image_url,
+        price: upperItem?.upper?.price,
       },
      {
-        id: lowerItem.lower.id,
-        name: lowerItem.lower.name,
-        link: lowerItem.lower.link,
-        image_url: lowerItem.lower.image_url,
-        price: lowerItem.lower.price,
+        id: lowerItem?.lower?.id,
+        name: lowerItem?.lower?.name,
+        link: lowerItem?.lower?.link,
+        image_url: lowerItem?.lower?.image_url,
+        price: lowerItem?.lower?.price,
       }
  
       

@@ -16,7 +16,7 @@ function App() {
     <Router>
       <Navbar />
      
-      <div className="bg-cover bg-center w-full h-300" style={{ backgroundImage: `url=(https://i.pinimg.com/736x/56/75/db/5675db7bf9b6fa61121f7c94590a8d33.jpg)` }}>
+      <div className="bg-cover bg-center w-full h-300" >
         <Routes>
         <Route path="/" element={<Clothes/>} />
         <Route path="/about" element={<About/>} />

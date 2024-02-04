@@ -18,7 +18,7 @@ export default function Clothes() {
       {itemsData.map((item, index) => (
         <div key={index} className="my-2 my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">
           {item.upper && item.upper.image_url && (
-            <img className="max-w-64 max-h-64 rounded-t-lg align-middle ml-10" src={item.upper.image_url} alt="" />
+            <img className="max-w-64 max-h-64 rounded-lg align-middle ml-10" src={item.upper.image_url} alt="" />
           )}
     
           <br />
@@ -32,9 +32,9 @@ export default function Clothes() {
          
          <br />
      
-         {item.lower && item.lower.id && item.upper && item.upper.id && (
+         {item.lower  && item.upper  && (
          <Link
-          to={`/details/${item.upper.id}/${item.lower.id}`}
+          to={`/details/${item.upper?.id}/${item.lower?.id}`}
 
     className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
   >
