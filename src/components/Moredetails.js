@@ -1,9 +1,162 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
 
+const Customersreview = () => {
+  const customerData = [
+    {
+      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+      name: "Emily Selman",
+      date: "July 16, 2021",
+      content:
+        "This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!",
+      rating: 3,
+    },
+    {
+      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+      name: "Emily Selman",
+      date: "July 16, 2021",
+      content:
+        "Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.",
+      rating: 3,
+    },
+    {
+      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+      name: "Mark Edwards",
+      date: "July 6, 2021",
+      content:
+        "Really happy with the look and options of these icons. I've found uses for them everywhere in my recent projects. I hope there will be 20px versions in the future!",
+      rating: 5,
+    },
+  ];
+
+  return (
+    <div className="my-8 ">
+      {customerData.map((item, index) => (
+        <div key={index} className="my-6 text-gray-500 text-sm">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <img className="h-10 w-10 rounded-full" src={item.img} alt="" />
+            </div>
+            <div className="ml-4">
+              <div className="font-medium  text-gray-700">{item.name}</div>
+              <div className="text-gray-600">{item.date}</div>
+              <div className="flex items-center my-4">
+                {Array.from({ length: item.rating }, (_, i) => (
+                 <svg
+                 key={i}
+                 className="text-gray-900 h-5 w-5 flex-shrink-0"
+                 viewBox="0 0 20 20"
+                 fill="gold"
+                 aria-hidden="true"
+               >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <div className="mt-2 ">{item.content}</div>
+            </div>
+            
+          </div>
+          <div className="my-4 border-t border-gray-200"></div>
+        </div>
+        
+      ))}
+    </div>
+  );
+};
+
+
+
+
+const FAQ = () => {
+  return (
+    <div className="text-gray-500 ">
+      <div className="py-4">
+        <h4 className=" py-1 text-gray-700 font-semibold ">
+          What format are these icons?
+        </h4>
+        <p className="text-gray-500">
+          The icons are in SVG (Scalable Vector Graphic) format. They can be
+          imported into your design tool of choice and used directly in code.
+        </p>
+      </div>
+      <div className="py-2">
+        <h4 className=" py-1 text-gray-700 font-semibold ">
+          Can I use the icons at different sizes?
+        </h4>
+        <p className="text-gray-500">
+          Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be
+          scaled to different sizes as needed. We don't recommend going smaller
+          than 20 x 20 or larger than 64 x 64 to retain legibility and visual
+          balance.
+        </p>
+      </div>
+      <div className="py-2">
+        <h4 className=" py-1 text-gray-700 font-semibold ">
+          Do I have to add attribution to my projects?
+        </h4>
+        <p className="text-gray-500">
+          No. You are allowed to use these icons freely in your personal and
+          professional work. If you enjoy the icon pack, feel free to tell
+          others!
+        </p>
+      </div>
+    </div>
+  );
+};
+const License = () => (
+  <div className="text-gray-500 ">
+    <div className="py-2">
+      <h4 className=" py-1 text-gray-700 font-semibold ">Overview</h4>
+      <p className="text-gray-500">
+        For personal and professional use. You cannot resell or redistribute
+        these icons in their original or modified state.
+      </p>
+      <ul className=" py-1 ml-4 list-disc text-gray-500 ">
+        <li>
+          {" "}
+          <span>You're allowed to use the icons in unlimited projects.</span>
+        </li>
+        <li>
+          <span>Attribution is not required to use the icons.</span>
+        </li>
+      </ul>
+    </div>
+    <div className="py-2">
+      {" "}
+      <h6 className=" text-gray-700 font-semibold">What you can do with it </h6>
+      <ul className=" py-1 list-disc ml-4">
+        <li>
+          Use them freely in your personal and professional work. Make them your
+          own.
+        </li>
+        <li> liChange the colors to suit your project or brand.</li>
+      </ul>
+    </div>
+    <div className="py-2">
+      <h6 className=" text-gray-700 font-semibold">
+        What you can't do with it
+      </h6>
+      <ul className=" py-1 list-disc ml-4">
+        <li>
+          Don't be greedy. Selling or distributing these icons in their original
+          or modified state is prohibited.
+        </li>
+        <li>
+          Don't be evil. These icons cannot be used on websites or applications
+          that promote illegal or immoral beliefs or activities.
+        </li>
+      </ul>
+    </div>
+  </div>
+);
 export default function Moredetails() {
+  const [selectedContent, setSelectedContent] = useState("customers");
   const { id, itemsArrayString } = useParams();
   const itemId = id;
   const decodedItemsArray = JSON.parse(decodeURIComponent(itemsArrayString));
@@ -17,17 +170,13 @@ export default function Moredetails() {
   if (!finalItem) {
     return <div>Item not found</div>;
   }
-  const Customers_Review = () => <div>Home Page</div>;
-  const FAQ = () => <div> Page</div>;
-  const License = () => <div>Contact Page</div>;
 
   return (
-    
-    <div className="lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 ">
+    <div className=" pl-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 ">
       <div className="lg:col-span-1  lg:row-span-2 ">
         <div
           className="sm:overflow-hidden sm:rounded-lg"
-          style={{ height: "600px" }}
+          style={{ height: "600px", overflow:"hidden" }}
         >
           <img
             src={finalItem.image_url}
@@ -142,14 +291,15 @@ export default function Moredetails() {
           >
             Preview
           </button>
-          <div className="my-4 border-t border-gray-700"></div>
         </div>
+        <div className="my-4 border-t border-gray-200"></div>
+
         <div className="mt-10">
           <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
           <div className="mt-4">
-            <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-              <li className="text-gray-500">
+            <ul className="list-disc space-y-2 pl-4 text-sm">
+              <li>
                 <span className="text-gray-500">Hand cut and sewn locally</span>
               </li>
               <li className="text-gray-500">
@@ -158,10 +308,13 @@ export default function Moredetails() {
                 </span>
               </li>
               <li className="text-gray-500">
-                <span className="text-gray-500">Pre-washed &amp; pre-shrunk</span>
+                <span className="text-gray-500">
+                  Pre-washed &amp; pre-shrunk
+                </span>
               </li>
             </ul>
           </div>
+          <div className="my-4 border-t border-gray-200"></div>
         </div>
         <div className="mt-10">
           <h2 className="text-sm font-medium text-gray-900">License</h2>
@@ -175,6 +328,7 @@ export default function Moredetails() {
             </p>
           </div>
         </div>
+        <div className="my-4 border-t border-gray-200"></div>
         <div className=" mt-10 pb-10 ">
           <h2 className="text-sm font-medium text-gray-900 pb-4 ">Share </h2>
           <div className=" inline-flex  space-x-6 ">
@@ -197,30 +351,38 @@ export default function Moredetails() {
                 alt=""
               />
             </Link>
-           
           </div>
         </div>
       </div>
 
-      <div className="lg:col-span-1 lg:row-span-2 pt-10 ">
-        <div className="inline-flex space-x-5">
-          <Link to="/">
-            <p>Customers Review</p>
-          </Link>
-          <Link to="/FAQ">
-            <p>FAQ</p>
-          </Link>
-          <Link to="/License">
-            <p>License</p>
-          </Link>
-
-          <Routes>
-
-            <Route path="/" exact component={<Customers_Review />} />
-            <Route path="/FAQ" component={<FAQ />} />
-            <Route path="/License" component={<License />} />
-          </Routes>
+      <div className="lg:col-span-1 lg:row-span-4 pt-10 ">
+        <div className="  inline-flex space-x-5 ">
+          <button
+            className="border border-transparent group  hover:border-b-gray-500  focus:border-b-black "
+            onClick={() => setSelectedContent("customers")}
+          >
+            Customers Review
+          </button>
+          <button
+            className="border border-transparent group hover:border-b-gray-700
+          focus:outline-none focus:border-b-black"
+            onClick={() => setSelectedContent("FAQ")}
+          >
+            FAQ
+          </button>
+          <button
+            className="border border-transparent group hover:border-b-gray-700 focus:outline-none focus:border-b-black"
+            onClick={() => setSelectedContent("License")}
+          >
+            License
+          </button>
         </div>
+
+        <div className="my-4 border-t border-gray-200"></div>
+        <div> {selectedContent === "customers" && <Customersreview />}</div>
+
+        <div>{selectedContent === "FAQ" && <FAQ />}</div>
+        <div>{selectedContent === "License" && <License />}</div>
       </div>
     </div>
   );
