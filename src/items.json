@@ -1,113 +1,331 @@
+
 [
-  { "upper" :{
-
-  
-  
-   },
-  "lower" :{
-    "id":"8",
-    "name": "KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans",
-    "link": "https://amzn.to/3UkbLUK",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
-    "price": "₹474 "
- } },
-  { "upper" :{
-
-  
-    "id":"9",
-    "name": "Women's Lantern Sleeve Tie Up Back Crop Blouse Top Cute Crop Tops",
-    "link": "https://amzn.to/492yIjG",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
-    "price": "₹349 "
-   },
-  "lower" :{
-    "id":"10",
-    "name": "ALYNE Women's Elastic Waist Pencil Bodycon Midi Skirt",
-    "link": "https://amzn.to/47PwIdj",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SY879_.jpg",
-    "price": " ₹265 "
- } },
-  
-  { "upper" :{
-
-  
-    "id":"11",
-    "name": "Arrow Men's Shirt",
-    "link": "https://amzn.to/3SiQmIU",
-    "image_url": "https://m.media-amazon.com/images/I/613u9XcWxzL._SX679_.jpg",
-    "price": "  ₹1,198 "
-   },
-  "lower" :{
-    "id":"12",
-    "name": "Urbano Fashion Men's Slim Casual Pants",
-    "link": "https://amzn.to/3Hz7Zz8",
-    "image_url": "https://m.media-amazon.com/images/I/61j+rhZwPoL._SX679_.jpg",
-    "price": " ₹749 "
- } },
-  { "upper" :{
-
-  
-    "id":"13",
-    "name": "HONNETE Women Stylish Long Sleeve Regular Coat for Winter Wear",
-    "link": "https://amzn.to/3UiyG2O",
-    "image_url": "https://m.media-amazon.com/images/I/81N1mDtoq5L._SY879_.jpg",
-    "price": "  ₹3,059 "
-   },
-  "lower" :{
-    "id":"14",
-    "name": "FableStreet Checkered Straight Fit Trousers - Beige",
-    "link": "https://amzn.to/3HBJWQc",
-    "image_url": "https://m.media-amazon.com/images/I/81CXEIC23-L._SY879_.jpg",
-    "price": " ₹2,186"
- } },
-{ "upper" :{
-
-  
-    "id":"1",
-    "name": "Women Maxi Bodycon Dress",
-    "link": "https://amzn.to/426yTYF",
-    "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
-    "price": " ₹389 "
-   },
-  "lower" :{
-    "id":"2",
-    "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
-    "link": "https://amzn.to/3vVyzA7",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
-    "price": "  ₹700"
- } },
-{ 
-  "upper":{
-    "id":"3",
-    "name": "SIGHTBOMB Women's Bodycon Knee Length Dresst",
-    "link": "https://amzn.to/3vSVKLa",
-    "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
-    "price": " ₹999"
+  {
+    "upper": {
+      "id": "1",
+      "name": "Women Maxi Bodycon Dress",
+      "link": "https://amzn.to/426yTYF",
+      "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
+      "price": "₹389",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "John Doe",
+          "date": "August 10, 2023",
+          "content": "This dress is amazing! It fits perfectly and the material is so comfortable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Jane Smith",
+          "date": "August 5, 2023",
+          "content": "I love this dress! The color is beautiful and it looks great on me.",
+          "rating": 4
+        }
+      ]
+    },
+    "lower": {
+      "id": "2",
+      "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
+      "link": "https://amzn.to/3vVyzA7",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
+      "price": "₹700",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Alice Johnson",
+          "date": "August 12, 2023",
+          "content": "These sandals are so comfortable and stylish. I've received many compliments!",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Bob Brown",
+          "date": "August 8, 2023",
+          "content": "Not very satisfied with these sandals. They feel cheaply made and the fit is off.",
+          "rating": 2
+        }
+      ]
+    }
   },
- "lower":{
-    "id":"4",
-    "name": "Vendoz Women Premium Ankle Length Casual Boots ",
-    "link": "https://amzn.to/48NQuXT",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
-    "price": " ₹659"
-}},
-   { 
-    "upper":{"id":"5",
-    "name": "Round Neck Short Sleeves T-Shirt",
-    "link": "https://amzn.to/3Hr1Gh7",
-    "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
-    "price": " ₹463"
+  {
+    "upper": {
+      "id": "3",
+      "name": "SIGHTBOMB Women's Bodycon Knee Length Dress",
+      "link": "https://amzn.to/3vSVKLa",
+      "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
+      "price": "₹999",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Emily White",
+          "date": "August 9, 2023",
+          "content": "Love this dress! It's perfect for any occasion and the quality is great.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Michael Johnson",
+          "date": "August 6, 2023",
+          "content": "Not happy with this dress. The color was different from what was shown and the fit was too tight.",
+          "rating": 2
+        }
+      ]
+    },
+    "lower": {
+      "id": "4",
+      "name": "Vendoz Women Premium Ankle Length Casual Boots",
+      "link": "https://amzn.to/48NQuXT",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
+      "price": "₹659",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Sarah Davis",
+          "date": "August 11, 2023",
+          "content": "These boots are fantastic! They're comfortable and look great with any outfit.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Chris Wilson",
+          "date": "August 7, 2023",
+          "content": "Disappointed with these boots. They started falling apart after just a few weeks of use.",
+          "rating": 1
+        }
+      ]
+    }
+  },
 
-   },
-   "lower":{
-    "id":"6",
-    "name": "Kraasa ReviveRetro White Sneakers for Men|Casual Shoes for Men|Streetwear Fashion Sneakers for Men",
-    "link": "https://amzn.to/488mLIl",
-    "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
-    "price": "  ₹599"
-
-   }
+  {
+    "upper": {
+      "id": "5",
+      "name": "Round Neck Short Sleeves T-Shirt",
+      "link": "https://amzn.to/3Hr1Gh7",
+      "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
+      "price": "₹463",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Emma Clark",
+          "date": "August 10, 2023",
+          "content": "This t-shirt is super comfortable and fits perfectly!",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "David Martinez",
+          "date": "August 5, 2023",
+          "content": "The quality of this t-shirt is great, but the size runs a bit small.",
+          "rating": 4
+        }
+      ]
+    },
+    "lower": {
+      "id": "6",
+      "name": "Kraasa ReviveRetro White Sneakers for Men",
+      "link": "https://amzn.to/488mLIl",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
+      "price": "₹599",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Sophia Johnson",
+          "date": "August 9, 2023",
+          "content": "Love these sneakers! They're stylish and comfortable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "James Anderson",
+          "date": "August 6, 2023",
+          "content": "Not satisfied with these sneakers. They look cheaply made and don't provide enough support.",
+          "rating": 2
+        }
+      ]
+    }
+  },
+  {
+    "upper": {
+      "id": "7",
+      "name": "Women's Casual Backpack",
+      "link": "https://amzn.to/3Je7Oka",
+      "image_url": "https://m.media-amazon.com/images/I/71O1N+4XZTL._SX679_.jpg",
+      "price": "₹899",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Olivia Taylor",
+          "date": "August 11, 2023",
+          "content": "This backpack is perfect for everyday use. It's spacious and durable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Michael Smith",
+          "date": "August 7, 2023",
+          "content": "The quality of this backpack is not as good as I expected. It feels flimsy.",
+          "rating": 3
+        }
+      ]
+    },
+    "lower": {
+      "id": "8",
+      "name": "KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans",
+      "link": "https://amzn.to/3UkbLUK",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
+      "price": "₹474",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Sophia Wilson",
+          "date": "August 10, 2023",
+          "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "David Brown",
+          "date": "August 5, 2023",
+          "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+          "rating": 2
+        }
+      ]
+    }
+  },
+  {
+    "upper": {
+      "id": "9",
+      "name": "Women's Lantern Sleeve Tie Up Back Crop Blouse Top Cute Crop Tops",
+      "link": "https://amzn.to/492yIjG",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
+      "price": "₹349",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Emily Brown",
+          "date": "August 12, 2023",
+          "content": "Love this crop top! It's so cute and versatile.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "James White",
+          "date": "August 8, 2023",
+          "content": "The fabric of this crop top is not very good quality. It feels cheap.",
+          "rating": 2
+        }
+      ]
+    },
+    "lower": {
+      "id": "10",
+      "name": "ALYNE Women's Elastic Waist Pencil Bodycon Midi Skirt",
+      "link": "https://amzn.to/47PwIdj",
+      "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SY879_.jpg",
+      "price": "₹265",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Sophia Garcia",
+          "date": "August 11, 2023",
+          "content": "This skirt is perfect for any occasion. It's comfortable and looks great.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Michael Davis",
+          "date": "August 7, 2023",
+          "content": "Not satisfied with this skirt. The material is thin and wrinkles easily.",
+          "rating": 3
+        }
+      ]
+    }
+  },
+  {
+    "upper": {
+      "id": "11",
+      "name": "Arrow Men's Shirt",
+      "link": "https://amzn.to/3SiQmIU",
+      "image_url": "https://m.media-amazon.com/images/I/613u9XcWxzL._SX679_.jpg",
+      "price": "₹1,198",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Oliver Taylor",
+          "date": "August 10, 2023",
+          "content": "This shirt is very comfortable and fits perfectly. The quality is excellent.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Emma Smith",
+          "date": "August 5, 2023",
+          "content": "The color of this shirt faded after just a few washes. Disappointed with the quality.",
+          "rating": 2
+        }
+      ]
+    },
+    "lower": {
+      "id": "12",
+      "name": "Urbano Fashion Men's Slim Casual Pants",
+      "link": "https://amzn.to/3Hz7Zz8",
+      "image_url": "https://m.media-amazon.com/images/I/61j+rhZwPoL._SX679_.jpg",
+      "price": "₹749",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "John Anderson",
+          "date": "August 12, 2023",
+          "content": "Love these pants! They're stylish and comfortable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Sophia Miller",
+          "date": "August 8, 2023",
+          "content": "The fit of these pants is not great. They're too tight in the waist.",
+          "rating": 3
+        }
+      ]
+    }
+  },
+  {
+    "upper": {
+      "id": "13",
+      "name": "HONNETE Women Stylish Long Sleeve Regular Coat for Winter Wear",
+      "link": "https://amzn.to/3UiyG2O",
+      "image_url": "https://m.media-amazon.com/images/I/81N1mDtoq5L._SY879_.jpg",
+      "price": "₹3,059",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Emma Wilson",
+          "date": "August 11, 2023",
+          "content": "This coat is perfect for winter! It's warm and stylish.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Michael Johnson",
+          "date": "August 7, 2023",
+          "content": "The quality of this coat is not as good as expected. It feels cheap.",
+          "rating": 2
+        }
+      ]
+    },
+    "lower": {
+      "id": "14",
+      "name": "FableStreet Checkered Straight Fit Trousers - Beige",
+      "link": "https://amzn.to/3HBJWQc",
+      "image_url": "https://m.media-amazon.com/images/I/81CXEIC23-L._SY879_.jpg",
+      "price": "₹2,186",
+      "review": [
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "Sophia Clark",
+          "date": "August 10, 2023",
+          "content": "Love these trousers! They fit perfectly and are very comfortable.",
+          "rating": 5
+        },
+        {
+          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+          "rname": "David Brown",
+          "date": "August 5, 2023",
+          "content": "Not satisfied with these trousers. The material is thin and wrinkles easily.",
+          "rating": 2
+        }
+      ]
+    }
   }
-
 ]
-

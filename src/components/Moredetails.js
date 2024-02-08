@@ -2,74 +2,98 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Customersreview = () => {
-  const customerData = [
-    {
-      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-      name: "Emily Selman",
-      date: "July 16, 2021",
-      content:
-        "This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!",
-      rating: 3,
-    },
-    {
-      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-      name: "Emily Selman",
-      date: "July 16, 2021",
-      content:
-        "Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.",
-      rating: 3,
-    },
-    {
-      img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-      name: "Mark Edwards",
-      date: "July 6, 2021",
-      content:
-        "Really happy with the look and options of these icons. I've found uses for them everywhere in my recent projects. I hope there will be 20px versions in the future!",
-      rating: 5,
-    },
-  ];
-
-  return (
-    <div className="my-8 ">
-      {customerData.map((item, index) => (
-        <div key={index} className="my-6 text-gray-500 text-sm">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <img className="h-10 w-10 rounded-full" src={item.img} alt="" />
-            </div>
-            <div className="ml-4">
-              <div className="font-medium  text-gray-700">{item.name}</div>
-              <div className="text-gray-600">{item.date}</div>
-              <div className="flex items-center my-4">
-                {Array.from({ length: item.rating }, (_, i) => (
-                 <svg
-                 key={i}
-                 className="text-gray-900 h-5 w-5 flex-shrink-0"
-                 viewBox="0 0 20 20"
-                 fill="gold"
-                 aria-hidden="true"
-               >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ))}
+// const Customersreview = (props) => {
+//   const reviewData = props.reviewData; 
+  // [
+  //   {
+  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+  //     name: "Emily Selman",
+  //     date: "July 16, 2021",
+  //     content:
+  //       "This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!",
+  //     rating: 3,
+  //   },
+  //   {
+  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+  //     name: "Emily Selman",
+  //     date: "July 16, 2021",
+  //     content:
+  //       "Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.",
+  //     rating: 3,
+  //   },
+  //   {
+  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+  //     name: "Mark Edwards",
+  //     date: "July 6, 2021",
+  //     content:
+  //       "Really happy with the look and options of these icons. I've found uses for them everywhere in my recent projects. I hope there will be 20px versions in the future!",
+  //     rating: 5,
+  //   },
+  // ];
+  const Customersreview = (props) => {
+    const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
+    
+    return (
+      <div className="my-8">
+        {reviewData.map((review, index) => (
+          <div key={index} className="my-6 text-gray-500 text-sm">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <img className="h-10 w-10 rounded-full" src={review.image} alt="" />
               </div>
-              <div className="mt-2 ">{item.content}</div>
+              <div className="ml-4">
+                <div className="font-medium text-gray-700">{review.rname}</div>
+                <div className="text-gray-600">{review.date}</div>
+                <div className="flex items-center my-2">
+                  {Array.from({ length: review.rating }, (_, i) => (
+                    <svg
+                      key={i}
+                   
+                      className="text-gray-200 h-5 w-5 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="gold"
+                      aria-hidden="true"
+                    >
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                   {Array.from({ length: (5-review.rating) }, (_, i) => (
+                    <svg
+                      key={i}
+                   
+                      className="text-gray-200 h-5 w-5 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ))}
+                  
+                </div>
+                <div className="mt-2">{review.content}</div>
+              </div>
             </div>
-            
+            {index !== reviewData.length - 1 && (
+              <div className="my-4 border-t border-gray-200"></div>
+            )}
           </div>
-          <div className="my-4 border-t border-gray-200"></div>
-        </div>
-        
-      ))}
-    </div>
-  );
-};
-
+        ))}
+      </div>
+    );
+  };
+  
+  
 
 
 
@@ -165,7 +189,7 @@ export default function Moredetails() {
     return <div>Error: Invalid data format</div>;
   }
 
-  const finalItem = decodedItemsArray.find((item) => item.id === itemId);
+  const finalItem = decodedItemsArray.find((item) => item?.id === itemId);
 
   if (!finalItem) {
     return <div>Item not found</div>;
@@ -269,11 +293,7 @@ export default function Moredetails() {
           </h1>
           <div className="space-y-6">
             <p className="text-base text-gray-500">
-              The Basic Tee 6-Pack allows you to fully express your vibrant
-              personality with three grayscale options. Feeling adventurous? Put
-              on a heather gray tee. Want to be a trendsetter? Try our exclusive
-              colorway: &quot;Black&quot;. Need to add an extra pop of color to
-              your outfit? Our white tee has you covered.
+            The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.
             </p>
           </div>
         </div>
@@ -379,7 +399,7 @@ export default function Moredetails() {
         </div>
 
         <div className="my-4 border-t border-gray-200"></div>
-        <div> {selectedContent === "customers" && <Customersreview />}</div>
+        <div>{selectedContent === "customers" && <Customersreview reviewData={finalItem.review} />}</div>
 
         <div>{selectedContent === "FAQ" && <FAQ />}</div>
         <div>{selectedContent === "License" && <License />}</div>

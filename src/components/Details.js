@@ -29,13 +29,17 @@ const Details = () => {
         link: upperItem?.upper?.link,
         image_url: upperItem?.upper?.image_url,
         price: upperItem?.upper?.price,
+       review: upperItem?.upper?.review || [] 
+    
       },
      {
         id: lowerItem?.lower?.id,
         name: lowerItem?.lower?.name,
         link: lowerItem?.lower?.link,
         image_url: lowerItem?.lower?.image_url,
-        price: lowerItem?.lower?.price,
+       price: lowerItem?.lower?.price,
+       review: lowerItem?.lower?.review || []
+
       }
  
       
@@ -46,7 +50,7 @@ const Details = () => {
       {itemsArray.map((item, index) => (
         <div key={index} className="my-4 max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700">
           <img className="rounded-t-lg align-middle mr-10 p-4" src={item.image_url} alt="" />
-          <div className="hidden sm:ml-6 sm:block">
+          <div className="sm:ml-6 sm:block">
             <div className="flex space-x-4">
               <div
                 className={classNames(
