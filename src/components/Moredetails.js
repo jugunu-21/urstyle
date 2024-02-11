@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -54,7 +55,7 @@ import { Link } from "react-router-dom";
                       fill="gold"
                       aria-hidden="true"
                     >
-                    >
+                    
                       <path
                         fillRule="evenodd"
                         d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
@@ -71,7 +72,7 @@ import { Link } from "react-router-dom";
                       fill="currentColor"
                       aria-hidden="true"
                     >
-                    >
+                    
                       <path
                         fillRule="evenodd"
                         d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
@@ -181,6 +182,7 @@ const License = () => (
 );
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
+  
   const { id, itemsArrayString } = useParams();
   const itemId = id;
   const decodedItemsArray = JSON.parse(decodeURIComponent(itemsArrayString));
@@ -190,7 +192,7 @@ export default function Moredetails() {
   }
 
   const finalItem = decodedItemsArray.find((item) => item?.id === itemId);
-
+  
   if (!finalItem) {
     return <div>Item not found</div>;
   }
@@ -299,12 +301,9 @@ export default function Moredetails() {
         </div>
 
         <div className=" md:inline-flex ">
-          <button
-            type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-20 md:mx-2 "
-          >
-            Pay$220
-          </button>
+        
+          <Link to={finalItem.link}  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-20 md:mx-2 "> Pay$220</Link>
+          
           <button
             type="submit"
             className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-indigo hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-20  "

@@ -51,6 +51,7 @@
       "link": "https://amzn.to/3vSVKLa",
       "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
       "price": "₹999",
+      
       "review": [
         {
           "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",          "rname": "Emily White",
@@ -138,27 +139,7 @@
   },
   {
     "upper": {
-      "id": "7",
-      "name": "Women's Casual Backpack",
-      "link": "https://amzn.to/3Je7Oka",
-      "image_url": "https://m.media-amazon.com/images/I/71O1N+4XZTL._SX679_.jpg",
-      "price": "₹899",
-      "review": [
-        {
-          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-          "rname": "Olivia Taylor",
-          "date": "August 11, 2023",
-          "content": "This backpack is perfect for everyday use. It's spacious and durable.",
-          "rating": 5
-        },
-        {
-          "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-          "rname": "Michael Smith",
-          "date": "August 7, 2023",
-          "content": "The quality of this backpack is not as good as I expected. It feels flimsy.",
-          "rating": 3
-        }
-      ]
+    
     },
     "lower": {
       "id": "8",
