@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Contact from './components/Contact';
 import Clothes from './components/Clothes';
 import Details from './components/Details';
+import Footer from './components/Footer';
 //impo import Clothes from './components/Clothes';
 import Moredetails from './components/Moredetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -34,7 +35,7 @@ function App() {
           {/* Other routes go here */}
         </Routes>
       </div >
-      
+      <Footer />
     </Router>
     // <div>
     //   <Navbar/>
