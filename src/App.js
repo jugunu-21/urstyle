@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Navbar />
      
-      <div className="bg-cover bg-center w-full h-300" >
+      <div className="" >
         <Routes>
         <Route path="/" element={<Clothes/>} />
         <Route path="/about" element={<About/>} />

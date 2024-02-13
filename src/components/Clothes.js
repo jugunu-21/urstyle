@@ -5,6 +5,33 @@ import { Link } from "react-router-dom";
 // import Details from './Details';
 
 export default function Clothes() {
+  const smallicon = [
+   
+    {
+      url:  'http://127.0.0.1:5501/Group%203/img/features/f1.png',
+      des: 'Free shipping'
+    },
+    {
+      url:'http://127.0.0.1:5501/Group%203/img/features/f2.png',
+      des:'  Online order'
+    },
+    {
+      url: 'http://127.0.0.1:5501/Group%203/img/features/f3.png',
+      des:'Save money'
+    },
+    {
+      url:'http://127.0.0.1:5501/Group%203/img/features/f4.png',
+      des: ' Promotions'
+    },
+    {
+      url:'http://127.0.0.1:5501/Group%203/img/features/f5.png',
+      des: '  Happy Sell'
+    },
+    {
+      url: 'http://127.0.0.1:5501/Group%203/img/features/f6.png',
+      des:'  24/7 Support'
+    }
+  ]
   // const [selectedItem, setSelectedItem] = useState(null);
 
   // const onItemClick = (item) => {
@@ -18,37 +45,42 @@ export default function Clothes() {
           backgroundImage: `url('https://aliciafarrell.com/wp-content/uploads/2022/08/Screenshot-2022-08-17-at-10.57.53-am-1206x540.png')`,
         }}
       >
-        <div className=" my-32  lg:my-52   font-serif  text-cyan-700 text-5xl md:text-9xl bg-white">
+        <div className=" my-28  lg:my-42   font-serif  text-cyan-700 text-5xl md:text-9xl bg-white">
           URSTYLE
         </div>
       </div>
-      <div className="  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  file:selection:placeholder:  forced-color-adjust-none">
+      <div className="  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 ">
         {itemsData.map((item, index) => (
-          <div key={index} className=" my-4 py-2 bg-gray-200  max-w-sm ">
+          <div
+            key={index}
+            className=" my-2 my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700 "
+          >
             {item.upper && item.upper.image_url && (
-              <div className="w-64 h-80 overflow-hidden bg-gray-200">
+              <div className="">
                 <img
-                  className="object-contain w-full h-full rounded-lg  ml-10 bg-white "
+                  className="max-w-64 max-h-64 rounded-lg align-middle ml-10 hover:border-teal-900 hover:border-2 "
                   src={item.upper.image_url}
                   alt=""
                 />
 
-                <div className="text-slate-950"> {item.upper.price} </div>
+                <div className="text-white font-semibold text-center">
+                  {" "}
+                  {item.upper.price}{" "}
+                </div>
               </div>
             )}
 
             <br />
 
             {item.lower && item.lower.image_url && (
-              <div className="w-64 h-80 overflow-hidden">
+              <div className="">
                 <img
-                  className="object-contain w-full h-full rounded-lg  ml-10 bg-white"
+                  className="max-w-64 max-h-64 rounded-lg align-middle ml-10 hover:border-teal-900  hover:border-2"
                   src={item.lower.image_url}
                   alt=""
                 />
-                <div className="text-slate-950 text-center">
-                  {" "}
-                  {item.lower.price}{" "}
+                <div className="text-white font-semibold text-center">
+                  {item.lower.price}
                 </div>
               </div>
             )}
@@ -57,11 +89,10 @@ export default function Clothes() {
 
             {item.lower && item.upper && (
               <div className="flex justify-end">
-                {" "}
                 {/* Centering the link horizontally */}
                 <Link
                   to={`/details/${item.upper?.id}/${item.lower?.id}`}
-                  className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Details
                   <svg
@@ -85,7 +116,20 @@ export default function Clothes() {
           </div>
         ))}
       </div>
+      <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4">
+      {smallicon.map((item,index) => <div key={index} >
+        <div className=  " border-2 rounded-lg m-2 ">
+          <img
+            src={item.url}  
+            alt=""
+          />
+          <div className=" pb-2 text-center pr-2">{item.des} </div>
+        </div>
+    
+      </div>  )}
+      </div>
      
+      
     </div>
   );
 }

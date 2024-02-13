@@ -50,7 +50,7 @@ import { Link } from "react-router-dom";
                     <svg
                       key={i}
                    
-                      className="text-gray-200 h-5 w-5 flex-shrink-0"
+                      className="text-black h-5 w-5 flex-shrink-0"
                       viewBox="0 0 20 20"
                       fill="gold"
                       aria-hidden="true"
@@ -67,7 +67,7 @@ import { Link } from "react-router-dom";
                     <svg
                       key={i}
                    
-                      className="text-gray-200 h-5 w-5 flex-shrink-0"
+                      className="text-black h-5 w-5 flex-shrink-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -265,7 +265,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-200 h-5 w-5 flex-shrink-0"
+                className="text-black h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
@@ -360,7 +360,7 @@ export default function Moredetails() {
             <Link to="#" className="aspect-square size-5 ">
               <img
                 src="https://www.iconninja.com/files/611/75/580/instagram-icon.png"
-                alt=""
+                alt=""f
                 srcset=""
               />
             </Link>
