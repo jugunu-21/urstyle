@@ -1,5 +1,10 @@
 import React from "react";
-import itemsData from "../items.json"; // Adjust the path based on your project structure
+import itemsData from "../items.json";
+import * as images from './Features/image'; // Adjust the path accordingly
+
+// You can now access individual images like this:
+// images.image1, images.image2, images.image3
+
 
 import { Link } from "react-router-dom";
 // import Details from './Details';
@@ -8,27 +13,27 @@ export default function Clothes() {
   const smallicon = [
    
     {
-      url:  'http://127.0.0.1:5501/Group%203/img/features/f1.png',
+      url:images.image1,
       des: 'Free shipping'
     },
     {
-      url:'http://127.0.0.1:5501/Group%203/img/features/f2.png',
+      url:images.image2,
       des:'  Online order'
     },
     {
-      url: 'http://127.0.0.1:5501/Group%203/img/features/f3.png',
+      url: images.image3,
       des:'Save money'
     },
     {
-      url:'http://127.0.0.1:5501/Group%203/img/features/f4.png',
+      url:images.image4,
       des: ' Promotions'
     },
     {
-      url:'http://127.0.0.1:5501/Group%203/img/features/f5.png',
+      url:images.image5,
       des: '  Happy Sell'
     },
     {
-      url: 'http://127.0.0.1:5501/Group%203/img/features/f6.png',
+      url: images.image6 ,
       des:'  24/7 Support'
     }
   ]
@@ -120,7 +125,7 @@ export default function Clothes() {
       {smallicon.map((item,index) => <div key={index} >
         <div className=  " border-2 rounded-lg m-2 ">
           <img
-            src={item.url}  
+            src={item.url}
             alt=""
           />
           <div className=" pb-2 text-center pr-2">{item.des} </div>
