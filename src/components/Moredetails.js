@@ -206,7 +206,7 @@ export default function Moredetails() {
         >
           <img
             src={finalItem.image_url}
-            className=" object-cover object-center h-full w-full"
+            className=" object-cover object-center h-full w-full hover:border-4 hover:border-violet-500"
             alt=""
           />
         </div>
@@ -229,7 +229,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-900  dark:text-red-500 font-bold font-bold h-5 w-5 flex-shrink-0"
+                className="text-gray-900  dark:text-red-500 font-bold h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="gold"
                 aria-hidden="true"

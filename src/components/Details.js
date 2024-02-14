@@ -44,15 +44,18 @@ const Details = () => {
 
   const itemsArrayString = encodeURIComponent(JSON.stringify(itemsArray));
   return (
-    <div className="text-slate-900 p-4">
+    <div className= " dark:bg-black text-slate-900 dark:text-emerald-100 p-4">
       {itemsArray.map((item, index) => (
-        <div key={index} className="md:flex  space-x-4 my-4 rounded-lg">
+        <div key={index} className="md:flex  space-x-4 my-4 ">
           {item.image_url && (
-            <img
-              className="rounded-t-lg max-w-96 max-h-96 align-middle mr-10 p-4"
-              src={item.image_url}
-              alt=""
-            />
+            <div className="m-2 overflow-hidden item-center " style={{ width: "400px", height: "500px" }}>
+           <img
+             className=" w-full h-full object-cover align-middle rounded-lg hover:border-4 hover:border-violet-500"
+             src={item.image_url}
+             alt=""
+           />
+         </div>
+         
           )}
           {item.name && (
             <>
@@ -61,7 +64,7 @@ const Details = () => {
                   <div
                     className={classNames(
                       item.current
-                        ? "py-4 bg-emerald-950 text-white"
+                        ? "py-4 bg-emerald-950 dark:bg-emerald-950 text-white"
                         : "hover:bg-gray-700 hover:text-white",
                       "rounded-md text-sm font-medium"
                     )}
@@ -92,7 +95,7 @@ const Details = () => {
                       (_, i) => (
                         <svg
                           key={i}
-                          className="text-gray-200 h-5 w-5 flex-shrink-0"
+                          className="text-pink-200 h-5 w-5 flex-shrink-0"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                           aria-hidden="true"
@@ -121,7 +124,7 @@ const Details = () => {
                     <Link
                       to={`/moredetails/${item.id}/${itemsArrayString}`}
                       rel="noopener noreferrer"
-                      className=" inline-flex items-center px-10 py-4 text- font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className=" inline-flex items-center px-10 py-4 text- font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-400 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Read more
                       <svg

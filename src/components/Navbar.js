@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
   
  
-    <div className="min-h-full h-full">
+    <div className="min-h-full h-full dark:bg-black">
      <nav className=" bg-purple-200  ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
@@ -162,11 +162,11 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <header className="bg-white shadow">
+      <header className="bg-white shadow dark:bg-black ">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
 
-          <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif">Welcome to our site.....</h1>
+          <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif dark:text-rose-200">Welcome to our site.....</h1>
 
 
           

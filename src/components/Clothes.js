@@ -1,74 +1,79 @@
 import React from "react";
 import itemsData from "../items.json";
-import * as images from './Features/image'; // Adjust the path accordingly
+import * as images from "./Features/image"; // Adjust the path accordingly
 
 // You can now access individual images like this:
 // images.image1, images.image2, images.image3
-
 
 import { Link } from "react-router-dom";
 // import Details from './Details';
 
 export default function Clothes() {
   const smallicon = [
-   
     {
-      url:images.image1,
-      des: 'Free shipping'
+      url: images.image1,
+      des: "Free shipping",
     },
     {
-      url:images.image2,
-      des:'  Online order'
+      url: images.image2,
+      des: "  Online order",
     },
     {
       url: images.image3,
-      des:'Save money'
+      des: "Save money",
     },
     {
-      url:images.image4,
-      des: ' Promotions'
+      url: images.image4,
+      des: " Promotions",
     },
     {
-      url:images.image5,
-      des: '  Happy Sell'
+      url: images.image5,
+      des: "  Happy Sell",
     },
     {
-      url: images.image6 ,
-      des:'  24/7 Support'
-    }
-  ]
+      url: images.image6,
+      des: "  24/7 Support",
+    },
+  ];
   // const [selectedItem, setSelectedItem] = useState(null);
 
   // const onItemClick = (item) => {
   //   setSelectedItem(item);
 
   return (
-    <div className="m-6">
+    <div className="p-6 dark:bg-black">
       <div
-        className="pl-20 flex justify-center lg:mr-4 rounded-lg  bg-slate-300 opacity-50 "
+        className="p-2 ml-4 flex justify-center lg:mr-4 rounded-lg  bg-slate-300  "
         style={{
-          backgroundImage: `url('https://aliciafarrell.com/wp-content/uploads/2022/08/Screenshot-2022-08-17-at-10.57.53-am-1206x540.png')`,
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) , rgba(255, 255, 255, 0.5)), url('https://aliciafarrell.com/wp-content/uploads/2022/08/Screenshot-2022-08-17-at-10.57.53-am-1206x540.png')`,  
         }}
       >
-        <div className=" my-28  lg:my-42   font-serif  text-cyan-700 text-5xl md:text-9xl bg-white">
+       
+        <div
+          className=" my-16 p-12 lg:my-42   font-serif   text-cyan-900 text-5xl md:text-9xl "
+          
+        >
           URSTYLE
         </div>
       </div>
-      <div className="  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 ">
+      <div className="  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 px-2 ">
         {itemsData.map((item, index) => (
           <div
             key={index}
-            className=" my-2 my- max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-500 dark:border-gray-700 "
+            className="  m-2 border border-gray-200 rounded-lg shadow bg-slate-500 dark:border-gray-700 "
           >
             {item.upper && item.upper.image_url && (
-              <div className="">
+              <div
+                className=" pl-2 pr-2 overflow-hidden item-centre"
+                style={{ width: "90%", height: "43%" }}
+              >
                 <img
-                  className="max-w-64 max-h-64 rounded-lg align-middle ml-10 hover:border-teal-900 hover:border-2 "
+                  className="w-full h-72 object-cover rounded-lg align-middle  hover:border-teal-900 hover:border-2 "
                   src={item.upper.image_url}
                   alt=""
                 />
 
-                <div className="text-white font-semibold text-center">
+                <div className="bg-red-200   mx-16  object-center text-black font-semibold text-center">
                   {" "}
                   {item.upper.price}{" "}
                 </div>
@@ -78,13 +83,16 @@ export default function Clothes() {
             <br />
 
             {item.lower && item.lower.image_url && (
-              <div className="">
+              <div
+                className="  pl-2 pr-2 overflow-hidden"
+                style={{ width: "90%", height: "43%" }}
+              >
                 <img
-                  className="max-w-64 max-h-64 rounded-lg align-middle ml-10 hover:border-teal-900  hover:border-2"
+                  className="w-full h-72 object-cover rounded-lg align-middle  hover:border-teal-900  hover:border-2"
                   src={item.lower.image_url}
                   alt=""
                 />
-                <div className="text-white font-semibold text-center">
+                <div className=" bg-red-200   mx-16  object-center text-black font-semibold text-center">
                   {item.lower.price}
                 </div>
               </div>
@@ -121,20 +129,18 @@ export default function Clothes() {
           </div>
         ))}
       </div>
-      <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4">
-      {smallicon.map((item,index) => <div key={index} >
-        <div className=  " border-2 rounded-lg m-2 ">
-          <img
-            src={item.url}
-            alt=""
-          />
-          <div className=" pb-2 text-center pr-2">{item.des} </div>
-        </div>
-    
-      </div>  )}
+      <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4 ">
+        {smallicon.map((item, index) => (
+          <div key={index}>
+            <div className="  border-2 border-blue-300 rounded-lg m-2 ">
+              <img src={item.url} alt="" />
+              <div className=" m-2 pb-2 text-center pr-2 bg-blue-200 rounded-lg">
+                {item.des}{" "}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-     
-      
     </div>
   );
 }
