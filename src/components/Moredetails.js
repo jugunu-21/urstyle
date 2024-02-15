@@ -37,20 +37,20 @@ import { Link } from "react-router-dom";
     return (
       <div className="my-8">
         {reviewData.map((review, index) => (
-          <div key={index} className="my-6 text-gray-500 text-sm dark:text-emerald-500 ">
+          <div key={index} className="my-6 text-gray-500 text-sm  ">
             <div className="flex">
               <div className="flex-shrink-0">
                 <img className="h-10 w-10 rounded-full" src={review.image} alt="" />
               </div>
               <div className="ml-4">
-                <div className="font-medium text-gray-700 dark:text-orange-200">{review.rname}</div>
-                <div className="text-gray-600 dark:text-emerald-400">{review.date}</div>
+                <div className="font-medium text-gray-700 ">{review.rname}</div>
+                <div className="text-gray-600 ">{review.date}</div>
                 <div className="flex items-center my-2">
                   {Array.from({ length: review.rating }, (_, i) => (
                     <svg
                       key={i}
                    
-                      className="text-gray-200 dark:text-emerald-700 h-5 w-5 flex-shrink-0"
+                      className="text-gray-200  h-5 w-5 flex-shrink-0"
                       viewBox="0 0 20 20"
                       fill="gold"
                       aria-hidden="true"
@@ -67,7 +67,7 @@ import { Link } from "react-router-dom";
                     <svg
                       key={i}
                    
-                      className="text-gray-200 dark:text-rose-50 h-5 w-5 flex-shrink-0"
+                      className="text-gray-200  h-5 w-5 flex-shrink-0"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                       aria-hidden="true"
@@ -100,9 +100,9 @@ import { Link } from "react-router-dom";
 
 const FAQ = () => {
   return (
-    <div className="text-gray-500 dark:text-emerald-200 ">
+    <div className="text-gray-500  ">
       <div className="py-4">
-        <h4 className=" py-1 text-gray-700 dark:text-orange-200 font-semibold ">
+        <h4 className=" py-1 text-gray-700  font-semibold ">
           What format are these icons?
         </h4>
         <p className=" ">
@@ -111,7 +111,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="py-2">
-        <h4 className=" py-1 text-gray-700 dark:text-orange-200  font-semibold ">
+        <h4 className=" py-1 text-gray-700   font-semibold ">
           Can I use the icons at different sizes?
         </h4>
         <p className="">
@@ -122,7 +122,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="py-2">
-        <h4 className=" py-1 text-gray-700 dark:text-orange-200 font-semibold ">
+        <h4 className=" py-1 text-gray-700  font-semibold ">
           Do I have to add attribution to my projects?
         </h4>
         <p className="">
@@ -135,9 +135,9 @@ const FAQ = () => {
   );
 };
 const License = () => (
-  <div className="text-gray-500  dark:text-emerald-500">
+  <div className="text-gray-500  ">
     <div className="py-2">
-      <h4 className=" py-1 text-gray-700 dark:text-orange-200 font-semibold ">Overview</h4>
+      <h4 className=" py-1 text-gray-700  font-semibold ">Overview</h4>
       <p >
         For personal and professional use. You cannot resell or redistribute
         these icons in their original or modified state.
@@ -154,7 +154,7 @@ const License = () => (
     </div>
     <div className="py-2">
   
-      <h6 className=" text-gray-700 dark:text-orange-200 font-semibold">What you can do with it </h6>
+      <h6 className=" text-gray-700  font-semibold">What you can do with it </h6>
       <ul className=" py-1 list-disc ml-4">
         <li>
           Use them freely in your personal and professional work. Make them your
@@ -164,7 +164,7 @@ const License = () => (
       </ul>
     </div>
     <div className="py-2">
-      <h6 className=" text-gray-700  dark:text-orange-200 font-semibold">
+      <h6 className=" text-gray-700   font-semibold">
         What you can't do with it
       </h6>
       <ul className=" py-1 list-disc ml-4">
@@ -198,7 +198,7 @@ export default function Moredetails() {
   }
 
   return (
-    <div className=" dark:bg-black p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 ">
+    <div className=" p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 ">
       <div className="lg:col-span-1  lg:row-span-2 ">
         <div
           className="  rounded-lg overflow-hidden"
@@ -217,7 +217,7 @@ export default function Moredetails() {
           <div className="flex items-center">
             <div className="flex items-center">
               <svg
-                className="text-gray-900 dark:text-red-500 font-bold h-5 w-5 flex-shrink-0"
+                className="text-gray-900  font-bold h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="gold"
                 aria-hidden="true"
@@ -229,7 +229,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-900  dark:text-red-500 font-bold h-5 w-5 flex-shrink-0"
+                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="gold"
                 aria-hidden="true"
@@ -241,7 +241,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-900  dark:text-red-500 font-bold h-5 w-5 flex-shrink-0"
+                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="gold"
                 aria-hidden="true"
@@ -253,7 +253,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-900  dark:text-red-500 font-bold h-5 w-5 flex-shrink-0"
+                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="gold"
                 aria-hidden="true"
@@ -265,7 +265,7 @@ export default function Moredetails() {
                 />
               </svg>
               <svg
-                className="text-gray-200 dark:text-rose-200 h-5 w-5 flex-shrink-0"
+                className="text-gray-200  h-5 w-5 flex-shrink-0"
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
@@ -290,11 +290,11 @@ export default function Moredetails() {
           <h1 className="pt-4 pb-2 text-3xl font-bold">
             Application UI Icon Pack
           </h1>
-          <h1 className="pb-4 text-gray-500 dark:text-emerald-500">
+          <h1 className="pb-4 text-gray-500 ">
             Version 1.0 (Updated June 5, 2021)
           </h1>
           <div className="space-y-6">
-            <p className="text-base text-gray-500 dark:text-emerald-500">
+            <p className="text-base text-gray-500 ">
             The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.
             </p>
           </div>
@@ -311,35 +311,35 @@ export default function Moredetails() {
             Preview
           </button>
         </div>
-        <div className="my-4 border-t border-gray-200 dark:text-emerald-800 "></div>
+        <div className="my-4 border-t border-gray-200  "></div>
 
         <div className="mt-10">
-          <h3 className="text-sm m text-gray-900  dark:text-red-500 font-bold">Highlights</h3>
+          <h3 className="text-sm m text-gray-900   font-bold">Highlights</h3>
 
           <div className="mt-4">
             <ul className="list-disc space-y-2 pl-4 text-sm">
               <li>
-                <span className="text-gray-500 dark:text-emerald-500">Hand cut and sewn locally</span>
+                <span className="text-gray-500 ">Hand cut and sewn locally</span>
               </li>
-              <li className="text-gray-500 dark:text-emerald-500">
-                <span className="text-gray-500 dark:text-emerald-500">
+              <li className="text-gray-500 ">
+                <span className="text-gray-500 ">
                   Dyed with our proprietary colors
                 </span>
               </li>
-              <li className="text-gray-500 dark:text-emerald-500">
-                <span className="text-gray-500 dark:text-emerald-500">
+              <li className="text-gray-500 ">
+                <span className="text-gray-500 ">
                   Pre-washed &amp; pre-shrunk
                 </span>
               </li>
             </ul>
           </div>
-          <div className="my-4 border-t border-gray-200 dark:text-emerald-700"></div>
+          <div className="my-4 border-t border-gray-200 "></div>
         </div>
         <div className="mt-10">
-          <h2 className="text-sm text-gray-900  dark:text-red-500 font-bold">License</h2>
+          <h2 className="text-sm text-gray-900   font-bold">License</h2>
 
           <div className="mt-4 space-y-6">
-            <p className="text-sm text-gray-500 dark:text-emerald-500">
+            <p className="text-sm text-gray-500 ">
               The 6-Pack includes two black, two white, and two heather gray
               Basic Tees. Sign up for our subscription service and be the first
               to get new, exciting colors, like our upcoming &quot;Charcoal
@@ -347,9 +347,9 @@ export default function Moredetails() {
             </p>
           </div>
         </div>
-        <div className="my-4 border-t border-gray-200 dark:border-emerald-800"></div>
+        <div className="my-4 border-t border-gray-200 "></div>
         <div className=" mt-10 pb-10 ">
-          <h2 className="text-sm  text-gray-900  dark:text-red-500 font-bold pb-4 ">Share </h2>
+          <h2 className="text-sm  text-gray-900   font-bold pb-4 ">Share </h2>
           <div className=" flex  space-x-6  ">
             <Link to="#" className="aspect-square size-5  ">
               <img
@@ -375,7 +375,7 @@ export default function Moredetails() {
       </div>
 
       <div className="lg:col-span-1 lg:row-span-4 pt-10 ">
-        <div className="  inline-flex space-x-5 dark:text-neutral-50 ">
+        <div className="  inline-flex space-x-5  ">
           <button
             className="border border-transparent group  hover:border-b-gray-500   focus:border-b-black "
             onClick={() => setSelectedContent("customers")}
@@ -397,7 +397,7 @@ export default function Moredetails() {
           </button>
         </div>
 
-        <div className="my-4 border-t border-gray-200 dark:border-emerald-800"></div>
+        <div className="my-4 border-t border-gray-200 "></div>
         <div>{selectedContent === "customers" && <Customersreview reviewData={finalItem.review} />}</div>
 
         <div>{selectedContent === "FAQ" && <FAQ />}</div>

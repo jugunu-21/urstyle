@@ -44,7 +44,7 @@ const Details = () => {
 
   const itemsArrayString = encodeURIComponent(JSON.stringify(itemsArray));
   return (
-    <div className= " dark:bg-black text-slate-900 dark:text-emerald-100 p-4">
+    <div className= "  text-slate-900  p-4">
       {itemsArray.map((item, index) => (
         <div key={index} className="md:flex  space-x-4 my-4 ">
           {item.image_url && (
@@ -64,7 +64,7 @@ const Details = () => {
                   <div
                     className={classNames(
                       item.current
-                        ? "py-4 bg-emerald-950 dark:bg-emerald-950 text-white"
+                        ? "py-4 bg-emerald-950  text-white"
                         : "hover:bg-gray-700 hover:text-white",
                       "rounded-md text-sm font-medium"
                     )}
@@ -124,7 +124,7 @@ const Details = () => {
                     <Link
                       to={`/moredetails/${item.id}/${itemsArrayString}`}
                       rel="noopener noreferrer"
-                      className=" inline-flex items-center px-10 py-4 text- font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-400 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      className=" inline-flex items-center px-10 py-4 text- font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 "
                     >
                       Read more
                       <svg

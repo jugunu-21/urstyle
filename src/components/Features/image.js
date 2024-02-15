@@ -7,4 +7,4 @@ export { default as image5 } from './f5.png';
 export { default as image6 } from './f6.png';
 
 export { default as button } from './button.png';
-
+export { default as image7 } from './f7.png';

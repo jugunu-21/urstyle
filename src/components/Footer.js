@@ -15,7 +15,7 @@ export default function Footer() {
             </div>
             <div className=" text-xl font-mono text-black">
               Get E-mail updates about our latest clothes collection and
-              <span className="text-orange-700">special offer </span>
+              <span className="text-orange-700"> special offer </span>
             </div>
           </div>
           <div className=" flex">

@@ -41,7 +41,7 @@ export default function Clothes() {
   //   setSelectedItem(item);
 
   return (
-    <div className="p-6 dark:bg-black">
+    <div className="p-6 ">
       <div
         className="p-2 ml-4 flex justify-center lg:mr-4 rounded-lg  bg-slate-300  "
         style={{
@@ -56,11 +56,12 @@ export default function Clothes() {
           URSTYLE
         </div>
       </div>
-      <div className="  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 px-2 ">
+      <div className=" m-3 p-2  bg-pink-100 " ></div>
+      <div className=" mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 px-2 ">
         {itemsData.map((item, index) => (
           <div
             key={index}
-            className="  m-2 border border-gray-200 rounded-lg shadow bg-slate-500 dark:border-gray-700 "
+            className="  m-2 border border-gray-200 rounded-lg shadow bg-slate-500  "
           >
             {item.upper && item.upper.image_url && (
               <div
@@ -74,8 +75,8 @@ export default function Clothes() {
                 />
 
                 <div className="bg-red-200   mx-16  object-center text-black font-semibold text-center">
-                  {" "}
-                  {item.upper.price}{" "}
+             
+                  {item.upper.price}
                 </div>
               </div>
             )}
@@ -105,7 +106,7 @@ export default function Clothes() {
                 {/* Centering the link horizontally */}
                 <Link
                   to={`/details/${item.upper?.id}/${item.lower?.id}`}
-                  className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  "
                 >
                   Details
                   <svg
