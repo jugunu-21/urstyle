@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+import { RxDotFilled } from "react-icons/rx";
 import itemsData from "../items.json";
-import * as images from "./Features/image"; // Adjust the path accordingly
-
-// You can now access individual images like this:
-// images.image1, images.image2, images.image3
-
 import { Link } from "react-router-dom";
-// import Details from './Details';
 
-export default function Clothes() {
+import * as images from "./Features/image";
+
+function Clothes() {
   const smallicon = [
     {
       url: images.image1,
@@ -35,113 +33,299 @@ export default function Clothes() {
       des: "  24/7 Support",
     },
   ];
-  // const [selectedItem, setSelectedItem] = useState(null);
+  const caropic = [
+    {
+      url: "https://colorlib.com/wp/wp-content/uploads/sites/2/5_apparel-mockups.jpg",
+    },
+    {
+      url: "https://m.media-amazon.com/images/I/61Pdr3h6MmL._SX3000_.jpg",
+    },
 
-  // const onItemClick = (item) => {
-  //   setSelectedItem(item);
+    {
+      url: " https://www.sheknows.com/wp-content/uploads/2018/12/xgaq7w4on5xummmnkzx5.jpeg?w=1024",
+    },
+    {
+      url: "https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/febatf24/mfdunrec/WA_WW_2x._CB582758481_.jpg",
+    },
+    {
+      url: "https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/febatf24/mfdunrec/MA_2x._CB582758480_.jpg",
+    },
+  ];
 
+  const [currentIndexes, setCurrentIndexes] = useState(
+    Array(itemsData.length + 1).fill(0)
+  );
+
+  const prevSlide = (groupIndex, cartLength) => {
+    const isFirstSlide = currentIndexes[groupIndex] === 0;
+    const newIndex = isFirstSlide
+      ? (cartLength - 1) % cartLength
+      : (currentIndexes[groupIndex] - 1) % cartLength;
+
+    setCurrentIndexes((prevState) =>
+      prevState.map((value, index) => (index === groupIndex ? newIndex : value))
+    );
+  };
+
+  const nextSlide = (groupIndex, cartLength) => {
+    const isLastSlide = currentIndexes[groupIndex] === cartLength - 1;
+    const newIndex = isLastSlide
+      ? 0
+      : (currentIndexes[groupIndex] + 1) % cartLength;
+    setCurrentIndexes((prevState) =>
+      prevState.map((value, index) => (index === groupIndex ? newIndex : value))
+    );
+  };
+
+  const goToSlide = (groupIndex, slideIndex) => {
+    setCurrentIndexes((prevState) =>
+      prevState.map((value, index) =>
+        index === groupIndex ? slideIndex : value
+      )
+    );
+  };
+  const totalSum = (group) => {
+    let sum = 0;
+    let array = [];
+    let totalrating = 0;
+    let avg = 0;
+    group.cart.forEach((item) => {
+      const priceWithoutCurrency = item.price.replace("₹", "");
+
+      const price = parseInt(priceWithoutCurrency);
+
+      sum += price;
+      let id = item.id;
+      array.push(id);
+
+      item.review.forEach((review) => {
+        let rating = parseInt(review.rating);
+
+        totalrating += rating;
+      });
+
+      let reviewLength = item.review.length;
+      let avgrating = totalrating / reviewLength;
+
+      avg = Math.floor(avgrating);
+
+      totalrating = 0;
+    });
+
+    return { total: sum, allids: array, avgRating: avg };
+  };
+  const findKeyword = (string) => {
+    const pattern = /\b(amazon|flipkart|mesho)\b/gi;
+
+    const matches = string.match(pattern);
+
+    if (matches) {
+      return matches;
+    } else {
+      return "No keywords found";
+    }
+  };
+  let caropicIndex = 0;
+  const click = [
+    {
+      name: "All",
+      link: "",
+    },
+    {
+      name: "Party",
+      link: "Party",
+    },
+    {
+      name: "Casual",
+      link: "Casual",
+    },
+    {
+      name: "SreetStyle",
+      link: "SreetStyle",
+    },
+    {
+      name: "EthnicWear",
+      link: "EthnicWear",
+    },
+  ];
+  const [filter, setfilter] = useState("");
+  const clickFilter = (name) => {
+    setfilter(name);
+  };
   return (
-    <div className="p-6 ">
-      <div
-        className="p-2 ml-4 flex justify-center lg:mr-4 rounded-lg  bg-slate-300  "
-        style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3) , rgba(255, 255, 255, 0.5)), url('https://aliciafarrell.com/wp-content/uploads/2022/08/Screenshot-2022-08-17-at-10.57.53-am-1206x540.png')`,  
-        }}
-      >
-       
-        <div
-          className=" my-16 p-12 lg:my-42   font-serif   text-cyan-900 text-5xl md:text-9xl "
-          
-        >
-          URSTYLE
+    <div className="mb-2 ">
+      <div className="   text-2xl ">
+        <div className="w-[vw] h-[500px]  m-auto py-8 px-2 relative group  ">
+          <button
+            style={{
+              backgroundImage: caropic[
+                currentIndexes[currentIndexes.length - 1]
+              ]
+                ? ` linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0) ,
+                            rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9) , rgba(245, 245, 244, 1)) ,url(${
+                              caropic[currentIndexes[currentIndexes.length - 1]]
+                                .url
+                            })`
+                : "",
+            }}
+            className="w-full h-full  bg-top bg-cover object-top duration-500 mt-0    "
+          ></button>
+         <div className="top-[75%] left-[40%]  absolute text-center font-light font-serif"><h1 className="text-center">You are on urstyle.com u can see more like you feel..</h1></div>
+          <div className="grid grid-cols-3 md:grid-cols-6 right-0 left-0 absolute top-[410px] w-[vw]  mx-2 my-1">
+            {click.map((item, index) => (
+              <button
+                onClick={() => clickFilter(item.link)}
+                className="object-center px-2 text-white bg-gray-500 py-2 rounded-lg m-2"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          <div
+            className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
+            onClick={() => prevSlide(currentIndexes.length - 1, caropic.length)}
+          >
+            <BsChevronCompactLeft size={30} />
+          </div>
+
+          <div
+            className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
+            onClick={() => nextSlide(currentIndexes.length - 1, caropic.length)}
+          >
+            <BsChevronCompactRight size={30} />
+          </div>
         </div>
       </div>
-      <div className=" m-3 p-2  bg-pink-100 " ></div>
-      <div className=" mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-2 px-2 ">
-        {itemsData.map((item, index) => (
-          <div
-            key={index}
-            className="  m-2 border border-gray-200 rounded-lg shadow bg-slate-500  "
-          >
-            {item.upper && item.upper.image_url && (
-              <div
-                className=" pl-2 pr-2 overflow-hidden item-centre"
-                style={{ width: "90%", height: "43%" }}
-              >
-                <img
-                  className="w-full h-72 object-cover rounded-lg align-middle  hover:border-teal-900 hover:border-2 "
-                  src={item.upper.image_url}
-                  alt=""
-                />
+      <div>
+        {itemsData.map((group, groupIndex) => (
+          <div className="" key={groupIndex}>
+            {(filter === "" || group.look === filter) && (
+              <section >
+                {(groupIndex + 1) % 3 === 0 && (
+                
+                    <div className="w-[vw] h-[300px] my-6">
+                      {(caropicIndex = (caropicIndex + 1) % caropic.length)}
+                      <div
+                        className=" h-full w-full bg-cover  bg-top text-2xl "
+                        style={{
+                          backgroundImage: `url(${caropic[caropicIndex].url})`,
+                        }}
+                      ></div>
+                  
+                  </div>
+                )}
 
-                <div className="bg-red-200   mx-16  object-center text-black font-semibold text-center">
-             
-                  {item.upper.price}
+                <div className=" px-4 my-4 bg-stone-100 rounded-lg       ">
+                  <div className="flex space-x-10 m-1 p-2">
+                    <div>
+                      <h1 className="text-3xl font-bold tracking-tight">
+                        {group.desc ? group.desc : "Summer Breeze Outfit"}
+                      </h1>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Embrace the Season with Effortless Style
+                      </p>
+                      <Link
+                        className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950"
+                        to={`/details/${totalSum(group).allids.join(",")}`}
+                      >
+                        Go to Details
+                      </Link>
+                    </div>
+                    <div className="m-1">
+                      <div className="font-normal">
+                        <div> Expected delivery: {group.expected_delivery}</div>
+                        <h2 className="">
+                          Total cost :Rs {totalSum(group).total}
+                        </h2>
+                        <div className="flex">
+                          {Array.from(
+                            { length: totalSum(group).avgRating },
+                            (_, i) => (
+                              <svg
+                                key={i}
+                                className="h-5 w-5 flex-shrink-0"
+                                viewBox="0 0 20 20"
+                                fill="gold"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            )
+                          )}
+                          {Array.from(
+                            { length: 5 - totalSum(group).avgRating },
+                            (_, i) => (
+                              <svg
+                                key={i}
+                                className="text-gray-400 h-5 w-5 flex-shrink-0"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" grid grid-cols-2 lg:grid-cols-4  items-center bg-stone-200 rounded-lg w-full ">
+                    {group.cart.map((item, index) => (
+                      <div key={index} className="mb-4 ">
+                        <div
+                          key={index}
+                          className=" mx-2 w-46 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 "
+                        >
+                          <img
+                            alt="Product Image"
+                            className=" w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
+                            height={400}
+                            src={item.image_url}
+                            width={300}
+                          />
+                          <div className="m-1 ml-2">
+                            <div className="font-medium ">{item.price}</div>
+                            <div>
+                              <span className="font-normal ">{item.name} </span>
+                              <button className="font-medium bg-stone-200 rounded-lg px-1">
+                                {findKeyword(item.image_url)}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-
-            <br />
-
-            {item.lower && item.lower.image_url && (
-              <div
-                className="  pl-2 pr-2 overflow-hidden"
-                style={{ width: "90%", height: "43%" }}
-              >
-                <img
-                  className="w-full h-72 object-cover rounded-lg align-middle  hover:border-teal-900  hover:border-2"
-                  src={item.lower.image_url}
-                  alt=""
-                />
-                <div className=" bg-red-200   mx-16  object-center text-black font-semibold text-center">
-                  {item.lower.price}
-                </div>
-              </div>
-            )}
-
-            <br />
-
-            {item.lower && item.upper && (
-              <div className="flex justify-end">
-                {/* Centering the link horizontally */}
-                <Link
-                  to={`/details/${item.upper?.id}/${item.lower?.id}`}
-                  className="my-1 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  "
-                >
-                  Details
-                  <svg
-                    className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
-                  </svg>
-                </Link>
-              </div>
+              </section>
             )}
           </div>
         ))}
-      </div>
-      <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4 ">
-        {smallicon.map((item, index) => (
-          <div key={index}>
-            <div className="  border-2 border-blue-300 rounded-lg m-2 ">
-              <img src={item.url} alt="" />
-              <div className=" m-2 pb-2 text-center pr-2 bg-blue-200 rounded-lg">
-                {item.des}{" "}
+        <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4 ">
+          {smallicon.map((item, index) => (
+            <div key={index}>
+              <div className="  border-2 border-blue-300 rounded-lg m-2 ">
+                <img src={item.url} alt="" />
+                <div className=" m-2 pb-2 text-center pr-2 bg-blue-200 rounded-lg">
+                  {item.des}{" "}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 }
+
+export default Clothes;

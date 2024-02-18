@@ -163,7 +163,7 @@ export default function Navbar() {
       </nav>
 
       <header className="bg-white shadow  ">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
 
 
           <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif ">Welcome to our site.....</h1>
@@ -173,9 +173,7 @@ export default function Navbar() {
         </div>
       </header>
       <main>
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          {/* <!-- Your content --> */}
-        </div>
+       
       </main>
     </div>
   )

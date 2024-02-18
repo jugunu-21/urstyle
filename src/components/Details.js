@@ -1,61 +1,69 @@
-import classNames from "classnames";
-import { Link, useParams } from "react-router-dom";
-
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import itemsData from "../items.json";
-
+import { Link } from "react-router-dom";
+import classNames from "classnames";
 const Details = () => {
-  const { upperId, lowerId } = useParams();
+  const { allids } = useParams();
+  const [filteredItems, setFilteredItems] = useState([]);
 
-  const upperItemId = upperId;
-  const lowerItemId = lowerId;
 
-  const upperItem = itemsData?.find((item) => item?.upper?.id === upperItemId);
-  const lowerItem = itemsData?.find((item) => item?.lower?.id === lowerItemId);
-
-  if (!upperItem && !lowerItem) {
-    return <div>Item not found</div>;
-  }
-
-  const itemsArray = [
-    {
-      id: upperItem?.upper?.id,
-      name: upperItem?.upper?.name,
-      link: upperItem?.upper?.link,
-      image_url: upperItem?.upper?.image_url,
-      price: upperItem?.upper?.price,
-      review: upperItem?.upper?.review || [],
-    },
-    {
-      id: lowerItem?.lower?.id,
-      name: lowerItem?.lower?.name,
-      link: lowerItem?.lower?.link,
-      image_url: lowerItem?.lower?.image_url,
-      price: lowerItem?.lower?.price,
-      review: lowerItem?.lower?.review || [],
-    },
-  ];
+  
+  useEffect(() => {
+    // Parse the IDs from the URL parameter
+    // const decodedIds = JSON.parse(decodeURIComponent(allids));
+    const decodedIds = allids.split(',');
+    // Create an array to store the filtered items
+    const filteredItemsArray = [];
+  
+    // Iterate through each item in itemsData
+    itemsData.forEach((item) => {
+      item.cart.forEach((cartItem) => {
+        // Check if the cart item's ID is included in the decoded IDs
+        if (decodedIds.includes(cartItem.id)) {
+          // If included, create a new object with desired properties and push it to the filteredItemsArray
+          const filteredItem = {
+            id: cartItem.id,
+            image_url: cartItem.image_url,
+            // Add any other properties you want to include
+            name: cartItem.name,
+            link: cartItem.link,
+            price: cartItem.price,
+            review: cartItem.review
+            // Add more properties if needed
+          };
+          // Push the filtered item to the array
+          filteredItemsArray.push(filteredItem);
+        }
+      });
+    });
+  
+    // Set the filtered items array to state
+    setFilteredItems(filteredItemsArray);
+  }, [allids]);
+  
   const calculateAverageRating = (reviews) => {
     if (!reviews || reviews.length === 0) return 0;
     const totalRating = reviews.reduce((acc, curr) => acc + curr.rating, 0);
     return totalRating / reviews.length;
   };
 
-  const itemsArrayString = encodeURIComponent(JSON.stringify(itemsArray));
+  const itemsArrayString = encodeURIComponent(JSON.stringify(filteredItems));
   return (
-    <div className= "  text-slate-900  p-4">
-      {itemsArray.map((item, index) => (
+    <div className="  text-slate-900  p-4">
+      {filteredItems.map((item, index) => (
         <div key={index} className="md:flex  space-x-4 my-4 ">
           {item.image_url && (
-            <div className="m-2 overflow-hidden item-center " style={{ width: "400px", height: "500px" }}>
-           <img
-             className=" w-full h-full object-cover align-middle rounded-lg hover:border-4 hover:border-violet-500"
-             src={item.image_url}
-             alt=""
-           />
-         </div>
-         
+            <div
+              className="m-2 overflow-hidden item-center "
+              style={{ width: "400px", height: "500px" }}
+            >
+              <img
+                className=" w-full h-full object-cover align-middle rounded-lg hover:border-4 hover:border-violet-500"
+                src={item.image_url}
+                alt=""
+              />
+            </div>
           )}
           {item.name && (
             <>
@@ -138,7 +146,7 @@ const Details = () => {
                           stroke="currentColor"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth={2}
+                          strokeWidth={2} // Corrected property name
                           d="M1 5h12m0 0L9 1m4 4L9 9"
                         />
                       </svg>
