@@ -208,10 +208,10 @@ function Clothes() {
             {(filter === "" || group.look === filter) && (
               <section>
                 {(groupIndex + 1) % 3 === 0 && (
-                  <div className="w-[vw] h-[300px] my-6">
+                  <div className="w-[vw] h-48 sm:h-[300px] my-6">
                     {(caropicIndex = (caropicIndex + 1) % caropic.length)}
                     <div
-                      className=" h-full w-full bg-cover  bg-top text-2xl "
+                      className="h-40 sm:h-full  w-full bg-cover  bg-top text-2xl "
                       style={{
                         backgroundImage: `url(${caropic[caropicIndex].url})`,
                       }}
@@ -288,11 +288,11 @@ function Clothes() {
                       <div key={index} className="mb-4 ">
                         <div
                           key={index}
-                          className=" mx-2 w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 "
+                          className=" mx-2 sm:w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 "
                         >
                           <img
                             alt="Product Image"
-                            className=" w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
+                            className=" sm:w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
                           
                             src={item.image_url}
                             
@@ -301,9 +301,9 @@ function Clothes() {
                             <div className="font-medium ">{item.price}</div>
                             <div>
                               <span className="font-normal ">{item.name} </span>
-                              <button className="font-medium bg-stone-200 rounded-lg px-1">
+                              <Link to={item.link} className="font-medium bg-stone-200 rounded-lg px-1">
                                 {findKeyword(item.image_url)}
-                              </button>
+                              </Link>
                             </div>
                           </div>
                         </div>

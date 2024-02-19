@@ -91,7 +91,7 @@ const Details = () => {
   }
   return (
     <div className="  text-slate-900  m-1">
-      <div className="grid grid-cols-2 border-2 rounded-lg border-stone-300  md:ml-10 m-2 ">
+      <div className="grid sm:grid-cols-2 border-2 rounded-lg border-stone-300  md:ml-10 m-2 ">
         <div className="m-4 ">
           <div className="m-1 font-bold text-xl">{itemsData[groupIndex].desc}</div>
           <div className="font-bold m-1"> Total Price  : Rs  {detailAll.total}</div>
@@ -146,7 +146,7 @@ const Details = () => {
           
          
         </div>
-        <div className="h-[340px] w-[350px]  m-auto  px-2 relative group  ">
+        <div className=" hidden sm:block h-[340px] w-[350px]  m-auto  px-2 relative group  ">
           <div
             style={{
               backgroundImage: filteredItems()[currentIndexes]
@@ -180,7 +180,7 @@ const Details = () => {
             >
               {item && (
                 <>
-                  <div className="m-2 overflow-hidden  bg-cover bg-top   w-52 h-52  bg-white hover:border-4 rounded-lg hover:border-stone-300">
+                  <div className="m-2 overflow-hidden  bg-cover bg-top   sm:w-52 h-52  bg-white hover:border-4 rounded-lg hover:border-stone-300">
                     <img
                       className=" mx-auto max-w-full h-full object-cover align-middle  "
                       src={item.image_url}
