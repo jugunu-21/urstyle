@@ -140,8 +140,8 @@ function Clothes() {
       link: "Casual",
     },
     {
-      name: "SreetStyle",
-      link: "SreetStyle",
+      name: "StreetStyle",
+      link: "StreetStyle",
     },
     {
       name: "EthnicWear",
@@ -155,7 +155,7 @@ function Clothes() {
   return (
     <div className="mb-2 ">
       <div className="   text-2xl ">
-        <div className="w-[vw] h-[500px]  m-auto py-8 px-2 relative group  ">
+        <div className="w-[vw] h-[512px]  m-auto py-8 px-2 relative group  ">
           <button
             style={{
               backgroundImage: caropic[
@@ -170,12 +170,17 @@ function Clothes() {
             }}
             className="w-full h-full  bg-top bg-cover object-top duration-500 mt-0    "
           ></button>
-         <div className="top-[75%] left-[40%]  absolute text-center font-light font-serif"><h1 className="text-center">You are on urstyle.com u can see more like you feel..</h1></div>
-          <div className="grid grid-cols-3 md:grid-cols-6 right-0 left-0 absolute top-[410px] w-[vw]  mx-2 my-1">
+          <div className="top-[75%] ] left-[35%]   absolute text-center  font-serif text-xs sm:text-xl">
+            <h1 className="text-center">
+              You are on <span className="font-medium">URSTYLE</span> u can see
+              more like your mood..
+            </h1>
+          </div>
+          <div className="grid grid-cols-3 md:grid-cols-6 right-0 left-0 absolute top-[410px] w-[vw]  mx-2 mb-1 mt-2 ">
             {click.map((item, index) => (
               <button
                 onClick={() => clickFilter(item.link)}
-                className="object-center px-2 text-white bg-gray-500 py-2 rounded-lg m-2"
+                className="object-center px-1 text-white bg-gray-500 py-1 rounded-lg m-1 hover:bg-gray-700"
               >
                 {item.name}
               </button>
@@ -201,18 +206,16 @@ function Clothes() {
         {itemsData.map((group, groupIndex) => (
           <div className="" key={groupIndex}>
             {(filter === "" || group.look === filter) && (
-              <section >
+              <section>
                 {(groupIndex + 1) % 3 === 0 && (
-                
-                    <div className="w-[vw] h-[300px] my-6">
-                      {(caropicIndex = (caropicIndex + 1) % caropic.length)}
-                      <div
-                        className=" h-full w-full bg-cover  bg-top text-2xl "
-                        style={{
-                          backgroundImage: `url(${caropic[caropicIndex].url})`,
-                        }}
-                      ></div>
-                  
+                  <div className="w-[vw] h-[300px] my-6">
+                    {(caropicIndex = (caropicIndex + 1) % caropic.length)}
+                    <div
+                      className=" h-full w-full bg-cover  bg-top text-2xl "
+                      style={{
+                        backgroundImage: `url(${caropic[caropicIndex].url})`,
+                      }}
+                    ></div>
                   </div>
                 )}
 

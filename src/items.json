@@ -2,12 +2,12 @@
 
 [
   {
-    "look": " A perfect partywear look",
-    "desc": "A stunning outfit featuring a Women Maxi Bodycon Dress, AILTINO Women's Oval Frame Clutch, Shoetopia Women's Fancy-1277 Heeled Sandal, and GIVA 925 Sterling Silver Matte Anushka Sharma Rose Gold Twig Earrings. Perfect for any occasion!",
+    "look": "Party",
+    "desc": "A perfect partywear",
     "expected_delivery": 12,
     "cart": [
-         {
-        "id": "1",
+      {
+        "id": "11",
         "name": "Women Maxi Bodycon Dress",
         "link": "https://amzn.to/426yTYF",
         "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
@@ -27,11 +27,12 @@
             "content": "I love this dress! The color is beautiful and it looks great on me.",
             "rating": 4
           }
-        ]
+        ],
+        "description": "Perfect for any party or special occasion, this maxi bodycon dress will make you stand out in the crowd. Its elegant design and comfortable material ensure you look and feel your best all night long."
       },
       {
-        "id": "2",
-        "name": " Detachable Sling Chain ",
+        "id": "12",
+        "name": "Detachable Sling Chain",
         "link": "https://amzn.to/49HKAI9",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/91JVMgDPPAS._SY675_.jpg",
         "price": "₹349",
@@ -50,10 +51,11 @@
             "content": "Not very satisfied with these sandals. They feel cheaply made and the fit is off.",
             "rating": 2
           }
-        ]
+        ],
+        "description": "Complete your party look with this stylish detachable sling chain. It adds a touch of elegance to any outfit and ensures you're ready to hit the dance floor in style."
       },
       {
-        "id": "20",
+        "id": "13",
         "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
         "link": "https://amzn.to/3vVyzA7",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
@@ -73,14 +75,15 @@
             "content": "Not very satisfied with these sandals. They feel cheaply made and the fit is off.",
             "rating": 2
           }
-        ]
+        ],
+        "description": "Step into the party with confidence wearing these fancy heeled sandals. Their stylish design and comfortable fit make them a perfect choice for any occasion."
       },
       {
-        "id": "100",
-        "name": " Silver Matte  Rose Gold Twig Earrings ",
+        "id": "14",
+        "name": "Silver Matte Rose Gold Twig Earrings",
         "link": "https://amzn.to/49DjQZ1",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612Pg4jubwL._SY675_.jpg",
-        "price": "₹2,199",
+        "price": "₹2199",
         "review": [
           {
             "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
@@ -96,70 +99,19 @@
             "content": "I love this dress! The color is beautiful and it looks great on me.",
             "rating": 4
           }
-        ]
+        ],
+        "description": "Complete your party look with these stunning silver matte rose gold twig earrings. Their elegant design adds a touch of glamour to any outfit."
       }
-     
-    ]
+    ],
+    "overall_description": "Get ready to dazzle at your next party with this collection of stylish partywear essentials. From elegant dresses to chic accessories, this collection has everything you need to make a statement and turn heads wherever you go."
   },
-  {   "desc": "A versatile ensemble featuring SIGHTBOMB Women's Bodycon Knee Length Dress and Vendoz Women Premium Ankle Length Casual Boots. Perfect for any occasion!",
-  "look": "versatile",
-  "expected_delivery": 6,
-    "cart": [
-      
-      {
-        "id": "3",
-        "name": "SIGHTBOMB Women's Bodycon Knee Length Dress",
-        "link": "https://amzn.to/3vSVKLa",
-        "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
-        "price": "₹999",
-        "review": [
-          {
-            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-            "rname": "Emily White",
-            "date": "August 9, 2023",
-            "content": "Love this dress! It's perfect for any occasion and the quality is great.",
-            "rating": 5
-          },
-          {
-            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-            "rname": "Michael Johnson",
-            "date": "August 6, 2023",
-            "content": "Not happy with this dress. The color was different from what was shown and the fit was too tight.",
-            "rating": 2
-          }
-        ]
-      },
-      {
-        "id": "4",
-        "name": "Vendoz Women Premium Ankle Length Casual Boots",
-        "link": "https://amzn.to/48NQuXT",
-        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
-        "price": "₹659",
-        "review": [
-          {
-            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-            "rname": "Sarah Davis",
-            "date": "August 11, 2023",
-            "content": "These boots are fantastic! They're comfortable and look great with any outfit.",
-            "rating": 5
-          },
-          {
-            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-            "rname": "Chris Wilson",
-            "date": "August 7, 2023",
-            "content": "Disappointed with these boots. They started falling apart after just a few weeks of use.",
-            "rating": 1
-          }
-        ]
-      }
-    ]
-  },
-  {   "desc": "A casual and comfortable look featuring Round Neck Short Sleeves T-Shirt and Kraasa ReviveRetro White Sneakers for Men.",
-  "look": "casual",
-  "expected_delivery": 4,
+  {
+    "look": "Casual",
+    "desc": "Casual Wear",
+    "expected_delivery": 4,
     "cart": [
       {
-        "id": "5",
+        "id": "21",
         "name": "Round Neck Short Sleeves T-Shirt",
         "link": "https://amzn.to/3Hr1Gh7",
         "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
@@ -179,11 +131,12 @@
             "content": "The quality of this t-shirt is great, but the size runs a bit small.",
             "rating": 4
           }
-        ]
+        ],
+        "description": "Stay comfortable and stylish with this round neck short sleeves t-shirt. Its classic design and soft fabric make it perfect for everyday wear."
       },
       {
-        "id": "6",
-        "name": "Kraasa ReviveRetro White Sneakers for Men",
+        "id": "22",
+        "name": "White Sneakers for Men",
         "link": "https://amzn.to/488mLIl",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
         "price": "₹599",
@@ -202,18 +155,20 @@
             "content": "Not satisfied with these sneakers. They look cheaply made and don't provide enough support.",
             "rating": 2
           }
-        ]
+        ],
+        "description": "Complete your casual look with these stylish white sneakers for men. Their versatile design makes them perfect for any occasion."
       }
-    ]
+    ],
+    "overall_description": "Stay comfortable and chic with this collection of casual wear essentials. From classic t-shirts to stylish sneakers, this collection has everything you need to elevate your everyday look and stay on-trend."
   },
-  {  "desc": "A trendy and chic look featuring KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans and Zilcon Women's Fall Balloon Long Sleeve Shirts Round Neck Oversized Tunic Tops Casual Waffle Knit Shirts Tops.",
-  "look": "trendy",
-  "expected_delivery": 5,
+  {
+    "look": "Casual",
+    "desc": "Casual Waffle Knit Shirts",
+    "expected_delivery": 5,
     "cart": [
-     
       {
-        "id": "8",
-        "name": "KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans",
+        "id": "31",
+        "name": "KOTTY Women Jeans",
         "link": "https://amzn.to/3UkbLUK",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
         "price": "₹474",
@@ -232,11 +187,12 @@
             "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
             "rating": 2
           }
-        ]
+        ],
+        "description": "Stay stylish and comfortable with these KOTTY women jeans. Their casual waffle knit shirts design makes them perfect for everyday wear."
       },
       {
-        "id": "8",
-        "name": "Zilcon Women's Fall Balloon Long Sleeve Shirts Round Neck Oversized Tunic Tops Casual Waffle Knit Shirts Tops",
+        "id": "32",
+        "name": "Zilcon Women's Tops",
         "link": "https://amzn.to/3T1HvNf",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
         "price": "₹489",
@@ -255,169 +211,178 @@
             "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
             "rating": 2
           }
-        ]
+        ],
+        "description": "Add a touch of style to your casual look with these Zilcon women's tops. Their casual waffle knit shirts design makes them perfect for everyday wear."
       }
-    ]
+    ],
+    "overall_description": "Elevate your casual wardrobe with this collection of waffle knit shirts and jeans. Whether you're running errands or meeting friends for coffee, these comfortable and stylish pieces will keep you looking effortlessly chic all day long."
   },
-  
-    {
-      "cart": [
-        {
-          "id": "5",
-          "name": "Round Neck Short Sleeves T-Shirt",
-          "link": "https://amzn.to/3Hr1Gh7",
-          "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
-          "price": "₹463",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Emma Clark",
-              "date": "August 10, 2023",
-              "content": "This t-shirt is super comfortable and fits perfectly!",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "David Martinez",
-              "date": "August 5, 2023",
-              "content": "The quality of this t-shirt is great, but the size runs a bit small.",
-              "rating": 4
-            }
-          ]
-        },
-        {
-          "id": "6",
-          "name": "Kraasa ReviveRetro White Sneakers for Men",
-          "link": "https://amzn.to/488mLIl",
-          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
-          "price": "₹599",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Sophia Johnson",
-              "date": "August 9, 2023",
-              "content": "Love these sneakers! They're stylish and comfortable.",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "James Anderson",
-              "date": "August 6, 2023",
-              "content": "Not satisfied with these sneakers. They look cheaply made and don't provide enough support.",
-              "rating": 2
-            }
-          ]
-        }
-      ],
-      "desc": "A comfortable and stylish ensemble featuring a Round Neck Short Sleeves T-Shirt and Kraasa ReviveRetro White Sneakers for Men.",
-      "look": "Style with comfort ",
-      "expected_delivery": 8
-    },
-    {
-      "cart": [
-        {
-          "id": "8",
-          "name": "KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans",
-          "link": "https://amzn.to/3UkbLUK",
-          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
-          "price": "₹474",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Sophia Wilson",
-              "date": "August 10, 2023",
-              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "David Brown",
-              "date": "August 5, 2023",
-              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
-              "rating": 2
-            }
-          ]
-        },
-        {
-          "id": "8",
-          "name": "Zilcon Women's Fall Balloon Long Sleeve Shirts Round Neck Oversized Tunic Tops Casual Waffle Knit Shirts Tops",
-          "link": "https://amzn.to/3T1HvNf",
-          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
-          "price": "₹489",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Sophia Wilson",
-              "date": "August 10, 2023",
-              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "David Brown",
-              "date": "August 5, 2023",
-              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
-              "rating": 2
-            }
-          ]
-        }
-      ],
-      "desc": "A trendy combination featuring KOTTY Women High Rise Cotton Lycra Ankle Length Slim fit Light Blue Solid Jeans and Zilcon Women's Fall Balloon Long Sleeve Shirts. Perfect for casual outings!",
-      "look": "Elegant look",
-      "expected_delivery": 10
-    },
-    {
-      "cart": [
-        {
-          "id": "9",
-          "name": "Women's Lantern Sleeve Tie Up Back Crop Blouse Top Cute Crop Tops",
-          "link": "https://amzn.to/492yIjG",
-          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
-          "price": "₹349",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Emily Brown",
-              "date": "August 12, 2023",
-              "content": "Love this crop top! It's so cute and versatile.",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "James White",
-              "date": "August 8, 2023",
-              "content": "The fabric of this crop top is not very good quality. It feels cheap.",
-              "rating": 2
-            }
-          ]
-        },
-        {
-          "id": "10",
-          "name": "ALYNE Women's Elastic Waist Pencil Bodycon Midi Skirt",
-          "link": "https://amzn.to/47PwIdj",
-          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SX679_.jpg",
-          "price": "₹459",
-          "review": [
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Sophia Smith",
-              "date": "August 11, 2023",
-              "content": "This skirt is perfect! It fits well and the length is just right.",
-              "rating": 5
-            },
-            {
-              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-              "rname": "Michael Wilson",
-              "date": "August 7, 2023",
-              "content": "Not satisfied with this skirt. It's too tight and uncomfortable.",
-              "rating": 2
-            }
-          ]
-        }
-      ],
-      "desc": "A chic ensemble featuring Women's Lantern Sleeve Tie Up Back Crop Blouse Top and ALYNE Women's Elastic Waist Pencil Bodycon Midi Skirt. Perfect for a casual day out!",
-      "look": "Perfect office  look ",
-      "expected_delivery": 7
-    }
-  ]
-  
+  {
+    "look": "Party",
+    "desc": "Perfect for any occasion",
+    "expected_delivery": 6,
+    "cart": [
+      {
+        "id": "41",
+        "name": "SIGHTBOMB Women's Bodycon Dress",
+        "link": "https://amzn.to/3vSVKLa",
+        "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
+        "price": "₹999",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Emily White",
+            "date": "August 9, 2023",
+            "content": "Love this dress! It's perfect for any occasion and the quality is great.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Michael Johnson",
+            "date": "August 6, 2023",
+            "content": "Not happy with this dress. The color was different from what was shown and the fit was too tight.",
+            "rating": 2
+          }
+        ],
+        "description": "Make a statement at any party with this SIGHTBOMB women's bodycon dress. Its flattering silhouette and high-quality fabric make it perfect for any occasion."
+      },
+      {
+        "id": "42",
+        "name": "Vendoz Women Boots",
+        "link": "https://amzn.to/48NQuXT",
+        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
+        "price": "₹659",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Sarah Davis",
+            "date": "August 11, 2023",
+            "content": "These boots are fantastic! They're comfortable and look great with any outfit.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Chris Wilson",
+            "date": "August 7, 2023",
+            "content": "Disappointed with these boots. They started falling apart after just a few weeks of use.",
+            "rating": 1
+          }
+        ],
+        "description": "Complete your party look with these stylish Vendoz women boots. Their elegant design and comfortable fit make them perfect for dancing the night away."
+      }
+    ],
+    "overall_description": "Get ready to turn heads at any party with this collection of stylish party essentials. From flattering bodycon dresses to chic boots, this collection has everything you need to make a statement and stand out from the crowd."
+  },
+  {
+    "cart": [
+      {
+        "id": "51",
+        "name": "Blue Solid Jeans",
+        "link": "https://amzn.to/3UkbLUK",
+        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
+        "price": "₹474",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Sophia Wilson",
+            "date": "August 10, 2023",
+            "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "David Brown",
+            "date": "August 5, 2023",
+            "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+            "rating": 2
+          }
+        ],
+        "description": "Stay stylish and comfortable with these Blue Solid Jeans. Their solid blue color and classic design make them a versatile addition to your wardrobe."
+      },
+      {
+        "id": "52",
+        "name": "Casual Waffle Knit Shirts Tops",
+        "link": "https://amzn.to/3T1HvNf",
+        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
+        "price": "₹489",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Sophia Wilson",
+            "date": "August 10, 2023",
+            "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "David Brown",
+            "date": "August 5, 2023",
+            "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+            "rating": 2
+          }
+        ],
+        "description": "Add a touch of style to your casual look with these Casual Waffle Knit Shirts Tops. Their waffle knit texture and relaxed fit make them perfect for everyday wear."
+      }
+    ],
+    "look": "Party",
+    "desc": "Elegance",
+    "expected_delivery": 10,
+    "overall_description": "Add elegance to your party look with this collection of stylish essentials. From flattering jeans to chic tops, this collection has everything you need to make a statement and stand out from the crowd."
+  },
+  {
+    "cart": [
+      {
+        "id": "61",
+        "name": "Tie Up Back Crop Blouse",
+        "link": "https://amzn.to/492yIjG",
+        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
+        "price": "₹349",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Emily Brown",
+            "date": "August 12, 2023",
+            "content": "Love this crop top! It's so cute and versatile.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "James White",
+            "date": "August 8, 2023",
+            "content": "The fabric of this crop top is not very good quality. It feels cheap.",
+            "rating": 2
+          }
+        ],
+        "description": "Add a playful touch to your wardrobe with this Tie Up Back Crop Blouse. Its tie-up back detail and crop silhouette make it perfect for pairing with high-waisted bottoms."
+      },
+      {
+        "id": "62",
+        "name": "ALYNE Women's Elastic Waist",
+        "link": "https://amzn.to/47PwIdj",
+        "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SX679_.jpg",
+        "price": "₹459",
+        "review": [
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Sophia Smith",
+            "date": "August 11, 2023",
+            "content": "These pants are amazing! They fit perfectly and are very comfortable.",
+            "rating": 5
+          },
+          {
+            "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+            "rname": "Michael Johnson",
+            "date": "August 7, 2023",
+            "content": "Not happy with these pants. The quality is poor and they don't fit well.",
+            "rating": 2
+          }
+        ],
+        "description": "Stay comfortable and stylish all day long with these ALYNE Women's Elastic Waist pants. Their elastic waistband and relaxed fit make them perfect for everyday wear."
+      }
+    ],
+    "look": "Casual",
+    "desc": "Comfort and Style",
+    "expected_delivery": 8,
+    "overall_description": "Stay comfortable and stylish with this collection of casual essentials. From playful crop tops to relaxed pants, this collection has everything you need to elevate your everyday look and stay on-trend."
+  }
+]
