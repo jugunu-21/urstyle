@@ -1,36 +1,21 @@
 import React, { useState } from "react";
+import { RxLetterCaseUppercase } from "react-icons/rx";
 
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+const findKeyword = (string) => {
+  const pattern = /\b(amazon|flipkart|mesho)\b/gi;
 
-// const Customersreview = (props) => {
-//   const reviewData = props.reviewData; 
-  // [
-  //   {
-  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-  //     name: "Emily Selman",
-  //     date: "July 16, 2021",
-  //     content:
-  //       "This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!",
-  //     rating: 3,
-  //   },
-  //   {
-  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-  //     name: "Emily Selman",
-  //     date: "July 16, 2021",
-  //     content:
-  //       "Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.",
-  //     rating: 3,
-  //   },
-  //   {
-  //     img: "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
-  //     name: "Mark Edwards",
-  //     date: "July 6, 2021",
-  //     content:
-  //       "Really happy with the look and options of these icons. I've found uses for them everywhere in my recent projects. I hope there will be 20px versions in the future!",
-  //     rating: 5,
-  //   },
-  // ];
+  const matches = string.match(pattern);
+
+  if (matches) {
+    // Map over the matches array and capitalize the first letter of each match
+    return matches.map(match => match.charAt(0).toUpperCase() + match.slice(1));
+  } else {
+    return [];
+  }
+};
+
   const Customersreview = (props) => {
     const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
     
@@ -198,7 +183,7 @@ export default function Moredetails() {
   }
 
   return (
-    <div className=" p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 ">
+    <div className=" p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 bg-stone-200">
       <div className="lg:col-span-1  lg:row-span-2 ">
         <div
           className="  rounded-lg overflow-hidden"
@@ -206,7 +191,7 @@ export default function Moredetails() {
         >
           <img
             src={finalItem.image_url}
-            className=" object-cover object-center h-full w-full hover:border-4 hover:border-violet-500"
+            className=" object-cover object-center h-full w-full hover:border-4 hover:border-stone-300"
             alt=""
           />
         </div>
@@ -288,25 +273,30 @@ export default function Moredetails() {
         </div>
         <div>
           <h1 className="pt-4 pb-2 text-3xl font-bold">
-            Application UI Icon Pack
+          {finalItem.name}
           </h1>
           <h1 className="pb-4 text-gray-500 ">
-            Version 1.0 (Updated June 5, 2021)
+           Your look should talk rather than you 
           </h1>
           <div className="space-y-6">
             <p className="text-base text-gray-500 ">
-            The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.
+           {finalItem.description}
             </p>
           </div>
         </div>
 
         <div className=" md:inline-flex ">
         
-          <Link to={finalItem.link}  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-20 md:mx-2 "> Pay$220</Link>
+        <Link to={finalItem.link} className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mx-2 ">
+  {findKeyword(finalItem.image_url)}
+</Link>
+
+
+
           
           <button
             type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-100 px-8 py-3 text-base font-medium text-indigo hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 md:px-20  "
+            className=" mt-10 flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mx-2"
           >
             Preview
           </button>

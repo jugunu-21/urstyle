@@ -180,7 +180,7 @@ function Clothes() {
             {click.map((item, index) => (
               <button
                 onClick={() => clickFilter(item.link)}
-                className="object-center px-1 text-white bg-gray-500 py-1 rounded-lg m-1 hover:bg-gray-700"
+                className="object-center px-1 text-white bg-gray-500 py-1 rounded-lg m-1 focus:bg-gray-900 hover:bg-gray-700"
               >
                 {item.name}
               </button>
@@ -230,7 +230,8 @@ function Clothes() {
                       </p>
                       <Link
                         className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950"
-                        to={`/details/${totalSum(group).allids.join(",")}`}
+                        to={`/details/${encodeURIComponent(JSON.stringify(totalSum(group)))}/${groupIndex}`}
+
                       >
                         Go to Details
                       </Link>
@@ -287,14 +288,14 @@ function Clothes() {
                       <div key={index} className="mb-4 ">
                         <div
                           key={index}
-                          className=" mx-2 w-46 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 "
+                          className=" mx-2 w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 "
                         >
                           <img
                             alt="Product Image"
                             className=" w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
-                            height={400}
+                          
                             src={item.image_url}
-                            width={300}
+                            
                           />
                           <div className="m-1 ml-2">
                             <div className="font-medium ">{item.price}</div>

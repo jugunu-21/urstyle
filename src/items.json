@@ -28,7 +28,7 @@
             "rating": 4
           }
         ],
-        "description": "Perfect for any party or special occasion, this maxi bodycon dress will make you stand out in the crowd. Its elegant design and comfortable material ensure you look and feel your best all night long."
+        "description": "Perfect for any party or special occasion, this maxi bodycon dress will make you stand out in the crowd."
       },
       {
         "id": "12",
@@ -52,7 +52,7 @@
             "rating": 2
           }
         ],
-        "description": "Complete your party look with this stylish detachable sling chain. It adds a touch of elegance to any outfit and ensures you're ready to hit the dance floor in style."
+        "description": "Complete your party look with this stylish detachable sling chain."
       },
       {
         "id": "13",
@@ -76,7 +76,7 @@
             "rating": 2
           }
         ],
-        "description": "Step into the party with confidence wearing these fancy heeled sandals. Their stylish design and comfortable fit make them a perfect choice for any occasion."
+        "description": "Step into the party with confidence wearing these fancy heeled sandals. "
       },
       {
         "id": "14",
@@ -100,7 +100,7 @@
             "rating": 4
           }
         ],
-        "description": "Complete your party look with these stunning silver matte rose gold twig earrings. Their elegant design adds a touch of glamour to any outfit."
+        "description": "Their elegant design adds a touch of glamour to any outfit."
       }
     ],
     "overall_description": "Get ready to dazzle at your next party with this collection of stylish partywear essentials. From elegant dresses to chic accessories, this collection has everything you need to make a statement and turn heads wherever you go."
@@ -132,7 +132,7 @@
             "rating": 4
           }
         ],
-        "description": "Stay comfortable and stylish with this round neck short sleeves t-shirt. Its classic design and soft fabric make it perfect for everyday wear."
+        "description": " Its classic design and soft fabric make it perfect for everyday wear."
       },
       {
         "id": "22",
@@ -156,7 +156,7 @@
             "rating": 2
           }
         ],
-        "description": "Complete your casual look with these stylish white sneakers for men. Their versatile design makes them perfect for any occasion."
+        "description": "These stylish white sneakers for men, their versatile design makes them perfect for any occasion."
       }
     ],
     "overall_description": "Stay comfortable and chic with this collection of casual wear essentials. From classic t-shirts to stylish sneakers, this collection has everything you need to elevate your everyday look and stay on-trend."
@@ -188,7 +188,7 @@
             "rating": 2
           }
         ],
-        "description": "Stay stylish and comfortable with these KOTTY women jeans. Their casual waffle knit shirts design makes them perfect for everyday wear."
+        "description": " Their casual waffle knit shirts design makes them perfect for everyday wear."
       },
       {
         "id": "32",
@@ -212,7 +212,7 @@
             "rating": 2
           }
         ],
-        "description": "Add a touch of style to your casual look with these Zilcon women's tops. Their casual waffle knit shirts design makes them perfect for everyday wear."
+        "description": "Add a touch of style to your casual look with these Zilcon women's tops. "
       }
     ],
     "overall_description": "Elevate your casual wardrobe with this collection of waffle knit shirts and jeans. Whether you're running errands or meeting friends for coffee, these comfortable and stylish pieces will keep you looking effortlessly chic all day long."
@@ -244,7 +244,7 @@
             "rating": 2
           }
         ],
-        "description": "Make a statement at any party with this SIGHTBOMB women's bodycon dress. Its flattering silhouette and high-quality fabric make it perfect for any occasion."
+        "description": "Make a statement at any party with this SIGHTBOMB women's bodycon dress. ."
       },
       {
         "id": "42",
@@ -268,7 +268,7 @@
             "rating": 1
           }
         ],
-        "description": "Complete your party look with these stylish Vendoz women boots. Their elegant design and comfortable fit make them perfect for dancing the night away."
+        "description": " Their elegant design and comfortable fit make them perfect for dancing the night away."
       }
     ],
     "overall_description": "Get ready to turn heads at any party with this collection of stylish party essentials. From flattering bodycon dresses to chic boots, this collection has everything you need to make a statement and stand out from the crowd."
@@ -297,7 +297,7 @@
             "rating": 2
           }
         ],
-        "description": "Stay stylish and comfortable with these Blue Solid Jeans. Their solid blue color and classic design make them a versatile addition to your wardrobe."
+        "description": " This solid blue color and classic design make them a versatile addition to your wardrobe."
       },
       {
         "id": "52",
@@ -321,10 +321,10 @@
             "rating": 2
           }
         ],
-        "description": "Add a touch of style to your casual look with these Casual Waffle Knit Shirts Tops. Their waffle knit texture and relaxed fit make them perfect for everyday wear."
+        "description": "Add a touch of style to your casual look with these Casual Waffle Knit Shirts Tops. "
       }
     ],
-    "look": "Party",
+    "look": "StreetStyle",
     "desc": "Elegance",
     "expected_delivery": 10,
     "overall_description": "Add elegance to your party look with this collection of stylish essentials. From flattering jeans to chic tops, this collection has everything you need to make a statement and stand out from the crowd."
@@ -353,7 +353,7 @@
             "rating": 2
           }
         ],
-        "description": "Add a playful touch to your wardrobe with this Tie Up Back Crop Blouse. Its tie-up back detail and crop silhouette make it perfect for pairing with high-waisted bottoms."
+        "description": " Its tie-up back detail and crop silhouette make it perfect for pairing with high-waisted bottoms."
       },
       {
         "id": "62",
@@ -377,7 +377,7 @@
             "rating": 2
           }
         ],
-        "description": "Stay comfortable and stylish all day long with these ALYNE Women's Elastic Waist pants. Their elastic waistband and relaxed fit make them perfect for everyday wear."
+        "description": "Stay comfortable and stylish all day long with these ALYNE Women's Elastic Waist pants. "
       }
     ],
     "look": "Casual",
