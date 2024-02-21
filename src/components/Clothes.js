@@ -180,7 +180,7 @@ function Clothes() {
             {click.map((item, index) => (
               <button
                 onClick={() => clickFilter(item.link)}
-                className="object-center px-1 text-white bg-gray-500 py-1 rounded-lg m-1 focus:bg-gray-900 hover:bg-gray-700"
+                className=" text-xs sm:text-sm object-center px-1 text-white bg-gray-500 py-1 rounded-lg m-1 focus:bg-gray-900 hover:bg-gray-700"
               >
                 {item.name}
               </button>
@@ -222,7 +222,7 @@ function Clothes() {
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg       ">
                   <div className="flex space-x-10 m-1 p-2">
                     <div>
-                      <h1 className="text-3xl font-bold tracking-tight">
+                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight">
                         {group.desc ? group.desc : "Summer Breeze Outfit"}
                       </h1>
                       <p className="text-gray-500 dark:text-gray-400">
