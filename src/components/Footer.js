@@ -8,7 +8,7 @@ export default function Footer() {
           backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://cm1.narvii.com/6520/3b103973169af1af80f04d5e06842fb47be23c15_00.jpg')`,
         }}
       >
-        <div className=" py-8 px-24 lg:flex">
+        <div className=" py-2 px-2 sm:py-8 sm:px-24 lg:flex">
           <div className=" ">
             <div className="font-serif text-black text-3xl">
               sign up for urstyle
@@ -38,29 +38,30 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className=" p-4 bg-gray-900 text-white text-sm">
-        <div className=" text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-x-4 pt-10">
-          <div className="">
-            <div className=" font-serif text-cyan-300 font-extrabold">
+      <div className=" p-4 bg-gray-900 text-white text-sm pt-10">
+      <div className=" font-serif text-cyan-300 font-extrabold">
               {" "}
               URSTYLE{" "}
             </div>
-            <div className="font-bold ">contact</div>
-            <div>
-              {" "}
-              <span className="font-semibold">addrses:</span>{" "}
-              chuaras,sringar,uttarakhand
+        <div className=" text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:space-x-4  ">
+          <div className="pt-2">
+           
+            <div className="font-bold ">Contact</div>
+            <div className="flex   ">
+              <div className="font-semibold ">Address:</div>
+              <div className="text-wrap">Chuaras, Sringar, Uttarakhand</div>
+            </div>
+
+            <div className="flex  ">
+              <div className="font-semibold">phone:</div>
+              <div className="text-wrap">+6306441401/ (+91)0123456789</div>
+            
             </div>
             <div>
-              {" "}
-              <span className="font-semibold">phone:</span>
-              +6306441401/(+91)0123456789
-            </div>
-            <div>
-              <span className="font-semibold">hours:</span>10:00-18:00,mon-sat
+              <span className="font-semibold text-wrap">hours:</span>10:00-18:00, mon-sat
             </div>
           </div>
-          <div>
+          <div className="pt-2">
             <div className="font-bold">About</div>
             <div>About us</div>
             <div>Delivery Information</div>
@@ -68,7 +69,7 @@ export default function Footer() {
             <div>Terms & Conditions</div>
             <div>Contact us</div>
           </div>
-          <div>
+          <div className="pt-2">
             <div className="font-bold">My Account</div>
             <div>Sign In</div>
             <div>View Cart</div>
@@ -76,7 +77,7 @@ export default function Footer() {
             <div>Track My Order</div>
             <div>Help</div>
           </div>
-          <div>
+          <div className="pt-2">
             <div className="font-bold ">Follow us</div>
             <div>From App Store or Google Play</div>
             <div className="flex space-x-4 pt-10">
@@ -97,8 +98,8 @@ export default function Footer() {
 
             <div>Secured Payment Gateway</div>
           </div>
-              </div>
-              {/* <div>follow us on</div>
+        </div>
+        {/* <div>follow us on</div>
               <div className="flex">
                   <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img src="" alt="" />
               </div> */}
