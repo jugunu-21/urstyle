@@ -63,11 +63,21 @@ const Details = () => {
     const matches = string.match(pattern);
 
     if (matches) {
-      return matches;
+        const capitalizedMatches = matches.map(match => match.charAt(0).toUpperCase() + match.slice(1).toLowerCase());
+        return capitalizedMatches;
     } else {
-      return "No keywords found";
+        return "No keywords found";
     }
-  };
+};
+
+
+
+
+
+
+
+
+
   function CalendarIcon(props) {
     return (
       <svg
@@ -90,7 +100,7 @@ const Details = () => {
     )
   }
   return (
-    <div className="  text-slate-900  m-1">
+    <div className="    m-1">
       <div className="grid sm:grid-cols-2 border-2 rounded-lg border-stone-300  md:ml-10 m-2 ">
         <div className="m-4 ">
           <div className="m-1 font-bold text-xl">{itemsData[groupIndex].desc}</div>
@@ -189,9 +199,11 @@ const Details = () => {
                   </div>
 
                   <div className=" m-2 pl-3  ">
-                    <div className="     rounded-md  font-semibold ">
+                    <div className="     rounded-md  font-bold ">
                       {item.name}
                     </div>
+                    <div className=" flex my-2 items-center space-x-3 font-semibold">
+                      <div className="    rounded-md   "> Price: {item.price}</div></div>
                     <div className="flex items-center">
                       <div className="flex">
                        
@@ -232,22 +244,22 @@ const Details = () => {
                           )
                         )}
                       </div>
-                      <div className="mx-2">{item.review.length} Reviews</div>
+                      <div className="mx-2">{calculateAverageRating(item.review)} Reviews</div>
                     </div>
          
-                    <div>{item.description}</div>
+                    <div className="mb-2">{item.description}</div>
                  
                     
                     <Link
                       to={item.link}
-                      className="font-medium bg-stone-300 hover:bg-stone-400 rounded-lg px-1"
+                      className="font-medium bg-stone-300 hover:bg-stone-400 rounded-lg p-1 "
                     >
                       {findKeyword(item.image_url)}
                     </Link>
 
               
-                    <div className=" flex my-2 items-center space-x-3 font-bold">
-                      <div className="    rounded-md   "> Price: {item.price}</div>
+                    <div className=" flex my-2 items-center space-x-3 font-medium">
+                      
 
                       <Link
                         to={`/moredetails/${item.id}/${itemsArrayString}`}

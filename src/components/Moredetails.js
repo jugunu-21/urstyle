@@ -10,84 +10,81 @@ const findKeyword = (string) => {
 
   if (matches) {
     // Map over the matches array and capitalize the first letter of each match
-    return matches.map(match => match.charAt(0).toUpperCase() + match.slice(1));
+    return matches.map(
+      (match) => match.charAt(0).toUpperCase() + match.slice(1)
+    );
   } else {
     return [];
   }
 };
 
-  const Customersreview = (props) => {
-    const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
-    
-    return (
-      <div className="my-8">
-        {reviewData.map((review, index) => (
-          <div key={index} className="my-6 text-gray-500 text-sm  ">
-            <div className="flex">
-              <div className="flex-shrink-0">
-                <img className="h-10 w-10 rounded-full" src={review.image} alt="" />
-              </div>
-              <div className="ml-4">
-                <div className="font-medium text-gray-700 ">{review.rname}</div>
-                <div className="text-gray-600 ">{review.date}</div>
-                <div className="flex items-center my-2">
-                  {Array.from({ length: review.rating }, (_, i) => (
-                    <svg
-                      key={i}
-                   
-                      className="text-gray-200  h-5 w-5 flex-shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="gold"
-                      aria-hidden="true"
-                    >
-                    
-                      <path
-                        fillRule="evenodd"
-                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ))}
-                   {Array.from({ length: (5-review.rating) }, (_, i) => (
-                    <svg
-                      key={i}
-                   
-                      className="text-gray-200  h-5 w-5 flex-shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                    
-                      <path
-                        fillRule="evenodd"
-                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ))}
-                  
-                </div>
-                <div className="mt-2">{review.content}</div>
-              </div>
+const Customersreview = (props) => {
+  const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
+
+  return (
+    <div className="my-8">
+      {reviewData.map((review, index) => (
+        <div key={index} className="my-6  text-sm  ">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={review.image}
+                alt=""
+              />
             </div>
-            {index !== reviewData.length - 1 && (
-              <div className="my-4 border-t border-gray-200"></div>
-            )}
+            <div className="ml-4">
+              <div className="font-medium  ">{review.rname}</div>
+              <div className=" ">{review.date}</div>
+              <div className="flex items-center my-2">
+                {Array.from({ length: review.rating }, (_, i) => (
+                  <svg
+                    key={i}
+                    className="text-gray-200  h-4 w-4 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="gold"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+                {Array.from({ length: 5-review.rating }, (_, i) => (
+                  <svg
+                    key={i}
+                    className="text-gray-200  h-4 w-4            flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="Gray"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <div className="mt-2">{review.content}</div>
+            </div>
           </div>
-        ))}
-      </div>
-    );
-  };
-  
-  
-
-
+          {index !== reviewData.length - 1 && (
+            <div className="my-4 border-t border-gray-200"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const FAQ = () => {
   return (
-    <div className="text-gray-500  ">
+    <div className="  ">
       <div className="py-4">
-        <h4 className=" py-1 text-gray-700  font-semibold ">
+        <h4 className=" py-1   font-semibold ">
           What format are these icons?
         </h4>
         <p className=" ">
@@ -96,7 +93,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="py-2">
-        <h4 className=" py-1 text-gray-700   font-semibold ">
+        <h4 className=" py-1    font-semibold ">
           Can I use the icons at different sizes?
         </h4>
         <p className="">
@@ -107,7 +104,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="py-2">
-        <h4 className=" py-1 text-gray-700  font-semibold ">
+        <h4 className=" py-1   font-semibold ">
           Do I have to add attribution to my projects?
         </h4>
         <p className="">
@@ -120,16 +117,15 @@ const FAQ = () => {
   );
 };
 const License = () => (
-  <div className="text-gray-500  ">
+  <div className="  ">
     <div className="py-2">
-      <h4 className=" py-1 text-gray-700  font-semibold ">Overview</h4>
-      <p >
+      <h4 className=" py-1   font-semibold ">Overview</h4>
+      <p>
         For personal and professional use. You cannot resell or redistribute
         these icons in their original or modified state.
       </p>
       <ul className=" py-1 ml-4 list-disc  ">
         <li>
-      
           <span>You're allowed to use the icons in unlimited projects.</span>
         </li>
         <li>
@@ -138,8 +134,9 @@ const License = () => (
       </ul>
     </div>
     <div className="py-2">
-  
-      <h6 className=" text-gray-700  font-semibold">What you can do with it </h6>
+      <h6 className="   font-semibold">
+        What you can do with it{" "}
+      </h6>
       <ul className=" py-1 list-disc ml-4">
         <li>
           Use them freely in your personal and professional work. Make them your
@@ -149,7 +146,7 @@ const License = () => (
       </ul>
     </div>
     <div className="py-2">
-      <h6 className=" text-gray-700   font-semibold">
+      <h6 className="    font-semibold">
         What you can't do with it
       </h6>
       <ul className=" py-1 list-disc ml-4">
@@ -167,7 +164,7 @@ const License = () => (
 );
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
-  
+
   const { id, itemsArrayString } = useParams();
   const itemId = id;
   const decodedItemsArray = JSON.parse(decodeURIComponent(itemsArrayString));
@@ -177,13 +174,17 @@ export default function Moredetails() {
   }
 
   const finalItem = decodedItemsArray.find((item) => item?.id === itemId);
-  
+
   if (!finalItem) {
     return <div>Item not found</div>;
   }
-
+  const calculateAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+    return totalRating / reviews.length;
+  };
   return (
-    <div className=" p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 bg-stone-200">
+    <div className=" text-slate-900 p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 bg-stone-200">
       <div className="lg:col-span-1  lg:row-span-2 ">
         <div
           className="  rounded-lg overflow-hidden"
@@ -199,68 +200,47 @@ export default function Moredetails() {
       <div className="lg:col-span-1  lg:row-span-4 pr-10 ">
         <div className="mt-6">
           <h3 className="sr-only">Reviews</h3>
+          <h1 className="pt-4 pb-2 text-3xl font-bold">{finalItem.name}</h1>
           <div className="flex items-center">
             <div className="flex items-center">
-              <svg
-                className="text-gray-900  font-bold h-5 w-5 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="gold"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="gold"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="gold"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                className="text-gray-900   font-bold h-5 w-5 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="gold"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <svg
-                className="text-gray-200  h-5 w-5 flex-shrink-0"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+              <div className="flex">
+                {Array.from(
+                  { length: calculateAverageRating(finalItem.review) },
+                  (_, i) => (
+                    <svg
+                      key={i}
+                      className="h-4 w-4 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="gold"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )
+                )}
+                {Array.from(
+                  { length: 6 - calculateAverageRating(finalItem.review) },
+                  (_, i) => (
+                    <svg
+                      key={i}
+                      className="text-gray-400 h-4 w-4 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )
+                )}
+              </div>
             </div>
             {/* <p className="sr-only">4 out of 5 stars</p>
             <Link
@@ -272,34 +252,22 @@ export default function Moredetails() {
           </div>
         </div>
         <div>
-          <h1 className="pt-4 pb-2 text-3xl font-bold">
-          {finalItem.name}
-          </h1>
-          <h1 className="pb-4 text-gray-500 ">
-           Your look should talk rather than you 
+          <div className="font-bold my-2"> Total Price :    {finalItem.price }</div>
+          <h1 className="pb-4  ">
+            Your look should talk rather than you
           </h1>
           <div className="space-y-6">
-            <p className="text-base text-gray-500 ">
-           {finalItem.description}
-            </p>
+            <p className="text-base  ">{finalItem.description}</p>
           </div>
         </div>
 
         <div className=" md:inline-flex ">
-        
-        <Link to={finalItem.link} className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mx-2 ">
-  {findKeyword(finalItem.image_url)}
-</Link>
-
-
-
-          
-          <button
-            type="submit"
-            className=" mt-10 flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mx-2"
+          <Link
+            to={finalItem.link}
+            className="mt-10 flex w-full items-center justify-center rounded-lg border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mr-2 "
           >
-            Preview
-          </button>
+            {findKeyword(finalItem.image_url)}
+          </Link>
         </div>
         <div className="my-4 border-t border-gray-200  "></div>
 
@@ -309,15 +277,17 @@ export default function Moredetails() {
           <div className="mt-4">
             <ul className="list-disc space-y-2 pl-4 text-sm">
               <li>
-                <span className="text-gray-500 ">Hand cut and sewn locally</span>
+                <span className=" ">
+                  Hand cut and sewn locally
+                </span>
               </li>
-              <li className="text-gray-500 ">
-                <span className="text-gray-500 ">
+              <li className=" ">
+                <span className=" ">
                   Dyed with our proprietary colors
                 </span>
               </li>
-              <li className="text-gray-500 ">
-                <span className="text-gray-500 ">
+              <li className=" ">
+                <span className=" ">
                   Pre-washed &amp; pre-shrunk
                 </span>
               </li>
@@ -329,7 +299,7 @@ export default function Moredetails() {
           <h2 className="text-sm text-gray-900   font-bold">License</h2>
 
           <div className="mt-4 space-y-6">
-            <p className="text-sm text-gray-500 ">
+            <p className="text-sm  ">
               The 6-Pack includes two black, two white, and two heather gray
               Basic Tees. Sign up for our subscription service and be the first
               to get new, exciting colors, like our upcoming &quot;Charcoal
@@ -350,12 +320,14 @@ export default function Moredetails() {
             <Link to="#" className="aspect-square size-5 ">
               <img
                 src="https://www.iconninja.com/files/611/75/580/instagram-icon.png"
-                alt=""f
+                alt=""
+                f
                 srcset=""
               />
             </Link>
             <Link to="#" className="aspect-square size-8   ">
-              <img className="rounded-full"
+              <img
+                className="rounded-full"
                 src="https://logowik.com/content/uploads/images/twitter-x-line9741.logowik.com.webp"
                 alt=""
               />
@@ -388,7 +360,11 @@ export default function Moredetails() {
         </div>
 
         <div className="my-4 border-t border-gray-200 "></div>
-        <div>{selectedContent === "customers" && <Customersreview reviewData={finalItem.review} />}</div>
+        <div>
+          {selectedContent === "customers" && (
+            <Customersreview reviewData={finalItem.review} />
+          )}
+        </div>
 
         <div>{selectedContent === "FAQ" && <FAQ />}</div>
         <div>{selectedContent === "License" && <License />}</div>

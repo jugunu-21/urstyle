@@ -9,7 +9,7 @@ export default function Footer() {
         }}
       >
         <div className=" py-2 px-2 sm:py-8 sm:px-24 lg:flex">
-          <div className=" ">
+          <div className=" rounded-lg bg-white p-2 "  >
             <div className="font-serif text-black text-3xl">
               sign up for urstyle
             </div>
@@ -18,7 +18,7 @@ export default function Footer() {
               <span className="text-orange-700"> special offer </span>
             </div>
           </div>
-          <div className=" flex">
+          {/* <div className=" flex">
             <textarea
               name=""
               id=""
@@ -35,7 +35,7 @@ export default function Footer() {
               placeholder="sing up"
               className=" text-center w-32 h-10 bg-red-100 text-slate-950"
             ></textarea>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className=" p-4 bg-gray-900 text-white text-sm pt-10">
