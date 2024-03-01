@@ -71,6 +71,7 @@ module.exports = {
     },
     blur: {
       0: '0',
+    
       none: '0',
       sm: '4px',
       DEFAULT: '8px',
@@ -654,6 +655,7 @@ module.exports = {
     maxWidth: ({ theme, breakpoints }) => ({
       ...theme('spacing'),
       none: 'none',
+      xsm: '15rem',
       xs: '20rem',
       sm: '24rem',
       md: '28rem',

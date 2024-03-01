@@ -18,14 +18,14 @@ export default function Footer() {
               <span className="text-orange-700"> special offer </span>
             </div>
           </div>
-          {/* <div className=" flex">
+          <div className=" flex">
             <textarea
               name=""
               id=""
               cols="30"
               rows="1"
               placeholder="your email address"
-              className=" text-center w-64 h-10 bg-white text-slate-950"
+              className=" text-center w-64 h-10 bg-white text-slate-950 rounded-lg m-1"
             ></textarea>
             <textarea
               name=""
@@ -33,9 +33,9 @@ export default function Footer() {
               cols="10"
               rows="1"
               placeholder="sing up"
-              className=" text-center w-32 h-10 bg-red-100 text-slate-950"
+              className=" text-center w-32 h-10 bg-red-100 text-slate-950 rounded-lg m-1"
             ></textarea>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className=" p-4 bg-gray-900 text-white text-sm pt-10">
@@ -43,7 +43,7 @@ export default function Footer() {
               {" "}
               URSTYLE{" "}
             </div>
-        <div className=" text-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:space-x-4  ">
+        <div className=" text-sm grid grid-cols-2 md:grid-cols-3  md:space-x-4  ">
           <div className="pt-2">
            
             <div className="font-bold ">Contact</div>
@@ -77,11 +77,11 @@ export default function Footer() {
             <div>Track My Order</div>
             <div>Help</div>
           </div>
-          <div className="pt-2">
+          {/* <div className="pt-2">
             <div className="font-bold ">Follow us</div>
             <div>From App Store or Google Play</div>
             <div className="flex space-x-4 pt-10">
-              {/* Other content */}
+             
               <div className=" md:flex items-center">
                 <img
                   className="object-contain h-10"
@@ -97,7 +97,7 @@ export default function Footer() {
             </div>
 
             <div>Secured Payment Gateway</div>
-          </div>
+          </div> */}
         </div>
         {/* <div>follow us on</div>
               <div className="flex">
