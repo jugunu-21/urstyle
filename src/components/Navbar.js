@@ -40,7 +40,7 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       to={item.to}
-                      className="text-gray-900 text-base font-semibold hover:bg-gray-700 hover:text-white rounded-md px-1 sm:px-3 sm:py-2"
+                      className=" text-sm sm:text-base  font-medium sm:font-bold hover:bg-gray-700 hover:text-white rounded-md px-1 sm:px-3 sm:py-2"
                     >
                       {item.name}
                     </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
                     id="user-menu-button"
                     aria-expanded="true"
                     aria-haspopup="true"
-                    onClick={()=> setIsDropdownOpen(true)}
+                    onClick={()=> setIsDropdownOpen(!isDropdownOpen)}
                  
                   >
                     <img

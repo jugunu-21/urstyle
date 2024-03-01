@@ -203,18 +203,18 @@ function Clothes() {
         </div>
         <div className="mx-2 mb-1 mt-2 ">
           <div
-            className=" ml-2 inline-block "
+            className=" ml-1 inline-block "
             onMouseEnter={() => setoptions(true)}
             onMouseLeave={() => setoptions(false)}
           >
             <div className=" ">
               <button
                 type="button"
-                class="inline-flex justify-center gap-x-1.5 rounded-md  px-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
+                class="inline-flex justify-center gap-x-1.5 rounded-md   pr-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
-                onClick={() => setoptions(true)}
+                onClick={() => setoptions(!options)}
               >
                 Categories
                 <svg
