@@ -201,7 +201,7 @@ function Clothes() {
             <BsChevronCompactRight size={30} />
           </div>
         </div>
-        <div className="mx-2 mb-1 mt-2 ">
+        <div className="  mx-2 mb-1 mt-2 ">
           <div
             className=" ml-1 inline-block "
             onMouseEnter={() => setoptions(true)}
@@ -210,7 +210,7 @@ function Clothes() {
             <div className=" ">
               <button
                 type="button"
-                class="inline-flex justify-center gap-x-1.5 rounded-md   pr-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
+                class=" relative inline-flex justify-center gap-x-1.5 rounded-md   pr-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
@@ -233,7 +233,7 @@ function Clothes() {
             </div>
             {options === true && (
               <div
-                class=" bg-gray-300 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
+                class="absolute z-10 bg-gray-300 mt-2 w-56 origin-top-right rounded-md  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"

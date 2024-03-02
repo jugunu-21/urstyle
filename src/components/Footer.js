@@ -25,7 +25,7 @@ export default function Footer() {
               cols="30"
               rows="1"
               placeholder="your email address"
-              className=" text-center w-64 h-10 bg-white text-slate-950 rounded-lg m-1"
+              className=" text-center w-64 h-10 bg-red-100 text-slate-950 rounded-lg m-1"
             ></textarea>
             <textarea
               name=""
@@ -43,10 +43,10 @@ export default function Footer() {
               {" "}
               URSTYLE{" "}
             </div>
-        <div className=" text-sm grid grid-cols-2 md:grid-cols-3  md:space-x-4  ">
-          <div className="pt-2">
+        <div className=" text-sm  grid grid-cols-5 sm:grid-cols-3  sm:space-x-4  ">
+          <div className="pt-2  col-span-3 sm:col-span-1">
            
-            <div className="font-bold ">Contact</div>
+            <div className="font-bold">Contact</div>
             <div className="flex   ">
               <div className="font-semibold ">Address:</div>
               <div className="text-wrap">Chuaras, Sringar, Uttarakhand</div>
@@ -61,7 +61,7 @@ export default function Footer() {
               <span className="font-semibold text-wrap">hours:</span>10:00-18:00, mon-sat
             </div>
           </div>
-          <div className="pt-2">
+          <div className="pt-2  col-span-2 sm:col-span-1">
             <div className="font-bold">About</div>
             <div>About us</div>
             <div>Delivery Information</div>
@@ -69,7 +69,7 @@ export default function Footer() {
             <div>Terms & Conditions</div>
             <div>Contact us</div>
           </div>
-          <div className="pt-2">
+          <div className="pt-2  col-span-3 sm:col-span-1">
             <div className="font-bold">My Account</div>
             <div>Sign In</div>
             <div>View Cart</div>

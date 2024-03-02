@@ -9,67 +9,114 @@ const navigation = [
 
 export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-
-
-  const handleMouseEnter = () => {
-    setIsDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDropdownOpen(false);
-  };
+  const [isDropdownOpenHem, setIsDropdownOpenHem] = useState(false);
 
   return (
-    <div className="min-h-full h-full">
-      <nav className="bg-purple-200">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <div className="flex-shrink-0">
+    <div className="min-h-full h-full bg-purple-200">
+      <div className=" flex relative  h-16 mx-auto max-w-7xl px-4  items-center justify-between ">
+        <div className="flex items-center justify-between ">
+          <div className="">
+            <Link
+              to="/"
+              className="font-serif text-cyan-800 text-xl font-extrabold"
+            >
+              URSTYLE
+            </Link>
+          </div>
+          <div className="hidden xsm:block">
+            <div className="flex   ml-2 sm:ml-10 items-baseline">
+              {navigation.map((item) => (
                 <Link
-                  to="/"
-                  className="font-serif text-cyan-800 text-xl font-extrabold"
+                  key={item.name}
+                  to={item.to}
+                  className="hidden xsm:block text-sm sm:text-base  font-medium sm:font-bold hover:bg-gray-700 hover:text-white rounded-md px-1 sm:px-3 sm:py-2"
                 >
-                  URSTYLE
+                  {item.name}
                 </Link>
-              </div>
-              <div className="">
-                <div className="ml-2 sm:ml-10 flex items-baseline">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.to}
-                      className=" text-sm sm:text-base  font-medium sm:font-bold hover:bg-gray-700 hover:text-white rounded-md px-1 sm:px-3 sm:py-2"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-end">
+          <div
+            className=" block xsm:hidden "
+            onMouseEnter={() => setIsDropdownOpenHem(true)}
+            onMouseLeave={() => setIsDropdownOpenHem(false)}
+          >
+            <div className="ml-4 flex items-center md:ml-6">
+              <div className=" ml-3">
+                <button
+                  type="button"
+                  className="  max-w-xs items-center  text-sm    "
+                  id="user-menu-button"
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  onClick={() => setIsDropdownOpenHem(!isDropdownOpenHem)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+                {isDropdownOpenHem === true && (
+                  <div
+                    className="absolute z-10 right-0  mt-2 w-44 bg-white origin-top-right rounded-lg  py-1 "
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button" onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                  >
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.to}
+                        className="pl-4 block py-1 text-sm sm:text-base  font-normal hover:bg-gray-700 hover:text-white rounded-md px-1 "
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-            <div className=""  onMouseEnter={()=> setIsDropdownOpen(true)}
-                    onMouseLeave={()=> setIsDropdownOpen(false)} >
-              <div className="ml-4 flex items-center md:ml-6"   >
-                <div className="ml-3">
-                  <button
-                    type="button"
-                    className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded="true"
-                    aria-haspopup="true"
-                    onClick={()=> setIsDropdownOpen(!isDropdownOpen)}
-                 
+          </div>
+          <div className="">
+            <div className="ml-4 flex items-center md:ml-6">
+              <div className="ml-3">
+                <button
+                  type="button"
+                  className=" flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  id="user-menu-button"
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <img
+                    className="h-8 w-10 rounded-full"
+                    src="https://cdnb.artstation.com/p/assets/images/images/048/110/613/small/pankaj-kumar-roy-12.jpg?1649236129"
+                    alt=""
+                  />
+                </button>
+                {isDropdownOpen === true && (
+                  <div
+                    className=""
+                    onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
                   >
-                    <img
-                      className="h-8 w-10 rounded-full"
-                      src="https://cdnb.artstation.com/p/assets/images/images/048/110/613/small/pankaj-kumar-roy-12.jpg?1649236129"
-                      alt=""
-                    />
-                  </button>
-                  {isDropdownOpen === true && (
                     <div
-                      className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      className=" absolute z-10 right-2   w-44  rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
@@ -102,13 +149,14 @@ export default function Navbar() {
                         Sign out
                       </Link>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </nav>
+      </div>
+
       <main></main>
     </div>
   );
