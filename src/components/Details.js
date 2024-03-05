@@ -23,6 +23,7 @@ const Details = () => {
             image_url: cartItem.image_url,
             // Add any other properties you want to include
             name: cartItem.name,
+            code: cartItem.code,
             link: cartItem.link,
             price: cartItem.price,
             review: cartItem.review,
@@ -136,7 +137,7 @@ const Details = () => {
               ( ★{detailAll.avgRating}.0)
             </span>
           </div>
-          <div className="flex items-center">
+          <div className=" sm:flex items-center">
             <div className=" m-1 font-bold">
               {" "}
               Expected-delivery date :{itemsData[groupIndex].expected_delivery}
@@ -147,29 +148,54 @@ const Details = () => {
             {itemsData[groupIndex].overall_description}{" "}
           </div>
         </div>
-        <div className=" hidden sm:block h-[340px] w-[350px]  m-auto  px-2 relative group  ">
-          <div
+        <div className="  h-[340px] w-[450px]  m-auto  px-2 items-center ">
+          <div class="flex flex-col flex-wrap h-96 m-2">
+            {filteredItems().map((item, index) => {
+              const code = parseInt(item.code);
+              return (
+                <div key={index}>
+                  {code === 3 && (
+                    <img
+                      className="max-h-[300px] w-auto rounded-lg"
+                      src={item.image_url}
+                      alt=""
+                    />
+                  )}
+                  {code === 1 && (
+                    <div className="">
+                      <img
+                        className="max-h-[100px] w-auto  rounded-lg"
+                        src={item.image_url}
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {/* <div
             style={{
               backgroundImage: filteredItems()[currentIndexes]
                 ? ` url(${filteredItems()[currentIndexes].image_url})`
                 : "",
             }}
             className="w-full h-full  bg-center bg-cover duration-500 mt-0   "
-          ></div>
+          ></div> */}
           {/* Left Arrow */}
-          <div
+          {/* <div
             className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
             onClick={() => prevSlide(filteredItems().length)}
           >
             <BsChevronCompactLeft size={30} />
           </div>
-          {/* Right Arrow */}
+       
           <div
             className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
             onClick={() => nextSlide(filteredItems().length)}
           >
             <BsChevronCompactRight size={30} />
-          </div>
+          </div> */}
         </div>
       </div>
       <div>
@@ -181,109 +207,116 @@ const Details = () => {
             >
               {item && (
                 <>
-                  <div className="m-2 overflow-hidden  bg-cover bg-top   sm:w-52 h-52  bg-white hover:border-4 rounded-lg  border-2 hover:border-stone-300">
-                    <img
-                      className=" mx-auto max-w-full h-full object-cover align-middle  "
-                      src={item.image_url}
-                      alt=""
-                    />
-                  </div>
+                  <Link
+                    to={`/moredetails/${item.id}/${itemsArrayString}`}
+                    rel="noopener noreferrer"
+                  >
+                    <div className="m-2 overflow-hidden  bg-cover bg-top   sm:w-52 h-52  bg-white hover:border-4 rounded-lg  border-2 hover:border-stone-300">
+                      <img
+                        className=" mx-auto max-w-full h-full object-cover align-middle  "
+                        src={item.image_url}
+                        alt=""
+                      />
+                    </div>
 
-                  <div className=" m-2 pl-3  ">
-                    <div className="     rounded-md  font-bold ">
-                      {item.name}
-                    </div>
-                    <div className="flex items-center">
-                      <div className="flex">
-                        {Array.from(
-                          { length: calculateAverageRating(item.review) },
-                          (_, i) => (
-                            <svg
-                              key={i}
-                              className="h-4 w-4 flex-shrink-0"
-                              viewBox="0 0 20 20"
-                              fill="gold"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          )
-                        )}
-                        {Array.from(
-                          { length: 6 - calculateAverageRating(item.review) },
-                          (_, i) => (
-                            <svg
-                              key={i}
-                              className="text-gray-400 h-4 w-4 flex-shrink-0"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          )
-                        )}
+                    <div className=" m-2 pl-3  ">
+                      <div className="     rounded-md  font-bold ">
+                        {item.name}
                       </div>
-                      <div className="mx-2">
-                        {calculateAverageRating(item.review)} Reviews
+                      <div className="flex items-center">
+                        <div className="flex">
+                          {Array.from(
+                            { length: calculateAverageRating(item.review) },
+                            (_, i) => (
+                              <svg
+                                key={i}
+                                className="h-4 w-4 flex-shrink-0"
+                                viewBox="0 0 20 20"
+                                fill="gold"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            )
+                          )}
+                          {Array.from(
+                            { length: 6 - calculateAverageRating(item.review) },
+                            (_, i) => (
+                              <svg
+                                key={i}
+                                className="text-gray-400 h-4 w-4 flex-shrink-0"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            )
+                          )}
+                        </div>
+
+                        <div className="mx-2">
+                          {calculateAverageRating(item.review)} Reviews
+                        </div>
                       </div>
-                    </div>
-                    <div className="mb-2">{item.description}</div>
-                    <div className="h-6 w-20">
-                      <Link
-                        to={item.link}
-                        className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center border-2 hover:h-8 "
-                        style={{
-                          backgroundImage: `url(${findKeyword(
-                            item.image_url
-                          )})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      >
-                        {/* Optional: Display a placeholder or text if no image is found */}
-                        {!findKeyword(item.image_url) && (
-                          <span className="text-white">
-                            Image not available
-                          </span>
-                        )}
-                      </Link>
-                    </div>
-             
-                    <div className=" flex my-2 items-center space-x-3 font-medium">
-                      <Link
-                        to={`/moredetails/${item.id}/${itemsArrayString}`}
-                        rel="noopener noreferrer"
-                        className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
-                      >
-                        Details
-                        <svg
-                          className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 14 10"
+                      <div className="font-semibold my-1">{item.price}</div>
+                      <div className="mb-2">{item.description}</div>
+                      <div className="h-8 w-24">
+                        <Link
+                          to={item.link}
+                          className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center hover:border-2 hover:border-gray-200 "
+                          style={{
+                            backgroundImage: `url(${findKeyword(
+                              item.image_url
+                            )})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
                         >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2} // Corrected property name
-                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                          />
-                        </svg>
-                      </Link>
+                          {/* Optional: Display a placeholder or text if no image is found */}
+                          {!findKeyword(item.image_url) && (
+                            <span className="text-white">
+                              Image not available
+                            </span>
+                          )}
+                        </Link>
+                      </div>
+
+                      <div className=" flex my-2 items-center space-x-3 font-medium">
+                        <Link
+                          to={`/moredetails/${item.id}/${itemsArrayString}`}
+                          rel="noopener noreferrer"
+                          className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
+                        >
+                          Details
+                          <svg
+                            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2} // Corrected property name
+                              d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </>
               )}
             </div>

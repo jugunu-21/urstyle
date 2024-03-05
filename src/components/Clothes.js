@@ -280,7 +280,14 @@ function Clothes() {
                     })()}
                   </div>
                 )}
-
+                       <Link
+                        className=""
+                        to={`/details/${encodeURIComponent(
+                          JSON.stringify(totalSum(group))
+                        )}/${groupIndex}`}
+                      >
+                      
+                    
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg       ">
                   <div className="flex space-x-10 m-1 p-2">
                     <div>
@@ -374,7 +381,8 @@ function Clothes() {
                       </div>
                     ))}
                   </div>
-                </div>
+                  </div>
+                  </Link>
               </section>
             )}
           </div>

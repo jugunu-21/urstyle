@@ -5,16 +5,12 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 const findKeyword = (string) => {
   const pattern = /\b(amazon|flipkart|mesho)\b/gi;
-
   const matches = string.match(pattern);
 
-  if (matches) {
-    // Map over the matches array and capitalize the first letter of each match
-    return matches.map(
-      (match) => match.charAt(0).toUpperCase() + match.slice(1)
-    );
+  if (matches && matches.includes("amazon")) {
+    return "https://www.citypng.com/public/uploads/preview/-115963234920bla0rqz8j.png"; // Image URL for Amazon
   } else {
-    return [];
+    return ""; // Return empty string for no image
   }
 };
 
@@ -52,7 +48,7 @@ const Customersreview = (props) => {
                     />
                   </svg>
                 ))}
-                {Array.from({ length: 5-review.rating }, (_, i) => (
+                {Array.from({ length: 5 - review.rating }, (_, i) => (
                   <svg
                     key={i}
                     className="text-gray-200  h-4 w-4            flex-shrink-0"
@@ -84,9 +80,7 @@ const FAQ = () => {
   return (
     <div className="  ">
       <div className="py-4">
-        <h4 className=" py-1   font-semibold ">
-          What format are these icons?
-        </h4>
+        <h4 className=" py-1   font-semibold ">What format are these icons?</h4>
         <p className=" ">
           The icons are in SVG (Scalable Vector Graphic) format. They can be
           imported into your design tool of choice and used directly in code.
@@ -134,9 +128,7 @@ const License = () => (
       </ul>
     </div>
     <div className="py-2">
-      <h6 className="   font-semibold">
-        What you can do with it{" "}
-      </h6>
+      <h6 className="   font-semibold">What you can do with it </h6>
       <ul className=" py-1 list-disc ml-4">
         <li>
           Use them freely in your personal and professional work. Make them your
@@ -146,9 +138,7 @@ const License = () => (
       </ul>
     </div>
     <div className="py-2">
-      <h6 className="    font-semibold">
-        What you can't do with it
-      </h6>
+      <h6 className="    font-semibold">What you can't do with it</h6>
       <ul className=" py-1 list-disc ml-4">
         <li>
           Don't be greedy. Selling or distributing these icons in their original
@@ -252,44 +242,46 @@ export default function Moredetails() {
           </div>
         </div>
         <div>
-          <div className="font-bold my-2"> Total Price :    {finalItem.price }</div>
-          <h1 className="pb-4  ">
-            Your look should talk rather than you
-          </h1>
+          <div className="font-bold my-2"> Total Price : {finalItem.price}</div>
+          <h1 className="pb-4  ">Your look should talk rather than you</h1>
           <div className="space-y-6">
             <p className="text-base  ">{finalItem.description}</p>
           </div>
         </div>
 
-        <div className=" md:inline-flex ">
+        <div className="h-8 w-28 my-2 ">
           <Link
             to={finalItem.link}
-            className="mt-10 flex w-full items-center justify-center rounded-lg border border-transparent px-8 py-3 text-base font-medium  hover:bg-stone-400 focus:outline-none focus:ring-2 bg-stone-300 focus:ring-offset-2 md:px-20 md:mr-2 "
+            className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center hover:border-2 hover:border-gray-200
+                         "
+            style={{
+              backgroundImage: `url(${findKeyword(finalItem.image_url)})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
           >
-            {findKeyword(finalItem.image_url)}
+            {/* Optional: Display a placeholder or text if no image is found */}
+            {!findKeyword(finalItem.image_url) && (
+              <span className="text-white">Image not available</span>
+            )}
           </Link>
         </div>
-        <div className="my-4 border-t border-gray-200  "></div>
+        <div className="my-2 border-t border-gray-200  "></div>
 
-        <div className="mt-10">
+        <div className="mt-2">
           <h3 className="text-sm m text-gray-900   font-bold">Highlights</h3>
 
           <div className="mt-4">
             <ul className="list-disc space-y-2 pl-4 text-sm">
               <li>
-                <span className=" ">
-                  Hand cut and sewn locally
-                </span>
+                <span className=" ">Hand cut and sewn locally</span>
               </li>
               <li className=" ">
-                <span className=" ">
-                  Dyed with our proprietary colors
-                </span>
+                <span className=" ">Dyed with our proprietary colors</span>
               </li>
               <li className=" ">
-                <span className=" ">
-                  Pre-washed &amp; pre-shrunk
-                </span>
+                <span className=" ">Pre-washed &amp; pre-shrunk</span>
               </li>
             </ul>
           </div>

@@ -9,6 +9,7 @@
       {
         "id": "11",
         "name": "Women Maxi Bodycon Dress",
+        "code":"3",
         "link": "https://amzn.to/426yTYF",
         "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
         "price": "₹389",
@@ -33,6 +34,7 @@
       {
         "id": "12",
         "name": "Detachable Sling Chain",
+        "code":"1",
         "link": "https://amzn.to/49HKAI9",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/91JVMgDPPAS._SY675_.jpg",
         "price": "₹349",
@@ -57,6 +59,7 @@
       {
         "id": "13",
         "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
+        "code":"1",
         "link": "https://amzn.to/3vVyzA7",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
         "price": "₹700",
@@ -81,6 +84,7 @@
       {
         "id": "14",
         "name": "Silver Matte Rose Gold Twig Earrings",
+        "code":"1",
         "link": "https://amzn.to/49DjQZ1",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612Pg4jubwL._SY675_.jpg",
         "price": "₹2199",
@@ -113,6 +117,7 @@
       {
         "id": "21",
         "name": "Round Neck Short Sleeves T-Shirt",
+        "code":"3",
         "link": "https://amzn.to/3Hr1Gh7",
         "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
         "price": "₹463",
@@ -137,6 +142,7 @@
       {
         "id": "22",
         "name": "White Sneakers for Men",
+        "code":"1",
         "link": "https://amzn.to/488mLIl",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
         "price": "₹599",
@@ -169,6 +175,7 @@
       {
         "id": "31",
         "name": "KOTTY Women Jeans",
+        "code":"3",
         "link": "https://amzn.to/3UkbLUK",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
         "price": "₹474",
@@ -193,6 +200,7 @@
       {
         "id": "32",
         "name": "Zilcon Women's Tops",
+        "code":"3",
         "link": "https://amzn.to/3T1HvNf",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
         "price": "₹489",
@@ -225,6 +233,7 @@
       {
         "id": "41",
         "name": "SIGHTBOMB Women's Bodycon Dress",
+        "code":"3",
         "link": "https://amzn.to/3vSVKLa",
         "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
         "price": "₹999",
@@ -249,6 +258,7 @@
       {
         "id": "42",
         "name": "Vendoz Women Boots",
+        "code":"1",
         "link": "https://amzn.to/48NQuXT",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
         "price": "₹659",
@@ -278,6 +288,7 @@
       {
         "id": "51",
         "name": "Blue Solid Jeans",
+        "code":"3",
         "link": "https://amzn.to/3UkbLUK",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
         "price": "₹474",
@@ -302,6 +313,7 @@
       {
         "id": "52",
         "name": "Casual Waffle Knit Shirts Tops",
+        "code":"3",
         "link": "https://amzn.to/3T1HvNf",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
         "price": "₹489",
@@ -334,6 +346,7 @@
       {
         "id": "61",
         "name": "Tie Up Back Crop Blouse",
+        "code":"3",
         "link": "https://amzn.to/492yIjG",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
         "price": "₹349",
@@ -358,6 +371,7 @@
       {
         "id": "62",
         "name": "ALYNE Women's Elastic Waist",
+        "code":"3",
         "link": "https://amzn.to/47PwIdj",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SX679_.jpg",
         "price": "₹459",
