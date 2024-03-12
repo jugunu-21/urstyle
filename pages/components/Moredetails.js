@@ -1,0 +1,366 @@
+import React, { useState } from "react";
+import { RxLetterCaseUppercase } from "react-icons/rx";
+
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+const findKeyword = (string) => {
+  const pattern = /\b(amazon|flipkart|mesho)\b/gi;
+  const matches = string.match(pattern);
+
+  if (matches && matches.includes("amazon")) {
+    return "https://www.citypng.com/public/uploads/preview/-115963234920bla0rqz8j.png"; // Image URL for Amazon
+  } else {
+    return ""; // Return empty string for no image
+  }
+};
+
+const Customersreview = (props) => {
+  const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
+
+  return (
+    <div className="my-8">
+      {reviewData.map((review, index) => (
+        <div key={index} className="my-6  text-sm  ">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <img
+                className="h-10 w-10 rounded-full"
+                src={review.image}
+                alt=""
+              />
+            </div>
+            <div className="ml-4">
+              <div className="font-medium  ">{review.rname}</div>
+              <div className=" ">{review.date}</div>
+              <div className="flex items-center my-2">
+                {Array.from({ length: review.rating }, (_, i) => (
+                  <svg
+                    key={i}
+                    className="text-gray-200  h-4 w-4 flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="gold"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+                {Array.from({ length: 5 - review.rating }, (_, i) => (
+                  <svg
+                    key={i}
+                    className="text-gray-200  h-4 w-4            flex-shrink-0"
+                    viewBox="0 0 20 20"
+                    fill="Gray"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <div className="mt-2">{review.content}</div>
+            </div>
+          </div>
+          {index !== reviewData.length - 1 && (
+            <div className="my-4 border-t border-gray-200"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const FAQ = () => {
+  return (
+    <div className="  ">
+      <div className="py-4">
+        <h4 className=" py-1   font-semibold ">What format are these icons?</h4>
+        <p className=" ">
+          The icons are in SVG (Scalable Vector Graphic) format. They can be
+          imported into your design tool of choice and used directly in code.
+        </p>
+      </div>
+      <div className="py-2">
+        <h4 className=" py-1    font-semibold ">
+          Can I use the icons at different sizes?
+        </h4>
+        <p className="">
+          Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be
+          scaled to different sizes as needed. We don't recommend going smaller
+          than 20 x 20 or larger than 64 x 64 to retain legibility and visual
+          balance.
+        </p>
+      </div>
+      <div className="py-2">
+        <h4 className=" py-1   font-semibold ">
+          Do I have to add attribution to my projects?
+        </h4>
+        <p className="">
+          No. You are allowed to use these icons freely in your personal and
+          professional work. If you enjoy the icon pack, feel free to tell
+          others!
+        </p>
+      </div>
+    </div>
+  );
+};
+const License = () => (
+  <div className="  ">
+    <div className="py-2">
+      <h4 className=" py-1   font-semibold ">Overview</h4>
+      <p>
+        For personal and professional use. You cannot resell or redistribute
+        these icons in their original or modified state.
+      </p>
+      <ul className=" py-1 ml-4 list-disc  ">
+        <li>
+          <span>You're allowed to use the icons in unlimited projects.</span>
+        </li>
+        <li>
+          <span>Attribution is not required to use the icons.</span>
+        </li>
+      </ul>
+    </div>
+    <div className="py-2">
+      <h6 className="   font-semibold">What you can do with it </h6>
+      <ul className=" py-1 list-disc ml-4">
+        <li>
+          Use them freely in your personal and professional work. Make them your
+          own.
+        </li>
+        <li> liChange the colors to suit your project or brand.</li>
+      </ul>
+    </div>
+    <div className="py-2">
+      <h6 className="    font-semibold">What you can't do with it</h6>
+      <ul className=" py-1 list-disc ml-4">
+        <li>
+          Don't be greedy. Selling or distributing these icons in their original
+          or modified state is prohibited.
+        </li>
+        <li>
+          Don't be evil. These icons cannot be used on websites or applications
+          that promote illegal or immoral beliefs or activities.
+        </li>
+      </ul>
+    </div>
+  </div>
+);
+export default function Moredetails() {
+  const [selectedContent, setSelectedContent] = useState("customers");
+
+  const { id, itemsArrayString } = useParams();
+  const itemId = id;
+  const decodedItemsArray = JSON.parse(decodeURIComponent(itemsArrayString));
+
+  if (!decodedItemsArray || !Array.isArray(decodedItemsArray)) {
+    return <div>Error: Invalid data format</div>;
+  }
+
+  const finalItem = decodedItemsArray.find((item) => item?.id === itemId);
+
+  if (!finalItem) {
+    return <div>Item not found</div>;
+  }
+  const calculateAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return 0;
+    const totalRating = reviews.reduce((acc, curr) => acc + curr.rating, 0);
+    return totalRating / reviews.length;
+  };
+  return (
+    <div className=" text-slate-900 p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 bg-stone-200">
+      <div className="lg:col-span-1  lg:row-span-2 ">
+        <div
+          className="  rounded-lg overflow-hidden"
+          style={{ height: "600px" }}
+        >
+          <img
+            src={finalItem.image_url}
+            className=" object-cover object-center h-full w-full hover:border-4 hover:border-stone-300"
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="lg:col-span-1  lg:row-span-4 pr-10 ">
+        <div className="mt-6">
+          <h3 className="sr-only">Reviews</h3>
+          <h1 className="pt-4 pb-2 text-3xl font-bold">{finalItem.name}</h1>
+          <div className="flex items-center">
+            <div className="flex items-center">
+              <div className="flex">
+                {Array.from(
+                  { length: calculateAverageRating(finalItem.review) },
+                  (_, i) => (
+                    <svg
+                      key={i}
+                      className="h-4 w-4 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="gold"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )
+                )}
+                {Array.from(
+                  { length: 6 - calculateAverageRating(finalItem.review) },
+                  (_, i) => (
+                    <svg
+                      key={i}
+                      className="text-gray-400 h-4 w-4 flex-shrink-0"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )
+                )}
+              </div>
+            </div>
+            {/* <p className="sr-only">4 out of 5 stars</p>
+            <Link
+              href="#"
+              className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              117 reviews
+            </Link> */}
+          </div>
+        </div>
+        <div>
+          <div className="font-bold my-2"> Total Price : {finalItem.price}</div>
+          <h1 className="pb-4  ">Your look should talk rather than you</h1>
+          <div className="space-y-6">
+            <p className="text-base  ">{finalItem.description}</p>
+          </div>
+        </div>
+
+        <div className="h-8 w-28 my-2 ">
+          <Link
+            href={finalItem.link}
+            className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center hover:border-2 hover:border-gray-200
+                         "
+            style={{
+              backgroundImage: `url(${findKeyword(finalItem.image_url)})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            {/* Optional: Display a placeholder or text if no image is found */}
+            {!findKeyword(finalItem.image_url) && (
+              <span className="text-white">Image not available</span>
+            )}
+          </Link>
+        </div>
+        <div className="my-2 border-t border-gray-200  "></div>
+
+        <div className="mt-2">
+          <h3 className="text-sm m text-gray-900   font-bold">Highlights</h3>
+
+          <div className="mt-4">
+            <ul className="list-disc space-y-2 pl-4 text-sm">
+              <li>
+                <span className=" ">Hand cut and sewn locally</span>
+              </li>
+              <li className=" ">
+                <span className=" ">Dyed with our proprietary colors</span>
+              </li>
+              <li className=" ">
+                <span className=" ">Pre-washed &amp; pre-shrunk</span>
+              </li>
+            </ul>
+          </div>
+          <div className="my-4 border-t border-gray-200 "></div>
+        </div>
+        <div className="mt-10">
+          <h2 className="text-sm text-gray-900   font-bold">License</h2>
+
+          <div className="mt-4 space-y-6">
+            <p className="text-sm  ">
+              The 6-Pack includes two black, two white, and two heather gray
+              Basic Tees. Sign up for our subscription service and be the first
+              to get new, exciting colors, like our upcoming &quot;Charcoal
+              Gray&quot; limited release.
+            </p>
+          </div>
+        </div>
+        <div className="my-4 border-t border-gray-200 "></div>
+        <div className=" mt-10 pb-10 ">
+          <h2 className="text-sm  text-gray-900   font-bold pb-4 ">Share </h2>
+          <div className=" flex  space-x-6  ">
+            <Link href="#" className="aspect-square size-5  ">
+              <img
+                src="https://1.bp.blogspot.com/-qYwreqeIN6w/XN0LzjGE2GI/AAAAAAAAAmA/PV1m0NfGuxUEXFBS8Ge4VMXWE34XzrfYgCPcBGAYYCw/s20/facebook-logo-Grey-%2Bhigh%2Bresolution.png"
+                alt=""
+              />
+            </Link>
+            <Link href="#" className="aspect-square size-5 ">
+              <img
+                src="https://www.iconninja.com/files/611/75/580/instagram-icon.png"
+                alt=""
+                f
+                srcset=""
+              />
+            </Link>
+            <Link href="#" className="aspect-square size-8   ">
+              <img
+                className="rounded-full"
+                src="https://logowik.com/content/uploads/images/twitter-x-line9741.logowik.com.webp"
+                alt=""
+              />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:col-span-1 lg:row-span-4 pt-10 ">
+        <div className="  inline-flex space-x-5  ">
+          <button
+            className="border border-transparent group  hover:border-b-gray-500   focus:border-b-black "
+            onClick={() => setSelectedContent("customers")}
+          >
+            Customers Review
+          </button>
+          <button
+            className="border border-transparent group hover:border-b-gray-700
+          focus:outline-none focus:border-b-black"
+            onClick={() => setSelectedContent("FAQ")}
+          >
+            FAQ
+          </button>
+          <button
+            className="border border-transparent group hover:border-b-gray-700 focus:outline-none focus:border-b-black"
+            onClick={() => setSelectedContent("License")}
+          >
+            License
+          </button>
+        </div>
+
+        <div className="my-4 border-t border-gray-200 "></div>
+        <div>
+          {selectedContent === "customers" && (
+            <Customersreview reviewData={finalItem.review} />
+          )}
+        </div>
+
+        <div>{selectedContent === "FAQ" && <FAQ />}</div>
+        <div>{selectedContent === "License" && <License />}</div>
+      </div>
+    </div>
+  );
+}
