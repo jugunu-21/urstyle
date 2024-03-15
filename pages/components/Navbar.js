@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Link from "next/link"; // Import Link from next/link
 
 const navigation = [
-  { name: "About", to: "/components/About" },
-  { name: "Contact", to: "/components/Contact" },
-  { name: "Homee", to: "/components/Home" },
+  {"order":"1", name: "About", to: "/components/About" },
+  {"order":"2", name: "Contact", to: "/components/Contact" },
+  {"order":"3", name: "Home", to: "/components/Home" },
 ];
 
 export default function Navbar() {
@@ -23,7 +23,7 @@ export default function Navbar() {
           <div className="hidden xsm:block">
             <div className="flex ml-2 sm:ml-10 items-baseline">
             {navigation.map((item,index) => (
-                      <Link key={index} href={item.to} passHref>
+                      <Link key={item.order} href={item.to} >
                         <div className="pl-4 text-neutral-950 block py-1 text-sm sm:text-base font-normal hover:bg-gray-700 hover:text-white rounded-md px-1">
                           {item.name}
                         </div>
@@ -60,13 +60,15 @@ export default function Navbar() {
                 </button>
                 {isDropdownOpenHem && (
                   <div className="absolute z-10 right-0 mt-2 w-44 bg-white origin-top-right rounded-lg py-1">
-                    {navigation.map((item,index) => (
-                      <Link key={index} href={item.to} passHref>
-                        <div className="pl-4 text-neutral-950 block py-1 text-sm sm:text-base font-normal hover:bg-gray-700 hover:text-white rounded-md px-1">
-                          {item.name}
-                        </div>
-                      </Link>
-                    ))}
+                    {navigation.map((item) => {
+                      return (
+                        <Link key={item.order} href={item.to}>
+                          <div className="pl-4 text-neutral-950 block py-1 text-sm sm:text-base font-normal hover:bg-gray-700 hover:text-white rounded-md px-1">
+                            {item.name}
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -103,17 +105,17 @@ export default function Navbar() {
                       aria-orientation="vertical"
                       aria-labelledby="user-menu-button"
                     >
-                      <Link href="#" passHref>
+                      <Link href="#" >
                         <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">
                           Your Profile
                         </div>
                       </Link>
-                      <Link href="#" passHref>
+                      <Link href="#" >
                         <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">
                           Settings
                         </div>
                       </Link>
-                      <Link href="#" passHref>
+                      <Link href="#" >
                         <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">
                           Sign out
                         </div>

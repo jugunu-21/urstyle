@@ -1,7 +1,7 @@
 
 
 [
-  {
+  {"id":"1",
     "look": "Party",
     "desc": "A perfect partywear",
     "expected_delivery": 12,
@@ -109,7 +109,7 @@
     ],
     "overall_description": "Get ready to dazzle at your next party with this collection of stylish partywear essentials. From elegant dresses to chic accessories, this collection has everything you need to make a statement and turn heads wherever you go."
   },
-  {
+  {"id":"2",
     "look": "Casual",
     "desc": "Casual Wear",
     "expected_delivery": 4,
@@ -167,7 +167,7 @@
     ],
     "overall_description": "Stay comfortable and chic with this collection of casual wear essentials. From classic t-shirts to stylish sneakers, this collection has everything you need to elevate your everyday look and stay on-trend."
   },
-  {
+  {"id":"3",
     "look": "Casual",
     "desc": "Casual Waffle Knit Shirts",
     "expected_delivery": 5,
@@ -225,7 +225,7 @@
     ],
     "overall_description": "Elevate your casual wardrobe with this collection of waffle knit shirts and jeans. Whether you're running errands or meeting friends for coffee, these comfortable and stylish pieces will keep you looking effortlessly chic all day long."
   },
-  {
+  {"id":"4",
     "look": "Party",
     "desc": "Perfect for any occasion",
     "expected_delivery": 6,
@@ -283,7 +283,7 @@
     ],
     "overall_description": "Get ready to turn heads at any party with this collection of stylish party essentials. From flattering bodycon dresses to chic boots, this collection has everything you need to make a statement and stand out from the crowd."
   },
-  {
+  {"id":"5",
     "cart": [
       {
         "id": "51",
@@ -341,7 +341,7 @@
     "expected_delivery": 10,
     "overall_description": "Add elegance to your party look with this collection of stylish essentials. From flattering jeans to chic tops, this collection has everything you need to make a statement and stand out from the crowd."
   },
-  {
+  {"id":"6",
     "cart": [
       {
         "id": "61",

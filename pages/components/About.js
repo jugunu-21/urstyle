@@ -1,14 +1,10 @@
 import React from 'react';
 
-import Layout from "./Layout";
-
-const About = () => {
+export default function About() {
   return (
-    <Layout>
-      <h1>About Page</h1>
-      <p>This is the about page content.</p>
-    </Layout>
+    <div>
+      heyy its sabout
+      
+    </div>
   );
-};
-
-export default About;
+}

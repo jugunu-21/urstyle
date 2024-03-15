@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import itemsData from "../items.json";
+import itemsData from "../../public/items.json";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
@@ -14,7 +14,7 @@ function Details() {
   const [currentIndexes, setCurrentIndexes] = useState(0);
 
   const detailAll = JSON.parse(decodeURIComponent(detail));
-  const allids = detailAll.allids;
+  // const allids = detailAll.allids;
 
   const filteredItems = () => {
     let filteredItemsArray = [];
