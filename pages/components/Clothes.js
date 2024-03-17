@@ -1,120 +1,16 @@
 import React, { useState } from "react";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import itemsData from "../../public/items.json";
-import Carrousel from "@/reusablecomponents/carrousel";
+import Carrousel from "@/Components/reusablecomponents/Carrousel";
+import Smallicon from "@/Components/reusablecomponents/Smallicon";
 import Link from "next/link";
-
-import * as images from "./Features/image";
-
+import Star from "@/Components/reusablecomponents/Star"
+import { caropic } from "@/Components/datas/caropicData";
+import { iconsData } from "@/Components/datas/iconsData";
+import { clickFiltersData } from "@/Components/datas/clickFiltersData";
+import avgg from "@/Components/datas/avgg"
 function Clothes() {
-  const smallicon = [
-    {
-      url: images.image1,
-      des: "Free shipping",
-    },
-    {
-      url: images.image2,
-      des: "  Online order",
-    },
-    {
-      url: images.image3,
-      des: "Save money",
-    },
-    {
-      url: images.image4,
-      des: " Promotions",
-    },
-    {
-      url: images.image5,
-      des: "  Happy Sell",
-    },
-    {
-      url: images.image6,
-      des: "  24/7 Support",
-    },
-  ];
-  const caropic = [
-    {
-      url: "https://colorlib.com/wp/wp-content/uploads/sites/2/5_apparel-mockups.jpg",
-    },
-    {
-      url: "https://m.media-amazon.com/images/I/61Pdr3h6MmL._SX3000_.jpg",
-    },
 
-    {
-      url: " https://www.sheknows.com/wp-content/uploads/2018/12/xgaq7w4on5xummmnkzx5.jpeg?w=1024",
-    },
-    {
-      url: "https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/febatf24/mfdunrec/WA_WW_2x._CB582758481_.jpg",
-    },
-    {
-      url: "https://images-eu.ssl-images-amazon.com/images/G/31/img2020/img21/apparelGW/febatf24/mfdunrec/MA_2x._CB582758480_.jpg",
-    },
-  ];
-
-  const [currentIndexes, setCurrentIndexes] = useState(
-    Array(itemsData.length + 1).fill(0)
-  );
-
-  const prevSlide = (groupIndex, cartLength) => {
-    const isFirstSlide = currentIndexes[groupIndex] === 0;
-    const newIndex = isFirstSlide
-      ? (cartLength - 1) % cartLength
-      : (currentIndexes[groupIndex] - 1) % cartLength;
-
-    setCurrentIndexes((prevState) =>
-      prevState.map((value, index) => (index === groupIndex ? newIndex : value))
-    );
-  };
-
-  const nextSlide = (groupIndex, cartLength) => {
-    const isLastSlide = currentIndexes[groupIndex] === cartLength - 1;
-    const newIndex = isLastSlide
-      ? 0
-      : (currentIndexes[groupIndex] + 1) % cartLength;
-    setCurrentIndexes((prevState) =>
-      prevState.map((value, index) => (index === groupIndex ? newIndex : value))
-    );
-  };
-
-  const goToSlide = (groupIndex, slideIndex) => {
-    setCurrentIndexes((prevState) =>
-      prevState.map((value, index) =>
-        index === groupIndex ? slideIndex : value
-      )
-    );
-  };
-  const totalSum = (group) => {
-    let sum = 0;
-    let array = [];
-    let totalrating = 0;
-    let avg = 0;
-    group.cart.forEach((item) => {
-      const priceWithoutCurrency = item.price.replace("₹", "");
-
-      const price = parseInt(priceWithoutCurrency);
-
-      sum += price;
-      let id = item.id;
-      array.push(id);
-
-      item.review.forEach((review) => {
-        let rating = parseInt(review.rating);
-
-        totalrating += rating;
-      });
-
-      let reviewLength = item.review.length;
-      let avgrating = totalrating / reviewLength;
-
-      avg = Math.floor(avgrating);
-
-      totalrating = 0;
-    });
-
-    return { total: sum, allids: array, avgRating: avg };
-  };
   const findKeyword = (string) => {
     const pattern = /\b(amazon|flipkart|mesho)\b/gi;
 
@@ -129,88 +25,64 @@ function Clothes() {
 
   let caropicIndex = 0;
 
-  const click = [
-    {
-      name: "All",
-      link: "",
-    },
-    {
-      name: "Party",
-      link: "Party",
-    },
-    {
-      name: "Casual",
-      link: "Casual",
-    },
-    {
-      name: "StreetStyle",
-      link: "StreetStyle",
-    },
-    {
-      name: "EthnicWear",
-      link: "EthnicWear",
-    },
-  ];
+  
   const [filter, setfilter] = useState("");
-  // const clickFilter = (name) => {
-  //   setfilter(name);
-  // };
+
   const [options, setoptions] = useState(false);
   return (
     <div className="mb-2 ">
       <div className="   text-2xl ">
-          <div className="bg-white shadow  ">
-            <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-              <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif ">
-                Welcome to our site.....
-              </h1>
-            </div>
+        <div className="bg-white shadow  ">
+          <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+            <h1 className="text-xl font-bold tracking-tight text-gray-900 font-serif ">
+              Welcome to our site.....
+            </h1>
           </div>
-         <Carrousel/>
-          <div className="  mx-2 mb-1 mt-2 ">
-            <div
-              className=" ml-1 inline-block "
-              onMouseEnter={() => setoptions(true)}
-              onMouseLeave={() => setoptions(false)}
-            >
-              <div className=" ">
-                <button
-                  type="button"
-                  class=" relative inline-flex justify-center gap-x-1.5 rounded-md   pr-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
-                  id="menu-button"
-                  aria-expanded="true"
-                  aria-haspopup="true"
-                  onClick={() => setoptions(!options)}
+        </div>
+        <Carrousel caropic={caropic} />
+        <div className="  mx-2 mb-1 mt-2 ">
+          <div
+            className=" ml-1 inline-block "
+            onMouseEnter={() => setoptions(true)}
+            onMouseLeave={() => setoptions(false)}
+          >
+            <div className=" ">
+              <button
+                type="button"
+                class=" relative inline-flex justify-center gap-x-1.5 rounded-md   pr-3 py-2   text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+                onClick={() => setoptions(!options)}
+              >
+                Categories
+                <svg
+                  class="-mr-1 h-5 w-5 text-gray-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
                 >
-                  Categories
-                  <svg
-                    class="-mr-1 h-5 w-5 text-gray-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
-              {options === true && (
-                <div
-                  class="absolute z-10 bg-gray-300 mt-2 w-56 origin-top-right rounded-md  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="menu-button"
-                  tabIndex="-1"
-                >
-                  <div class="py-1" role="none">
-                  {click.map((item, index) => (
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+            {options === true && (
+              <div
+                class="absolute z-10 bg-gray-300 mt-2 w-56 origin-top-right rounded-md  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabIndex="-1"
+              >
+                <div class="py-1" role="none">
+                  {clickFiltersData.map((item, index) => (
                     <div key={index}>
-                        <Link
-                      href="javascript:void(0)"
-
+                      <Link
+                        href="javascript:void(0)"
                         onClick={() => setfilter(item.link)}
                         class="text-gray-700 block px-4 py-2 text-sm"
                         role="menuitem"
@@ -219,17 +91,14 @@ function Clothes() {
                       >
                         {item.name}
                       </Link>
-                      </div>
-                    
-                    ))}
-
-                  
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
+      </div>
       <div>
         {itemsData.map((group, groupIndex) => (
           <div className="" key={group.id}>
@@ -250,137 +119,69 @@ function Clothes() {
                     })()}
                   </div>
                 )}
-                {/* <Link
-                  href={{
-                    pathname: "/Details",
-                    query: {
-                      detail: encodeURIComponent(
-                        JSON.stringify(totalSum(group))
-                      ),
-                      groupIndex: groupIndex,
-                    },
-                  }}
-                > */}
-                  <div className=" px-4 my-4 bg-stone-100 rounded-lg       ">
-                    <div className="flex space-x-10 m-1 p-2">
-                      <div>
-                        <h1 className=" text-xl sm:text-3xl font-bold tracking-tight">
-                          {group.desc ? group.desc : "Summer Breeze Outfit"}
-                        </h1>
-                        <p className="text-gray-500 dark:text-gray-400">
-                          Embrace the Season with Effortless Style
-                        </p>
-                        <Link
-                          className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950"
-                          href={{
-                            pathname: "/components/Details",
-                            query: {
-                              groupid: group.id,
-                            
-                            },
-                        }}
-                       
-                      >
-                       
-                               
 
-                          Go to Details
-                        </Link>
-                      </div>
-                      <div className="m-1">
-                        <div className="font-normal">
-                          <div>
-                        
-                            Expected delivery: {group.expected_delivery}
-                          </div>
-                          <h2 className="">
-                            Total cost :Rs {totalSum(group).total}
-                          </h2>
-                          <div className="flex">
-                            {Array.from(
-                              { length: totalSum(group).avgRating },
-                              (_, i) => (
-                                <svg
-                                  key={i}
-                                  className="h-5 w-5 flex-shrink-0"
-                                  viewBox="0 0 20 20"
-                                  fill="gold"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              )
-                            )}
-                            {Array.from(
-                              { length: 5 - totalSum(group).avgRating },
-                              (_, i) => (
-                                <svg
-                                  key={i}
-                                  className="text-gray-400 h-5 w-5 flex-shrink-0"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                  aria-hidden="true"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              )
-                            )}
-                          </div>
-                        </div>
+                <div className=" px-4 my-4 bg-stone-100 rounded-lg       ">
+                  <div className="flex space-x-10 m-1 p-2">
+                    <div>
+                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight">
+                        {group.desc ? group.desc : "Summer Breeze Outfit"}
+                      </h1>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Embrace the Season with Effortless Style
+                      </p>
+                      <Link
+                        className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950"
+                        href={{
+                          pathname: "/components/Details",
+                          query: {
+                            groupid: group.id,
+                          },
+                        }}
+                      >
+                        Go to Details
+                      </Link>
+                    </div>
+                    <div className="m-1">
+                      <div className="font-normal">
+                        <div>Expected delivery: {group.expected_delivery}</div>
+                        <h2 className="">
+                          Total cost :Rs {avgg({groupid:group.id} ).total}
+                        </h2>
+                        <Star len={avgg({groupid:group.id}).avgRating}/>
                       </div>
                     </div>
-                    <div className=" grid grid-cols-2 lg:grid-cols-4  items-center bg-stone-200 rounded-lg w-full ">
-                      {group.cart.map((item, index) => (
-                        <div key={index} className="mb-4 ">
-                          <div className=" m-2 sm:m-auto  sm:w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 ">
-                            <img
-                              alt="photos"
-                              className=" sm:w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
-                              src={item.image_url}
-                            />
-                            <div className="m-1 ml-2">
-                              <div>
-                                <span className="font-normal ">
-                                  {item.name}
-                                </span>
-                                <a
-                                  href={item.link}
-                                  className="font-medium bg-stone-200 rounded-lg px-1"
-                                >
-                                  {findKeyword(item.image_url)}
-                                </a>
-                              </div>
+                  </div>
+                  <div className=" grid grid-cols-2 lg:grid-cols-4  items-center bg-stone-200 rounded-lg w-full ">
+                    {group.cart.map((item, index) => (
+                      <div key={index} className="mb-4 ">
+                        <div className=" m-2 sm:m-auto  sm:w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 ">
+                          <img
+                            alt="photos"
+                            className=" sm:w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
+                            src={item.image_url}
+                          />
+                          <div className="m-1 ml-2">
+                            <div>
+                              <span className="font-normal ">{item.name}</span>
+                              <a
+                                href={item.link}
+                                className="font-medium bg-stone-200 rounded-lg px-1"
+                              >
+                                {findKeyword(item.image_url)}
+                              </a>
                             </div>
                           </div>
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
-                {/* </Link> */}
+                </div>
+               
               </section>
             )}
           </div>
         ))}
-        <div className=" m-2 grid grid-cols-2  md:grid-cols-3 lg:grid-cols-6 space-x-2 p-4 ">
-          {smallicon.map((item, index) => (
-            <div key={index}>
-              <div className="  border-2 border-blue-300 rounded-lg m-2 ">
-                <img src={item.url} alt="" />
-                <div className=" m-2 pb-2 text-center pr-2 bg-blue-200 rounded-lg">
-                  {item.des}{" "}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Smallicon icon={iconsData} />
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
 import React from 'react';
-import React, { useState } from "react";
-import itemsData from "../public/items.json"
-export default function Carrousel({ }) {
+import  { useState } from "react";
+import itemsData from "@/public/items.json"
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+
+export default function Carrousel({caropic}) {
+ 
     const [currentIndexes, setCurrentIndexes] = useState(
         Array(itemsData.length + 1).fill(0)
       );
@@ -37,7 +40,7 @@ export default function Carrousel({ }) {
     <div className="w-vw  h-[512px]  m-auto py-8 px-2 relative group  ">
     <button
       style={{
-        backgroundImage: caropic[
+        backgroundImage:caropic[
           currentIndexes[currentIndexes.length - 1]
         ]
           ? ` linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0) ,

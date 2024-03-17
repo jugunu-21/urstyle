@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import { RxLetterCaseUppercase } from "react-icons/rx";
+import { useRouter } from "next/router";
 
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-const findKeyword = (string) => {
-  const pattern = /\b(amazon|flipkart|mesho)\b/gi;
-  const matches = string.match(pattern);
-
-  if (matches && matches.includes("amazon")) {
-    return "https://www.citypng.com/public/uploads/preview/-115963234920bla0rqz8j.png"; // Image URL for Amazon
-  } else {
-    return ""; // Return empty string for no image
-  }
-};
-
+import Link from "next/link";
+import avgg from "@/Components/datas/avgg";
+import findkeyword from "@/Components/reusablecomponents/findkeyword";
+import Star from "@/Components/reusablecomponents/Star";
+import itemsData from "@/public/items"
 const Customersreview = (props) => {
-  const reviewData = props.reviewData; // Assuming props.reviewData is an array of review objects
-
+  const reviewData = props.reviewData;
   return (
     <div className="my-8">
       {reviewData.map((review, index) => (
@@ -33,36 +25,7 @@ const Customersreview = (props) => {
               <div className="font-medium  ">{review.rname}</div>
               <div className=" ">{review.date}</div>
               <div className="flex items-center my-2">
-                {Array.from({ length: review.rating }, (_, i) => (
-                  <svg
-                    key={i}
-                    className="text-gray-200  h-4 w-4 flex-shrink-0"
-                    viewBox="0 0 20 20"
-                    fill="gold"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ))}
-                {Array.from({ length: 5 - review.rating }, (_, i) => (
-                  <svg
-                    key={i}
-                    className="text-gray-200  h-4 w-4            flex-shrink-0"
-                    viewBox="0 0 20 20"
-                    fill="Gray"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ))}
+              <Star len={review.rating }/>
               </div>
               <div className="mt-2">{review.content}</div>
             </div>
@@ -154,17 +117,23 @@ const License = () => (
 );
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
+  // const router = useRouter();
+  // const {
+  //   query: { itemid,groupid },
+  // } = router;
+  // const props = {
+  //   itemid,
+  //groupid,
+  // };
 
-  const { id, itemsArrayString } = useParams();
-  const itemId = id;
-  const decodedItemsArray = JSON.parse(decodeURIComponent(itemsArrayString));
-
-  if (!decodedItemsArray || !Array.isArray(decodedItemsArray)) {
-    return <div>Error: Invalid data format</div>;
-  }
-
-  const finalItem = decodedItemsArray.find((item) => item?.id === itemId);
-
+  // const itemId = props.itemid;
+  const groupId = 2;
+  const cartId =21 ;
+// const finalItem= itemsData[groupId].cart[itemId]
+  // const group = itemsData.find(group => group.id === groupId)
+  // const finalItem = group.cart.find(cart => cart.id === cartId)
+  const finalItem=itemsData.find(group=>parseInt(group.id)===groupId).cart.find(cart=>parseInt(cart.id)===cartId)
+ 
   if (!finalItem) {
     return <div>Item not found</div>;
   }
@@ -194,51 +163,10 @@ export default function Moredetails() {
           <div className="flex items-center">
             <div className="flex items-center">
               <div className="flex">
-                {Array.from(
-                  { length: calculateAverageRating(finalItem.review) },
-                  (_, i) => (
-                    <svg
-                      key={i}
-                      className="h-4 w-4 flex-shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="gold"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )
-                )}
-                {Array.from(
-                  { length: 6 - calculateAverageRating(finalItem.review) },
-                  (_, i) => (
-                    <svg
-                      key={i}
-                      className="text-gray-400 h-4 w-4 flex-shrink-0"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )
-                )}
+                <Star len={calculateAverageRating(finalItem.review) }/>
               </div>
             </div>
-            {/* <p className="sr-only">4 out of 5 stars</p>
-            <Link
-              href="#"
-              className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              117 reviews
-            </Link> */}
+           
           </div>
         </div>
         <div>
@@ -255,14 +183,14 @@ export default function Moredetails() {
             className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center hover:border-2 hover:border-gray-200
                          "
             style={{
-              backgroundImage: `url(${findKeyword(finalItem.image_url)})`,
+              backgroundImage: `url(${findkeyword({ string: finalItem.image_url })})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
           >
             {/* Optional: Display a placeholder or text if no image is found */}
-            {!findKeyword(finalItem.image_url) && (
+            {!findkeyword({ string: finalItem.image_url }) && (
               <span className="text-white">Image not available</span>
             )}
           </Link>

@@ -115,7 +115,7 @@ export default function Navbar() {
                           Settings
                         </div>
                       </Link>
-                      <Link href="#" >
+                      <Link href="/components/Signin" >
                         <div className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">
                           Sign out
                         </div>
