@@ -1,14 +1,14 @@
-
 [
-  {"id":"1",
+  {
+    "id": 1,
     "look": "Party",
     "desc": "A perfect partywear",
     "expected_delivery": 12,
     "cart": [
       {
-        "id": "11",
+        "id": 11,
         "name": "Women Maxi Bodycon Dress",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/426yTYF",
         "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
         "price": "₹389",
@@ -31,9 +31,9 @@
         "description": "Perfect for any party or special occasion, this maxi bodycon dress will make you stand out in the crowd."
       },
       {
-        "id": "12",
+        "id": 12,
         "name": "Detachable Sling Chain",
-        "code":"1",
+        "code": "1",
         "link": "https://amzn.to/49HKAI9",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/91JVMgDPPAS._SY675_.jpg",
         "price": "₹349",
@@ -56,9 +56,9 @@
         "description": "Complete your party look with this stylish detachable sling chain."
       },
       {
-        "id": "13",
+        "id": 13,
         "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
-        "code":"1",
+        "code": "1",
         "link": "https://amzn.to/3vVyzA7",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
         "price": "₹700",
@@ -81,9 +81,9 @@
         "description": "Step into the party with confidence wearing these fancy heeled sandals. "
       },
       {
-        "id": "14",
+        "id": 14,
         "name": "Silver Matte Rose Gold Twig Earrings",
-        "code":"1",
+        "code": "1",
         "link": "https://amzn.to/49DjQZ1",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612Pg4jubwL._SY675_.jpg",
         "price": "₹2199",
@@ -108,15 +108,16 @@
     ],
     "overall_description": "Get ready to dazzle at your next party with this collection of stylish partywear essentials. From elegant dresses to chic accessories, this collection has everything you need to make a statement and turn heads wherever you go."
   },
-  {"id":"2",
+  {
+    "id": 2,
     "look": "Casual",
     "desc": "Casual Wear",
     "expected_delivery": 4,
     "cart": [
       {
-        "id": "21",
+        "id": 21,
         "name": "Round Neck Short Sleeves T-Shirt",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3Hr1Gh7",
         "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
         "price": "₹463",
@@ -139,9 +140,9 @@
         "description": " Its classic design and soft fabric make it perfect for everyday wear."
       },
       {
-        "id": "22",
+        "id": 22,
         "name": "White Sneakers for Men",
-        "code":"1",
+        "code": "1",
         "link": "https://amzn.to/488mLIl",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
         "price": "₹599",
@@ -166,15 +167,16 @@
     ],
     "overall_description": "Stay comfortable and chic with this collection of casual wear essentials. From classic t-shirts to stylish sneakers, this collection has everything you need to elevate your everyday look and stay on-trend."
   },
-  {"id":"3",
+  {
+    "id": 3,
     "look": "Casual",
     "desc": "Casual Waffle Knit Shirts",
     "expected_delivery": 5,
     "cart": [
       {
-        "id": "31",
+        "id": 31,
         "name": "KOTTY Women Jeans",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3UkbLUK",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
         "price": "₹474",
@@ -197,9 +199,9 @@
         "description": " Their casual waffle knit shirts design makes them perfect for everyday wear."
       },
       {
-        "id": "32",
+        "id": 32,
         "name": "Zilcon Women's Tops",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3T1HvNf",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
         "price": "₹489",
@@ -224,15 +226,16 @@
     ],
     "overall_description": "Elevate your casual wardrobe with this collection of waffle knit shirts and jeans. Whether you're running errands or meeting friends for coffee, these comfortable and stylish pieces will keep you looking effortlessly chic all day long."
   },
-  {"id":"4",
+  {
+    "id": 4,
     "look": "Party",
     "desc": "Perfect for any occasion",
     "expected_delivery": 6,
     "cart": [
       {
-        "id": "41",
+        "id": 41,
         "name": "SIGHTBOMB Women's Bodycon Dress",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3vSVKLa",
         "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
         "price": "₹999",
@@ -255,9 +258,9 @@
         "description": "Make a statement at any party with this SIGHTBOMB women's bodycon dress. ."
       },
       {
-        "id": "42",
+        "id": 42,
         "name": "Vendoz Women Boots",
-        "code":"1",
+        "code": "1",
         "link": "https://amzn.to/48NQuXT",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
         "price": "₹659",
@@ -282,12 +285,13 @@
     ],
     "overall_description": "Get ready to turn heads at any party with this collection of stylish party essentials. From flattering bodycon dresses to chic boots, this collection has everything you need to make a statement and stand out from the crowd."
   },
-  {"id":"5",
+  {
+    "id": 5,
     "cart": [
       {
-        "id": "51",
+        "id": 51,
         "name": "Blue Solid Jeans",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3UkbLUK",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
         "price": "₹474",
@@ -310,9 +314,9 @@
         "description": " This solid blue color and classic design make them a versatile addition to your wardrobe."
       },
       {
-        "id": "52",
+        "id": 52,
         "name": "Casual Waffle Knit Shirts Tops",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/3T1HvNf",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
         "price": "₹489",
@@ -340,12 +344,13 @@
     "expected_delivery": 10,
     "overall_description": "Add elegance to your party look with this collection of stylish essentials. From flattering jeans to chic tops, this collection has everything you need to make a statement and stand out from the crowd."
   },
-  {"id":"6",
+  {
+    "id": 6,
     "cart": [
       {
-        "id": "61",
+        "id": 61,
         "name": "Tie Up Back Crop Blouse",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/492yIjG",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
         "price": "₹349",
@@ -368,9 +373,9 @@
         "description": " Its tie-up back detail and crop silhouette make it perfect for pairing with high-waisted bottoms."
       },
       {
-        "id": "62",
+        "id": 62,
         "name": "ALYNE Women's Elastic Waist",
-        "code":"3",
+        "code": "3",
         "link": "https://amzn.to/47PwIdj",
         "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SX679_.jpg",
         "price": "₹459",
@@ -395,7 +400,7 @@
     ],
     "look": "Casual",
     "desc": "Comfort and Style",
-    "expected_delivery": 8,
+    "expected_delivery": 10,
     "overall_description": "Stay comfortable and stylish with this collection of casual essentials. From playful crop tops to relaxed pants, this collection has everything you need to elevate your everyday look and stay on-trend."
   }
 ]

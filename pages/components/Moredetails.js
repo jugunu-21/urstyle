@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import Link from "next/link";
 import avgg from "@/Components/datas/avgg";
-import findkeyword from "@/Components/reusablecomponents/findkeyword";
+import Sitelink from "@/Components/reusablecomponents/Sitelink";
 import Star from "@/Components/reusablecomponents/Star";
 import itemsData from "@/public/items"
 const Customersreview = (props) => {
@@ -116,23 +116,18 @@ const License = () => (
   </div>
 );
 export default function Moredetails() {
-  const [selectedContent, setSelectedContent] = useState("customers");
-  // const router = useRouter();
-  // const {
-  //   query: { itemid,groupid },
-  // } = router;
-  // const props = {
-  //   itemid,
-  //groupid,
-  // };
+ 
+  const router = useRouter();
+  const { cartid,groupid } =router.query
 
   // const itemId = props.itemid;
-  const groupId = 2;
-  const cartId =21 ;
+  const [selectedContent, setSelectedContent] = useState("customers");
+  const groupId = groupid;
+  const cartId =cartid;
 // const finalItem= itemsData[groupId].cart[itemId]
   // const group = itemsData.find(group => group.id === groupId)
   // const finalItem = group.cart.find(cart => cart.id === cartId)
-  const finalItem=itemsData.find(group=>parseInt(group.id)===groupId).cart.find(cart=>parseInt(cart.id)===cartId)
+  const finalItem = itemsData[groupId].cart[cartId];
  
   if (!finalItem) {
     return <div>Item not found</div>;
@@ -178,22 +173,7 @@ export default function Moredetails() {
         </div>
 
         <div className="h-8 w-28 my-2 ">
-          <Link
-            href={finalItem.link}
-            className="w-full h-full font-medium rounded-lg bg-black bg-cover flex items-center justify-center hover:border-2 hover:border-gray-200
-                         "
-            style={{
-              backgroundImage: `url(${findkeyword({ string: finalItem.image_url })})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            {/* Optional: Display a placeholder or text if no image is found */}
-            {!findkeyword({ string: finalItem.image_url }) && (
-              <span className="text-white">Image not available</span>
-            )}
-          </Link>
+        <Sitelink sitelink={finalItem.image_url}/>
         </div>
         <div className="my-2 border-t border-gray-200  "></div>
 
@@ -242,7 +222,7 @@ export default function Moredetails() {
                 src="https://www.iconninja.com/files/611/75/580/instagram-icon.png"
                 alt=""
                 f
-                srcset=""
+                srcSet=""
               />
             </Link>
             <Link href="#" className="aspect-square size-8   ">
