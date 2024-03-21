@@ -1,6 +1,6 @@
 import React from 'react';
 import  { useState } from "react";
-import itemsData from "@/public/items.json"
+import itemsData from "../../public/items.json"
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 export default function Carrousel({caropic}) {

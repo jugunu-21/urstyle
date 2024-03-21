@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { RxLetterCaseUppercase } from "react-icons/rx";
 import { useRouter } from "next/router";

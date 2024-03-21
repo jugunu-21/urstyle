@@ -1,5 +1,5 @@
 
-import * as images from "@/pages/components/Features/image";
+import * as images from "../../app/components/Features/image";
  export  const iconsData = [
   {
     "url": images.image1,

@@ -1,16 +1,17 @@
+"use client"
 import React, { useState } from "react";
 import { RxDotFilled } from "react-icons/rx";
 import itemsData from "../../public/items.json";
-import Carrousel from "@/Components/reusablecomponents/Carrousel";
-import Smallicon from "@/Components/reusablecomponents/Smallicon";
+import Carrousel from "../../Components/reusablecomponents/Carrousel";
+import Smallicon from "../../Components/reusablecomponents/Smallicon";
 import Link from "next/link";
-import Star from "@/Components/reusablecomponents/Star";
-import { caropic } from "@/Components/datas/caropicData";
-import { iconsData } from "@/Components/datas/iconsData";
-import { clickFiltersData } from "@/Components/datas/clickFiltersData";
-import avgg from "@/Components/datas/avgg";
-import Sitelink from "@/Components/reusablecomponents/Sitelink";
-import Menudropdown from "@/Components/reusablecomponents/Menudropdown";
+import Star from "../../Components/reusablecomponents/Star";
+import { caropic } from "../../Components/datas/caropicData";
+import { iconsData } from "../../Components/datas/iconsData";
+import { clickFiltersData } from "../../Components/datas/clickFiltersData";
+import avgg from "../../Components/datas/avgg";
+import Sitelink from "../../Components/reusablecomponents/Sitelink";
+import Menudropdown from "../..//Components/reusablecomponents/Menudropdown";
 function Clothes() {
   let caropicIndex = 0;
   const [filter, setfilter] = useState("");
