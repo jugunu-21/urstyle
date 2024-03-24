@@ -1,6 +1,6 @@
-import type {Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 
-const config: Config=({
+const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,12 +13,8 @@ const config: Config=({
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      screens: {
-        xsm: "400px", // Add an extra-small breakpoint at 400px
-      },
     },
   },
   plugins: [],
-});
-
+};
 export default config;
