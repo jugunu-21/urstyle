@@ -10,6 +10,7 @@ import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
+  signOut 
 } from "firebase/auth";
 import { app } from "@/app/config";
 
@@ -28,27 +29,59 @@ export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const auth = getAuth(app);
   const router = useRouter();
+  // const generateRandomEmail = () => {
+  //   const domain = 'gmail'; // You can adjust the domain as needed
+  //   const username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  //   setEmail(username + '@' + domain);
+  // };
+  const generateRandomEmail = () => {
+    // Define the characters that can be used in the email address
+    const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    const domain = 'gmail.com';
+    // Generate a random username
+    let username = '';
+    for (let ii = 0; ii < 15; ii++) {
+      username += chars[Math.floor(Math.random() * chars.length)];
+      setEmail(username + '@' + domain);
+    }
+  }
+  const generateRandomPassword = () => {
+    const length = 8; // You can adjust the length as needed
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    setPassword(result);
+ };
   useEffect(() => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response) => {
-          handleOtpSubmit();
-        },
-        "expired-callback": () => {},
-      }
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        auth,
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {
+            // handleOtpSubmit();
+          },
+          "expired-callback": () => {},
+        }
     );
+    generateRandomEmail();
+    generateRandomPassword();
+   
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     // const inputPhoneNumber = event.target.value;
 
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
+    console.log(email)
+    console.log(password)
   };
   // const handleOtpChange = (event) => {
   //   setOtp(event.target.value);
@@ -57,11 +90,13 @@ export default function Signup() {
     try {
       console.log("send otp");
       const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
+      console.log(formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(
         auth,
         formattedPhoneNumber,
         window.recaptchaVerifier
       );
+      console.log(confirmation)
       setConfirmationResult(confirmation);
       setOtpSent(true);
       // setPhoneNumber("");
@@ -83,13 +118,18 @@ export default function Signup() {
   // };
   const handleOtpSubmit = async () => {
     try {
+      await confirmationResult.confirm(otp);
+      setOtp("");
+      router.push("/");
+      
+      
       // Assuming 'phoneNumber' contains the phone number value
       const requestBody = {
-       email:"aarukhuue@gmail.com",
+        email: email,
         phone_number: phoneNumber,
-        password:"vfefsdfgf"
+        password: password
       };
-  
+      console.log(requestBody)
       // Make a POST request to your backend API to store the phone number
       const response = await fetch('http://localhost:8000/auth/sign-up', {
         method: 'POST',
@@ -98,16 +138,14 @@ export default function Signup() {
         },
         body: JSON.stringify(requestBody)
       });
-  
+      
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
         console.log('Phone number stored successfully on the backend.');
-  
-        // Assuming 'confirmationResult' and 'otp' are defined elsewhere
-        await confirmationResult.confirm(otp);
-        setOtp("");
         setPhoneNumber("");
-        router.push("/");
+        
+        // Assuming 'confirmationResult' and 'otp' are defined elsewhere
+       
       } else {
         // If the response is not successful, handle the error
         console.error('Failed to store phone number on the backend:', response.statusText);
