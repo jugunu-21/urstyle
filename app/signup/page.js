@@ -12,7 +12,7 @@ export default function page() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        router.push('./welcome');
+        router.push('/');
           
       }
     })

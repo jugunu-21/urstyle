@@ -1,0 +1,406 @@
+[
+    {
+      "id": 1,
+      "look": "Party",
+      "desc": "A perfect partywear",
+      "expected_delivery": 12,
+      "cart": [
+        {
+          "id": 11,
+          "name": "Women Maxi Bodycon Dress",
+          "code": "3",
+          "link": "https://amzn.to/426yTYF",
+          "image_url": "https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg",
+          "price": "₹389",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "John Doe",
+              "date": "August 10, 2023",
+              "content": "This dress is amazing! It fits perfectly and the material is so comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Jane Smith",
+              "date": "August 5, 2023",
+              "content": "I love this dress! The color is beautiful and it looks great on me.",
+              "rating": 4
+            }
+          ],
+          "description": "Perfect for any party or special occasion, this maxi bodycon dress will make you stand out in the crowd."
+        },
+        {
+          "id": 12,
+          "name": "Detachable Sling Chain",
+          "code": "1",
+          "link": "https://amzn.to/49HKAI9",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/91JVMgDPPAS._SY675_.jpg",
+          "price": "₹349",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Alice Johnson",
+              "date": "August 12, 2023",
+              "content": "These sandals are so comfortable and stylish. I've received many compliments!",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Bob Brown",
+              "date": "August 8, 2023",
+              "content": "Not very satisfied with these sandals. They feel cheaply made and the fit is off.",
+              "rating": 2
+            }
+          ],
+          "description": "Complete your party look with this stylish detachable sling chain."
+        },
+        {
+          "id": 13,
+          "name": "Shoetopia Women's Fancy-1277 Heeled Sandal",
+          "code": "1",
+          "link": "https://amzn.to/3vVyzA7",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/614MRb6DYHL._SY695_.jpg",
+          "price": "₹700",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Alice Johnson",
+              "date": "August 12, 2023",
+              "content": "These sandals are so comfortable and stylish. I've received many compliments!",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Bob Brown",
+              "date": "August 8, 2023",
+              "content": "Not very satisfied with these sandals. They feel cheaply made and the fit is off.",
+              "rating": 2
+            }
+          ],
+          "description": "Step into the party with confidence wearing these fancy heeled sandals. "
+        },
+        {
+          "id": 14,
+          "name": "Silver Matte Rose Gold Twig Earrings",
+          "code": "1",
+          "link": "https://amzn.to/49DjQZ1",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612Pg4jubwL._SY675_.jpg",
+          "price": "₹2199",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "John Doe",
+              "date": "August 10, 2023",
+              "content": "This dress is amazing! It fits perfectly and the material is so comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Jane Smith",
+              "date": "August 5, 2023",
+              "content": "I love this dress! The color is beautiful and it looks great on me.",
+              "rating": 4
+            }
+          ],
+          "description": "Their elegant design adds a touch of glamour to any outfit."
+        }
+      ],
+      "overall_description": "Get ready to dazzle at your next party with this collection of stylish partywear essentials. From elegant dresses to chic accessories, this collection has everything you need to make a statement and turn heads wherever you go."
+    },
+    {
+      "id": 2,
+      "look": "Casual",
+      "desc": "Casual Wear",
+      "expected_delivery": 4,
+      "cart": [
+        {
+          "id": 21,
+          "name": "Round Neck Short Sleeves T-Shirt",
+          "code": "3",
+          "link": "https://amzn.to/3Hr1Gh7",
+          "image_url": "https://m.media-amazon.com/images/I/51MBBTqQcvL._SX679_.jpg",
+          "price": "₹463",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Emma Clark",
+              "date": "August 10, 2023",
+              "content": "This t-shirt is super comfortable and fits perfectly!",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "David Martinez",
+              "date": "August 5, 2023",
+              "content": "The quality of this t-shirt is great, but the size runs a bit small.",
+              "rating": 4
+            }
+          ],
+          "description": " Its classic design and soft fabric make it perfect for everyday wear."
+        },
+        {
+          "id": 22,
+          "name": "White Sneakers for Men",
+          "code": "1",
+          "link": "https://amzn.to/488mLIl",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/512WetJ+EwL._SY675_.jpg",
+          "price": "₹599",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Johnson",
+              "date": "August 9, 2023",
+              "content": "Love these sneakers! They're stylish and comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "James Anderson",
+              "date": "August 6, 2023",
+              "content": "Not satisfied with these sneakers. They look cheaply made and don't provide enough support.",
+              "rating": 2
+            }
+          ],
+          "description": "These stylish white sneakers for men, their versatile design makes them perfect for any occasion."
+        }
+      ],
+      "overall_description": "Stay comfortable and chic with this collection of casual wear essentials. From classic t-shirts to stylish sneakers, this collection has everything you need to elevate your everyday look and stay on-trend."
+    },
+    {
+      "id": 3,
+      "look": "Casual",
+      "desc": "Casual Waffle Knit Shirts",
+      "expected_delivery": 5,
+      "cart": [
+        {
+          "id": 31,
+          "name": "KOTTY Women Jeans",
+          "code": "3",
+          "link": "https://amzn.to/3UkbLUK",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
+          "price": "₹474",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Wilson",
+              "date": "August 10, 2023",
+              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "David Brown",
+              "date": "August 5, 2023",
+              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+              "rating": 2
+            }
+          ],
+          "description": " Their casual waffle knit shirts design makes them perfect for everyday wear."
+        },
+        {
+          "id": 32,
+          "name": "Zilcon Women's Tops",
+          "code": "3",
+          "link": "https://amzn.to/3T1HvNf",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
+          "price": "₹489",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Wilson",
+              "date": "August 10, 2023",
+              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "David Brown",
+              "date": "August 5, 2023",
+              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+              "rating": 2
+            }
+          ],
+          "description": "Add a touch of style to your casual look with these Zilcon women's tops. "
+        }
+      ],
+      "overall_description": "Elevate your casual wardrobe with this collection of waffle knit shirts and jeans. Whether you're running errands or meeting friends for coffee, these comfortable and stylish pieces will keep you looking effortlessly chic all day long."
+    },
+    {
+      "id": 4,
+      "look": "Party",
+      "desc": "Perfect for any occasion",
+      "expected_delivery": 6,
+      "cart": [
+        {
+          "id": 41,
+          "name": "SIGHTBOMB Women's Bodycon Dress",
+          "code": "3",
+          "link": "https://amzn.to/3vSVKLa",
+          "image_url": "https://m.media-amazon.com/images/I/314nRvjh1yL.jpg",
+          "price": "₹999",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Emily White",
+              "date": "August 9, 2023",
+              "content": "Love this dress! It's perfect for any occasion and the quality is great.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Michael Johnson",
+              "date": "August 6, 2023",
+              "content": "Not happy with this dress. The color was different from what was shown and the fit was too tight.",
+              "rating": 2
+            }
+          ],
+          "description": "Make a statement at any party with this SIGHTBOMB women's bodycon dress. ."
+        },
+        {
+          "id": 42,
+          "name": "Vendoz Women Boots",
+          "code": "1",
+          "link": "https://amzn.to/48NQuXT",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71BgMwbFFZL._SY675_.jpg",
+          "price": "₹659",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sarah Davis",
+              "date": "August 11, 2023",
+              "content": "These boots are fantastic! They're comfortable and look great with any outfit.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Chris Wilson",
+              "date": "August 7, 2023",
+              "content": "Disappointed with these boots. They started falling apart after just a few weeks of use.",
+              "rating": 1
+            }
+          ],
+          "description": " Their elegant design and comfortable fit make them perfect for dancing the night away."
+        }
+      ],
+      "overall_description": "Get ready to turn heads at any party with this collection of stylish party essentials. From flattering bodycon dresses to chic boots, this collection has everything you need to make a statement and stand out from the crowd."
+    },
+    {
+      "id": 5,
+      "cart": [
+        {
+          "id": 51,
+          "name": "Blue Solid Jeans",
+          "code": "3",
+          "link": "https://amzn.to/3UkbLUK",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/612+ZjkLFoL._SY879_.jpg",
+          "price": "₹474",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Wilson",
+              "date": "August 10, 2023",
+              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "David Brown",
+              "date": "August 5, 2023",
+              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+              "rating": 2
+            }
+          ],
+          "description": " This solid blue color and classic design make them a versatile addition to your wardrobe."
+        },
+        {
+          "id": 52,
+          "name": "Casual Waffle Knit Shirts Tops",
+          "code": "3",
+          "link": "https://amzn.to/3T1HvNf",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/71wz3uReS2L._SY879_.jpg",
+          "price": "₹489",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Wilson",
+              "date": "August 10, 2023",
+              "content": "These jeans are amazing! They fit perfectly and are very comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "David Brown",
+              "date": "August 5, 2023",
+              "content": "Not happy with these jeans. The size chart was inaccurate and they don't fit well.",
+              "rating": 2
+            }
+          ],
+          "description": "Add a touch of style to your casual look with these Casual Waffle Knit Shirts Tops. "
+        }
+      ],
+      "look": "StreetStyle",
+      "desc": "Elegance",
+      "expected_delivery": 10,
+      "overall_description": "Add elegance to your party look with this collection of stylish essentials. From flattering jeans to chic tops, this collection has everything you need to make a statement and stand out from the crowd."
+    },
+    {
+      "id": 6,
+      "cart": [
+        {
+          "id": 61,
+          "name": "Tie Up Back Crop Blouse",
+          "code": "3",
+          "link": "https://amzn.to/492yIjG",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/61zp8KCbAtL._SX679_.jpg",
+          "price": "₹349",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Emily Brown",
+              "date": "August 12, 2023",
+              "content": "Love this crop top! It's so cute and versatile.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "James White",
+              "date": "August 8, 2023",
+              "content": "The fabric of this crop top is not very good quality. It feels cheap.",
+              "rating": 2
+            }
+          ],
+          "description": " Its tie-up back detail and crop silhouette make it perfect for pairing with high-waisted bottoms."
+        },
+        {
+          "id": 62,
+          "name": "ALYNE Women's Elastic Waist",
+          "code": "3",
+          "link": "https://amzn.to/47PwIdj",
+          "image_url": "https://m.media-amazon.com/images/W/MEDIAX_849526-T3/images/I/51SYjdtjvAL._SX679_.jpg",
+          "price": "₹459",
+          "review": [
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Sophia Smith",
+              "date": "August 11, 2023",
+              "content": "These pants are amazing! They fit perfectly and are very comfortable.",
+              "rating": 5
+            },
+            {
+              "image": "https://www.thefamouspeople.com/profiles/images/jeff-bezos-2.jpg",
+              "rname": "Michael Johnson",
+              "date": "August 7, 2023",
+              "content": "Not happy with these pants. The quality is poor and they don't fit well.",
+              "rating": 2
+            }
+          ],
+          "description": "Stay comfortable and stylish all day long with these ALYNE Women's Elastic Waist pants. "
+        }
+      ],
+      "look": "Casual",
+      "desc": "Comfort and Style",
+      "expected_delivery": 10,
+      "overall_description": "Stay comfortable and stylish with this collection of casual essentials. From playful crop tops to relaxed pants, this collection has everything you need to elevate your everyday look and stay on-trend."
+    }
+  ]

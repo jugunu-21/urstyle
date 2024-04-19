@@ -64,24 +64,58 @@ export default function Signup() {
       );
       setConfirmationResult(confirmation);
       setOtpSent(true);
-      setPhoneNumber("");
+      // setPhoneNumber("");
       alert("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
       console.error(error);
     }
   };
+  // const handleOtpSubmit = async () => {
+  //   try {
+  //     console.log("hehehhhhh");
+  //     await confirmationResult.confirm(otp);
+  //     setOtp("");
+  //     router.push("/signup/welcome");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const handleOtpSubmit = async () => {
     try {
-      console.log("hehehhhhh");
-      await confirmationResult.confirm(otp);
-      setOtp("");
-      router.push("/signup/welcome");
+      // Assuming 'phoneNumber' contains the phone number value
+      const requestBody = {
+       email:"aarukhuue@gmail.com",
+        phone_number: phoneNumber,
+        password:"vfefsdfgf"
+      };
+  
+      // Make a POST request to your backend API to store the phone number
+      const response = await fetch('http://localhost:8000/auth/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      // Check if the response is successful (status code 200-299)
+      if (response.ok) {
+        console.log('Phone number stored successfully on the backend.');
+  
+        // Assuming 'confirmationResult' and 'otp' are defined elsewhere
+        await confirmationResult.confirm(otp);
+        setOtp("");
+        setPhoneNumber("");
+        router.push("/");
+      } else {
+        // If the response is not successful, handle the error
+        console.error('Failed to store phone number on the backend:', response.statusText);
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error occurred while storing phone number:', error);
     }
   };
-
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
