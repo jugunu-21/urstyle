@@ -19,12 +19,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import OtpInput from "./OtpInput";
 
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -186,21 +183,7 @@ export default function Signup() {
               <div className=" items-center">
                 <Label>Enter OTP</Label>
                 <div className="space-y-2">
-                  <InputOTP
-                 
-                    maxLength={6}
-                    value={otp}
-                    onChange={(otp) => setOtp(otp)}
-                   >
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
+                  <OtpInput otp={otp} setOtp={setOtp}/>
                   <div className="text-center text-sm">
                     {otp === "" ? (
                       <>Enter your one-time otp</>

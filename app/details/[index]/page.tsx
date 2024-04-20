@@ -1,24 +1,22 @@
-"use client"
-import React from 'react';
-import { useParams, useSearchParams } from 'next/navigation';
-import avgg from '@/components/reusablecomponents/avgg';
-import CalendarIcon from '@/components/reusablecomponents/CalendarIcon';
-import Star from '@/components/reusablecomponents/Star';
-import Sitelink from '@/components/reusablecomponents/Sitelink';
-import itemsData from '@/Data/items.json';
-import Cardlist from '@/components/details/overview/cardlist/Cardlist';
-import Summary from '@/components/details/overview/summary/Summary';
+"use client";
+import React from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import avgg from "@/components/reusablecomponents/avgg";
+import CalendarIcon from "@/components/reusablecomponents/CalendarIcon";
+import Star from "@/components/reusablecomponents/Star";
+import Sitelink from "@/components/reusablecomponents/Sitelink";
+import itemsData from "@/Data/items.json";
+import Cardlist from "@/components/details/overview/cardlist/Cardlist";
+import Summary from "@/components/details/overview/summary/Summary";
 
 function Details() {
-  
-//   const searchParams = useSearchParams();
-//  const index = searchParams.get('index');
-//  const groupIndex = index;
-//  const filteredItems = itemsData[groupIndex];
+  //   const searchParams = useSearchParams();
+  //  const index = searchParams.get('index');
+  //  const groupIndex = index;
+  //  const filteredItems = itemsData[groupIndex];
 
-  
-  const {index} = useParams()
-  
+  const { index } = useParams();
+
   const groupIndex = index;
   const filteredItems = itemsData[groupIndex];
 
@@ -35,12 +33,16 @@ function Details() {
             Total Price : Rs {avgg({ groupid: groupIndex }).total}
           </div>
 
-          <div className=" m-1 flex">
-            <Star len={avgg({ groupid: groupIndex }).avgRating} />
+          <div className=" m-1 flex w-60">
+        
+              <Star len={avgg({ groupid: groupIndex }).avgRating} />
+            
 
-            <span className="text-xs text-muted-foreground pl-2">
-              (★{avgg({ groupid: groupIndex }).avgRating}.0)
-            </span>
+            <div>
+              <span className="text-xs text-muted-foreground pl-2">
+                (★{avgg({ groupid: groupIndex }).avgRating}.0)
+              </span>
+            </div>
           </div>
           <div className=" sm:flex items-center">
             <div className=" m-1 font-bold">
@@ -60,4 +62,3 @@ function Details() {
 }
 
 export default Details;
-
