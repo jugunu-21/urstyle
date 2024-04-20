@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
-import { RxLetterCaseUppercase } from "react-icons/rx";
-import { useRouter } from "next/router";
+;
 import { useParams } from 'next/navigation';
 
 import Link from "next/link";
