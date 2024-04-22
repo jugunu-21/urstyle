@@ -2,10 +2,10 @@ const License = () => (
     <div className="  ">
       <div className="py-2">
         <h4 className=" py-1   font-semibold ">Overview</h4>
-        <p>
+        <span>
           For personal and professional use. You cannot resell or redistribute
           these icons in their original or modified state.
-        </p>
+        </span>
         <ul className=" py-1 ml-4 list-disc  ">
           <li>
             <span>You're allowed to use the icons in unlimited projects.</span>
