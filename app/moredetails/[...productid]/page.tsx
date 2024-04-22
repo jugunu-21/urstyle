@@ -16,16 +16,21 @@ import Customereview from "@/components/details/moredetails/Customereview"
 import License from "@/components/details/moredetails/License"
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
-  const params = useParams();
+const params = useParams();
 
-  const [param1, param2] = params.productid;
+ // Ensure productid is an array
+ const productIdArray = Array.isArray(params.productid) ? params.productid : [params.productid];
 
+ const [param1, param2] = productIdArray;
 
-  const groupId = param1;
-  const cartId = param2;
+ const groupId = param1 ? parseInt(param1, 10) : undefined;
+  const cartId = param2 ? parseInt(param2, 10) : undefined;
+  let finalItem;
 
-  const finalItem = itemsData[groupId].cart[cartId];
- 
+  if (groupId !== undefined && cartId !== undefined) {
+   finalItem = itemsData[groupId].cart[cartId];
+  }
+
   if (!finalItem) {
     return <div>Item not found</div>;
   }
