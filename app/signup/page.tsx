@@ -1,17 +1,17 @@
 "use client"
 import Signup from "@/components/signup/Signup";
 import { app } from "@/app/config"
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/router"; // Corrected import path
-jest.mock('next/router', () => ({
-  useRouter: jest.fn(),
- }));
+// jest.mock('next/router', () => ({
+//   useRouter: jest.fn(),
+//  }));
  
  // Example of mocking the router's implementation
- (useRouter as jest.Mock).mockImplementation(() => ({
-     pathname: '/',
-     push: jest.fn(),
- }));
+//  (useRouter as jest.Mock).mockImplementation(() => ({
+//      pathname: '/',
+//      push: jest.fn(),
+//  }));
 import { useEffect } from "react";
 
 export default function Page() { // Renamed to start with an uppercase letter
