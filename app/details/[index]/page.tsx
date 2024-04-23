@@ -4,7 +4,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import avgg from "@/components/reusablecomponents/avgg";
 import CalendarIcon from "@/components/reusablecomponents/CalendarIcon";
 import Star from "@/components/reusablecomponents/Star";
-import Sitelink from "@/components/reusablecomponents/Sitelink";
+// import Sitelink from "@/components/reusablecomponents/Sitelink";
 import itemsData from "@/Data/items.json";
 import Cardlist from "@/components/details/overview/cardlist/Cardlist";
 import Summary from "@/components/details/overview/summary/Summary";
@@ -15,10 +15,23 @@ function Details() {
   //  const groupIndex = index;
   //  const filteredItems = itemsData[groupIndex];
 
-  const { index } = useParams();
+  const params = useParams();
+  const productIdArray = Array.isArray(params.index) ? params.index : [params.index];
+  const [param1] = productIdArray;
+  const groupIndex = param1 ? parseInt(param1, 10) : undefined;
+  let filteredItems;
+  if (groupIndex !== undefined ) {
+     filteredItems = itemsData[groupIndex];
+   }
+ 
+   if (!filteredItems) {
+     return <div>Item not found</div>;
+   }
 
-  const groupIndex = index;
-  const filteredItems = itemsData[groupIndex];
+
+
+  // const groupIndex = index;
+  // const filteredItems = itemsData[groupIndex];
 
   return (
     <div className="    m-1">

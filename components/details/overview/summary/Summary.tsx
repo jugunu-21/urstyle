@@ -26,7 +26,7 @@ interface FilteredItems {
 
 interface Props {
   filteredItems: FilteredItems;
-  groupIndex: number;
+  groupIndex: number|undefined;
 }
 function Summary({ filteredItems, groupIndex }: Props) {
   return (

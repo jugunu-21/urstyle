@@ -10,7 +10,7 @@ import Sitelink from "@/components/reusablecomponents/Sitelink";
 import itemsData from "@/Data/items.json"
 
 import Star from '@/components/reusablecomponents/Star';
-import Summary from '@/components/details/overview/summary/Summary';
+// import Summary from '@/components/details/overview/summary/Summary';
 import Faq from "@/components/details/moredetails/Faq"
 import Customereview from "@/components/details/moredetails/Customereview"
 import License from "@/components/details/moredetails/License"
