@@ -10,23 +10,17 @@ import Cardlist from "@/components/details/overview/cardlist/Cardlist";
 import Summary from "@/components/details/overview/summary/Summary";
 
 function Details() {
-  //   const searchParams = useSearchParams();
-  //  const index = searchParams.get('index');
-  //  const groupIndex = index;
-  //  const filteredItems = itemsData[groupIndex];
-
   const params = useParams();
   const productIdArray = Array.isArray(params.index) ? params.index : [params.index];
   const [param1] = productIdArray;
   const groupIndex = param1 ? parseInt(param1, 10) : undefined;
-  let filteredItems;
-  if (groupIndex !== undefined ) {
-     filteredItems = itemsData[groupIndex];
-   }
  
-   if (!filteredItems) {
+  // Ensure groupIndex is a valid number and within the bounds of itemsData
+  if (groupIndex === undefined || isNaN(groupIndex) || groupIndex < 0 || groupIndex >= itemsData.length) {
      return <div>Item not found</div>;
-   }
+  }
+ 
+  const filteredItems = itemsData[groupIndex];
 
 
 
