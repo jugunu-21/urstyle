@@ -128,7 +128,9 @@ export default function Signup() {
       };
       console.log(requestBody)
       // Make a POST request to your backend API to store the phone number
-      const response = await fetch('http://localhost:8000/auth/sign-up', {
+      console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
+
+      const response = await fetch(process.env.NEXT_PUBLIC_SIGNUP_API, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
