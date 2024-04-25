@@ -195,7 +195,7 @@ export default function Signup() {
               <div>
                 <Label> </Label>
               
-                <p>Please enter a valid number</p>
+                <p>Please Enter a Valid Number</p>
               </div>
             ) : (
               <></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
