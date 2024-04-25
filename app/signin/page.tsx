@@ -1,5 +1,5 @@
 "use client"
-import Signup from "@/components/authentication/Signup";
+import Signin from "@/components/authentication/Signin";
 import { app } from "@/app/config"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 
@@ -22,9 +22,7 @@ export default function Page() {
 
  return (
     <div>
-      <Signup />
+      <Signin />
     </div>
  );
 }
-
-

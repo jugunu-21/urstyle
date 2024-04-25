@@ -1,8 +1,3 @@
-
-
-
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -10,7 +5,7 @@ import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  signOut 
+  signOut,
 } from "firebase/auth";
 import { app } from "@/app/config";
 
@@ -21,68 +16,58 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 
-
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [otpSentYN, setOtpSentYN] = useState("");
   const auth = getAuth(app);
   const router = useRouter();
-  // const generateRandomEmail = () => {
-  //   const domain = 'gmail'; // You can adjust the domain as needed
-  //   const username = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  //   setEmail(username + '@' + domain);
-  // };
+
   const generateRandomEmail = () => {
-    // Define the characters that can be used in the email address
-    const chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
-    const domain = 'gmail.com';
-    // Generate a random username
-    let username = '';
+    const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
+    const domain = "gmail.com";
+
+    let username = "";
     for (let ii = 0; ii < 15; ii++) {
       username += chars[Math.floor(Math.random() * chars.length)];
-      setEmail(username + '@' + domain);
+      setEmail(username + "@" + domain);
     }
-  }
+  };
   const generateRandomPassword = () => {
     const length = 8; // You can adjust the length as needed
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
     for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
     }
     setPassword(result);
- };
+  };
   useEffect(() => {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        auth,
-        "recaptcha-container",
-        {
-          size: "invisible",
-          callback: (response) => {
-            // handleOtpSubmit();
-          },
-          "expired-callback": () => {},
-        }
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      auth,
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {},
+        "expired-callback": () => {},
+      }
     );
     generateRandomEmail();
     generateRandomPassword();
-   
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
-    // const inputPhoneNumber = event.target.value;
-
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
-    console.log(email)
-    console.log(password)
+    console.log(email);
+    console.log(password);
   };
-  // const handleOtpChange = (event) => {
-  //   setOtp(event.target.value);
-  // };
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
@@ -93,64 +78,61 @@ export default function Signup() {
         formattedPhoneNumber,
         window.recaptchaVerifier
       );
-      console.log(confirmation)
+      console.log(confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
+      setOtpSentYN("yes");
       // setPhoneNumber("");
       alert("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
+      setOtpSent(false);
+      setOtpSentYN("no");
+      setPhoneNumber("")
       console.error(error);
     }
   };
-  // const handleOtpSubmit = async () => {
-  //   try {
-  //     console.log("hehehhhhh");
-  //     await confirmationResult.confirm(otp);
-  //     setOtp("");
-  //     router.push("/signup/welcome");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+
   const handleOtpSubmit = async () => {
     try {
       await confirmationResult.confirm(otp);
       setOtp("");
       router.push("/");
-      
-      
+
       // Assuming 'phoneNumber' contains the phone number value
       const requestBody = {
         email: email,
         phone_number: phoneNumber,
-        password: password
+        password: password,
       };
-      console.log(requestBody)
+      console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
       console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
 
       const response = await fetch(process.env.NEXT_PUBLIC_SIGNUP_API, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
-      
+
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
-        console.log('Phone number stored successfully on the backend.');
+        console.log("Phone number stored successfully on the backend.");
+        alert("Otp submitted successfully ");
         setPhoneNumber("");
-        
+
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
-       
       } else {
         // If the response is not successful, handle the error
-        console.error('Failed to store phone number on the backend:', response.statusText);
+        console.error(
+          "Failed to store phone number on the backend:",
+          response.statusText
+        );
       }
     } catch (error) {
-      console.error('Error occurred while storing phone number:', error);
+      console.error("Error occurred while storing phone number:", error);
     }
   };
   return (
@@ -181,27 +163,43 @@ export default function Signup() {
                 Send OTP
               </button>
             </div>
-            <div className="grid gap-2">
-              <div className=" items-center">
-                <Label>Enter OTP</Label>
-                <div className="space-y-2">
-                  <OtpInput otp={otp} setOtp={setOtp}/>
-                  <div className="text-center text-sm">
-                    {otp === "" ? (
-                      <>Enter your one-time otp</>
-                    ) : (
-                      <>You entered: {otp}</>
-                    )}
+            {otpSentYN === "yes" ? (
+              <div>
+                <div className="grid gap-2">
+                  <div className="items-center">
+                    <Label>Enter OTP</Label>
+                    <div className="space-y-2">
+                      <OtpInput otp={otp} setOtp={setOtp} />
+                      <div className="text-center text-sm">
+                        {otp === "" ? (
+                          <>Enter your one-time otp</>
+                        ) : (
+                          <>You entered: {otp}</>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  onClick={handleOtpSubmit}
+                >
+                  signup
+                </Button>
+                <Button variant="outline" className="w-full">
+                  signup with Google
+                </Button>
               </div>
-            </div>
-            <Button type="submit" className="w-full" onClick={handleOtpSubmit}>
-              signup
-            </Button>
-            <Button variant="outline" className="w-full">
-              signup with Google
-            </Button>
+            ) : otpSentYN === "no" ? (
+              <div>
+                <Label> </Label>
+              
+                <p>Please enter a valid number</p>
+              </div>
+            ) : (
+              <></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
+            )}
           </div>
           <div className="mt-4 text-center text-sm">
             Have an account?{" "}

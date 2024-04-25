@@ -44,7 +44,7 @@ export default function Navbardrop() {
           <Link href="./signup">signup</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
-        <DropdownMenuItem>login</DropdownMenuItem>
+        <DropdownMenuItem>   <Link href="./signin">Login</Link></DropdownMenuItem>
         <DropdownMenuItem>Subscription</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
