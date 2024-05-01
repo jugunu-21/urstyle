@@ -41,10 +41,10 @@ export default function Navbardrop() {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Link href="./signup">signup</Link>
+          <Link href="/signup">signup</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
-        <DropdownMenuItem>   <Link href="./signin">Login</Link></DropdownMenuItem>
+        <DropdownMenuItem>   <Link href="/signin">Login</Link></DropdownMenuItem>
         <DropdownMenuItem>Subscription</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

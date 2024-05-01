@@ -1,19 +1,18 @@
 "use client"
-import Signin from "@/components/authentication/Signin";
-
+import Signup from "@/components/authentications/Signup";
 import { app } from "@/app/config"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
-
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Page() { 
-
+  const router = useRouter();
  const auth = getAuth(app);
 
  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // router.push('/');
+        router.push('/signout');
       }
     });
 
@@ -23,7 +22,9 @@ export default function Page() {
 
  return (
     <div>
-      <Signin />
+      <Signup />
     </div>
  );
 }
+
+

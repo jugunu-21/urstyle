@@ -3,7 +3,8 @@ import React from 'react';
 export default function page() {
   return (
     <div>
-      welcome
+          want to signout 
+          
     </div>
   );
 }

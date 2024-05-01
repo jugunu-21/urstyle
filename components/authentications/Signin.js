@@ -5,50 +5,23 @@ import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  signOut,
 } from "firebase/auth";
 import { app } from "@/app/config";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
-
-export default function Signup() {
+export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
   const auth = getAuth(app);
   const router = useRouter();
 
-  const generateRandomEmail = () => {
-    const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
-    const domain = "gmail.com";
-
-    let username = "";
-    for (let ii = 0; ii < 15; ii++) {
-      username += chars[Math.floor(Math.random() * chars.length)];
-      setEmail(username + "@" + domain);
-    }
-  };
-  const generateRandomPassword = () => {
-    const length = 8; // You can adjust the length as needed
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
-    setPassword(result);
-  };
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -59,57 +32,23 @@ export default function Signup() {
         "expired-callback": () => {},
       }
     );
-    generateRandomEmail();
-    generateRandomPassword();
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
-    console.log(email);
-    console.log(password);
   };
+
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
-      console.log(formattedPhoneNumber);
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formattedPhoneNumber,
-        window.recaptchaVerifier
-      );
-      console.log(confirmation);
-      setConfirmationResult(confirmation);
-      setOtpSent(true);
-      setOtpSentYN("yes");
-      // setPhoneNumber("");
-      alert("Otp has been sent");
-      console.log("handlsendotp");
-    } catch (error) {
-      setOtpSent(false);
-      setOtpSentYN("no");
-      setPhoneNumber("")
-      console.error(error);
-    }
-  };
-
-  const handleOtpSubmit = async () => {
-    try {
-      await confirmationResult.confirm(otp);
-      setOtp("");
-      router.push("/");
-
-      // Assuming 'phoneNumber' contains the phone number value
       const requestBody = {
-        email: email,
         phone_number: phoneNumber,
-        password: password,
       };
       console.log(requestBody);
-      // Make a POST request to your backend API to store the phone number
+
       console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
 
-      const response = await fetch(process.env.NEXT_PUBLIC_SIGNUP_API, {
+      const response = await fetch(process.env.NEXT_PUBLIC_SIGNIN_API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,20 +56,39 @@ export default function Signup() {
         body: JSON.stringify(requestBody),
       });
 
-      // Check if the response is successful (status code 200-299)
       if (response.ok) {
-        console.log("Phone number stored successfully on the backend.");
-        alert("Otp submitted successfully ");
-        setPhoneNumber("");
+        console.log("Phone number verified in db .");
 
-        // Assuming 'confirmationResult' and 'otp' are defined elsewhere
-      } else {
-        // If the response is not successful, handle the error
-        console.error(
-          "Failed to store phone number on the backend:",
-          response.statusText
+        const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
+        console.log(formattedPhoneNumber);
+        const confirmation = await signInWithPhoneNumber(
+          auth,
+          formattedPhoneNumber,
+          window.recaptchaVerifier
         );
+        console.log(confirmation);
+        setConfirmationResult(confirmation);
+        setOtpSent(true);
+        setOtpSentYN("yes");
+        alert("Otp has been sent");
+        console.log("handlsendotp");
+        return true;
+      } else {
+        console.error("phone number doesnot exsist :", response.statusText);
+        return false;
       }
+    } catch (error) {
+      console.error(error);
+      // return false
+    }
+  };
+
+  const handleOtpSubmit = async () => {
+    try {
+      await confirmationResult.confirm(otp);
+      setPhoneNumber("");
+      setOtp("");
+      router.push("/");
     } catch (error) {
       console.error("Error occurred while storing phone number:", error);
     }
@@ -141,9 +99,9 @@ export default function Signup() {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">signup</h1>
+            <h1 className="text-3xl font-bold">signin</h1>
             <p className="text-balance text-muted-foreground">
-              Enter your phone number below to signup
+              Enter your phone number below to signin
             </p>
           </div>
           <div className="grid gap-4">
@@ -166,7 +124,7 @@ export default function Signup() {
             {otpSentYN === "yes" ? (
               <div>
                 <div className="grid gap-2">
-                  <div className="items-center">
+                  <div className=" items-center">
                     <Label>Enter OTP</Label>
                     <div className="space-y-2">
                       <OtpInput otp={otp} setOtp={setOtp} />
@@ -185,16 +143,16 @@ export default function Signup() {
                   className="w-full"
                   onClick={handleOtpSubmit}
                 >
-                  signup
+                  signin
                 </Button>
                 <Button variant="outline" className="w-full">
-                  signup with Google
+                  signin with Google
                 </Button>
               </div>
             ) : otpSentYN === "no" ? (
               <div>
                 <Label> </Label>
-              
+
                 <p>Please Enter a Valid Number</p>
               </div>
             ) : (
@@ -202,9 +160,9 @@ export default function Signup() {
             )}
           </div>
           <div className="mt-4 text-center text-sm">
-            Have an account?{" "}
-            <Link href="#" className="underline">
-              Sign in
+            Dont have an account?{" "}
+            <Link href="/authentications/signup" className="underline">
+              Sign up
             </Link>
           </div>
         </div>
