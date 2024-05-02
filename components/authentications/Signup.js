@@ -78,6 +78,7 @@ export default function Signup() {
         formattedPhoneNumber,
         window.recaptchaVerifier
       );
+      
       console.log(confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
@@ -207,7 +208,7 @@ export default function Signup() {
           </div>
           <div className="mt-4 text-center text-sm">
             Have an account?{" "}
-            <Link href="/authentications/signin" className="underline">
+            <Link href="/signin" className="underline">
               Sign in
             </Link>
           </div>

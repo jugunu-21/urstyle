@@ -6,6 +6,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
+// import { checkPhoneNumberExists } from '@/app/config'
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
@@ -61,18 +62,31 @@ export default function Signin() {
 
         const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
         console.log(formattedPhoneNumber);
-        const confirmation = await signInWithPhoneNumber(
-          auth,
-          formattedPhoneNumber,
-          window.recaptchaVerifier
-        );
-        console.log(confirmation);
-        setConfirmationResult(confirmation);
-        setOtpSent(true);
-        setOtpSentYN("yes");
-        alert("Otp has been sent");
-        console.log("handlsendotp");
-        return true;
+        // const isAssociated = await checkPhoneNumber(formattedPhoneNumber);
+        // if (!isAssociated) {
+        //   return res.status(StatusCodes.CONFLICT).json({
+        //     message: 'The phone number is not  associated with a user account.',
+        //     status: StatusCodes.CONFLICT
+        //   });
+        // }
+        // else { 
+          const confirmation = await signInWithPhoneNumber(
+            auth,
+            formattedPhoneNumber,
+            window.recaptchaVerifier
+          );
+  
+          
+          console.log(confirmation);
+          setConfirmationResult(confirmation);
+          setOtpSent(true);
+          setOtpSentYN("yes");
+          alert("Otp has been sent");
+          console.log("handlsendotp");
+          return true;
+        //  }
+      
+       
       } else {
         console.error("phone number doesnot exsist :", response.statusText);
         return false;
@@ -161,7 +175,7 @@ export default function Signin() {
           </div>
           <div className="mt-4 text-center text-sm">
             Dont have an account?{" "}
-            <Link href="/authentications/signup" className="underline">
+            <Link href="/signup" className="underline">
               Sign up
             </Link>
           </div>

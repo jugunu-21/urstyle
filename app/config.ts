@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+// import { getFunctions, httpsCallable } from "firebase/functions";
+
 import 'firebase/auth'
 
 const firebaseConfig = {
@@ -13,3 +15,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export { app };
+// const functions = getFunctions(app);
+// export const checkPhoneNumberExists = httpsCallable(functions, 'checkPhoneNumberExists');
