@@ -7,6 +7,7 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 // import { checkPhoneNumberExists } from '@/app/config'
+import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +21,7 @@ export default function Signin() {
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState('91');
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -42,8 +44,9 @@ export default function Signin() {
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
+      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
       const requestBody = {
-        phone_number: phoneNumber,
+        phone_number: phonenumbertosend,
       };
       console.log(requestBody);
 
@@ -60,7 +63,7 @@ export default function Signin() {
       if (response.ok) {
         console.log("Phone number verified in db .");
 
-        const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
+        const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
         console.log(formattedPhoneNumber);
         // const isAssociated = await checkPhoneNumber(formattedPhoneNumber);
         // if (!isAssociated) {
@@ -106,7 +109,7 @@ export default function Signin() {
       setOtp("");
       router.push("/");
     } catch (error) {
-      console.error("Error occurred while storing phone number:", error);
+      console.error("Error occurred while authenticating:", error);
     }
   };
   return (
@@ -123,13 +126,17 @@ export default function Signin() {
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone number</Label>
-              <Input
+              <div className="flex">
+
+<Countrycode setCountryCode={setSelectedCountryCode}/>
+<Input
                 type="tel"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
                 placeholder="Enter 10-digit phone number with countrycode"
                 className="your-class-names-here"
-              />
+                />
+                  </div>
               <button
                 className="text-center text-sm hover:cursor-pointer"
                 onClick={handleSendOtp}
