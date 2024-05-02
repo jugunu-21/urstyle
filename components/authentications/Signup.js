@@ -8,7 +8,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { app } from "@/app/config";
-
+import Countrycode from "./Countrycode";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState('91');
+  // const [placeholder, setPlaceholder] = useState("Enter 10-digit phone number with countrycode");
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -61,6 +63,7 @@ export default function Signup() {
     );
     generateRandomEmail();
     generateRandomPassword();
+   
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
@@ -71,7 +74,8 @@ export default function Signup() {
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+
       console.log(formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(
         auth,
@@ -96,6 +100,7 @@ export default function Signup() {
     }
   };
 
+ 
   const handleOtpSubmit = async () => {
     try
     {
@@ -103,11 +108,11 @@ export default function Signup() {
       setOtp("");
      
       router.push("/");
-
-      // Assuming 'phoneNumber' contains the phone number value
+const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+    
       const requestBody = {
         email: email,
-        phone_number: phoneNumber,
+        phone_number: phonenumbertosend,
         password: password,
       };
       console.log(requestBody);
@@ -147,6 +152,7 @@ export default function Signup() {
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">signup</h1>
+
             <p className="text-balance text-muted-foreground">
               Enter your phone number below to signup
             </p>
@@ -154,13 +160,18 @@ export default function Signup() {
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone number</Label>
-              <Input
-                type="tel"
+              <div className="flex">
+
+                <Countrycode setCountryCode={setSelectedCountryCode}/>
+                <Input
+                 type="tel"
                 value={phoneNumber}
-                onChange={handlePhoneNumberChange}
+                 onChange={handlePhoneNumberChange}
                 placeholder="Enter 10-digit phone number with countrycode"
-                className="your-class-names-here"
-              />
+                 className="your-class-names-here"
+               />
+              </div>
+               
               
              
             </div>
