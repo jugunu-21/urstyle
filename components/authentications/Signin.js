@@ -89,6 +89,8 @@ export default function Signin() {
        
       } else {
         console.error("phone number doesnot exsist :", response.statusText);
+        alert("Need to sigup no user is there with this number ")
+        setPhoneNumber("")
         return false;
       }
     } catch (error) {
