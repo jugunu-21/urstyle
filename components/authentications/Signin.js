@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, createContext} from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
 import {
   getAuth,
@@ -15,17 +15,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
-import Countrycodedata from "./ContextCountryCode"
+import Countrycodedata from "./ContextCountryCode";
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState('');
+  const [selectedCountryCode, setSelectedCountryCode] = useState("");
   const auth = getAuth(app);
   const router = useRouter();
- 
+
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -46,7 +46,10 @@ export default function Signin() {
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
+        /\D/g,
+        ""
+      )}`;
       const requestBody = {
         phone_number: phonenumbertosend,
       };
@@ -65,7 +68,10 @@ export default function Signin() {
       if (response.ok) {
         console.log("Phone number verified in db .");
 
-        const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+        const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
+          /\D/g,
+          ""
+        )}`;
         console.log(formattedPhoneNumber);
         // const isAssociated = await checkPhoneNumber(formattedPhoneNumber);
         // if (!isAssociated) {
@@ -74,28 +80,25 @@ export default function Signin() {
         //     status: StatusCodes.CONFLICT
         //   });
         // }
-        // else { 
-          const confirmation = await signInWithPhoneNumber(
-            auth,
-            formattedPhoneNumber,
-            window.recaptchaVerifier
-          );
-  
-          
-          console.log(confirmation);
-          setConfirmationResult(confirmation);
-          setOtpSent(true);
-          setOtpSentYN("yes");
-          alert("Otp has been sent");
-          console.log("handlsendotp");
-          return true;
+        // else {
+        const confirmation = await signInWithPhoneNumber(
+          auth,
+          formattedPhoneNumber,
+          window.recaptchaVerifier
+        );
+
+        console.log(confirmation);
+        setConfirmationResult(confirmation);
+        setOtpSent(true);
+        setOtpSentYN("yes");
+        alert("Otp has been sent");
+        console.log("handlsendotp");
+        return true;
         //  }
-      
-       
       } else {
         console.error("phone number doesnot exsist :", response.statusText);
-        alert("Need to sigup no user is there with this number ")
-        setPhoneNumber("")
+        alert("Need to sigup no user is there with this number ");
+        setPhoneNumber("");
         return false;
       }
     } catch (error) {
@@ -114,40 +117,61 @@ export default function Signin() {
       console.error("Error occurred while authenticating:", error);
     }
   };
+  const handleMouseDown = (event) => {
+    if (selectedCountryCode === "" || phoneNumber == "") {
+      event.preventDefault();
+      const result =
+        selectedCountryCode == ""
+          ? phoneNumber == ""
+            ? "please Enter phone number and also select the country"
+            : "please select country"
+          : "Please enter phone number ";
+      alert(result);
+    }
+  };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
-      {!otpSent ? <div id="recaptcha-container"></div> : null}
-      <div className="flex items-center justify-center py-12">
-        <div className="mx-auto grid w-[350px] gap-6">
-          <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">signin</h1>
-            <p className="text-balance text-muted-foreground">
-              Enter your phone number below to signin
-            </p>
+    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0">
+    {!otpSent? <div id="recaptcha-container"></div> : null}
+    <div className="flex items-center justify-center py-12">
+      <div className=" mx-auto grid w-[350px] gap-6">
+        <div className="grid gap-2 text-center">
+          <h1 className="text-3xl font-bold">Signin</h1>
+          <div className="my-2 text-red-600">
+            Enter your phone number below to signin
+            </div>
           </div>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="phone">Phone number</Label>
-              <div className="flex">
-                <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
-                  
-                 <Countrycode />
+              {/* <Label htmlFor="phone">Phone number</Label> */}
+              <div className="flex space-x-2">
+                <Countrycodedata.Provider
+                  value={{ selectedCountryCode, setSelectedCountryCode }}
+                >
+                  <Countrycode />
                 </Countrycodedata.Provider>
-                
-<Input
-                type="tel"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                placeholder="Enter 10-digit phone number with countrycode"
-                className="your-class-names-here"
+                {/* {selectedCountryCode !== "" ? ():()} */}
+                <Input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  placeholder="Enter 10-digit phone number"
+                  className="your-class-names-here"
+                  //   disabled={selectedCountryCode == ""}
                 />
-                  </div>
-              <button
-                className="text-center text-sm hover:cursor-pointer"
-                onClick={handleSendOtp}
-              >
-                Send OTP
-              </button>
+              </div>
+              
+           
+                <div className="text-center">
+                <button
+                   className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
+
+                   onClick={handleSendOtp}
+                   onMouseDown={handleMouseDown}
+                 >
+                   Send OTP
+                 </button>
+                </div>
+
             </div>
             {otpSentYN === "yes" ? (
               <div>
@@ -195,7 +219,7 @@ export default function Signin() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block">
+      <div className="hidden bg-muted md:block">
         <Image
           src="/placeholder.svg"
           alt="Image"

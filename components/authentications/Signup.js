@@ -146,22 +146,33 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       // router.push("/");
     }
   };
+  const handleMouseDown = (event) => {
+    if (selectedCountryCode===""|| phoneNumber=="") {
+        event.preventDefault();
+        const result = selectedCountryCode== "" 
+        ? (phoneNumber== "" 
+            ? "please Enter phone number and also select the country" 
+             : "please select country") 
+         : "Please enter phone number ";
+      alert(result);
+    }
+  };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px]">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">signup</h1>
+            <h1 className="text-3xl font-bold">Signup</h1>
 
-            <p className="text-balance text-muted-foreground">
+            <p className="text-balance text-muted-foreground my-2">
               Enter your phone number below to signup
             </p>
           </div>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="phone">Phone number</Label>
-              <div className="flex">
+              {/* <Label htmlFor="phone">Phone number</Label> */}
+              <div className=" flex space-x-2">
 
               <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
                   
@@ -171,11 +182,11 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
                  type="tel"
                 value={phoneNumber}
                  onChange={handlePhoneNumberChange}
-                placeholder="Enter 10-digit phone number with countrycode"
+                placeholder="Enter 10-digit phone number "
                  className="your-class-names-here"
                />
               </div>
-               
+             
               
              
             </div>
@@ -214,8 +225,9 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
             
              : (
               <> <button
-              className="text-center text-sm hover:cursor-pointer"
-              onClick={handleSendOtp}
+              className="text-center text-sm hover:cursor-pointer my-2"
+                    onClick={handleSendOtp}
+                    onMouseDown={handleMouseDown}
             >
               Send OTP
             </button></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"

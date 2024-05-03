@@ -24,7 +24,7 @@ export default function Page() {
  }, [auth]);
 
  return (
-    <div>
+    <div >
       <Signin />
     </div>
  );
