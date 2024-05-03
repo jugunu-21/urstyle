@@ -7,8 +7,9 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
+import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
-
+import Countrycodedata from "./ContextCountryCode"
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,6 +25,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState('');
+  // const [placeholder, setPlaceholder] = useState("Enter 10-digit phone number with countrycode");
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -61,6 +64,7 @@ export default function Signup() {
     );
     generateRandomEmail();
     generateRandomPassword();
+   
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
@@ -71,7 +75,8 @@ export default function Signup() {
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+
       console.log(formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(
         auth,
@@ -96,6 +101,7 @@ export default function Signup() {
     }
   };
 
+ 
   const handleOtpSubmit = async () => {
     try
     {
@@ -103,11 +109,11 @@ export default function Signup() {
       setOtp("");
      
       router.push("/");
-
-      // Assuming 'phoneNumber' contains the phone number value
+const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+    
       const requestBody = {
         email: email,
-        phone_number: phoneNumber,
+        phone_number: phonenumbertosend,
         password: password,
       };
       console.log(requestBody);
@@ -140,27 +146,47 @@ export default function Signup() {
       // router.push("/");
     }
   };
+  const handleMouseDown = (event) => {
+    if (selectedCountryCode===""|| phoneNumber=="") {
+        event.preventDefault();
+        const result = selectedCountryCode== "" 
+        ? (phoneNumber== "" 
+            ? "please Enter phone number and also select the country" 
+             : "please select country") 
+         : "Please enter phone number ";
+      alert(result);
+    }
+  };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px]">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">signup</h1>
-            <p className="text-balance text-muted-foreground">
+            <h1 className="text-3xl font-bold">Signup</h1>
+
+            <p className="text-balance text-muted-foreground my-2">
               Enter your phone number below to signup
             </p>
           </div>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="phone">Phone number</Label>
-              <Input
-                type="tel"
+              {/* <Label htmlFor="phone">Phone number</Label> */}
+              <div className=" flex space-x-2">
+
+              <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
+                  
+                  <Countrycode />
+                 </Countrycodedata.Provider>
+                <Input
+                 type="tel"
                 value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                placeholder="Enter 10-digit phone number with countrycode"
-                className="your-class-names-here"
-              />
+                 onChange={handlePhoneNumberChange}
+                placeholder="Enter 10-digit phone number "
+                 className="your-class-names-here"
+               />
+              </div>
+             
               
              
             </div>
@@ -199,8 +225,9 @@ export default function Signup() {
             
              : (
               <> <button
-              className="text-center text-sm hover:cursor-pointer"
-              onClick={handleSendOtp}
+              className="text-center text-sm hover:cursor-pointer my-2"
+                    onClick={handleSendOtp}
+                    onMouseDown={handleMouseDown}
             >
               Send OTP
             </button></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
