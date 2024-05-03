@@ -7,8 +7,9 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
-import { app } from "@/app/config";
 import Countrycode from "./Countrycode";
+import { app } from "@/app/config";
+import Countrycodedata from "./ContextCountryCode"
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState('91');
+  const [selectedCountryCode, setSelectedCountryCode] = useState('');
   // const [placeholder, setPlaceholder] = useState("Enter 10-digit phone number with countrycode");
   const auth = getAuth(app);
   const router = useRouter();
@@ -162,7 +163,10 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
               <Label htmlFor="phone">Phone number</Label>
               <div className="flex">
 
-                <Countrycode setCountryCode={setSelectedCountryCode}/>
+              <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
+                  
+                  <Countrycode />
+                 </Countrycodedata.Provider>
                 <Input
                  type="tel"
                 value={phoneNumber}

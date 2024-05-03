@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext} from "react";
 import { useRouter } from "next/navigation";
 import {
   getAuth,
@@ -15,16 +15,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
+import Countrycodedata from "./ContextCountryCode"
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState('91');
+  const [selectedCountryCode, setSelectedCountryCode] = useState('');
   const auth = getAuth(app);
   const router = useRouter();
-
+ 
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -38,6 +39,7 @@ export default function Signin() {
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
+    // console.log(selectedCountryCode)
     console.log("Phone number:", event.target.value);
   };
 
@@ -127,8 +129,11 @@ export default function Signin() {
             <div className="grid gap-2">
               <Label htmlFor="phone">Phone number</Label>
               <div className="flex">
-
-<Countrycode setCountryCode={setSelectedCountryCode}/>
+                <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
+                  
+                 <Countrycode />
+                </Countrycodedata.Provider>
+                
 <Input
                 type="tel"
                 value={phoneNumber}
