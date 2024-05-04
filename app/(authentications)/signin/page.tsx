@@ -12,16 +12,16 @@ export default function Page() {
   const router = useRouter();
  const auth = getAuth(app);
 
- useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        router.push('/signout');
-      }
-    });
+//  useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, (user) => {
+//       if (user) {
+//         router.push('/signout');
+//       }
+//     });
 
    
-    return () => unsubscribe();
- }, [auth]);
+//     return () => unsubscribe();
+//  }, [auth]);
 
  return (
     <div >

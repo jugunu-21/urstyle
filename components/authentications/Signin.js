@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
+import { v4 as uuidv4 } from 'uuid';
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -110,9 +111,14 @@ export default function Signin() {
   const handleOtpSubmit = async () => {
     try {
       await confirmationResult.confirm(otp);
-      setPhoneNumber("");
-      setOtp("");
+     
+      // const sessionId = uuidv4();
+      // document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; SameSite=Lax`;
+      const sessionId = uuidv4();
+document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=Lax`;
+
       router.push("/");
+      console.log(sessionId);
     } catch (error) {
       console.error("Error occurred while authenticating:", error);
     }

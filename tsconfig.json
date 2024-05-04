@@ -22,7 +22,7 @@
        "@/*": ["./*"]
      }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/authentications/Countrycode.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/authentications/Countrycode.js",  "types/**/*",],
   "exclude": ["node_modules"]
  }
  
