@@ -7,6 +7,7 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 // import { checkPhoneNumberExists } from '@/app/config'
+import toast from "react-hot-toast";
 import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
 import Image from "next/image";
@@ -16,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -74,14 +75,7 @@ export default function Signin() {
           ""
         )}`;
         console.log(formattedPhoneNumber);
-        // const isAssociated = await checkPhoneNumber(formattedPhoneNumber);
-        // if (!isAssociated) {
-        //   return res.status(StatusCodes.CONFLICT).json({
-        //     message: 'The phone number is not  associated with a user account.',
-        //     status: StatusCodes.CONFLICT
-        //   });
-        // }
-        // else {
+       
         const confirmation = await signInWithPhoneNumber(
           auth,
           formattedPhoneNumber,
@@ -92,7 +86,7 @@ export default function Signin() {
         setConfirmationResult(confirmation);
         setOtpSent(true);
         setOtpSentYN("yes");
-        alert("Otp has been sent");
+        toast.success("Otp has been sent");
         console.log("handlsendotp");
         return true;
         //  }
@@ -111,12 +105,12 @@ export default function Signin() {
   const handleOtpSubmit = async () => {
     try {
       await confirmationResult.confirm(otp);
-     
+      setOtp("");
       // const sessionId = uuidv4();
       // document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; SameSite=Lax`;
       const sessionId = uuidv4();
-document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=Lax`;
-
+      document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=Lax`;
+      toast.success("you are successfully signin");
       router.push("/");
       console.log(sessionId);
     } catch (error) {
@@ -137,13 +131,13 @@ document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=La
   };
   return (
     <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0">
-    {!otpSent? <div id="recaptcha-container"></div> : null}
-    <div className="flex items-center justify-center py-12">
-      <div className=" mx-auto grid w-[350px] gap-6">
-        <div className="grid gap-2 text-center">
-          <h1 className="text-3xl font-bold">Signin</h1>
-          <div className="my-2 text-red-600">
-            Enter your phone number below to signin
+      {!otpSent ? <div id="recaptcha-container"></div> : null}
+      <div className="flex items-center justify-center py-12">
+        <div className=" mx-auto grid w-[350px] gap-6">
+          <div className="grid gap-2 text-center">
+            <h1 className="text-3xl font-bold">Signin</h1>
+            <div className="my-2 text-red-600">
+              Enter your phone number below to signin
             </div>
           </div>
           <div className="grid gap-4">
@@ -165,19 +159,16 @@ document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=La
                   //   disabled={selectedCountryCode == ""}
                 />
               </div>
-              
-           
-                <div className="text-center">
+
+              <div className="text-center">
                 <button
-                   className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
-
-                   onClick={handleSendOtp}
-                   onMouseDown={handleMouseDown}
-                 >
-                   Send OTP
-                 </button>
-                </div>
-
+                  className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
+                  onClick={handleSendOtp}
+                  onMouseDown={handleMouseDown}
+                >
+                  Send OTP
+                </button>
+              </div>
             </div>
             {otpSentYN === "yes" ? (
               <div>

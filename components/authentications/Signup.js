@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
-
+import toast from "react-hot-toast";
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -26,32 +26,32 @@ export default function Signup() {
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState('');
-  // const [placeholder, setPlaceholder] = useState("Enter 10-digit phone number with countrycode");
+  
   const auth = getAuth(app);
   const router = useRouter();
 
-  const generateRandomEmail = () => {
-    const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
-    const domain = "gmail.com";
+  // const generateRandomEmail = () => {
+  //   const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
+  //   const domain = "gmail.com";
 
-    let username = "";
-    for (let ii = 0; ii < 15; ii++) {
-      username += chars[Math.floor(Math.random() * chars.length)];
-      setEmail(username + "@" + domain);
-    }
-  };
-  const generateRandomPassword = () => {
-    const length = 8; // You can adjust the length as needed
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
-    setPassword(result);
-  };
+  //   let username = "";
+  //   for (let ii = 0; ii < 15; ii++) {
+  //     username += chars[Math.floor(Math.random() * chars.length)];
+  //     setEmail(username + "@" + domain);
+  //   }
+  // };
+  // const generateRandomPassword = () => {
+  //   const length = 8; 
+  //   const characters =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   let result = "";
+  //   for (let i = 0; i < length; i++) {
+  //     result += characters.charAt(
+  //       Math.floor(Math.random() * characters.length)
+  //     );
+  //   }
+  //   setPassword(result);
+  // };
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -62,8 +62,8 @@ export default function Signup() {
         "expired-callback": () => {},
       }
     );
-    generateRandomEmail();
-    generateRandomPassword();
+    // generateRandomEmail();
+    // generateRandomPassword();
    
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
@@ -89,12 +89,15 @@ export default function Signup() {
       setOtpSent(true);
       setOtpSentYN("yes");
       // setPhoneNumber("");
-      alert("Otp has been sent");
+      // alert("Otp has been sent");
+      toast.success("Otp has been sent")
       console.log("handlsendotp");
     } catch (error) {
       setOtpSent(false);
       setOtpSentYN("");
-      alert("please enter a valid number ");
+      // alert("please enter a valid number ");
+      toast.success("please enter a valid numbert")
+
       setPhoneNumber("")
    
       console.error(error);
@@ -108,13 +111,13 @@ export default function Signup() {
       await confirmationResult.confirm(otp);
       setOtp("");
      
-      router.push("/");
+     
 const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-    
+    setPhoneNumber("")
       const requestBody = {
-        email: email,
+        // email: email,
         phone_number: phonenumbertosend,
-        password: password,
+        // password: password,
       };
       console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
@@ -132,7 +135,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
         console.log("Phone number stored successfully on the backend.");
         alert("Otp submitted successfully ");
         setPhoneNumber("");
-
+        router.push("/");
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
         // If the response is not successful, handle the error
@@ -140,10 +143,17 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
           "Failed to store phone number on the backend:",
           response.statusText
         );
+        signOut(auth)
+        console.log("signOut")
+        // router.reload()
+        window.location.reload();
+toast.error("user with this number already exsist")
+
+        console.log("reload")
       }
     } catch (error) {
       console.error("Error occurred while storing phone number:", error);
-      // router.push("/");
+      router.push("/");
     }
   };
   const handleMouseDown = (event) => {
@@ -186,14 +196,22 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
                  className="your-class-names-here"
                />
               </div>
-             
+              <div className="text-center">
+                <button
+                  className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
+                  onClick={handleSendOtp}
+                  onMouseDown={handleMouseDown}
+                >
+                  Send OTP
+                </button>
+              </div>
               
              
             </div>
             {otpSentYN === "yes" ? (
               <div>
                 <div className="grid gap-2">
-                  <div className="items-center">
+                  <div className=" items-center">
                     <Label>Enter OTP</Label>
                     <div className="space-y-2">
                       <OtpInput otp={otp} setOtp={setOtp} />
@@ -212,25 +230,20 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
                   className="w-full"
                   onClick={handleOtpSubmit}
                 >
-                  signup
+                  signin
                 </Button>
                 <Button variant="outline" className="w-full">
-                  signup with Google
+                  signin with Google
                 </Button>
               </div>
             ) : otpSentYN === "no" ? (
-                
-              <></>
-            )
-            
-             : (
-              <> <button
-              className="text-center text-sm hover:cursor-pointer my-2"
-                    onClick={handleSendOtp}
-                    onMouseDown={handleMouseDown}
-            >
-              Send OTP
-            </button></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
+              <div>
+                <Label> </Label>
+
+                <p>Please Enter a Valid Number</p>
+              </div>
+            ) : (
+              <></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
             )}
           </div>
           <div className="mt-4 text-center text-sm">

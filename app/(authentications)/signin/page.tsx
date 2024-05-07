@@ -5,7 +5,7 @@ import { app } from "@/app/config"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import toast from "react-hot-toast";
 export default function Page() {
   const router = useRouter();
   const auth = getAuth(app);
@@ -14,7 +14,9 @@ export default function Page() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        router.push('/signout'); // Redirect to sign out page if user is authenticated
+      
+        router.push('/signout');
+      
       } else {
         setIsLoading(false); // Set loading to false if no user is found
       }
