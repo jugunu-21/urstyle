@@ -21,8 +21,8 @@ function Clothes() {
 
   return (
     <div className="mb-2 ">
-      <div className="text-2xl ">
-        <Menudropdown
+      <div className="text-2xl ml-4  ">
+        <Menudropdown 
           name="categories"
           dropdata={clickFiltersData}
           onfilterchange={handleFilterChange}

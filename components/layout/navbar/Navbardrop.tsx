@@ -23,7 +23,7 @@ export default function Navbardrop() {
      .then(() => {
         // Sign-out successful.
         // Clear the session cookie
-        document.cookie = `sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        // document.cookie = `sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         console.log("Signed out successfully and session cookie cleared");
   
         // Redirect to home page or any other page
