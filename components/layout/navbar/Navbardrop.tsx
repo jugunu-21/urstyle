@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import toast from "react-hot-toast";
 export default function Navbardrop() {
   const router = useRouter();
   const auth =getAuth(app)
@@ -27,7 +27,8 @@ export default function Navbardrop() {
         console.log("Signed out successfully and session cookie cleared");
   
         // Redirect to home page or any other page
-        router.push("/signin");
+       router.push("/");
+       toast.success("successfully sign Out")
       })
      .catch((error) => {
         // An error happened.

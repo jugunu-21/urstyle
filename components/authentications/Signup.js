@@ -96,7 +96,7 @@ export default function Signup() {
       setOtpSent(false);
       setOtpSentYN("");
       // alert("please enter a valid number ");
-      toast.success("please enter a valid numbert")
+      toast.success("please enter a valid number")
 
       setPhoneNumber("")
    
@@ -133,9 +133,10 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
         console.log("Phone number stored successfully on the backend.");
-        alert("Otp submitted successfully ");
-        setPhoneNumber("");
         router.push("/");
+        toast.success("Otp submitted successfully ");
+        setPhoneNumber("");
+       
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
         // If the response is not successful, handle the error
@@ -143,13 +144,13 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
           "Failed to store phone number on the backend:",
           response.statusText
         );
-        signOut(auth)
+        await signOut(auth);
         console.log("signOut")
         // router.reload()
         window.location.reload();
-toast.error("user with this number already exsist")
+         toast.error("user with this number already exsist")
 
-        console.log("reload")
+         console.log("reload")
       }
     } catch (error) {
       console.error("Error occurred while storing phone number:", error);

@@ -19,7 +19,7 @@ export default function page() {
         console.log("Signed out successfully and session cookie cleared");
   toast.success("You Signed Out ")
         // Redirect to home page or any other page
-        router.push("/signin");
+        router.push("/");
       })
      .catch((error) => {
         // An error happened.

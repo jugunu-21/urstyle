@@ -92,8 +92,9 @@ export default function Signin() {
         //  }
       } else {
         console.error("phone number doesnot exsist :", response.statusText);
-        alert("Need to sigup no user is there with this number ");
-        setPhoneNumber("");
+        toast.error("Need to sigup or signin with different number ");
+        // setPhoneNumber("");
+        window.location.reload();
         return false;
       }
     } catch (error) {
