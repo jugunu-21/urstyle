@@ -6,7 +6,6 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-// import { checkPhoneNumberExists } from '@/app/config'
 import toast from "react-hot-toast";
 import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
@@ -17,7 +16,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
-import { v4 as uuidv4 } from "uuid";
+
+// import cookie from 'cookie';
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -61,6 +61,7 @@ export default function Signin() {
 
       const response = await fetch(process.env.NEXT_PUBLIC_SIGNIN_API, {
         method: "POST",
+        credentials: 'include',
         headers: {
           "Content-Type": "application/json",
         },
@@ -69,7 +70,13 @@ export default function Signin() {
 
       if (response.ok) {
         console.log("Phone number verified in db .");
+       
 
+    // Now you can use the accessToken for subsequent requests
+
+
+    // Optionally, store the accessToken in local storage or session storage
+    
         const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
           /\D/g,
           ""
@@ -107,10 +114,9 @@ export default function Signin() {
     try {
       await confirmationResult.confirm(otp);
       setOtp("");
-      // const sessionId = uuidv4();
-      // document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; SameSite=Lax`;
-      const sessionId = uuidv4();
-      document.cookie = `sessionId=${sessionId}; path=/; HttpOnly; Secure; SameSite=Lax`;
+     
+   
+    
       toast.success("you are successfully signin");
       router.push("/");
       console.log(sessionId);

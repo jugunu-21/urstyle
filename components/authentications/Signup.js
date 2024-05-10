@@ -30,28 +30,7 @@ export default function Signup() {
   const auth = getAuth(app);
   const router = useRouter();
 
-  // const generateRandomEmail = () => {
-  //   const chars = "abcdefghijklmnopqrstuvwxyz1234567890";
-  //   const domain = "gmail.com";
-
-  //   let username = "";
-  //   for (let ii = 0; ii < 15; ii++) {
-  //     username += chars[Math.floor(Math.random() * chars.length)];
-  //     setEmail(username + "@" + domain);
-  //   }
-  // };
-  // const generateRandomPassword = () => {
-  //   const length = 8; 
-  //   const characters =
-  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  //   let result = "";
-  //   for (let i = 0; i < length; i++) {
-  //     result += characters.charAt(
-  //       Math.floor(Math.random() * characters.length)
-  //     );
-  //   }
-  //   setPassword(result);
-  // };
+  
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -62,15 +41,13 @@ export default function Signup() {
         "expired-callback": () => {},
       }
     );
-    // generateRandomEmail();
-    // generateRandomPassword();
+   
    
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
-    console.log(email);
-    console.log(password);
+   
   };
   const handleSendOtp = async () => {
     try {
@@ -121,10 +98,11 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       };
       console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
-      console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
+     
 
       const response = await fetch(process.env.NEXT_PUBLIC_SIGNUP_API, {
         method: "POST",
+        credentials: 'include',
         headers: {
           "Content-Type": "application/json",
         },
@@ -144,10 +122,9 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
           "Failed to store phone number on the backend:",
           response.statusText
         );
-        await signOut(auth);
-        console.log("signOut")
-        // router.reload()
-        window.location.reload();
+        
+      
+    
          toast.error("user with this number already exsist")
 
          console.log("reload")
