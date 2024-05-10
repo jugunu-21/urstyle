@@ -6,7 +6,7 @@ import Benefits from "@/components/home/benefits/Benefit";
 import { useEffect } from 'react';
 // import { useRouter } from "next/navigation";
 import { useRouter } from "next/navigation";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 // import { Toaster } from 'react-hot-toast';
 export default function Home() {
   // const router = useRouter();
