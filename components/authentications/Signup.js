@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import toast from "react-hot-toast";
+
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -100,7 +101,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       // Make a POST request to your backend API to store the phone number
      
 
-      const response = await fetch(process.env.NEXT_PUBLIC_SIGNUP_API, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -110,6 +111,13 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       });
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
+        const responseData = await response.json();
+      const jwtToken = responseData.data; // Extract the JWT token from the response
+      console.log(jwtToken);
+      // Set the JWT token in a cookie
+      document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; // Example: Set the cookie to expire in 1 hour
+// console.log(document.cookie,"cookie")
+      
         console.log("Phone number stored successfully on the backend.");
         router.push("/");
         toast.success("Otp submitted successfully ");
@@ -146,7 +154,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
     }
   };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] py-4">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
@@ -159,7 +167,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
           </div>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              {/* <Label htmlFor="phone">Phone number</Label> */}
+              <Label htmlFor="email">Phone Number </Label>
               <div className=" flex space-x-2">
 
               <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
@@ -175,13 +183,17 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
                />
               </div>
               <div className="text-center">
-                <button
-                  className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
+              {otpSentYN === "yes" ? (<div></div>):( 
+                  <Button
+                    type="submit"
+                    className="w-full"
+                
                   onClick={handleSendOtp}
                   onMouseDown={handleMouseDown}
                 >
                   Send OTP
-                </button>
+                  </Button>
+              )}
               </div>
               
              

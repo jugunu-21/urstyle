@@ -60,7 +60,7 @@ export default function Signin() {
 
       console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
 
-      const response = await fetch(process.env.NEXT_PUBLIC_SIGNIN_API, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signin`, {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -71,8 +71,8 @@ export default function Signin() {
 
       if (response.ok) {
         console.log("Phone number verified in db .");
-       
-
+   
+    
     // Now you can use the accessToken for subsequent requests
 
 
@@ -120,7 +120,7 @@ export default function Signin() {
     
       toast.success("you are successfully signin");
       router.push("/");
-      console.log(sessionId);
+      // console.log(sessionId);
     } catch (error) {
       console.error("Error occurred while authenticating:", error);
     }
@@ -138,26 +138,31 @@ export default function Signin() {
     }
   };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0">
+    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0 my-4">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center py-12">
         <div className=" mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Signin</h1>
-            <div className="my-2 text-red-600">
-              Enter your phone number below to signin
-            </div>
+            <h1 className="text-3xl font-bold ">Signin</h1>
+          
           </div>
+          <p className="text-balance text-muted-foreground my-2 left-0">
+            Enter your phone number below to signin
+            </p>
           <div className="grid gap-4">
             <div className="grid gap-2">
               {/* <Label htmlFor="phone">Phone number</Label> */}
+              <Label htmlFor="email">Phone Number </Label>
               <div className="flex space-x-2">
+            
                 <Countrycodedata.Provider
                   value={{ selectedCountryCode, setSelectedCountryCode }}
                 >
                   <Countrycode />
                 </Countrycodedata.Provider>
                 {/* {selectedCountryCode !== "" ? ():()} */}
+               
+                
                 <Input
                   type="tel"
                   value={phoneNumber}
@@ -169,16 +174,20 @@ export default function Signin() {
               </div>
 
               <div className="text-center">
-                <button
-                  className=" h-8 w-28 text-center text-sm rounded-lg  bg-gray-300 hover:bg-gray-700 transition-colors duration-200"
+              {otpSentYN === "yes" ? (<div></div>):(    
+                <Button
+                  type="submit"
+                  className="w-full"
                   onClick={handleSendOtp}
                   onMouseDown={handleMouseDown}
                 >
                   Send OTP
-                </button>
+                </Button>
+              )}
               </div>
             </div>
-            {otpSentYN === "yes" ? (
+            {otpSentYN === "yes" ? 
+            (
               <div>
                 <div className="grid gap-2">
                   <div className=" items-center">
