@@ -12,15 +12,16 @@ export default function middleware(request) {
 
   console.log(jwtToken, "JWT Token");
 
-  if (jwtToken) {
+  if (jwtToken!==null) {
     // User is not authenticated, redirect to sign-in page
-    console.log("User is not authenticated");
+    console.log("User is authenticated");
+ 
     return NextResponse.redirect('http://localhost:3000/signout');
    // Corrected redirect URL
   } else {
     // User is authenticated, proceed with the request
-    console.log("User is authenticated");
    
+    console.log("User is not authenticated");
     return NextResponse.next();
   }
 }

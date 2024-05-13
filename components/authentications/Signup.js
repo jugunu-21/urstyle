@@ -101,7 +101,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       // Make a POST request to your backend API to store the phone number
      
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signup`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`, {
         method: "POST",
         credentials: 'include',
         headers: {
@@ -133,7 +133,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
         
       
     
-         toast.error("user with this number already exsist")
+         toast.error("error while storing phone number on the backend");
 
          console.log("reload")
       }
@@ -222,7 +222,7 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
                 >
                   signin
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full my-2">
                   signin with Google
                 </Button>
               </div>

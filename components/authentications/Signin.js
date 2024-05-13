@@ -58,32 +58,33 @@ export default function Signin() {
       };
       console.log(requestBody);
 
-      console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
+      // console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/signin`, {
-        method: "POST",
-        credentials: 'include',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       if (response.ok) {
         console.log("Phone number verified in db .");
-   
-    
-    // Now you can use the accessToken for subsequent requests
+        const responseData = await response.json();
+        const jwtToken = responseData.data;
+        console.log(jwtToken);
+        document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
 
-
-    // Optionally, store the accessToken in local storage or session storage
-    
         const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
           /\D/g,
           ""
         )}`;
         console.log(formattedPhoneNumber);
-       
+
         const confirmation = await signInWithPhoneNumber(
           auth,
           formattedPhoneNumber,
@@ -115,9 +116,7 @@ export default function Signin() {
     try {
       await confirmationResult.confirm(otp);
       setOtp("");
-     
-   
-    
+
       toast.success("you are successfully signin");
       router.push("/");
       // console.log(sessionId);
@@ -144,25 +143,22 @@ export default function Signin() {
         <div className=" mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold ">Signin</h1>
-          
           </div>
           <p className="text-balance text-muted-foreground my-2 left-0">
             Enter your phone number below to signin
-            </p>
+          </p>
           <div className="grid gap-4">
             <div className="grid gap-2">
               {/* <Label htmlFor="phone">Phone number</Label> */}
               <Label htmlFor="email">Phone Number </Label>
               <div className="flex space-x-2">
-            
                 <Countrycodedata.Provider
                   value={{ selectedCountryCode, setSelectedCountryCode }}
                 >
                   <Countrycode />
                 </Countrycodedata.Provider>
                 {/* {selectedCountryCode !== "" ? ():()} */}
-               
-                
+
                 <Input
                   type="tel"
                   value={phoneNumber}
@@ -174,20 +170,21 @@ export default function Signin() {
               </div>
 
               <div className="text-center">
-              {otpSentYN === "yes" ? (<div></div>):(    
-                <Button
-                  type="submit"
-                  className="w-full"
-                  onClick={handleSendOtp}
-                  onMouseDown={handleMouseDown}
-                >
-                  Send OTP
-                </Button>
-              )}
+                {otpSentYN === "yes" ? (
+                  <div></div>
+                ) : (
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    onClick={handleSendOtp}
+                    onMouseDown={handleMouseDown}
+                  >
+                    Send OTP
+                  </Button>
+                )}
               </div>
             </div>
-            {otpSentYN === "yes" ? 
-            (
+            {otpSentYN === "yes" ? (
               <div>
                 <div className="grid gap-2">
                   <div className=" items-center">
@@ -211,7 +208,7 @@ export default function Signin() {
                 >
                   signin
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full my-2">
                   signin with Google
                 </Button>
               </div>
