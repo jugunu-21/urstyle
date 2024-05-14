@@ -5,7 +5,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 
 import { useRouter } from "next/navigation";
-
+// import { JsonWebTokenError } from 'jsonwebtoken';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
 export default function Signout() {
@@ -15,13 +15,13 @@ export default function Signout() {
     // Sign out from Firebase
     signOut(auth)
      .then(() => {
-        // Sign-out successful.
-        // Clear the session cookie
-        // document.cookie = `sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+   
+       document.cookie = `jwtToken=; max-age=0; path=/`;
+
         console.log("Signed out successfully and session cookie cleared");
   toast.success("You Signed Out ")
    
-       router.push("/");
+      //  router.push("/");
       })
      .catch((error) => {
         // An error happened.
