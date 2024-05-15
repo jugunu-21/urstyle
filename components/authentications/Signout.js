@@ -8,8 +8,9 @@ import { useRouter } from "next/navigation";
 // import { JsonWebTokenError } from 'jsonwebtoken';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
-export default function Signout() {
+export default function Signout({ redirecturl }) {
   const router = useRouter();
+  // const { redirect } = router.query;
   const auth =getAuth(app)
   const handleLogout = () => {
     // Sign out from Firebase
@@ -20,8 +21,13 @@ export default function Signout() {
 
         console.log("Signed out successfully and session cookie cleared");
   toast.success("You Signed Out ")
-   
-      //  router.push("/");
+  if (redirecturl) {
+    router.push(`/${redirecturl} `);
+  } else {
+    // Default redirect if no intended route is provided
+    router.push('/');
+  }
+
       })
      .catch((error) => {
         // An error happened.

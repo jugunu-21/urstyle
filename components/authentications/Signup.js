@@ -113,19 +113,7 @@ export default function Signup() {
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
         const responseData = await response.json();
-        const jwtToken = responseData.data; // Extract the JWT token from the response
-        // console.log(jwtToken);
-        // try {
-        //   const secretKey = process.env.NEXT_PUBLIC_JWT_SECRET;
-        //   console.log(secretKey, "secretkey"); // Your backend will need to verify the JWT token before signing in the user
-
-        //   const decoded = jwt.verify(jwtToken, secretKey);
-        //   console.log(decoded);
-        //   const userId = decoded.id;
-        //   console.log(userId, "userid");
-        // } catch (error) {
-        //   console.error("Error decoding JWT:", error);
-        // }
+        const jwtToken = responseData.data; // 
         document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; 
 
         console.log("Phone number stored successfully on the backend.");
