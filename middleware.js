@@ -14,9 +14,11 @@ export default function middleware(request) {
 
   if (jwtToken!==null) {
     // User is not authenticated, redirect to sign-in page
-    console.log("User is authenticated");
- 
-    return NextResponse.redirect('http://localhost:3000/signout');
+    const intendedRoute = request.nextUrl.pathname;
+    console.log(`Intended route: ${intendedRoute}`);
+
+    // Redirect to the sign-out page and pass the intended route
+    return NextResponse.redirect(`http://localhost:3000/signout/${intendedRoute}`);
    // Corrected redirect URL
   } else {
     // User is authenticated, proceed with the request

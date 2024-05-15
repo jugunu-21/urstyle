@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
-import Countrycodedata from "./ContextCountryCode"
+import Countrycodedata from "./ContextCountryCode";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import toast from "react-hot-toast";
-
+import jwt from "jsonwebtoken";
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -26,12 +26,11 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState('');
-  
+  const [selectedCountryCode, setSelectedCountryCode] = useState("");
+
   const auth = getAuth(app);
   const router = useRouter();
 
-  
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -42,18 +41,18 @@ export default function Signup() {
         "expired-callback": () => {},
       }
     );
-   
-   
   }, [auth]);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
-   
   };
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
+        /\D/g,
+        ""
+      )}`;
 
       console.log(formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(
@@ -61,37 +60,37 @@ export default function Signup() {
         formattedPhoneNumber,
         window.recaptchaVerifier
       );
-      
+
       console.log(confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       // setPhoneNumber("");
       // alert("Otp has been sent");
-      toast.success("Otp has been sent")
+      toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
       setOtpSent(false);
       setOtpSentYN("");
       // alert("please enter a valid number ");
-      toast.success("please enter a valid number")
+      toast.success("please enter a valid number");
 
-      setPhoneNumber("")
-   
+      setPhoneNumber("");
+
       console.error(error);
     }
   };
 
- 
   const handleOtpSubmit = async () => {
-    try
-    {
+    try {
       await confirmationResult.confirm(otp);
       setOtp("");
-     
-     
-const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-    setPhoneNumber("")
+
+      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
+        /\D/g,
+        ""
+      )}`;
+      setPhoneNumber("");
       const requestBody = {
         // email: email,
         phone_number: phonenumbertosend,
@@ -99,30 +98,29 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
       };
       console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
-     
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`, {
-        method: "POST",
-        credentials: 'include',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
         const responseData = await response.json();
-      const jwtToken = responseData.data; // Extract the JWT token from the response
-      console.log(jwtToken);
-      // Set the JWT token in a cookie
-      document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; // Example: Set the cookie to expire in 1 hour
-// console.log(document.cookie,"cookie")
-      
+        const jwtToken = responseData.data; // 
+        document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; 
+
         console.log("Phone number stored successfully on the backend.");
         router.push("/");
         toast.success("Otp submitted successfully ");
         setPhoneNumber("");
-       
+
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
         // If the response is not successful, handle the error
@@ -130,12 +128,10 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
           "Failed to store phone number on the backend:",
           response.statusText
         );
-        
-      
-    
-         toast.error("error while storing phone number on the backend");
 
-         console.log("reload")
+        toast.error("error while storing phone number on the backend");
+
+        console.log("reload");
       }
     } catch (error) {
       console.error("Error occurred while storing phone number:", error);
@@ -143,13 +139,14 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
     }
   };
   const handleMouseDown = (event) => {
-    if (selectedCountryCode===""|| phoneNumber=="") {
-        event.preventDefault();
-        const result = selectedCountryCode== "" 
-        ? (phoneNumber== "" 
-            ? "please Enter phone number and also select the country" 
-             : "please select country") 
-         : "Please enter phone number ";
+    if (selectedCountryCode === "" || phoneNumber == "") {
+      event.preventDefault();
+      const result =
+        selectedCountryCode == ""
+          ? phoneNumber == ""
+            ? "please Enter phone number and also select the country"
+            : "please select country"
+          : "Please enter phone number ";
       alert(result);
     }
   };
@@ -169,34 +166,33 @@ const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, ""
             <div className="grid gap-2">
               <Label htmlFor="email">Phone Number </Label>
               <div className=" flex space-x-2">
-
-              <Countrycodedata.Provider value={{ selectedCountryCode, setSelectedCountryCode }}>
-                  
+                <Countrycodedata.Provider
+                  value={{ selectedCountryCode, setSelectedCountryCode }}
+                >
                   <Countrycode />
-                 </Countrycodedata.Provider>
+                </Countrycodedata.Provider>
                 <Input
-                 type="tel"
-                value={phoneNumber}
-                 onChange={handlePhoneNumberChange}
-                placeholder="Enter 10-digit phone number "
-                 className="your-class-names-here"
-               />
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  placeholder="Enter 10-digit phone number "
+                  className="your-class-names-here"
+                />
               </div>
               <div className="text-center">
-              {otpSentYN === "yes" ? (<div></div>):( 
+                {otpSentYN === "yes" ? (
+                  <div></div>
+                ) : (
                   <Button
                     type="submit"
                     className="w-full"
-                
-                  onClick={handleSendOtp}
-                  onMouseDown={handleMouseDown}
-                >
-                  Send OTP
+                    onClick={handleSendOtp}
+                    onMouseDown={handleMouseDown}
+                  >
+                    Send OTP
                   </Button>
-              )}
+                )}
               </div>
-              
-             
             </div>
             {otpSentYN === "yes" ? (
               <div>

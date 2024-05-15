@@ -5,23 +5,37 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 
 import { useRouter } from "next/navigation";
-
+// import { JsonWebTokenError } from 'jsonwebtoken';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
+import { useParams } from 'next/navigation';
+
 export default function Signout() {
+  const params = useParams();
+  const param1 = Array.isArray(params.url) ? params.url : [params.url];
+  const [paramsurl] = param1;
+const redirecturl = paramsurl ? paramsurl : "/";
+
+console.log(redirecturl)
   const router = useRouter();
+  // const { redirect } = router.query;
   const auth =getAuth(app)
   const handleLogout = () => {
     // Sign out from Firebase
     signOut(auth)
      .then(() => {
-        // Sign-out successful.
-        // Clear the session cookie
-        // document.cookie = `sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+   
+       document.cookie = `jwtToken=; max-age=0; path=/`;
+
         console.log("Signed out successfully and session cookie cleared");
   toast.success("You Signed Out ")
-   
-       router.push("/");
+  if (redirecturl) {
+    router.push(`/${redirecturl} `);
+  } else {
+    // Default redirect if no intended route is provided
+    router.push('/');
+  }
+
       })
      .catch((error) => {
         // An error happened.
