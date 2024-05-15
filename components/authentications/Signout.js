@@ -8,7 +8,15 @@ import { useRouter } from "next/navigation";
 // import { JsonWebTokenError } from 'jsonwebtoken';
 import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
-export default function Signout({ redirecturl }) {
+import { useParams } from 'next/navigation';
+
+export default function Signout() {
+  const params = useParams();
+  const param1 = Array.isArray(params.url) ? params.url : [params.url];
+  const [paramsurl] = param1;
+const redirecturl = paramsurl ? paramsurl : "/";
+
+console.log(redirecturl)
   const router = useRouter();
   // const { redirect } = router.query;
   const auth =getAuth(app)
