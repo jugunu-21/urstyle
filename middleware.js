@@ -18,7 +18,7 @@ export default function middleware(request) {
     console.log(`Intended route: ${intendedRoute}`);
 
     // Redirect to the sign-out page and pass the intended route
-    return NextResponse.redirect(`http://localhost:3000/signout/${intendedRoute}`);
+    return NextResponse.redirect(`/signout${intendedRoute}`);
    // Corrected redirect URL
   } else {
     // User is authenticated, proceed with the request
