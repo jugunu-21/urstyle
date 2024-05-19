@@ -60,12 +60,12 @@ export default function Signout() {
     }
   };
 
- 
   const handleLogout = () => {
     const auth = getAuth(app);
     signOut(auth).then(() => {
       console.log("Signed out successfully and session cookie cleared");
       toast.success("You Signed Out ");
+      document.cookie = "jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
       if (redirectUrl) {
         router.push(`/${redirectUrl}`);
       } else {
@@ -76,7 +76,11 @@ export default function Signout() {
 
   return (
     <>
-      <div className="bg-orange-700">{userInfo && userInfo.phone_number}</div>
+      <h1 className="bg-black text-red-900">
+          you are a user with phone number{" "}
+          <span>{userInfo && userInfo.phone_number}</span>
+      </h1> 
+      <div className="bg-orange-700"></div>
       <Button onClick={handleLogout}>Sign Out</Button>
     </>
   );
