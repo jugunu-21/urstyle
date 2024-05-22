@@ -18,9 +18,9 @@ export default function Menudropdown({ name, dropdata, onfilterchange }) {
  };
 
  return (
-    <div  className="mx-2 mb-1 mt-2">
+    <div  className="mx-2 mb-1 mt-2   ">
       <div 
-        className="ml-1 inline-block bg-slate-800"
+        className="ml-2 inline-block bg-red-600 "
         // onMouseEnter={handleMouseEnter}
        // onMouseLeave={handleMouseLeave}
      
@@ -28,7 +28,7 @@ export default function Menudropdown({ name, dropdata, onfilterchange }) {
         <div className="flex items-center">
           <button
             type="button"
-            className="relative inline-flex justify-center gap-x-1.5 rounded-md pr-3 py-2 text-gray-900 shadow-sm   w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
+            className="inline-flex justify-center gap-x-1.5 rounded-md pr-3 py-2 text-gray-900 shadow-sm   w-52 font-bold text-lg bg-gray-300 active:bg-gray-300"
             onClick={toggleOptions}
           >
             {name}
@@ -50,7 +50,7 @@ export default function Menudropdown({ name, dropdata, onfilterchange }) {
         </div>
 
         {optionsVisible && (
-          <div className="absolute z-10 bg-gray-300 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className="  bg-slate-800 absolute z-10  mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className="py-1" role="none">
               {dropdata.map((item, index) => (
                 <div key={index}>

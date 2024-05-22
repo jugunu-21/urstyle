@@ -20,7 +20,7 @@ interface CarrouselProps {
 
 const Carrousel: React.FC<CarrouselProps> = ({ caropic }) => {
  return (
-    <Carousel className="w-full">
+    <Carousel className="  w-full">
       <CarouselContent>
         {caropic.map((item, index) => {
           const backgroundStyle = {
@@ -44,8 +44,8 @@ const Carrousel: React.FC<CarrouselProps> = ({ caropic }) => {
           );
         })}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className=" left-8" />
+      <CarouselNext className="right-8"/>
     </Carousel>
  );
 }
