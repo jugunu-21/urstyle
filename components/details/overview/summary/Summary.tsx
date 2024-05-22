@@ -48,10 +48,12 @@ function Summary({ filteredItems, groupIndex }: Props) {
                   <div className="     rounded-md  font-bold ">
                     {cart.name}
                   </div>
-                  <div className="flex items-center">
+                  <div className=" flex flex-row  content-center ">
+            <div className="w-28">
+            <div className="h-4 w-6">
                     <Star len={avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} />
-
-                    <div className="">
+</div></div>
+                    <div className="ml-2 content-center">
                       {avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} Reviews
                     </div>
                   </div>

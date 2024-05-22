@@ -3,7 +3,7 @@ import React from 'react';
 export default function Star({len}) {
   return (
   
-      <div className="flex">
+      <div className="flex  ">
                             {Array.from(
                               { length: len },
                               (_, i) => (
@@ -29,7 +29,7 @@ export default function Star({len}) {
                                   key={i}
                                   className="text-gray-400 h-5 w-5 flex-shrink-0"
                                   viewBox="0 0 20 20"
-                                  fill="currentColor"
+                                  fill="gray"
                                   aria-hidden="true"
                                 >
                                   <path

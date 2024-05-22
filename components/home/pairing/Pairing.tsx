@@ -20,10 +20,10 @@ function Clothes() {
   };
 
   return (
-    <div className="mb-2 ">
-      <div className="text-2xl ml-4  ">
+    <div className="mb-2  ">
+      <div className=" w-36 text-2xl ml-4 font-semibold">
         <Menudropdown 
-          name="categories"
+          name="Categories"
           dropdata={clickFiltersData}
           onfilterchange={handleFilterChange}
         />
@@ -33,8 +33,8 @@ function Clothes() {
           <div key={groupIndex}>
             {(filter === "" || group.look === filter) && (
               <section>
-                {(group.id + 1) % 3 === 0 && ( // Inside Clothes component
-                  <CarouselImage caropicData={caropic} />
+                {(group.id + 1) % 3 === 0 && ( 
+                   <CarouselImage caropicData={caropic} />
                 )}
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg ">
                   <div className="flex space-x-10 m-1 p-2">
