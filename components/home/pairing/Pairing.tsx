@@ -39,7 +39,7 @@ function Clothes() {
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg ">
                   <div className="flex space-x-10 m-1 p-2">
                     <div>
-                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight">
+                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight text-black">
                         {group.desc ? group.desc : "Summer Breeze Outfit"}
                       </h1>
                       <p className="text-gray-500 dark:text-gray-400">
