@@ -1,7 +1,8 @@
 "use client"
 import React from 'react';
-// import Carrousel from "@/components/reusablecomponents/Carrousel"
+import Carrousel from "@/components/reusablecomponents/Carrousel"
 // import caropicData from "@/Data/caropicData"
+import caropic from "@/Data/caropicData";
 export default function Hero() {
   return (
     <div>
@@ -14,7 +15,7 @@ export default function Hero() {
             </h1>
           </div>
         </div>
-        {/* <Carrousel caropic={caropicData} /> */}
+        <Carrousel caropic={caropic} />
         </div>
        
         </div>

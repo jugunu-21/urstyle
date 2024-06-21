@@ -216,7 +216,7 @@ export default function Signup() {
                   className="w-full"
                   onClick={handleOtpSubmit}
                 >
-                  signin
+                  signup
                 </Button>
                 <Button variant="outline" className="w-full my-2">
                   signin with Google

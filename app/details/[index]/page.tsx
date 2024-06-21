@@ -11,18 +11,23 @@ import Summary from "@/components/details/overview/summary/Summary";
 
 function Details() {
   const params = useParams();
-  const productIdArray = Array.isArray(params.index) ? params.index : [params.index];
+  const productIdArray = Array.isArray(params.index)
+    ? params.index
+    : [params.index];
   const [param1] = productIdArray;
   const groupIndex = param1 ? parseInt(param1, 10) : undefined;
- 
+
   // Ensure groupIndex is a valid number and within the bounds of itemsData
-  if (groupIndex === undefined || isNaN(groupIndex) || groupIndex < 0 || groupIndex >= itemsData.length) {
-     return <div>Item not found</div>;
+  if (
+    groupIndex === undefined ||
+    isNaN(groupIndex) ||
+    groupIndex < 0 ||
+    groupIndex >= itemsData.length
+  ) {
+    return <div>Item not found</div>;
   }
- 
+
   const filteredItems = itemsData[groupIndex];
-
-
 
   // const groupIndex = index;
   // const filteredItems = itemsData[groupIndex];
@@ -40,11 +45,15 @@ function Details() {
             Total Price : Rs {avgg({ groupid: groupIndex }).total}
           </div>
 
-          <div className=" m-1 flex w-60">
-        
-              <Star len={avgg({ groupid: groupIndex }).avgRating} />
+          <div className=" m-1 flex flex-row ">
+            <div className="w-28">
+            <div className="h-4 w-6">
+                      
+                      <Star len={avgg({ groupid: groupIndex }).avgRating} />
+                      </div>
+            </div>
             
-
+           
             <div>
               <span className="text-xs text-muted-foreground pl-2">
                 (★{avgg({ groupid: groupIndex }).avgRating}.0)

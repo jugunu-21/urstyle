@@ -20,10 +20,10 @@ function Clothes() {
   };
 
   return (
-    <div className="mb-2 ">
-      <div className="text-2xl ml-4  ">
+    <div className="mb-2  ">
+      <div className=" w-36 text-2xl ml-4 font-semibold">
         <Menudropdown 
-          name="categories"
+          name="Categories"
           dropdata={clickFiltersData}
           onfilterchange={handleFilterChange}
         />
@@ -33,13 +33,13 @@ function Clothes() {
           <div key={groupIndex}>
             {(filter === "" || group.look === filter) && (
               <section>
-                {(group.id + 1) % 3 === 0 && ( // Inside Clothes component
-                  <CarouselImage caropicData={caropic} />
+                {(group.id + 1) % 3 === 0 && ( 
+                   <CarouselImage caropicData={caropic} />
                 )}
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg ">
                   <div className="flex space-x-10 m-1 p-2">
                     <div>
-                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight">
+                      <h1 className=" text-xl sm:text-3xl font-bold tracking-tight text-black">
                         {group.desc ? group.desc : "Summer Breeze Outfit"}
                       </h1>
                       <p className="text-gray-500 dark:text-gray-400">

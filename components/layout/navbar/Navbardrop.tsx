@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import  deleteUser  from "@/components/authentications/deleteuser";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,6 +34,10 @@ export default function Navbardrop() {
         console.error("Error signing out:", error);
       });
   };
+  const handledeleteuser = () => {
+    deleteUser(); 
+    
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -50,7 +55,7 @@ export default function Navbardrop() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
         <DropdownMenuItem>   <Link href="/signin">Login</Link></DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
+        <DropdownMenuItem onClick={ handledeleteuser}>deleteUser</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
