@@ -25,7 +25,7 @@ export default function Product() {
   const [link, setLink] = useState(null);
   const [description, setDescription] = useState(null);
   const [price, setPrice] = useState(null);
-  const [image ,setImage] =useState(null)
+  const [image, setImage] = useState(null)
   useEffect(() => {
     const fetchToken = async () => {
       try {
@@ -37,13 +37,30 @@ export default function Product() {
       }
     };
 
-    fetchToken(); 
+    fetchToken();
   }, []);
-  console.log("jwtTokennnn",jwtToken);
- 
+  console.log("jwtTokennnn", jwtToken);
+  // const handleImageChange = async (e) => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+
+  //   // Read the file as a Blob
+  //   const blob = new Blob([file], { type: file.type });
+
+  //   // Convert the Blob to a Buffer
+  //   const reader = new FileReader();
+  //   reader.onload = function(event) {
+  //     const arrayBuffer = event.target.result;
+  //     const buffer = Buffer.from(arrayBuffer);
+  //     // Encode the Buffer as Base64
+  //     const base64String = buffer.toString('base64');
+  //     setImage(buffer);
+  //   };
+  //   reader.readAsArrayBuffer(blob);
+  // };
   const handleSubmit = async () => {
     // const images = handleFileUpload();
-    console.log(image)
+    console.log("image",image)
 
     const requestBody = {
       pid: pid,
@@ -51,10 +68,18 @@ export default function Product() {
       code: code,
       link: link,
       description: description,
-      price:price,
-      image: image
+      price: price,
+      image:image
+  
     };
-    console.log(requestBody);
+  //   const formData = new FormData();
+
+  // // Append text fields to formData
+  // Object.keys(requestBody).forEach(key => {
+  //   formData.append(key, requestBody[key]);
+  // });
+  // formData.append('image', image);
+  //   console.log(formData);
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/media/product/upload`,
       {
@@ -83,10 +108,10 @@ export default function Product() {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-           a
-            </SheetDescription>
+            <SheetTitle>Add product details </SheetTitle>
+            {/* <SheetDescription>
+           Product form
+            </SheetDescription> */}
           </SheetHeader>
           <div className="grid gap-4 py-4">
             {/* <div className="grid grid-cols-4 items-center gap-4">
@@ -102,8 +127,8 @@ export default function Product() {
               <Input id="username" value="@peduarte" className="col-span-3" />
             </div> */}
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="id"  className="text-right">
-                id
+              <Label htmlFor="id" className="text-right">
+                Product-id
               </Label>
               <input
                 type="number"
@@ -115,7 +140,7 @@ export default function Product() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">
-                Enter ur name
+               Name of product
               </Label>
               <input
                 type="text"
@@ -126,7 +151,7 @@ export default function Product() {
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="code" className="text-right">
-                code
+                Code for the product
               </Label>
               <input
                 type="text"
@@ -139,7 +164,7 @@ export default function Product() {
               <Label htmlFor="Link" className="text-right">
                 Link
               </Label>
-              <input 
+              <input
                 type="text"
                 id="Link"
                 // accept="image/*"
@@ -160,8 +185,8 @@ export default function Product() {
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="price"className="text-right">
-                price
+              <Label htmlFor="price" className="text-right">
+                Price
               </Label>
               <input
                 type="text"
@@ -172,13 +197,13 @@ export default function Product() {
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="photo" className="text-right">
+              <Label htmlFor="text" className="text-right">
                 Add Photo
               </Label>
               <input
                 type="text"
                 id="photo"
-                // accept="image/*"
+                // accept="image/*" // This ensures only image files can be selected
                 onChange={(e)=>setImage(e.target.value)}
                 className="col-span-3"
               />
