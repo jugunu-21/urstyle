@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { app } from "@/trash/config";
+import { app } from "@/app/config";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation"; // Corrected import path

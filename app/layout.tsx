@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/footer/Footer";
 import { Toaster } from 'react-hot-toast';
-
+import {QueryClient ,QueryClientProvider} from "@tanstack/react-query"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,15 +17,18 @@ export default function RootLayout({
  }: Readonly<{
   children: React.ReactNode;
  }>) {
+  const queryClient = new QueryClient()
   return (
      <html>
        <head>
          {/* Include any head elements here, such as <title> or <meta> tags */}
        </head>
        <body>
+       <QueryClientProvider client={queryClient}>
          <div className={inter.className}>{children}</div>
         <Footer />
         <Toaster />   
+        </QueryClientProvider>
        </body>
      </html>
   );

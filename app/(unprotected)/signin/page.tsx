@@ -1,7 +1,7 @@
 "use client"
 import Signin from "@/components/authentications/Signin";
 
-import { app } from "@/trash/config"
+import { app } from "@/app/config"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
