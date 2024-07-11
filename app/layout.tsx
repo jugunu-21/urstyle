@@ -23,7 +23,6 @@ export default function RootLayout({
          {/* Include any head elements here, such as <title> or <meta> tags */}
        </head>
        <body>
-         <Navbar />
          <div className={inter.className}>{children}</div>
         <Footer />
         <Toaster />   

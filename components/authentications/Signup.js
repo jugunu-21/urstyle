@@ -8,7 +8,7 @@ import {
   signOut,
 } from "firebase/auth";
 import Countrycode from "./Countrycode";
-import { app } from "@/app/config";
+import { app } from "@/trash/config";
 import Countrycodedata from "./ContextCountryCode";
 import Image from "next/image";
 import Link from "next/link";

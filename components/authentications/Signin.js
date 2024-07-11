@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import toast from "react-hot-toast";
 import Countrycode from "./Countrycode";
-import { app } from "@/app/config";
+import { app } from "@/trash/config";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";

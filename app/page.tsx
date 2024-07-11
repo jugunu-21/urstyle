@@ -2,29 +2,21 @@
 import Hero from "@/components/home/hero/Hero";
 import Pairing from "@/components/home/pairing/Pairing";
 import Benefits from "@/components/home/benefits/Benefit";
-// import Image from "next/image";
+import Navbar from "@/components/layout/navbar/Navbar";
 import { useEffect } from 'react';
-// import { useRouter } from "next/navigation";
+
 import { useRouter } from "next/navigation";
-// import Cookies from 'js-cookie';
-// import { Toaster } from 'react-hot-toast';
-export default function Home() {
-  // const router = useRouter();
-  // const sessionId = Cookies.get('sessionId');
-  // useEffect(() => {
-  //   const sessionId = Cookies.get('sessionId');
-  //   if (!sessionId) {
-  //     alert("sessionIdhere")
-  //   alert(sessionId)  // Redirect to login page if not authenticated
-  //     router.push('/signin');
-  //     alert("you can signin")
-  //   }
-  // }, []);
+import {QueryClient ,QueryClientProvider} from "@tanstack/react-query"
+const queryclient = new QueryClient()
+export default function page(){
   return (
     <main>
+      <QueryClientProvider client={queryclient} >
+      <Navbar />
       <Hero />
       <Pairing />
       <Benefits />
+      </QueryClientProvider>
       {/* <Toaster /> */}
     </main>
 
