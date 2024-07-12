@@ -11,13 +11,12 @@ const queryclient = new QueryClient()
 export default function page(){
   return (
     <main>
-      <QueryClientProvider client={queryclient} >
+
       <Navbar />
       <Hero />
       <Pairing />
       <Benefits />
-      </QueryClientProvider>
-      {/* <Toaster /> */}
+    
     </main>
 
   );

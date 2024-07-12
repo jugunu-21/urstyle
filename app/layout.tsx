@@ -1,3 +1,4 @@
+// "use client"
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -24,11 +25,11 @@ export default function RootLayout({
          {/* Include any head elements here, such as <title> or <meta> tags */}
        </head>
        <body>
-       <QueryClientProvider client={queryClient}>
+       {/* <QueryClientProvider client={queryClient}> */}
          <div className={inter.className}>{children}</div>
         <Footer />
         <Toaster />   
-        </QueryClientProvider>
+        {/* </QueryClientProvider> */}
        </body>
      </html>
   );

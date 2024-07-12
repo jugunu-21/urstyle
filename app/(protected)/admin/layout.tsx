@@ -1,7 +1,7 @@
 
 import { ThemeProvider } from 'next-themes';
 import { Inter } from "next/font/google";
-import { Sidetooltip } from '@/components/admin/productadd/sidetooltip';
+import { Sidetooltip } from '@/components/admin/product/productutils/layout/sidetooltip';
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({

@@ -74,7 +74,7 @@ import {
 export function Sidetooltip(){
   return(
     <div>
-      <aside className="fixed  left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+      <aside className="fixed  left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex">
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link

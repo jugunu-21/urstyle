@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
-import { Dashboard } from "@/components/admin/productadd/productadd"
+import { Dashboard } from "@/components/admin/product/productadd/productadd"
 
-import { Togglesidetooltip } from "@/components/admin/productadd/togglesidetooltip"
-import BreadCrumbsList from "@/components/admin/productadd/breadCrumbsList"
-import{ DropDownMenu} from "@/components/admin/productadd/dropDownMenu"
+import { Togglesidetooltip } from "@/components/admin/product/productutils/layout/togglesidetooltip"
+import BreadCrumbsList from "@/components/admin/product/productutils/layout/breadCrumbsList"
+import{ DropDownMenu} from "@/components/admin/product/productutils/layout/dropDownMenu"
 import {
     ChevronLeft,
     Home,
@@ -21,6 +21,7 @@ import {
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+// import ProductImageCard from "@/components/admin/forms/productImage"
 export default function Productadd() {
     return (
         <div >
@@ -37,6 +38,7 @@ export default function Productadd() {
                     />
                 </div>
                 <DropDownMenu />
+
             </header>
             <div className="flex min-h-screen w-full flex-col bg-muted/40">
             <Dashboard />
