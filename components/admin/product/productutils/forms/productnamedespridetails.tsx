@@ -14,8 +14,8 @@ interface ProductDetailFormProps {
   setName: (value: string) => void;
   description: string;
   setDescription: (value: string) => void;
-  price: number;
-  setPrice: (value: number) => void;
+  price: string;
+  setPrice: (value: string) => void;
 }
 const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice }: ProductDetailFormProps) => {
   return (
@@ -57,7 +57,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="price"
            
               className="min-h-32"
-              onChange={(e) => setPrice(parseFloat(e.target.value))}
+              onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price..."
             />
             

@@ -1,12 +1,12 @@
 
 export interface ProductRequestBody {
-    pid: string;
+    pid: number;
     name: string;
     code: string;
     link: string;
     description: string;
-    price: number;
-    image: string | null; // Assuming image can be null or a string URL
+    price: string;
+    image: string ; // Assuming image can be null or a string URL
   }
   interface SubmitFunctionArgs {
     requestBody: ProductRequestBody;

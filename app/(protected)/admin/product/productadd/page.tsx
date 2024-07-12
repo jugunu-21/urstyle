@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { Dashboard } from "@/components/admin/product/productadd/productadd"
+import { Dashboard } from "@/components/admin/product/productadd/productAdd"
 
 import { Togglesidetooltip } from "@/components/admin/product/productutils/layout/togglesidetooltip"
 import BreadCrumbsList from "@/components/admin/product/productutils/layout/breadCrumbsList"

@@ -47,8 +47,8 @@ type ProductAffiandCategProps = {
     setCode: (code: string) => void;
     link: string;
     setLink: (link: string) => void;
-    pid:string;
-    setPid:(pid:string)=>void;
+    pid:number;
+    setPid:(pid:number)=>void;
   };
   
 export default function ProductAffiandCateg({code,setCode,link,setLink,pid,setPid}: ProductAffiandCategProps){
@@ -105,9 +105,11 @@ export default function ProductAffiandCateg({code,setCode,link,setLink,pid,setPi
                       <div className="grid gap-3">
                         <Label htmlFor="pid">Category</Label>
 
-                        <Select onValueChange={(value)=>{setPid(value)
-                          console.log("pid ",pid)
-                        }}>
+                        <Select onValueChange={(value) => {
+  const numericValue = Number(value);
+  setPid(numericValue);
+}}>
+                       
                           <SelectTrigger
                             id="pid"
                             aria-label="Select category"

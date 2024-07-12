@@ -52,19 +52,20 @@ import ProductArchieve from "@/components/admin/product/productutils/forms/produ
 import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
 import ProductHeader from "../productutils/forms/productHeader"
 import handleSubmit from "@/components/admin/product/productFunctions/handleSubmit"
+import {ProductRequestBody} from "@/components/admin/product/productFunctions/handleSubmit"
 export function Dashboard() {
-  const [jwtToken, setJwtToken] = useState(null);
-  const [pid, setPid] = useState(null);
-  const [name, setName] = useState(null);
-  const [code, setCode] = useState(null);
-  const [link, setLink] = useState(null);
-  const [description, setDescription] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [image, setImage] = useState(null)
+  const [jwtToken, setJwtToken] = useState<string | null>(null);
+  const [pid, setPid] = useState<number | null>();
+const [name, setName] = useState<string | null>("");
+const [code, setCode] = useState<string | null>("");
+const [link, setLink] = useState<string | null>("");
+const [description, setDescription] = useState<string | null>("");
+const [price, setPrice] = useState<string | null>("");
+const [image, setImage] = useState<string | null>("");
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const resolvedToken = await getTokenFromCookies();
+        const resolvedToken:string|null = await getTokenFromCookies();
         console.log("Fetched jwtToken:", resolvedToken);
         setJwtToken(resolvedToken);
       } catch (error) {
@@ -93,12 +94,12 @@ export function Dashboard() {
   //   };
   //   reader.readAsArrayBuffer(blob);
   // };
-  const onValueChangehandler = (value, setvariable) => {
+  const onValueChangehandler = (value:string ,setVariable:(value:string)=>void) => {
     const valuechange = async () => {
       try {
 
 
-        setvariable(value);
+        setVariable(value);
       } catch (error) {
         console.error("Failed to fetch token:", error);
       }
@@ -108,13 +109,13 @@ export function Dashboard() {
 
   }
   const requestBody = {
-    pid: pid,
-    name: name,
-    code: code,
-    link: link,
-    description: description,
-    price: price,
-    image: image
+    pid: pid ?? 0, // Default to 0 if pid is null or undefined
+    name: name ?? "", // Default to empty string if name is null or undefined
+    code: code ?? "", // Default to empty string if code is null or undefined
+    link: link ?? "", // Default to empty string if link is null or undefined
+    description: description ?? "", // Default to empty string if description is null or undefined
+    price: price ?? "0", // Ensure price is a string, defaulting to "0"
+    image: image ?? "", 
   };
   const handleaftersubmit = () => {
     console.log("aftersubmitaction")
@@ -127,32 +128,40 @@ export function Dashboard() {
     setImage(null);
     console.log("name", name)
   }
+  interface SubmitFunctionArgs {
+    requestBody: ProductRequestBody;
+    jwtToken: string; // Assuming jwtToken is a string
+  }
   const SubmitHandler = () => {
+    if (jwtToken === null) {
+      console.error("JWT Token is required");
+      return; // Optionally, you could redirect the user or show an error message
+    }
     handleSubmit({ requestBody, jwtToken });
   };
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={jwtToken} requestBody={requestBody} />
+        <ProductHeader jwtToken={jwtToken || ""} requestBody={requestBody} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails name={name} setName={setName} description={description} setDescription={setDescription} price={price} setPrice={setPrice} />
+            <Productnamedespridetails  name={name || ""} setName={setName} description={description || ""}  setDescription={setDescription}  price={price || "0"}  setPrice={(value: string) => setPrice(value)} />
 
             {/* <ProductTable price={price} setprice={setPrice}/> */}
 
             <ProductAffiandCateg
-              code={code}
+              code={code||""}
               setCode={setCode}
-              link={link}
+              link={link||""}
               setLink={setLink}
-              pid={pid}
+              pid={pid || 0}
               setPid={setPid}
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <ProductStatus />
-            <ProductImageCard image={image} setImage={setImage} />
+            <ProductImageCard image={image||""} setImage={setImage} />
             {/* <ProductArchieve /> */}
           </div>
         </div>
@@ -160,7 +169,10 @@ export function Dashboard() {
           <Button variant="outline" size="sm">
             Discard
           </Button>
-          <Button size="sm" onClick={() => { handleSubmit({ requestBody, jwtToken }).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error)) }} >Save Product</Button>
+          <Button size="sm" onClick={() => { if (jwtToken === null) {
+    console.error("JWT Token is required");
+    return;
+  } handleSubmit({ requestBody, jwtToken }).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error)) }} >Save Product</Button>
         </div>
       </div>
     </main>
