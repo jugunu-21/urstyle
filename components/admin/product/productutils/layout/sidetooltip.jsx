@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Image from "next/image"
 import Link from "next/link"
@@ -71,10 +72,18 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
+
+import { useFooterVisibility } from '@/components/context/FooterVisibilityContext';
 export function Sidetooltip(){
+  const { isFooterVisible } = useFooterVisibility();
+
+  // Conditionally apply classes or styles based on isFooterVisible
+  const tooltipClass = isFooterVisible ? 'sidetooltip-static' : '';
   return(
-    <div>
-      <aside className="fixed  left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex">
+    <div >
+      {/* <aside  className={`fixed left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex ${tooltipClass}`}> */}
+      <aside className="fixed z-10 inset-y-0 left-0  hidden w-14 flex-col border-r bg-background sm:flex">
+        
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link

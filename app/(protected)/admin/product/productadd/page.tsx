@@ -25,7 +25,7 @@ import { Label } from "@/components/ui/label"
 export default function Productadd() {
     return (
         <div >
-            <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14"></div>
+            <div className=" sticky top-0 flex flex-col sm:gap-4 sm:py-2 sm:pl-14 bg-gray-900">
             <header className="  sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background  px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
                 <Togglesidetooltip />
                 <BreadCrumbsList />
@@ -40,6 +40,7 @@ export default function Productadd() {
                 <DropDownMenu />
 
             </header>
+            </div>
             <div className="flex min-h-screen w-full flex-col bg-muted/40">
             <Dashboard />
             </div>
