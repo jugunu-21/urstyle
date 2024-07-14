@@ -52,20 +52,20 @@ import ProductArchieve from "@/components/admin/product/productutils/forms/produ
 import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
 import ProductHeader from "../productutils/forms/productHeader"
 import handleSubmit from "@/components/admin/product/productFunctions/handleSubmit"
-import {ProductRequestBody} from "@/components/admin/product/productFunctions/handleSubmit"
-export function Dashboard() {
+import { ProductRequestBody } from "@/components/admin/product/productFunctions/handleSubmit"
+export default function Dashboard() {
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [pid, setPid] = useState<number | null>();
-const [name, setName] = useState<string | null>("");
-const [code, setCode] = useState<string | null>("");
-const [link, setLink] = useState<string | null>("");
-const [description, setDescription] = useState<string | null>("");
-const [price, setPrice] = useState<string | null>("");
-const [image, setImage] = useState<string | null>("");
+  const [name, setName] = useState<string | null>("");
+  const [code, setCode] = useState<string | null>("");
+  const [link, setLink] = useState<string | null>("");
+  const [description, setDescription] = useState<string | null>("");
+  const [price, setPrice] = useState<string | null>("");
+  const [image, setImage] = useState<string | null>("");
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const resolvedToken:string|null = await getTokenFromCookies();
+        const resolvedToken: string | null = await getTokenFromCookies();
         console.log("Fetched jwtToken:", resolvedToken);
         setJwtToken(resolvedToken);
       } catch (error) {
@@ -94,7 +94,7 @@ const [image, setImage] = useState<string | null>("");
   //   };
   //   reader.readAsArrayBuffer(blob);
   // };
-  const onValueChangehandler = (value:string ,setVariable:(value:string)=>void) => {
+  const onValueChangehandler = (value: string, setVariable: (value: string) => void) => {
     const valuechange = async () => {
       try {
 
@@ -115,7 +115,7 @@ const [image, setImage] = useState<string | null>("");
     link: link ?? "", // Default to empty string if link is null or undefined
     description: description ?? "", // Default to empty string if description is null or undefined
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
-    image: image ?? "", 
+    image: image ?? "",
   };
   const handleaftersubmit = () => {
     console.log("aftersubmitaction")
@@ -146,14 +146,14 @@ const [image, setImage] = useState<string | null>("");
         <ProductHeader jwtToken={jwtToken || ""} requestBody={requestBody} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails  name={name || ""} setName={setName} description={description || ""}  setDescription={setDescription}  price={price || "0"}  setPrice={(value: string) => setPrice(value)} />
+            <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || "0"} setPrice={(value: string) => setPrice(value)} />
 
             {/* <ProductTable price={price} setprice={setPrice}/> */}
 
             <ProductAffiandCateg
-              code={code||""}
+              code={code || ""}
               setCode={setCode}
-              link={link||""}
+              link={link || ""}
               setLink={setLink}
               pid={pid || 0}
               setPid={setPid}
@@ -161,7 +161,7 @@ const [image, setImage] = useState<string | null>("");
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <ProductStatus />
-            <ProductImageCard image={image||""} setImage={setImage} />
+            <ProductImageCard image={image || ""} setImage={setImage} />
             {/* <ProductArchieve /> */}
           </div>
         </div>
@@ -169,10 +169,12 @@ const [image, setImage] = useState<string | null>("");
           <Button variant="outline" size="sm">
             Discard
           </Button>
-          <Button size="sm" onClick={() => { if (jwtToken === null) {
-    console.error("JWT Token is required");
-    return;
-  } handleSubmit({ requestBody, jwtToken }).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error)) }} >Save Product</Button>
+          <Button size="sm" onClick={() => {
+            if (jwtToken === null) {
+              console.error("JWT Token is required");
+              return;
+            } handleSubmit({ requestBody, jwtToken }).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
+          }} >Save Product</Button>
         </div>
       </div>
     </main>

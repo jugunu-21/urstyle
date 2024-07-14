@@ -70,9 +70,9 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
-export function Togglesidetooltip(){
+export function ToggleSideToolTip(){
     return(
-        <Sheet className="pl-">
+        <Sheet >
         <SheetTrigger asChild>
           <Button size="icon" variant="outline" className="sm:hidden">
             <PanelLeft className="h-5 w-5" />

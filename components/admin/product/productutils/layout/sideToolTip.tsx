@@ -73,12 +73,12 @@ import {
   TooltipProvider
 } from "@/components/ui/tooltip"
 
-import { useFooterVisibility } from '@/components/context/FooterVisibilityContext';
-export function Sidetooltip(){
-  const { isFooterVisible } = useFooterVisibility();
+// import { useFooterVisibility } from '@/components/context/FooterVisibilityContext';
+export function SideToolTip(){
+  // const { isFooterVisible } = useFooterVisibility();
 
   // Conditionally apply classes or styles based on isFooterVisible
-  const tooltipClass = isFooterVisible ? 'sidetooltip-static' : '';
+  // const tooltipClass = isFooterVisible ? 'sidetooltip-static' : '';
   return(
     <div >
       {/* <aside  className={`fixed left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex ${tooltipClass}`}> */}
@@ -108,26 +108,26 @@ export function Sidetooltip(){
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/admin/product/productfetch"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <ShoppingCart className="h-5 w-5" />
-                  <span className="sr-only">Orders</span>
+                  <span className="sr-only">ProductList</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Orders</TooltipContent>
+              <TooltipContent side="right">ProductsList</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/admin/product/productadd"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Package className="h-5 w-5" />
-                  <span className="sr-only">Products</span>
+                  <span className="sr-only"> AddProducts</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Products</TooltipContent>
+              <TooltipContent side="right">AddProducts</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>

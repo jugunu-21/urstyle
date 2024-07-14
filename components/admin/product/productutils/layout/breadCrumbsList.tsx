@@ -70,29 +70,27 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
-export default function BreadCrumbsList(){
-    return(
-      <div className="pl-8">
+export default function BreadCrumbsList({ segments }: { segments: string[] }) {
+
+  return (
+    <div className="pl-2">
       <Breadcrumb className="  hidden md:flex">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="#">Dashboard</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="#">Orders</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>Recent Orders</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
+        <BreadcrumbList>
+        {Array.isArray(segments) && segments.slice(1).map((segment, index) => {
+            const capitalizedSegment = segment.charAt(0).toUpperCase() + segment.slice(1);
+    return( <>
+              <BreadcrumbItem key={index}>
+                <BreadcrumbLink asChild>
+                  <Link href="#">{capitalizedSegment}</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              </>)
+})}
+
+        </BreadcrumbList>
+      </Breadcrumb>
     </div>
-    )
+  )
 
 }
