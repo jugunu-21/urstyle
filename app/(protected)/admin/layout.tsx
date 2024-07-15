@@ -5,9 +5,6 @@ import { SideToolTip } from '@/components/admin/product/productutils/layout/side
 import { ToggleSideToolTip } from "@/components/admin/product/productutils/layout/toggleSideToolTip"
 import BreadCrumbsList from "@/components/admin/product/productutils/layout/breadCrumbsList"
 import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
-// import {ToggleSideToolTip } from '@/components/admin/product/productutils/layout/toggleSideToolTip';
-
-
 import {
   ChevronLeft,
   Home,
@@ -25,18 +22,41 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useEffect } from 'react';
-import { useRef ,useState} from 'react';
+import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  interface Crumb {
+    href: string;
+    label: string;
+  }
+  const pathname = usePathname()
 
-    const url = new URL(window.location.href);
-    const pathSegments = url.pathname.split('/').filter(Boolean);
-    console.log("p",pathSegments)
- 
+  const crumbs = pathname.split("/").reduce<Crumb[]>((acc, curr, index, arr) => {
+    if (curr === "") return acc
+
+    const href = "/" + arr.slice(1, index + 1).join("/")
+    const label = curr.charAt(0).toUpperCase() + curr.slice(1)
+    const pathParts = ["/"].concat(arr.slice(index + 1));
+
+    const newPath = pathParts.join("/");
+
+    // Create a new Crumb object with the modified href and label arrays
+    const newCrumb: Crumb = {
+      href,
+      label
+    };
+
+    acc.push(newCrumb);
+    return acc;
+  }, [])
+  const transformedLabels = crumbs.map(crumb => crumb.label.split('/').map(part => part.trim()));
+
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
@@ -47,7 +67,7 @@ export default function RootLayout({
         <div className="  sticky top-0 flex flex-col sm:gap-4 sm:py-2 sm:pl-14 bg-gray-900">
           <header className="  sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background  px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
             <ToggleSideToolTip />
-            <BreadCrumbsList segments={pathSegments}/>
+            <BreadCrumbsList segments={transformedLabels.flat()}  />
             <div className="relative ml-auto flex-1 md:grow-0">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input

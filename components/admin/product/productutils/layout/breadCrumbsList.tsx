@@ -76,7 +76,7 @@ export default function BreadCrumbsList({ segments }: { segments: string[] }) {
     <div className="pl-2">
       <Breadcrumb className="  hidden md:flex">
         <BreadcrumbList>
-        {Array.isArray(segments) && segments.slice(1).map((segment, index) => {
+        {Array.isArray(segments) && segments.slice(1).filter(segment => typeof segment === 'string'&& segment !== null).map((segment, index) => {
             const capitalizedSegment = segment.charAt(0).toUpperCase() + segment.slice(1);
     return( <>
               <BreadcrumbItem key={index}>
