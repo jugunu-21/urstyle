@@ -117,6 +117,8 @@ export default function Dashboard() {
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
     image: image ?? "",
   };
+    const apiroute="/media/product/upload"
+
   const handleaftersubmit = () => {
     console.log("aftersubmitaction")
     setPid(null);
@@ -137,7 +139,8 @@ export default function Dashboard() {
       console.error("JWT Token is required");
       return; // Optionally, you could redirect the user or show an error message
     }
-    handleSubmit({ requestBody, jwtToken });
+  
+    handleSubmit({ requestBody, jwtToken ,apiroute });
   };
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -173,7 +176,7 @@ export default function Dashboard() {
             if (jwtToken === null) {
               console.error("JWT Token is required");
               return;
-            } handleSubmit({ requestBody, jwtToken }).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
+            } handleSubmit({ requestBody, jwtToken ,apiroute}).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
           }} >Save Product</Button>
         </div>
       </div>

@@ -73,17 +73,15 @@ import {
   TooltipProvider
 } from "@/components/ui/tooltip"
 
-// import { useFooterVisibility } from '@/components/context/FooterVisibilityContext';
-export function SideToolTip(){
-  // const { isFooterVisible } = useFooterVisibility();
 
-  // Conditionally apply classes or styles based on isFooterVisible
-  // const tooltipClass = isFooterVisible ? 'sidetooltip-static' : '';
-  return(
+
+export function SideToolTip({onclickfun}: {onclickfun: () => void}) {
+
+  return (
     <div >
       {/* <aside  className={`fixed left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex ${tooltipClass}`}> */}
       <aside className="fixed z-10 inset-y-0 left-0  hidden w-14 flex-col border-r bg-background sm:flex">
-        
+
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
@@ -107,13 +105,17 @@ export function SideToolTip(){
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link
-                  href="/admin/product/productfetch"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg focus:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                <Button
+                  onClick={async () =>onclickfun()}
                 >
-                  <ShoppingCart className="h-5 w-5" />
-                  <span className="sr-only">ProductList</span>
-                </Link>
+                  <Link
+                    href="/admin/product/productfetch" // Use React Router's `to` prop for navigation
+                    className="flex h-9 w-9 items-center justify-center rounded-lg focus:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                  >
+                    <ShoppingCart className="h-5 w-5" />
+                    <span className="sr-only">ProductList</span>
+                  </Link>
+                </Button>
               </TooltipTrigger>
               <TooltipContent side="right">AddProductsList</TooltipContent>
             </Tooltip>

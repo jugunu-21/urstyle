@@ -70,32 +70,36 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
-export function DropDownMenu (){
-    return(
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="overflow-hidden rounded-full"
-              >
-                <Image
-                  src="/placeholder-user.jpg"
-                  width={36}
-                  height={36}
-                  alt="Avatar"
-                  className="overflow-hidden rounded-full"
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-    )
+type dropdownmenuprops = {
+  item: string[], trigger: () => JSX.Element, label: string
+}
+export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
+  const itemsLength = item.length;
+  return (
+
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="overflow-hidden rounded-full"
+        >
+          {trigger()}   </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>{label}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+
+        {item.map((item, index) => {
+
+          return (
+            <div key={index}>
+              <DropdownMenuItem>{item}</DropdownMenuItem>
+              {index !== itemsLength - 1 && <DropdownMenuSeparator />}
+            </div>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
 }
