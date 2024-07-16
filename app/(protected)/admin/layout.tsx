@@ -29,7 +29,7 @@ import { ProductsContext,Productsprops,minimalProductsprops } from '@/components
 import getTokenFromCookies from "@/components/helpers/getcookie";
 // import Dashboard from "@/components/admin/product/productadd/productAdd"
 
-import apiCall from '@/components/admin/product/productFunctions/apiCalls';
+import ApiFetchProducts from '@/components/admin/product/productFunctions/apiFetchProducts';
 import { useEffect, useState } from 'react';
 const inter = Inter({ subsets: ["latin"] });
 
@@ -97,7 +97,7 @@ export default function RootLayout({
     fetchToken();
     const fetchData = async () => {
       
-      const result: Productsprops|undefined = await apiCall({ jwtToken }); // Replace with actual JWT token retrieval logic
+      const result: Productsprops|undefined = await ApiFetchProducts({ jwtToken }); // Replace with actual JWT token retrieval logic
       console.log("resullltt",result)
       setData(result || minimalProductsprops); // Update the context value with fetched data or fallback
     };
@@ -109,7 +109,7 @@ export default function RootLayout({
  
   const onclick = async () => {
     {
-      const datas: Productsprops|undefined = await apiCall({ jwtToken }); // Await the completion of SubmitHandler
+      const datas: Productsprops|undefined = await ApiFetchProducts({ jwtToken }); // Await the completion of SubmitHandler
       console.log("Submission onclick completed", datas)
       console.log("data",data)
     setData(datas)

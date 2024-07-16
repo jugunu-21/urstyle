@@ -3,7 +3,7 @@
 import React, { useState,useEffect } from 'react';
 import getTokenFromCookies from "@/components/helpers/getcookie";
 import Dashboard from "@/components/admin/product/productadd/productAdd"
-import handleSubmit from "@/components/admin/product/productFunctions/handleSubmit"
+
 // import ProductImageCard from "@/components/admin/forms/productImage"
 export default function Productadd() {
    

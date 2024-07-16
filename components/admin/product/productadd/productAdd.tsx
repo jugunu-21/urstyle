@@ -2,13 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   ChevronLeft,
-
   PlusCircle,
-
 } from "lucide-react"
-
 import { Badge } from "@/components/ui/badge"
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -18,7 +14,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -28,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
 import {
   Table,
   TableBody,
@@ -51,8 +45,8 @@ import ProductAffiandCateg from "@/components/admin/product/productutils/forms/p
 import ProductArchieve from "@/components/admin/product/productutils/forms/productArchieve"
 import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
 import ProductHeader from "../productutils/forms/productHeader"
-import handleSubmit from "@/components/admin/product/productFunctions/handleSubmit"
-import { ProductRequestBody } from "@/components/admin/product/productFunctions/handleSubmit"
+import {ProductDataInterface} from "@/components/admin/product/productutils/productServices/productDataInterface"
+import PostApiCall from "../productFunctions/postApiCall"
 export default function Dashboard() {
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [pid, setPid] = useState<number | null>();
@@ -76,24 +70,7 @@ export default function Dashboard() {
     fetchToken();
   }, []);
   console.log("jwtTokennnn", jwtToken);
-  // const handleImageChange = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (!file) return;
 
-  //   // Read the file as a Blob
-  //   const blob = new Blob([file], { type: file.type });
-
-  //   // Convert the Blob to a Buffer
-  //   const reader = new FileReader();
-  //   reader.onload = function(event) {
-  //     const arrayBuffer = event.target.result;
-  //     const buffer = Buffer.from(arrayBuffer);
-  //     // Encode the Buffer as Base64
-  //     const base64String = buffer.toString('base64');
-  //     setImage(buffer);
-  //   };
-  //   reader.readAsArrayBuffer(blob);
-  // };
   const onValueChangehandler = (value: string, setVariable: (value: string) => void) => {
     const valuechange = async () => {
       try {
@@ -117,7 +94,7 @@ export default function Dashboard() {
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
     image: image ?? "",
   };
-    const apiroute="/media/product/upload"
+
 
   const handleaftersubmit = () => {
     console.log("aftersubmitaction")
@@ -131,16 +108,17 @@ export default function Dashboard() {
     console.log("name", name)
   }
   interface SubmitFunctionArgs {
-    requestBody: ProductRequestBody;
+    requestBody: ProductDataInterface;
     jwtToken: string; // Assuming jwtToken is a string
   }
+      const apiroute="/media/product/upload"
   const SubmitHandler = () => {
     if (jwtToken === null) {
       console.error("JWT Token is required");
       return; // Optionally, you could redirect the user or show an error message
     }
   
-    handleSubmit({ requestBody, jwtToken ,apiroute });
+    PostApiCall({ requestBody, jwtToken ,apiroute });
   };
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -176,7 +154,7 @@ export default function Dashboard() {
             if (jwtToken === null) {
               console.error("JWT Token is required");
               return;
-            } handleSubmit({ requestBody, jwtToken ,apiroute}).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
+            } PostApiCall({ requestBody, jwtToken ,apiroute}).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
           }} >Save Product</Button>
         </div>
       </div>

@@ -1,18 +1,11 @@
 
-export interface ProductRequestBody {
-    pid: number;
-    name: string;
-    code: string;
-    link: string;
-    description: string;
-    price: string;
-    image: string ; // Assuming image can be null or a string URL
-  }
+// 
+import {ProductDataInterface} from "../productutils/productServices/productDataInterface"
   // interface SubmitFunctionArgs {
   //   requestBody: ProductRequestBody|null;
   //   jwtToken: string; // Assuming jwtToken is a string
   // }
-  async function handleSubmit(args: { requestBody?: ProductRequestBody | null; jwtToken: string ,apiroute:string}) {
+  async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken: string ,apiroute:string}) {
     const { requestBody, jwtToken,apiroute} = args;
     console.log("submitfunction");
     console.log("requestBody", requestBody);
@@ -50,4 +43,4 @@ export interface ProductRequestBody {
     console.log(data)
     return data;
   }
-export default handleSubmit;
+export default PostApiCall;

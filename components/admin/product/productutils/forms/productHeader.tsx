@@ -44,14 +44,16 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import { ProductRequestBody } from "@/components/admin/product/productFunctions/handleSubmit";
+import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface";
 
 interface SubmitHandlerInterface {
   jwtToken:string
-  requestBody:ProductRequestBody
+  requestBody:ProductDataInterface
 }
-import handleSubmit from "@/components/admin/product/productFunctions/handleSubmit"
+
+import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
 export default function ProductHeader({jwtToken, requestBody}:SubmitHandlerInterface) {
+  
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="icon" className="h-7 w-7">
@@ -69,7 +71,7 @@ export default function ProductHeader({jwtToken, requestBody}:SubmitHandlerInter
           Discard
         </Button>
         <Button size="sm" onClick={()=>{
-          handleSubmit({requestBody,jwtToken})
+          ApiUploadProduct({jwtToken,requestBody})
           console.log("submitted ")
         }}>Save Product</Button>
       </div>
