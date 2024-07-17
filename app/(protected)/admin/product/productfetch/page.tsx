@@ -6,7 +6,7 @@ import React, { useState,useEffect } from 'react';
 import {Dashboard} from "@/components/admin/product/productFetch/productFetch"
 
 
-export default function Productadd() {
+export default function ProductFetch() {
 
     return (
         <div >
@@ -15,5 +15,4 @@ export default function Productadd() {
             </div>
         </div>
 
-    )
-}
+    )}

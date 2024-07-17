@@ -70,36 +70,67 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
+import { useRouter } from "next/navigation"; // Corrected import path
 type dropdownmenuprops = {
-  item: string[], trigger: () => JSX.Element, label: string
+  item: string[], trigger: () => JSX.Element, label: string, index?: number
 }
-export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
+export function DropDownMenu({ item, label, trigger, index }: dropdownmenuprops) 
+{
+  const router = useRouter();
   const itemsLength = item.length;
-  return (
 
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="overflow-hidden rounded-full"
-        >
-          {trigger()}   </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{label}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+  // Define the function you want to trigger when "update" is found
+  // type UpdateFoundParams = {
+  //   inn: number;
+  // };
+  // const handleUpdateFound = (inn: number) => {
+  //   console.log("Update found!");
+  //   console.log("index",index)
+  //   router.push(`/admin/product/productUpdate/${inn}`)
 
-        {item.map((item, index) => {
+  //   // Add any additional logic you need here
+  // };
 
-          return (
-            <div key={index}>
-              <DropdownMenuItem>{item}</DropdownMenuItem>
-              {index !== itemsLength - 1 && <DropdownMenuSeparator />}
-            </div>
-          );
-        })}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}
+  // function onClicked() {
+  //   const triggerData = "Update";
+  //   // Iterate over the item array
+  //   for (let i = 0; i < itemsLength; i++) {
+  //     if (item[i].includes(triggerData)) {
+  //       // Call the function if "update" is found
+  //       handleUpdateFound(i);
+  //       break; // Exit the loop once "update" is found
+  //     }
+  //   }
+  // }
+    return (
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="icon"
+            className="overflow-hidden rounded-full"
+          >
+            {trigger()}   </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>{label}</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+
+          {item.map((item, i) => {
+
+            return (
+              <div key={i} onClick={() => {
+                if (item === "Update") {
+                  router.push(`/admin/product/productUpdate/${index}`);
+                }
+              }}>
+                <DropdownMenuItem>{item}</DropdownMenuItem>
+                {i !== itemsLength - 1 && <DropdownMenuSeparator />}
+              </div>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    )
+  }

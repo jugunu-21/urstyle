@@ -58,7 +58,7 @@ export function Dashboard() {
         )
     }
     const label = "Action"
-    const item = ["create", "Delete"]
+    const item = ["Create", "Update"]
     if (!Array.isArray(contextValue)) {
         return <div>Loading products...</div>;
     }
@@ -130,7 +130,7 @@ export function Dashboard() {
                                                             {data.link}
                                                         </TableCell>
                                                         <TableCell>
-                                                            <DropDownMenu item={item} label={label} trigger={trigger} />
+                                                            <DropDownMenu item={item} label={label} trigger={trigger} index={index} />
                                                         </TableCell>
                                                     </TableRow>
                                                 </>

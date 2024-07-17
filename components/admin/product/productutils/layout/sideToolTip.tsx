@@ -105,19 +105,19 @@ export function SideToolTip({onclickfun}: {onclickfun: () => void}) {
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button
+                <Button className=' bg-blue focus:none hover:bg-blue'
                   onClick={async () =>onclickfun()}
                 >
                   <Link
                     href="/admin/product/productfetch" // Use React Router's `to` prop for navigation
-                    className="flex h-9 w-9 items-center justify-center rounded-lg focus:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                    className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   >
                     <ShoppingCart className="h-5 w-5" />
-                    <span className="sr-only">ProductList</span>
+                    <span className="sr-only">ProductsTable</span>
                   </Link>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">AddProductsList</TooltipContent>
+              <TooltipContent side="right">ProductsTable</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>

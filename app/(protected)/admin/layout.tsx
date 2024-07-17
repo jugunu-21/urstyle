@@ -25,7 +25,7 @@ import { Label } from "@/components/ui/label"
 
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
-import { ProductsContext,Productsprops,minimalProductsprops } from '@/components/context/mycontext';
+import { ProductsContext, Productsprops, minimalProductsprops } from '@/components/context/mycontext';
 import getTokenFromCookies from "@/components/helpers/getcookie";
 // import Dashboard from "@/components/admin/product/productadd/productAdd"
 
@@ -78,7 +78,7 @@ export default function RootLayout({
   };
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [data, setData] = useState<Productsprops | undefined>(minimalProductsprops);
-  
+
   useEffect(() => {
     const fetchToken = async () => {
       try {
@@ -96,29 +96,29 @@ export default function RootLayout({
 
     fetchToken();
     const fetchData = async () => {
-      
-      const result: Productsprops|undefined = await ApiFetchProducts({ jwtToken }); // Replace with actual JWT token retrieval logic
-      console.log("resullltt",result)
+
+      const result: Productsprops | undefined = await ApiFetchProducts({ jwtToken }); // Replace with actual JWT token retrieval logic
+      console.log("resullltt", result)
       setData(result || minimalProductsprops); // Update the context value with fetched data or fallback
     };
 
     fetchData();
   }, [setData]);
 
- 
- 
+
+
   const onclick = async () => {
     {
-      const datas: Productsprops|undefined = await ApiFetchProducts({ jwtToken }); // Await the completion of SubmitHandler
+      const datas: Productsprops | undefined = await ApiFetchProducts({ jwtToken }); // Await the completion of SubmitHandler
       console.log("Submission onclick completed", datas)
-      console.log("data",data)
-    setData(datas)
-    // Await the completion of SubmitHandler
+      console.log("data", data)
+      setData(datas)
+      // Await the completion of SubmitHandler
       console.log("Submission onclickcompletedafterset", data); // This will run after SubmitHandler completes
     }
   }
-  
-  
+
+
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
@@ -146,7 +146,7 @@ export default function RootLayout({
         </div>
         <ProductsContext.Provider value={data || minimalProductsprops}>
 
-        <div className={inter.className}>{children}</div>
+          <div className={inter.className}>{children}</div>
         </ProductsContext.Provider>
       </ThemeProvider>
     </>
