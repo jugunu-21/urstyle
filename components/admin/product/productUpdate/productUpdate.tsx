@@ -53,7 +53,7 @@ import { createContext } from "react"
 import { ProductsContext } from "@/components/context/mycontext"
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-export default  function Dashboard({ index }: { index: number | undefined }) {
+export default function Dashboard({ index }: { index: number | undefined }) {
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [pid, setPid] = useState<number | null>();
   const [id, setId] = useState<string>("0");
