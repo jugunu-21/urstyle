@@ -103,6 +103,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               id="link"
               type="text"
               placeholder=".com"
+              defaultValue={link}
               onChange={(e) => setLink(e.target.value)}
 
             />
@@ -125,6 +126,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               <SelectTrigger
                 id="pid"
                 aria-label="Select category"
+                defaultValue={pid}
               >
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -150,7 +152,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               <SelectTrigger
                 id="code"
                 aria-label="Select subcategory"
-
+                defaultValue={code}
               >
                 <SelectValue placeholder="Select subcategory" />
               </SelectTrigger>

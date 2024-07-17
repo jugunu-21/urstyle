@@ -45,15 +45,17 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface";
-
+import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
-  jwtToken:string
-  requestBody:ProductDataInterface
+  jwtToken: string
+  requestBody: ProductDataInterface
+  id?: string
 }
-
+import { useRouter } from "next/navigation";
 import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
-export default function ProductHeader({jwtToken, requestBody}:SubmitHandlerInterface) {
-  
+import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpdateProduct';
+export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandlerInterface) {
+  const router = useRouter();
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="icon" className="h-7 w-7">
@@ -70,10 +72,34 @@ export default function ProductHeader({jwtToken, requestBody}:SubmitHandlerInter
         <Button variant="outline" size="sm">
           Discard
         </Button>
-        <Button size="sm" onClick={()=>{
-          ApiUploadProduct({jwtToken,requestBody})
-          console.log("submitted ")
-        }}>Save Product</Button>
+
+        {id == null ? (
+          <Button size="sm" onClick={() => {
+
+            ApiUploadProduct({ jwtToken, requestBody })
+
+
+            console.log("submitted ")
+          }}>Save Product</Button>
+
+        ) : (<Button size="sm" onClick={() => {
+          if (jwtToken === null) {
+            console.error("JWT Token is required");
+            return;
+          }
+          console.log("iddd", id);
+          ApiUpdateProduct({ requestBody, jwtToken, id })
+            .then(() =>{ router.push("/admin/product/productfetch")
+        
+              toast.success("sucessfully updated");
+            }
+          )
+        
+            .catch((error) => console.error("submission error:", error));
+        }}>Save updatedProduct</Button>)}
+
+        
+
       </div>
     </div>
   )

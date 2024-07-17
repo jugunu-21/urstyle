@@ -61,7 +61,7 @@ export default function Dashboard() {
       try {
         const resolvedToken: string | null = await getTokenFromCookies();
         console.log("Fetched jwtToken:", resolvedToken);
-        setJwtToken(resolvedToken);
+        // setJwtToken(resolvedToken);
       } catch (error) {
         console.error("Failed to fetch token:", error);
       }

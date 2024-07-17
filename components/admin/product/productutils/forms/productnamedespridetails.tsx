@@ -35,6 +35,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               type="text"
               className="w-full"
               placeholder="Enter Name of Product"
+              defaultValue={name}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -47,6 +48,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="description"
               placeholder="Enter description."
               className="min-h-32"
+              defaultValue={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -57,6 +59,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="price"
            
               className="min-h-32"
+              defaultValue={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price..."
             />

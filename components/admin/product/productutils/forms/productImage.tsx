@@ -18,6 +18,7 @@ function ProductImageCard( {image,setImage}: ProductImageCardprops) {
 return(
     <div> <Card
     className="overflow-hidden" x-chunk="dashboard-07-chunk-4"
+    
   >
     <CardHeader>
       <CardTitle>Product Images</CardTitle>

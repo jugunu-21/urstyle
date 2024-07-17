@@ -11,7 +11,7 @@ export default function ApiFetchProducts({jwtToken}:{jwtToken:string|null})  {
 
 
   const apiroute = "/media/product/fetch"
-  let data: Array<object>;
+
   const SubmitHandler = async () => {
     if (jwtToken === null) {
       console.error("JWT Token is required");

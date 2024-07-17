@@ -2,6 +2,7 @@
 
 
  export const minimalProductsprops: Productsprops = [{
+    id:'',
     link: '',
     code: '',
     pid: 0,
@@ -16,6 +17,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 export type Productsprops = [{
+    id:string,
     code: string;
     link: string;
     pid: number;
