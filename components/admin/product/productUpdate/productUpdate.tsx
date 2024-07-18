@@ -172,7 +172,7 @@ export default function Dashboard({ index }: { index: number | undefined }) {
             {/* <ProductArchieve /> */}
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2 ">
+        <div className="flex items-center justify-center gap-2 md:hidden ">
           <Button variant="outline" size="sm">
             Discard
           </Button>
@@ -190,7 +190,7 @@ export default function Dashboard({ index }: { index: number | undefined }) {
   )
 
     .catch((error) => console.error("submission error:", error));
-}}>Save updatedProduct</Button>
+}}>Save Product</Button>
         </div>
       </div>
     </main>

@@ -70,19 +70,20 @@ import {
   TooltipTrigger,
   TooltipProvider
 } from "@/components/ui/tooltip"
+import { useState } from "react"
+export function ToggleSideToolTip({onclickfun}: {onclickfun: () => void}){
 
-export function ToggleSideToolTip(){
-
-
+const [sheet,setSheet]=useState("open")
     return(
         <Sheet >
         <SheetTrigger asChild>
-          <Button size="icon" variant="outline" className="sm:hidden">
+          <Button size="icon" variant="outline" className="sm:hidden" onClick={()=>setSheet("open")} >
             <PanelLeft className="h-5 w-5" />
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
+        {sheet=="open" &&
+        <SheetContent side="left" className="sm:max-w-xs" onClick={()=>setSheet("close")}>
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               href="#"
@@ -92,25 +93,25 @@ export function ToggleSideToolTip(){
               <span className="sr-only">Acme Inc</span>
             </Link>
             <Link
-              href="#"
+              href="/admin/product"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
               <Home className="h-5 w-5" />
               Dashboard
             </Link>
             <Link
-              href="#"
+             href="/admin/product/productfetch"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
               <ShoppingCart className="h-5 w-5"  />
-              Orders
+              ProductsTable
             </Link>
             <Link
-              href="#"
-              className="flex items-center gap-4 px-2.5 text-foreground"
+           href="/admin/product/productadd"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
               <Package className="h-5 w-5" />
-              Products
+              AddProducts
             </Link>
             <Link
               href="#"
@@ -127,7 +128,7 @@ export function ToggleSideToolTip(){
               Settings
             </Link>
           </nav>
-        </SheetContent>
+        </SheetContent>}
       </Sheet>
     )
 }

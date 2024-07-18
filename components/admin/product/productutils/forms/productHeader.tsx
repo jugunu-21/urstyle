@@ -77,7 +77,12 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
           <Button size="sm" onClick={() => {
 
             ApiUploadProduct({ jwtToken, requestBody })
+            .then(() => {
+              router.push("/admin/product/productfetch")
 
+              toast.success("sucessfully uploaded");
+            }
+            )
 
             console.log("submitted ")
           }}>Save Product</Button>
@@ -89,16 +94,17 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
           }
           console.log("iddd", id);
           ApiUpdateProduct({ requestBody, jwtToken, id })
-            .then(() =>{ router.push("/admin/product/productfetch")
-        
+            .then(() => {
+              router.push("/admin/product/productfetch")
+
               toast.success("sucessfully updated");
             }
-          )
-        
-            .catch((error) => console.error("submission error:", error));
-        }}>Save updatedProduct</Button>)}
+            )
 
-        
+            .catch((error) => console.error("submission error:", error));
+        }}>Save Product</Button>)}
+
+
 
       </div>
     </div>

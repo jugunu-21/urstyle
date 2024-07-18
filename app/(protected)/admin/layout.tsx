@@ -128,7 +128,7 @@ export default function RootLayout({
         </div>
         <div className="  sticky top-0 flex flex-col sm:gap-4 sm:py-2 sm:pl-14 bg-gray-900">
           <header className="  sticky top-0 z-99 flex h-14 items-center gap-4 border-b bg-background  px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <ToggleSideToolTip />
+            <ToggleSideToolTip onclickfun={onclick}/>
             <BreadCrumbsList segments={transformedLabels.flat()} />
             <div className="relative ml-auto flex-1 md:grow-0">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -144,10 +144,10 @@ export default function RootLayout({
         </div>
         <div>
         </div>
-        <ProductsContext.Provider value={data || minimalProductsprops}>
+        {/* <ProductsContext.Provider value={data || minimalProductsprops}> */}
 
           <div className={inter.className}>{children}</div>
-        </ProductsContext.Provider>
+        {/* </ProductsContext.Provider> */}
       </ThemeProvider>
     </>
   );

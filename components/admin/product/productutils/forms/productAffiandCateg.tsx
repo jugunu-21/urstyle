@@ -143,7 +143,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
           </div>
           <div className="grid gap-3">
             <Label htmlFor="code">
-              Subcategory (optional)
+              Subcategory
             </Label>
             <Select onValueChange={(value) => {
               setCode(value)

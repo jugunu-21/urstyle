@@ -67,6 +67,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+
 export default function statusandFilter() {
 
 
@@ -81,7 +82,7 @@ export default function statusandFilter() {
                 </TabsTrigger>
             </TabsList>
             <div className="ml-auto flex items-center gap-2">
-                <DropdownMenu>
+                {/* <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" size="sm" className="h-8 gap-1">
                             <ListFilter className="h-3.5 w-3.5" />
@@ -101,18 +102,23 @@ export default function statusandFilter() {
                             Archived
                         </DropdownMenuCheckboxItem>
                     </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> */}
                 <Button size="sm" variant="outline" className="h-8 gap-1">
                     <File className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                         Export
                     </span>
                 </Button>
-                <Button size="sm" className="h-8 gap-1">
-                    <PlusCircle className="h-3.5 w-3.5" />
+                <Button size="sm" variant="outline" className="h-8">
+                   
+                    <Link  href="/admin/product/productadd" className="flex gap-1 items-center ">
+                    <PlusCircle className="h-3.5 w-3.5  " />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                         Add Product
+
                     </span>
+                    </Link>
+                    
                 </Button>
             </div>
         </div>

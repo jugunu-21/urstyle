@@ -1,35 +1,42 @@
-// app/middleware/auth.js
 import { NextResponse } from 'next/server';
-
+import toast from 'react-hot-toast';
 export default function middleware(request) {
   console.log("inside of middleware");
-
-  // Access the 'Cookie' header from the request
   const cookies = request.headers.get('Cookie');
+  const jwtToken = cookies ? cookies.split('; ').find(row => row.startsWith('jwtToken')).split('=')[1] : null;
+  console.log(jwtToken, "JWT Token inside of middleware ");
+  const intendedRoute = request.nextUrl.pathname;
+ console.log("rouete",intendedRoute)
+ const adminRoutes = [
+  '/admin/product',
+  '/admin/product/productupdate',
+  '/admin/product/productfetch',
+  '/admin/product/productadd',
+  // Add more routes as needed
+];
+const authRoutes=[
+'/signin','/signup'
+]
+const isAuthRoute = authRoutes.some(route => new RegExp(route).test(intendedRoute));
 
-  // Parse the cookies to find the JWT token
-  const jwtToken = cookies? cookies.split('; ').find(row => row.startsWith('jwtToken')).split('=')[1] : null;
+const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRoute));
 
-  console.log(jwtToken, "JWT Token");
-
-  if (jwtToken!==null) {
-    // User is not authenticated, redirect to sign-in page
-    const intendedRoute = request.nextUrl.pathname;
+  if (jwtToken !== null && isAdminRoute) {
     console.log(`Intended route: ${intendedRoute}`);
-
-    // Redirect to the sign-out page and pass the  url.pathname = `/signout${intendedRoute}`;
-
-  // Return a rewrite response with the absolute URL
-  const url = request.nextUrl.clone();
-
-  // Modify the pathname to include the intended route
-  url.pathname = `/signout${intendedRoute}`;
-
-  // Return a rewrite response with the absolute URL
-  return NextResponse.rewrite(url);
-   // Corrected redirect URL
-  } else {
-    // User is authenticated, proceed with the request
+    return NextResponse.next();
+  } else if (jwtToken !== null && isAuthRoute) {
+    // toast.message("already a user")
+    const url = request.nextUrl.clone();
+    url.pathname = `/signout${intendedRoute}`;
+    return NextResponse.rewrite(url);
+  } 
+  else if (jwtToken == null && isAdminRoute) {
+    // toast.success("need to signin first")
+    const url = request.nextUrl.clone();
+    url.pathname = `/signin`;
+    return NextResponse.rewrite(url);
+  } 
+  else {
    
     console.log("User is not authenticated");
     return NextResponse.next();
@@ -38,5 +45,5 @@ export default function middleware(request) {
 
 // app/middleware/auth.js
 export const config = {
-  matcher: ['/signin', '/signup'], // Specify paths for sign-in and sign-up pages
+  matcher: ['/signin', '/signup','/admin/:path*'] 
 };

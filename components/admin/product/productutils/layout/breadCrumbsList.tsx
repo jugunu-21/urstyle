@@ -72,25 +72,29 @@ import {
 } from "@/components/ui/tooltip"
 export default function BreadCrumbsList({ segments }: { segments: string[] }) {
 
-  return (
-    <div className="pl-2">
-      <Breadcrumb className="  hidden md:flex">
-        <BreadcrumbList>
-        {Array.isArray(segments) && segments.slice(1).filter(segment => typeof segment === 'string'&& segment !== null).map((segment, index) => {
+const itemsLength =segments.length
+return (
+  <div className="pl-2">
+    <Breadcrumb className="hidden md:flex">
+      <BreadcrumbList>
+        {Array.isArray(segments) &&
+          segments.slice(1).filter(segment => typeof segment === 'string' && segment !== null).map((segment, index) => {
             const capitalizedSegment = segment.charAt(0).toUpperCase() + segment.slice(1);
-    return( <>
-              <BreadcrumbItem key={index}>
-                <BreadcrumbLink asChild>
-                  <Link href="#">{capitalizedSegment}</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              </>)
-})}
-
-        </BreadcrumbList>
-      </Breadcrumb>
-    </div>
-  )
+            return (
+              <>
+                <BreadcrumbItem key={index}>
+                  <BreadcrumbLink asChild>
+                    <Link href="#">{capitalizedSegment}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+               
+                {index !== itemsLength - 2 && <BreadcrumbSeparator />}
+              </>
+            );
+          })}
+      </BreadcrumbList>
+    </Breadcrumb>
+  </div>
+);
 
 }

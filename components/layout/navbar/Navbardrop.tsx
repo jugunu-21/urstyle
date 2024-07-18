@@ -55,6 +55,7 @@ export default function Navbardrop() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
         <DropdownMenuItem>   <Link href="/signin">Login</Link></DropdownMenuItem>
+        <DropdownMenuItem>   <Link href="/admin/product">Products</Link></DropdownMenuItem> 
         <DropdownMenuItem onClick={ handledeleteuser}>deleteUser</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
