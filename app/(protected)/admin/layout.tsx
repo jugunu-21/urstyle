@@ -95,24 +95,28 @@ export default function RootLayout({
     };
 
     fetchToken();
-    const fetchData = async () => {
+    // const fetchData = async () => {
 
-      const result: Productsprops | undefined = await ApiFetchProducts({ jwtToken }); // Replace with actual JWT token retrieval logic
-      console.log("resullltt", result)
-      setData(result || minimalProductsprops); // Update the context value with fetched data or fallback
-    };
+    //   const result: Productsprops | undefined = await ApiFetchProducts({ jwtToken }); // Replace with actual JWT token retrieval logic
+    //   console.log("resullltt", result)
+    //   setData(result || minimalProductsprops); // Update the context value with fetched data or fallback
+    // };
 
-    fetchData();
-  }, [setData]);
+    // fetchData();
+  },);
 
 
 
   const onclick = async () => {
     {
-      const datas: Productsprops | undefined = await ApiFetchProducts({ jwtToken }); // Await the completion of SubmitHandler
-      console.log("Submission onclick completed", datas)
-      console.log("data", data)
-      setData(datas)
+      const response = await ApiFetchProducts({ jwtToken }); // Await the completion of SubmitHandler
+      if (response) {
+        const result: Productsprops | undefined = response.data.data
+        console.log("Submission onclick completed", result)
+        // console.log("data", data)
+        setData(result)
+      }
+
       // Await the completion of SubmitHandler
       console.log("Submission onclickcompletedafterset", data); // This will run after SubmitHandler completes
     }
@@ -128,7 +132,7 @@ export default function RootLayout({
         </div>
         <div className="  sticky top-0 flex flex-col sm:gap-4 sm:py-2 sm:pl-14 bg-gray-900">
           <header className="  sticky top-0 z-99 flex h-14 items-center gap-4 border-b bg-background  px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <ToggleSideToolTip onclickfun={onclick}/>
+            <ToggleSideToolTip  />
             <BreadCrumbsList segments={transformedLabels.flat()} />
             <div className="relative ml-auto flex-1 md:grow-0">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -144,10 +148,10 @@ export default function RootLayout({
         </div>
         <div>
         </div>
-        {/* <ProductsContext.Provider value={data || minimalProductsprops}> */}
+        <ProductsContext.Provider value={data || minimalProductsprops}>
 
-          <div className={inter.className}>{children}</div>
-        {/* </ProductsContext.Provider> */}
+        <div className={inter.className}>{children}</div>
+        </ProductsContext.Provider>
       </ThemeProvider>
     </>
   );

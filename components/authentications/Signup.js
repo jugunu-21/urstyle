@@ -18,6 +18,8 @@ import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
+import axios from "axios";
+import ApiSignup from "./authfunction/apiSignup";
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -99,17 +101,7 @@ export default function Signup() {
       console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
 
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-up`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
+      const response = await ApiSignup(requestBody)
       // Check if the response is successful (status code 200-299)
       if (response.ok) {
         const responseData = await response.json();

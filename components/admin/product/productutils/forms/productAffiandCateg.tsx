@@ -63,7 +63,25 @@ const trigger: () => JSX.Element = () => {
     />
   );
 };
+import { useState } from "react"
 export default function ProductAffiandCateg({ code, setCode, link, setLink, pid, setPid }: ProductAffiandCategProps) {
+  const [prelink,setPrelink]=useState("")
+
+  const urlInput = document.getElementById('urlInput');
+  if (urlInput !== null) {
+    urlInput.addEventListener('input', (event) => {
+      if (event.target instanceof HTMLInputElement && event.target.value.startsWith(prelink)) {
+          const inputValue = event.target.value;
+          const isValid = true; // Since we've already checked startsWith('https://')
+          
+          if (!isValid) {
+              // Handle invalid input, e.g., display an error message
+              event.target.value = 'https://'; // Or clear the input
+              // You can also add custom validation logic here
+          }
+      }
+  });
+}
   return (
     <Card x-chunk="dashboard-07-chunk-2">
       <CardHeader>
@@ -81,13 +99,13 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
                 <SelectValue placeholder="website" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="clothing" >
+                <SelectItem value="clothing" onClick={()=>{setPrelink("https://amzn.to/"); console.log(prelink)}}>
                   Amazon
                 </SelectItem>
-                <SelectItem value="electronics">
+                <SelectItem value="electronics"  onClick={()=>setPrelink(" Flipkart")} >
                   Flipkart
                 </SelectItem>
-                <SelectItem value="accessories">
+                <SelectItem value="accessories"  onClick={()=>setPrelink(" Meesho")}>
                   Meesho
                 </SelectItem>
               </SelectContent>
@@ -97,15 +115,13 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
             <Label htmlFor="link">
               Affiliate link
             </Label>
-
             <Input
               className="w-full grid-cols-2"
-              id="link"
               type="text"
               placeholder=".com"
               defaultValue={link}
+              id="urlInput"
               onChange={(e) => setLink(e.target.value)}
-
             />
           </div>
         </div>

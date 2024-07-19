@@ -1,5 +1,4 @@
 export interface ProductDataInterface {
-
     pid: number;
     name: string;
     code: string;

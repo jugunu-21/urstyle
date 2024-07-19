@@ -56,6 +56,55 @@ import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUpl
 import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpdateProduct';
 export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandlerInterface) {
   const router = useRouter();
+  const handlerupload=async()=>{
+    console.log("Handler invoked");
+    console.log("jwttoken",jwtToken)
+     try {
+      
+    if(jwtToken!==null){
+      const response = await ApiUploadProduct({requestBody, jwtToken })
+      .then(function (response) {
+        console.log(response);
+        toast.success("product added successfully ")
+        router.push('/admin/product/productfetch')
+      
+      })
+      .catch(function (error) {
+        console.log("errrooh",error);
+        toast.error ("failed to upload product")
+      });
+  
+  }} catch (error) {
+   
+    console.error("Error uploading product:", error);
+    toast.error("Error uploading product")
+  }
+  }
+  const handlerupdate=async(id:string)=>{
+    console.log("Handler invoked");
+    console.log("jwttoken",jwtToken)
+     try {
+      
+    if(jwtToken!==null){
+      const response = await  ApiUpdateProduct({ requestBody, jwtToken, id })
+      
+      .then(function (response) {
+        console.log(response);
+        toast.success("product added successfully ")
+        router.push('/admin/product/productfetch')
+      
+      })
+      .catch(function (error) {
+        console.log("errrooh",error);
+        toast.error ("failed to upload product")
+      });
+  
+  }} catch (error) {
+   
+    console.error("Error uploading product:", error);
+    toast.error("Error uploading product")
+  }
+  }
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="icon" className="h-7 w-7">
@@ -74,38 +123,9 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
         </Button>
 
         {id == null ? (
-          <Button size="sm" onClick={() => {
+          <Button size="sm" onClick={()=>handlerupload()}>Save Product</Button>
 
-            ApiUploadProduct({ jwtToken, requestBody })
-            .then(() => {
-              router.push("/admin/product/productfetch")
-
-              toast.success("sucessfully uploaded");
-            }
-            )
-
-            console.log("submitted ")
-          }}>Save Product</Button>
-
-        ) : (<Button size="sm" onClick={() => {
-          if (jwtToken === null) {
-            console.error("JWT Token is required");
-            return;
-          }
-          console.log("iddd", id);
-          ApiUpdateProduct({ requestBody, jwtToken, id })
-            .then(() => {
-              router.push("/admin/product/productfetch")
-
-              toast.success("sucessfully updated");
-            }
-            )
-
-            .catch((error) => console.error("submission error:", error));
-        }}>Save Product</Button>)}
-
-
-
+        ) : (<Button size="sm" onClick={() => handlerupdate(id)}>Save Product</Button>)}
       </div>
     </div>
   )

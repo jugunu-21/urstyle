@@ -6,24 +6,29 @@ import getTokenFromCookies from "@/components/helpers/getcookie";
 import PostApiCall from "@/components/admin/product/productFunctions/postApiCall"
 import { Productsprops } from '@/components/context/mycontext';
 // import ProductImageCard from "@/components/admin/forms/productImage"
-
-export default function ApiFetchProducts({jwtToken}:{jwtToken:string|null})  {
-
-
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+export default async function ApiFetchProducts ({ jwtToken }: { jwtToken: string | null }) 
+{
   const apiroute = "/media/product/fetch"
+    try {
+      if(jwtToken){
 
-  const SubmitHandler = async () => {
-    if (jwtToken === null) {
-      console.error("JWT Token is required");
-      return; // Optionally, you could redirect the user or show an error message
+        const response = await PostApiCall({ jwtToken, apiroute })
+        return response
+      }
+      
+
+    
+    } catch (error) {
+
+      console.error("Error uploading product:", error);
+      toast.error("Error uploading product")
+      throw error
     }
-     const result = await PostApiCall({ jwtToken, apiroute });
-     const productData:Productsprops=result.data
-    console.log(productData, "dadattaa")
-    return productData;
-  };
-  return SubmitHandler();
 }
+
+
 
 
 

@@ -36,6 +36,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
+import toast from "react-hot-toast"
 import ProductStatus from "@/components/admin/product/productutils/forms/productStatus"
 import { useState, useEffect } from "react";
 import getTokenFromCookies from "@/components/helpers/getcookie";
@@ -47,8 +48,12 @@ import ProductTable from "@/components/admin/product/productutils/forms/productD
 import ProductHeader from "../productutils/forms/productHeader"
 import {ProductDataInterface} from "@/components/admin/product/productutils/productServices/productDataInterface"
 import PostApiCall from "../productFunctions/postApiCall"
+import ApiUploadProduct from "../productFunctions/apiUploadProducts"
+import Router from "next/router"
+import { useRouter } from "next/navigation"
+import useJwtToken from "@/components/helpers/getToken"
 export default function Dashboard() {
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
+  // const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [pid, setPid] = useState<number | null>();
   const [name, setName] = useState<string | null>("");
   const [code, setCode] = useState<string | null>("");
@@ -56,35 +61,22 @@ export default function Dashboard() {
   const [description, setDescription] = useState<string | null>("");
   const [price, setPrice] = useState<string | null>("");
   const [image, setImage] = useState<string | null>("");
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const resolvedToken: string | null = await getTokenFromCookies();
-        console.log("Fetched jwtToken:", resolvedToken);
-        // setJwtToken(resolvedToken);
-      } catch (error) {
-        console.error("Failed to fetch token:", error);
-      }
-    };
-
-    fetchToken();
-  }, []);
+  const jwtToken = useJwtToken();
   console.log("jwtTokennnn", jwtToken);
+  // console.log("jwt",jwt)
+  // const onValueChangehandler = (value: string, setVariable: (value: string) => void) => {
+  //   const valuechange = async () => {
+  //     try {
+  //       setVariable(value);
+  //     } catch (error) {
+  //       console.error("Failed to fetch token:", error);
+  //     }
+  //   };
 
-  const onValueChangehandler = (value: string, setVariable: (value: string) => void) => {
-    const valuechange = async () => {
-      try {
+  //   valuechange();
 
-
-        setVariable(value);
-      } catch (error) {
-        console.error("Failed to fetch token:", error);
-      }
-    };
-
-    valuechange();
-
-  }
+  // }
+  const router = useRouter();
   const requestBody = {
     pid: pid ?? 0, // Default to 0 if pid is null or undefined
     name: name ?? "", // Default to empty string if name is null or undefined
@@ -96,30 +88,46 @@ export default function Dashboard() {
   };
 
 
-  const handleaftersubmit = () => {
-    console.log("aftersubmitaction")
-    setPid(null);
-    setName(null);
-    setCode(null);
-    setLink(null);
-    setDescription(null);
-    setPrice(null);
-    setImage(null);
-    console.log("name", name)
-  }
+  // const handleaftersubmit = () => {
+  //   console.log("aftersubmitaction")
+  //   setPid(null);
+  //   setName(null);
+  //   setCode(null);
+  //   setLink(null);
+  //   setDescription(null);
+  //   setPrice(null);
+  //   setImage(null);
+  //   console.log("name", name)
+  // }
   interface SubmitFunctionArgs {
     requestBody: ProductDataInterface;
     jwtToken: string; // Assuming jwtToken is a string
   }
       const apiroute="/media/product/upload"
-  const SubmitHandler = () => {
-    if (jwtToken === null) {
-      console.error("JWT Token is required");
-      return; // Optionally, you could redirect the user or show an error message
-    }
+ 
+  const handler=async()=>{
+    console.log("Handler invoked");
+    console.log("jwttoken",jwtToken)
+     try {
+      
+    if(jwtToken!==null){
+      const response = await ApiUploadProduct({requestBody, jwtToken })
+      .then(function (response) {
+        console.log(response);
+        router.push('/admin/product/productfetch')
+        toast.success("product added successfully ")
+      })
+      .catch(function (error) {
+        console.log("apiaddproduct",error);
+        toast.error ("failed to upload product")
+      });
   
-    PostApiCall({ requestBody, jwtToken ,apiroute });
-  };
+  }} catch (error) {
+   
+    console.error("Error uploading product:", error);
+    toast.error("Error uploading product")
+  }
+  }
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
@@ -150,12 +158,7 @@ export default function Dashboard() {
           <Button variant="outline" size="sm">
             Discard
           </Button>
-          <Button size="sm" onClick={() => {
-            if (jwtToken === null) {
-              console.error("JWT Token is required");
-              return;
-            } PostApiCall({ requestBody, jwtToken ,apiroute}).then(() => handleaftersubmit()).catch(error => console.error("submission error:", error))
-          }} >Save Product</Button>
+          <Button size="sm" onClick={() =>handler()} >Save Product</Button>
         </div>
       </div>
     </main>

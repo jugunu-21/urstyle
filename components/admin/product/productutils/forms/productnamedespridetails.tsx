@@ -57,11 +57,12 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
             <Input
               type="number"
               id="price"
-           
-              className="min-h-32"
-              defaultValue={price}
+            pattern="\d*" 
+              className="w-full"
+              
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price..."
+             
             />
             
           </div>

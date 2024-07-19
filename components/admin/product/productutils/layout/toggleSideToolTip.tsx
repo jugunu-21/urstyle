@@ -71,7 +71,7 @@ import {
   TooltipProvider
 } from "@/components/ui/tooltip"
 import { useState } from "react"
-export function ToggleSideToolTip({onclickfun}: {onclickfun: () => void}){
+export function ToggleSideToolTip(){
 
 const [sheet,setSheet]=useState("open")
     return(

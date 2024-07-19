@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
-
+import axios from "axios";
 import {
   getAuth,
   RecaptchaVerifier,
@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
-
+import ApiSignin from "@/components/authentications/authfunction/apiSignin"
 // import cookie from 'cookie';
 export default function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -26,6 +26,7 @@ export default function Signin() {
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
+  const [jwtToken, setJwtToken] = useState(null);
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -35,8 +36,8 @@ export default function Signin() {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => {},
-        "expired-callback": () => {},
+        callback: (response) => { },
+        "expired-callback": () => { },
       }
     );
   }, [auth]);
@@ -49,75 +50,51 @@ export default function Signin() {
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
-        /\D/g,
-        ""
-      )}`;
+      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
       const requestBody = {
         phone_number: phonenumbertosend,
       };
       console.log(requestBody);
-
-      // console.log(process.env.NEXT_PUBLIC_SIGNUP_API);
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/sign-in`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
-
-      if (response.ok) {
-        console.log("Phone number verified in db .");
-        const responseData = await response.json();
-        const jwtToken = responseData.data;
-        console.log(jwtToken);
-        document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
-
-        const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
-          /\D/g,
-          ""
-        )}`;
-        console.log(formattedPhoneNumber);
-
-        const confirmation = await signInWithPhoneNumber(
-          auth,
-          formattedPhoneNumber,
-          window.recaptchaVerifier
-        );
-
-        console.log(confirmation);
-        setConfirmationResult(confirmation);
-        setOtpSent(true);
-        setOtpSentYN("yes");
-        toast.success("Otp has been sent");
-        console.log("handlsendotp");
-        return true;
-        //  }
-      } else {
-        console.error("phone number doesnot exsist :", response.statusText);
-        toast.error("Need to sigup or signin with different number ");
-        // setPhoneNumber("");
-        window.location.reload();
-        return false;
-      }
+  
+      const response = await ApiSignin(requestBody)
+  
+      console.log("response",response);
+      // Assuming the JWT token is stored under `data.jwtToken` in the response
+        setJwtToken(response.data.data);
+       console.log("response.data",response.data)
+      console.log("response.data.jwtToken",response.data.data)
+      console.log("jwtTokenn",jwtToken);
+   
+    
+  
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      console.log(formattedPhoneNumber);
+  
+      // Directly awaiting the signInWithPhoneNumber promise
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
+  
+      console.log("confirmation",confirmation);
+      setConfirmationResult(confirmation);
+      setOtpSent(true);
+      setOtpSentYN("yes");
+      toast.success("Otp has been sent");
+      console.log("handlsendotp");
+  
     } catch (error) {
       console.error(error);
-      // return false
+      // Handle error appropriately
+      toast.error("An error occurred. Please try again.");
+      window.location.reload();
     }
   };
-
   const handleOtpSubmit = async () => {
     try {
       await confirmationResult.confirm(otp);
       setOtp("");
 
       toast.success("you are successfully signin");
+      console.log("jwtToken",jwtToken);
+      document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
       router.push("/");
       // console.log(sessionId);
     } catch (error) {
@@ -165,7 +142,7 @@ export default function Signin() {
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter 10-digit phone number"
                   className="your-class-names-here"
-                  //   disabled={selectedCountryCode == ""}
+                //   disabled={selectedCountryCode == ""}
                 />
               </div>
 

@@ -56,7 +56,9 @@ return(
             />
           </button>
           <button  className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed"
-            onClick={() => setImage("https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg")}
+            onClick={() => {setImage("https://m.media-amazon.com/images/I/51p6ELTSNpL._SY879_.jpg")
+              console.log("clicked button for image")}
+            }
           >
             <Upload className="h-4 w-4 text-muted-foreground" />
             <span className="sr-only"
