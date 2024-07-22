@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState,useEffect } from 'react';
-import getTokenFromCookies from "@/components/helpers/getcookie";
+
 import Dashboard from "@/components/admin/product/productUpdate/productUpdate"
 import { useParams } from 'next/navigation';
 

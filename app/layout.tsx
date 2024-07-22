@@ -6,6 +6,10 @@ import Navbar from "@/components/layout/navbar/Navbar";
 import Footer from "@/components/layout/footer/Footer";
 import { Toaster } from 'react-hot-toast';
 import {QueryClient ,QueryClientProvider} from "@tanstack/react-query"
+import { useEffect } from "react";
+
+import {useStore,useToken} from "@/components/helpers/zustand"
+
 const inter = Inter({ subsets: ["latin"] });
 
  const metadata: Metadata = {
@@ -19,6 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
  }>) {
   const queryClient = new QueryClient();
+  
+
   return (
      <html>
        <head>
@@ -26,6 +32,7 @@ export default function RootLayout({
        </head>
        <body>
        <QueryClientProvider client={queryClient}>
+       
          <div className={inter.className}>{children}</div>
         <Footer />
         <Toaster />   

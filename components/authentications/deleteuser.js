@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { useEffect } from "react";
 import getTokenFromCookies from "@/components/authentications/deleteuser";
@@ -31,7 +32,7 @@ const deleteUser = async (jwtToken) => {
 export default function DeleteUser() { // Renamed to start with an uppercase letter
   useEffect(() => {
       const fetchData = async () => {
-      const jwtToken = await getTokenFromCookies();
+      const jwtToken = getTokenFromCookies();
       if (jwtToken) {
       await deleteUser(jwtToken);
       }

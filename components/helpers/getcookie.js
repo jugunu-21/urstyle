@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-const getTokenFromCookies = async () => {
-  const cookies = document.cookie.split("; ");
-  for (const cookie of cookies) {
-    const [key, value] = cookie.split("=");
-    if (key === "jwtToken") {
-      return value;
-    }
+ export default function getJwtTokenFromCookies() {
+  const cookies = document.cookie ? document.cookie.split('; ') : [];
+
+  const jwtCookie = cookies.find(cookie => cookie.startsWith('jwtToken'));
+  if (!jwtCookie) {
+    return null;
   }
-  return null;
-};
-export default getTokenFromCookies;
+
+  const [_, token] = jwtCookie.split('=');
+  return token;
+}

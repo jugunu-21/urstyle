@@ -45,10 +45,14 @@ import {
 import StatusandFilter from "@/components/admin/product/productutils/layout/statusandFilter"
 import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
 import { ProductsContext, Productsprops } from '@/components/context/mycontext';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
+import { useState, useEffect } from "react";
+import {useStore,useToken} from "@/components/helpers/zustand"
+import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
+import useJwtToken from "@/components/helpers/getToken"
 export function Dashboard() {
-    const contextValue = useContext(ProductsContext);
+ const data = useStore((state)=>(state.data));
     const trigger = () => {
         return (
             <>
@@ -59,9 +63,7 @@ export function Dashboard() {
     }
     const label = "Action"
     const item = ["Create", "Update"]
-    if (!Array.isArray(contextValue)) {
-        return <div>Loading products...</div>;
-    }
+  
     return (
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
 
@@ -103,7 +105,7 @@ export function Dashboard() {
                                         </TableHeader>
                                         <TableBody>
 
-                                            {contextValue.map((data, index) => (
+                                            {data.map((data, index) => (
                                                 <>
                                                     <TableRow key={index}>
 

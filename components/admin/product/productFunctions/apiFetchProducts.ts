@@ -1,7 +1,7 @@
 // import React, { useEffect } from 'react';
 import React, { useState, useEffect } from 'react';
 import { Dashboard } from "@/components/admin/product/productFetch/productFetch"
-import getTokenFromCookies from "@/components/helpers/getcookie";
+
 // import Dashboard from "@/components/admin/product/productadd/productAdd"
 import PostApiCall from "@/components/admin/product/productFunctions/postApiCall"
 import { Productsprops } from '@/components/context/mycontext';
@@ -13,16 +13,11 @@ export default async function ApiFetchProducts ({ jwtToken }: { jwtToken: string
   const apiroute = "/media/product/fetch"
     try {
       if(jwtToken){
-
         const response = await PostApiCall({ jwtToken, apiroute })
         return response
       }
-      
-
-    
     } catch (error) {
-
-      console.error("Error uploading product:", error);
+      console.error("check for token :", error);
       toast.error("Error uploading product")
       throw error
     }

@@ -43,11 +43,11 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 type ProductAffiandCategProps = {
-  code: string;
+  code: string|null;
   setCode: (code: string) => void;
-  link: string;
+  link: string|null;
   setLink: (link: string) => void;
-  pid: number;
+  pid: number|null;
   setPid: (pid: number) => void;
 };
 const item = ["heyy", "hlww"]
@@ -119,7 +119,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               className="w-full grid-cols-2"
               type="text"
               placeholder=".com"
-              defaultValue={link}
+              defaultValue={link?link:''}
               id="urlInput"
               onChange={(e) => setLink(e.target.value)}
             />
@@ -142,7 +142,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               <SelectTrigger
                 id="pid"
                 aria-label="Select category"
-                defaultValue={pid}
+                defaultValue={pid?pid:0}
               >
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -168,7 +168,7 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
               <SelectTrigger
                 id="code"
                 aria-label="Select subcategory"
-                defaultValue={code}
+                defaultValue={code?code:''}
               >
                 <SelectValue placeholder="Select subcategory" />
               </SelectTrigger>

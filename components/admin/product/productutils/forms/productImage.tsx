@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Upload } from 'lucide-react'
 interface ProductImageCardprops{
-  image:string
+  image:string|null
   setImage:(image:string)=>void
 }
 function ProductImageCard( {image,setImage}: ProductImageCardprops) {

@@ -49,7 +49,7 @@ import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
   jwtToken: string
   requestBody: ProductDataInterface
-  id?: string
+  id?: string|undefined
 }
 import { useRouter } from "next/navigation";
 import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
@@ -76,8 +76,8 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
   
   }} catch (error) {
    
-    console.error("Error uploading product:", error);
-    toast.error("Error uploading product")
+    console.error("Error uploading producth:", error);
+    toast.error("Error uploading producth")
   }
   }
   const handlerupdate=async(id:string)=>{
@@ -101,8 +101,8 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
   
   }} catch (error) {
    
-    console.error("Error uploading product:", error);
-    toast.error("Error uploading product")
+    console.error("Error uploading producth:", error);
+    toast.error("Error uploading producth")
   }
   }
   return (

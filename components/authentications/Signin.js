@@ -18,8 +18,10 @@ import { Label } from "@/components/ui/label";
 import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
 import ApiSignin from "@/components/authentications/authfunction/apiSignin"
-// import cookie from 'cookie';
+import { useToken } from "../helpers/zustand";
+
 export default function Signin() {
+  const changeToken=useToken((state)=>(state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -95,6 +97,7 @@ export default function Signin() {
       toast.success("you are successfully signin");
       console.log("jwtToken",jwtToken);
       document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
+      changeToken(jwtToken)
       router.push("/");
       // console.log(sessionId);
     } catch (error) {

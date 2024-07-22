@@ -10,11 +10,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 interface ProductDetailFormProps {
-  name: string;
+  name: string|null;
   setName: (value: string) => void;
-  description: string;
+  description: string|null;
   setDescription: (value: string) => void;
-  price: string;
+  price: string|null;
   setPrice: (value: string) => void;
 }
 const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice }: ProductDetailFormProps) => {
@@ -35,7 +35,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               type="text"
               className="w-full"
               placeholder="Enter Name of Product"
-              defaultValue={name}
+              defaultValue={name?name:''}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -48,7 +48,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="description"
               placeholder="Enter description."
               className="min-h-32"
-              defaultValue={description}
+              defaultValue={description?description:''}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -59,7 +59,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="price"
             pattern="\d*" 
               className="w-full"
-              
+              defaultValue={price?price:''}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price..."
              

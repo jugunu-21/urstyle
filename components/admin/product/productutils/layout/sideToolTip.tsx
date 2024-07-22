@@ -75,7 +75,7 @@ import {
 
 
 
-export function SideToolTip({onclickfun}: {onclickfun: () => void}) {
+export function SideToolTip() {
 
   return (
     <div >
@@ -106,7 +106,7 @@ export function SideToolTip({onclickfun}: {onclickfun: () => void}) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button className=' bg-blue focus:none hover:bg-blue'
-                  onClick={async () =>onclickfun()}
+                  // onClick={async () =>onclickfun()}
                 >
                   <Link
                     href="/admin/product/productfetch" // Use React Router's `to` prop for navigation

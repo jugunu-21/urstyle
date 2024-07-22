@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 type ApiFetchProductsprops = {
   jwtToken: string
   requestBody: ProductDataInterface
-  id: string
+  id: string|undefined
 }
 export default async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
 // useEffect(

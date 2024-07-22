@@ -52,8 +52,9 @@ import ApiUploadProduct from "../productFunctions/apiUploadProducts"
 import Router from "next/router"
 import { useRouter } from "next/navigation"
 import useJwtToken from "@/components/helpers/getToken"
+import { useToken } from "@/components/helpers/zustand"
 export default function Dashboard() {
-  // const [jwtToken, setJwtToken] = useState<string | null>(null);
+  const token= useToken((state) => state.token);
   const [pid, setPid] = useState<number | null>();
   const [name, setName] = useState<string | null>("");
   const [code, setCode] = useState<string | null>("");
@@ -61,21 +62,7 @@ export default function Dashboard() {
   const [description, setDescription] = useState<string | null>("");
   const [price, setPrice] = useState<string | null>("");
   const [image, setImage] = useState<string | null>("");
-  const jwtToken = useJwtToken();
-  console.log("jwtTokennnn", jwtToken);
-  // console.log("jwt",jwt)
-  // const onValueChangehandler = (value: string, setVariable: (value: string) => void) => {
-  //   const valuechange = async () => {
-  //     try {
-  //       setVariable(value);
-  //     } catch (error) {
-  //       console.error("Failed to fetch token:", error);
-  //     }
-  //   };
 
-  //   valuechange();
-
-  // }
   const router = useRouter();
   const requestBody = {
     pid: pid ?? 0, // Default to 0 if pid is null or undefined
@@ -107,11 +94,11 @@ export default function Dashboard() {
  
   const handler=async()=>{
     console.log("Handler invoked");
-    console.log("jwttoken",jwtToken)
+    console.log("jwttoken",token)
      try {
       
-    if(jwtToken!==null){
-      const response = await ApiUploadProduct({requestBody, jwtToken })
+    if(token!==null){
+      const response = await ApiUploadProduct({requestBody, jwtToken:token })
       .then(function (response) {
         console.log(response);
         router.push('/admin/product/productfetch')
@@ -124,15 +111,15 @@ export default function Dashboard() {
   
   }} catch (error) {
    
-    console.error("Error uploading product:", error);
-    toast.error("Error uploading product")
+    console.error("Error uploading producta:", error);
+    toast.error("Error uploading producta")
   }
   }
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={jwtToken || ""} requestBody={requestBody} />
+        <ProductHeader jwtToken={token || ""} requestBody={requestBody} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || "0"} setPrice={(value: string) => setPrice(value)} />
