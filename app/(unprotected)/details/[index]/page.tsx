@@ -17,6 +17,8 @@ function Details() {
   const [param1] = productIdArray;
   const groupIndex = param1 ? parseInt(param1, 10) : undefined;
 
+
+  
   // Ensure groupIndex is a valid number and within the bounds of itemsData
   if (
     groupIndex === undefined ||

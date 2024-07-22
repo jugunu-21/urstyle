@@ -51,59 +51,107 @@ interface SubmitHandlerInterface {
   requestBody: ProductDataInterface
   id?: string|undefined
 }
+import { useStore, useToken } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
 import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
 import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpdateProduct';
+import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
+import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
 export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandlerInterface) {
   const router = useRouter();
-  const handlerupload=async()=>{
-    console.log("Handler invoked");
-    console.log("jwttoken",jwtToken)
-     try {
-      
-    if(jwtToken!==null){
-      const response = await ApiUploadProduct({requestBody, jwtToken })
-      .then(function (response) {
-        console.log(response);
-        toast.success("product added successfully ")
-        router.push('/admin/product/productfetch')
-      
-      })
-      .catch(function (error) {
-        console.log("errrooh",error);
-        toast.error ("failed to upload product")
-      });
+  const setData = useStore((state) => state.setData);
+
+    const handlerupload = async () => {
+      if (jwtToken === null) {
+        console.error("JWT Token is required");
+        return;
+      }
+    
+        if (jwtToken) {
+   ApiUploadProduct({ requestBody, jwtToken:jwtToken })
+            .then(()=> {
+              try {
+                console.log("he");
+                ApiFetchProducts({ jwtToken: jwtToken })
+                  .then
+                  ((response) => {
+                    if (response) {
+                      console.log(response);
+                      const result: Productsprops | undefined = response.data.data;
+                      if (result) {
+                        console.log("result in update", result);
+                        setData(result);
+                        console.log("successfully data list updated in upload");
+                        router.push("/admin/product/productfetch")
+                        toast.success("sucessfully uploaded");
+                      }
+                    }
   
-  }} catch (error) {
-   
-    console.error("Error uploading producth:", error);
-    toast.error("Error uploading producth")
-  }
-  }
-  const handlerupdate=async(id:string)=>{
-    console.log("Handler invoked");
-    console.log("jwttoken",jwtToken)
-     try {
-      
-    if(jwtToken!==null){
-      const response = await  ApiUpdateProduct({ requestBody, jwtToken, id })
-      
-      .then(function (response) {
-        console.log(response);
-        toast.success("product added successfully ")
-        router.push('/admin/product/productfetch')
-      
-      })
-      .catch(function (error) {
-        console.log("errrooh",error);
-        toast.error ("failed to upload product")
-      });
+                  })
+                  .catch((error) => console.error("submission error:", error));
+              } catch (error) {
+                toast.error("error while upload ")
+              }
+            })
+            .catch(function (error) {
+              console.log("apiaddproduct", error);
+              toast.error("failed to upload product")
+            });
   
-  }} catch (error) {
-   
-    console.error("Error uploading producth:", error);
-    toast.error("Error uploading producth")
-  }
+        }
+      }
+  
+     
+
+
+
+
+
+
+
+
+
+
+
+
+  const handlerupdate=async(id:string) => {
+    if (jwtToken === null) {
+      console.error("JWT Token is required");
+      return;
+    }
+    console.log("iddd", id);
+    if (jwtToken) {
+      ApiUpdateProduct({ requestBody, jwtToken: jwtToken, id:id  })
+        .then
+        (() => {
+          console.log("updateedcompleteinfetch")
+          try {
+            console.log("he");
+            ApiFetchProducts({ jwtToken: jwtToken })
+              .then
+              ((response) => {
+                if (response) {
+                  console.log(response);
+                  const result: Productsprops | undefined = response.data.data;
+                  if (result) {
+                    console.log("result in update", result);
+                    setData(result);
+                    console.log("successfully data list updated in update");
+                  }
+                }
+                router.push("/admin/product/productfetch")
+                toast.success("sucessfully updated");
+              })
+              .catch((error) => console.error("submission error:", error));
+          }
+          catch (error) {
+            console.error("Error updating product:", error);
+          }
+
+      }).catch((error) => console.error("submission error:", error))
+    }
+
+
   }
   return (
     <div className="flex items-center gap-4">

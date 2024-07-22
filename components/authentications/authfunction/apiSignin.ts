@@ -16,6 +16,7 @@ const ApiSignin = async (requestBody:requestBodyprops) => {
       data: requestBody,
       headers: {
         "Content-Type": "application/json",
+        'Cache-Control': 'public, max-age=3600', 
       },
     });
 

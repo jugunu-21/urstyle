@@ -9,11 +9,7 @@ type ApiFetchProductsprops = {
   id: string|undefined
 }
 export default async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
-// useEffect(
-//   ()=>{
-//     console.log("inside of apiUpdate")
-//   }
-// )
+
   const apiroute = `/media/product/update/${id}`
 
   const SubmitHandler = async () => {

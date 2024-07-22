@@ -53,56 +53,39 @@ import { createContext } from "react"
 // import { ProductsContext } from "@/components/context/mycontext"
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import {useStore,useToken} from "@/components/helpers/zustand"
+import { useStore, useToken } from "@/components/helpers/zustand"
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
 export default function Dashboard({ index }: { index: number | undefined }) {
-  
 
-  const [pid, setPid] = useState<number | null>();
-  const [id, setId] = useState<string>("0");
-  const [name, setName] = useState<string | null>("");
-  const [code, setCode] = useState<string | null>("");
-  const [link, setLink] = useState<string | null>("");
-  const [description, setDescription] = useState<string | null>("");
-  const [price, setPrice] = useState<string | null>("");
-  const [image, setImage] = useState<string | null>("");
-  const [rawdata,setRawdata]=useState<ProductDataInterfacewithid>()
+
+  const [pid, setPid] = useState<number | null>(null);
+  const [id, setId] = useState<string|null>(null);
+  const [name, setName] = useState<string | null>(null);
+  const [code, setCode] = useState<string | null>(null);
+  const [link, setLink] = useState<string | null>(null);
+  const [description, setDescription] = useState<string | null>(null);
+  const [price, setPrice] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(null);
+  const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
   const router = useRouter();
   const token = useToken((state) => state.token);
- 
-  const data = useStore((state)=>(state.data));
-  useEffect(()=>{
-     if(index){
-    setRawdata(data[index])
-  }
+  const data = useStore((state) => (state.data));
+  const setData = useStore((state) => state.setData);
+  useEffect(() => {
+    if (index != undefined) {
+      console.log("index", index)
+      setRawdata(data[index])
+    }
 
   })
-  // if(index){
-  //   setRawdata(data[index])
-  // }
-
-
-  // const initialProductData = async (rawdata: ProductDataInterfacewithid) => {
-  //   setId(rawdata.id)
-  //   setPid(rawdata.pid);
-  //   setName(rawdata.name);
-  //   setCode(rawdata.code);
-  //   setLink(rawdata.link);
-  //   setDescription(rawdata.description);
-  //   setPrice(rawdata.price);
-  //   setImage(rawdata.image);
-  // };
-
-
-
   const requestBody = {
-    pid: pid ?? 0, // Default to 0 if pid is null or undefined
-    name: name ?? "", // Default to empty string if name is null or undefined
-    code: code ?? "", // Default to empty string if code is null or undefined
-    link: link ?? "", // Default to empty string if link is null or undefined
-    description: description ?? "", // Default to empty string if description is null or undefined
-    price: price ?? "0", // Ensure price is a string, defaulting to "0"
-    image: image ?? "",
+    pid: pid ?? rawdata?.pid??0, // Default to 0 if pid is null or undefined
+    name: name ??rawdata?.name??'', // Default to empty string if name is null or undefined
+    code: code ?? rawdata?.code??'', // Default to empty string if code is null or undefined
+    link: link ??rawdata?.link??'', // Default to empty string if link is null or undefined
+    description: description ?? rawdata?.description??'', // Default to empty string if description is null or undefined
+    price: price ?? rawdata?.price??'', // Ensure price is a string, defaulting to "0"
+    image: image ??rawdata?.image??'',
   };
 
   // const handleaftersubmit = async () => {
@@ -125,25 +108,25 @@ export default function Dashboard({ index }: { index: number | undefined }) {
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata?rawdata.id:undefined} />
+        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails name={rawdata?rawdata.name:null} setName={setName} description={rawdata?rawdata.description:null} setDescription={setDescription} price={rawdata?rawdata.price:null} setPrice={(value: string) => setPrice(value)} />
+            <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)} />
 
             {/* <ProductTable price={price} setprice={setPrice}/> */}
 
             <ProductAffiandCateg
-              code={ rawdata?rawdata.code:null }
+              code={rawdata ? rawdata.code : null}
               setCode={setCode}
-              link={rawdata?rawdata. link:null}
+              link={rawdata ? rawdata.link : null}
               setLink={setLink}
-              pid={rawdata?rawdata.pid:null}
+              pid={rawdata ? rawdata.pid : null}
               setPid={setPid}
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <ProductStatus />
-            <ProductImageCard image={rawdata?rawdata.image:null} setImage={setImage} />
+            <ProductImageCard image={rawdata ? rawdata.image : null} setImage={setImage} />
             {/* <ProductArchieve /> */}
           </div>
         </div>
@@ -151,21 +134,48 @@ export default function Dashboard({ index }: { index: number | undefined }) {
           <Button variant="outline" size="sm">
             Discard
           </Button>
-          <Button size="sm" onClick={() => {
-            if (token === null) {
-              console.error("JWT Token is required");
-              return;
-            }
-            console.log("iddd", id);
-            if(token){ ApiUpdateProduct({ requestBody, jwtToken:token, id:rawdata?rawdata.id:undefined })
-              .then(() => {
-                router.push("/admin/product/productfetch")
-
-                toast.success("sucessfully updated");
+          <Button size="sm" onClick=
+            {() => {
+              if (token === null) {
+                console.error("JWT Token is required");
+                return;
               }
-              ) .catch((error) => console.error("submission error:", error));
-            } 
-          }}>Save Product</Button>
+              console.log("iddd", id);
+              if (token) {
+                ApiUpdateProduct({ requestBody, jwtToken: token, id: rawdata ? rawdata.id : undefined })
+                  .then
+                  (() => {
+                    console.log("updateedcompleteinfetch")
+                    try {
+                      console.log("he");
+                      ApiFetchProducts({ jwtToken: token })
+                        .then
+                        ((response) => {
+                          if (response) {
+                            console.log(response);
+                            const result: Productsprops | undefined = response.data.data;
+                            if (result) {
+                              console.log("result in update", result);
+                              setData(result);
+                              console.log("successfully data list updated in update");
+                            }
+                          }
+                          router.push("/admin/product/productfetch")
+                          toast.success("sucessfully updated");
+                        })
+                        .catch((error) => console.error("submission error:", error));
+                    }
+                    catch (error) {
+                      console.error("Error updating product:", error);
+                    }
+
+                  }).catch((error) => console.error("submission error:", error))
+              }
+
+
+            }}
+
+          >Save Product</Button>
         </div>
       </div>
     </main>

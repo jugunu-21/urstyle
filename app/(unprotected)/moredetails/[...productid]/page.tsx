@@ -146,6 +146,7 @@ const params = useParams();
       <div className="lg:col-span-1 lg:row-span-4 pt-10 ">
         <div className="  inline-flex space-x-5  ">
           <button
+          aria-label="customer review"
             className="border border-transparent group  hover:border-b-gray-500   focus:border-b-black "
             onClick={() => setSelectedContent("customers")}
           >

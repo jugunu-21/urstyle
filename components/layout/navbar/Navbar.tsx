@@ -52,6 +52,7 @@ export default function Navbar() {
                   id="user-menu-button"
                   aria-expanded="true"
                   aria-haspopup="true"
+                  aria-label="for dropping the auth functionalities"
                   onClick={() => setIsDropdownOpenHem(!isDropdownOpenHem)}
                 >
                   <svg

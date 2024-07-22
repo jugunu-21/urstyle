@@ -34,7 +34,7 @@
 
       --radius: 0.5rem;
     }
-
+ 
     .dark {
       --background: 222.2 84% 4.9%;
       --foreground: 210 40% 98%;
@@ -68,9 +68,13 @@
 
   @layer base {
     * {
+      text-size-adjust: 100%; /* For Safari and other WebKit browsers */
+      -webkit-text-size-adjust: none;         /* Standard syntax */
+    }
+    /* * {
       @apply border-border;
     }
     body {
       @apply bg-background text-foreground;
-    }
+    } */
   }

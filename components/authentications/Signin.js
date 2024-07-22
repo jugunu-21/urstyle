@@ -93,7 +93,6 @@ export default function Signin() {
     try {
       await confirmationResult.confirm(otp);
       setOtp("");
-
       toast.success("you are successfully signin");
       console.log("jwtToken",jwtToken);
       document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
@@ -130,7 +129,7 @@ export default function Signin() {
           <div className="grid gap-4">
             <div className="grid gap-2">
               {/* <Label htmlFor="phone">Phone number</Label> */}
-              <Label htmlFor="email">Phone Number </Label>
+              <Label >Phone Number </Label>
               <div className="flex space-x-2">
                 <Countrycodedata.Provider
                   value={{ selectedCountryCode, setSelectedCountryCode }}

@@ -52,6 +52,7 @@ import {useStore,useToken} from "@/components/helpers/zustand"
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
 import useJwtToken from "@/components/helpers/getToken"
 export function Dashboard() {
+    
  const data = useStore((state)=>(state.data));
     const trigger = () => {
         return (
