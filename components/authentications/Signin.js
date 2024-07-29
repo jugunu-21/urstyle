@@ -19,7 +19,8 @@ import OtpInput from "./OtpInput";
 import Countrycodedata from "./ContextCountryCode";
 import ApiSignin from "@/components/authentications/authfunction/apiSignin"
 import { useToken } from "../helpers/zustand";
-
+import { api } from "@/trpc/react";
+import { api } from "@/trpc/server";
 export default function Signin() {
   const changeToken=useToken((state)=>(state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -58,7 +59,7 @@ export default function Signin() {
       };
       console.log(requestBody);
   
-      const response = await ApiSignin(requestBody)
+      const response = api.post.create
   
       console.log("response",response);
       // Assuming the JWT token is stored under `data.jwtToken` in the response

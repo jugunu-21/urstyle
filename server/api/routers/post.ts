@@ -1,12 +1,14 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-
+import ApiSignin from "@/components/authentications/authfunction/apiSignin";
 let post = {
   id: 1,
   name: "Hello World",
 };
-
+type requestBodyprops = {
+  phone_number: string,
+};
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
@@ -29,4 +31,10 @@ export const postRouter = createTRPCRouter({
   getLatest: publicProcedure.query(() => {
     return post;
   }),
+  signup: publicProcedure
+    .input(z.object({ phone_number: z.string().min(1) }))
+    .query(({ input }) => {
+      const response = ApiSignin(input)
+
+    })
 });
