@@ -7,6 +7,7 @@ import {
   signInWithPhoneNumber,
   signOut,
 } from "firebase/auth";
+import { api } from "@/trpc/react";
 import Countrycode from "./Countrycode";
 import { app } from "@/app/config";
 import Countrycodedata from "./ContextCountryCode";
@@ -20,7 +21,9 @@ import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import ApiSignup from "./authfunction/apiSignup";
+import { useToken } from "../helpers/zustand";
 export default function Signup() {
+  const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -48,6 +51,7 @@ export default function Signup() {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
   };
+  const createPost = api.post.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
@@ -101,13 +105,12 @@ export default function Signup() {
       console.log(requestBody);
       // Make a POST request to your backend API to store the phone number
 
-      const response = await ApiSignup(requestBody)
+      const result = await createPost.mutateAsync(requestBody)
       // Check if the response is successful (status code 200-299)
-      if (response.ok) {
-        const responseData = await response.json();
-        const jwtToken = responseData.data; // 
+      if (result) {
+        const jwtToken = result.data; 
         document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; 
-
+        changeToken(jwtToken)
         console.log("Phone number stored successfully on the backend.");
         router.push("/");
         toast.success("Otp submitted successfully ");

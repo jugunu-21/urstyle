@@ -30,7 +30,7 @@ const Countrycode = () => {
           India
         </SelectItem>
         <SelectItem
-          value="43"
+          value="1"
           // onClick={() => {
           //   console.log("Africa clicked"); // Debugging line
           //   setSelectedCountryCode("90");
@@ -49,7 +49,7 @@ const Countrycode = () => {
           Brazil
         </SelectItem>
         <SelectItem
-          value="1"
+          value="10"
         >
          Canada
         </SelectItem>

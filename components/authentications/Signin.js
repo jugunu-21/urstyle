@@ -20,9 +20,9 @@ import Countrycodedata from "./ContextCountryCode";
 import ApiSignin from "@/components/authentications/authfunction/apiSignin"
 import { useToken } from "../helpers/zustand";
 import { api } from "@/trpc/react";
-import { api } from "@/trpc/server";
+
 export default function Signin() {
-  const changeToken=useToken((state)=>(state.changeToken))
+  const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -44,6 +44,8 @@ export default function Signin() {
       }
     );
   }, [auth]);
+  // const utils = api.useUtils
+  const createPost = api.post.sIgnin.useMutation();
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
     // console.log(selectedCountryCode)
@@ -58,36 +60,44 @@ export default function Signin() {
         phone_number: phonenumbertosend,
       };
       console.log(requestBody);
-  
-      const response = api.post.create
-  
-      console.log("response",response);
-      // Assuming the JWT token is stored under `data.jwtToken` in the response
-        setJwtToken(response.data.data);
-       console.log("response.data",response.data)
-      console.log("response.data.jwtToken",response.data.data)
-      console.log("jwtTokenn",jwtToken);
-   
+
+      // const response = await ApiSignin(requestBody)
+      const result = await createPost.mutateAsync(requestBody)
     
-  
+      // console.log("Before conditional block, createPost.isSuccess:", createPost.isSuccess);
+
+      // console.log("success")
+      const response = result.data;
+      // Now you can use `response` within this block
+
+      console.log("response", response);
+      // Assuming the JWT token is stored under `data.jwtToken` in the response
+      setJwtToken(result.data);
+      // console.log("response.data", result.data)
+      // console.log("response.data.jwtToken", result.data)
+      // console.log("jwtTokenn", jwtToken);
+
+
+
       const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-      console.log(formattedPhoneNumber);
-  
+      // console.log(formattedPhoneNumber);
+
       // Directly awaiting the signInWithPhoneNumber promise
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-  
-      console.log("confirmation",confirmation);
+
+      console.log("confirmation", confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
       console.log("handlsendotp");
-  
-    } catch (error) {
+    }
+
+    catch (error) {
       console.error(error);
       // Handle error appropriately
       toast.error("An error occurred. Please try again.");
-      window.location.reload();
+      // window.location.reload();
     }
   };
   const handleOtpSubmit = async () => {
@@ -95,7 +105,7 @@ export default function Signin() {
       await confirmationResult.confirm(otp);
       setOtp("");
       toast.success("you are successfully signin");
-      console.log("jwtToken",jwtToken);
+      console.log("jwtToken", jwtToken);
       document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
       changeToken(jwtToken)
       router.push("/");

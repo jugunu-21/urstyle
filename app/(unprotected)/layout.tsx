@@ -15,16 +15,14 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html>
-            <head>
-                {/* Include any head elements here, such as <title> or <meta> tags */}
-            </head>
-            <body>
+  
+           
+            <>
                 <Navbar />
                 <div className={inter.className}>{children}</div>
                 <Footer />
                 <Toaster />
-            </body>
-        </html>
+            </>
+        
     );
 }

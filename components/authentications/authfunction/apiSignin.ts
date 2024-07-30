@@ -20,7 +20,7 @@ const ApiSignin = async (requestBody:requestBodyprops) => {
       },
     });
 
-    return response; // Assuming you want to return the response body
+    return response.data; // Assuming you want to return the response body
   } catch (error) {
     console.error('API sign-in failed:', error);
     throw error; // Rethrow the error to handle it in the calling function
