@@ -1,13 +1,25 @@
-import React from 'react';
+// import React from 'react';
 
- export default function getJwtTokenFromCookies() {
-  const cookies = document.cookie ? document.cookie.split('; ') : [];
+//  export default function getJwtTokenFromCookies() {
+//   const cookies = document.cookie ? document.cookie.split('; ') : [];
 
-  const jwtCookie = cookies.find(cookie => cookie.startsWith('jwtToken'));
-  if (!jwtCookie) {
-    return null;
+//   const jwtCookie = cookies.find(cookie => cookie.startsWith('jwtToken'));
+//   if (!jwtCookie) {
+//     return null;
+//   }
+
+//   const [_, token] = jwtCookie.split('=');
+//   return token;
+// }
+import Cookies from 'js-cookie';
+
+export default function getJwtTokenFromCookies() {
+  // Check if window is defined (client-side)
+  if (typeof window !== 'undefined') {
+    
+    const cookies = Cookies.get('jwtToken');
+    return cookies ? cookies : null;
   }
-
-  const [_, token] = jwtCookie.split('=');
-  return token;
+  // Server-side scenario
+  return null;
 }
