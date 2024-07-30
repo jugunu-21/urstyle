@@ -1,3 +1,5 @@
+
+"use client"
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 import { type NextRequest } from "next/server";
 import { env } from "@/env";
