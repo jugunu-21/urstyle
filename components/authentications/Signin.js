@@ -2,7 +2,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import {
   getAuth,
   RecaptchaVerifier,
