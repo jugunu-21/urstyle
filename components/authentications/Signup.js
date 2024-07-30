@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 import {
   getAuth,
   RecaptchaVerifier,
@@ -109,7 +110,7 @@ export default function Signup() {
       // Check if the response is successful (status code 200-299)
       if (result) {
         const jwtToken = result.data; 
-        document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`; 
+        Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
         changeToken(jwtToken)
         console.log("Phone number stored successfully on the backend.");
         router.push("/");

@@ -20,7 +20,7 @@ import Countrycodedata from "./ContextCountryCode";
 import ApiSignin from "@/components/authentications/authfunction/apiSignin"
 import { useToken } from "../helpers/zustand";
 import { api } from "@/trpc/react";
-
+import Cookies from 'js-cookie';
 export default function Signin() {
   const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -106,7 +106,7 @@ export default function Signin() {
       setOtp("");
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
-      document.cookie = `jwtToken=${jwtToken}; path=/; max-age=3600`;
+      Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
       changeToken(jwtToken)
       router.push("/");
       // console.log(sessionId);

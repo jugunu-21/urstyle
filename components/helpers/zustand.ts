@@ -1,12 +1,12 @@
 "use client"
 import { create } from 'zustand';
-import getTokenFromCookies from "@/components/helpers/getcookie";
+import getJwtTokenFromCookies from "@/components/helpers/getcookie";
 import { persist, createJSONStorage } from 'zustand/middleware';
 
 import ApiFetchProducts from '../admin/product/productFunctions/apiFetchProducts';
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
 
-const jwt = getTokenFromCookies()
+const jwt = getJwtTokenFromCookies()
 console.log("tokeninz", jwt)
 
 
