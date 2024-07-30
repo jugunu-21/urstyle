@@ -1,5 +1,7 @@
 "use client"
+
 import React from "react";
+import Cookies from 'js-cookie';
 import { app } from "@/app/config"
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
@@ -15,10 +17,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
-
+// import Cookies from 'js-cookie';
 import { useToken,useStore } from "@/components/helpers/zustand";
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts";
 import { Productsprops } from "@/components/context/mycontext";
+
 // import { useStore } from "zustand";
 export default function Navbardrop() {
 
@@ -30,7 +33,7 @@ export default function Navbardrop() {
     // Sign out from Firebase
     signOut(auth)
       .then(() => {
-        document.cookie = `jwtToken=; max-age=0; path=/`;
+        Cookies.remove('jwtToken', { path: '/' });
         console.log("Signed out successfully and session cookie cleared");
 
         // Redirect to home page or any other page

@@ -5,8 +5,9 @@ import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation"; // Corrected import path
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
+import Cookies from 'js-cookie';
 import { useParams } from "next/navigation"; // Corrected import path
-
+import getJwtTokenFromCookies from "../helpers/getcookie";
 export default function Signout() {
   const [userInfo, setUserInfo] = useState(null);
   const router = useRouter();
@@ -16,28 +17,20 @@ export default function Signout() {
   const redirectUrl = paramsUrl ? paramsUrl : "/";
   console.log("redirectUrllll", redirectUrl);
   useEffect(() => {
-    const fetchData = async () => {
-      const jwtToken = await getTokenFromCookies();
-      if (jwtToken) {
-        const userDetails = await fetchUserDetails(jwtToken);
-        setUserInfo(userDetails);
-      }
-    };
 
     fetchData();
   }, []);
 
-  const getTokenFromCookies = async () => {
-    const cookies = document.cookie.split("; ");
-    for (const cookie of cookies) {
-      const [key, value] = cookie.split("=");
-      if (key === "jwtToken") {
-        return value;
-      }
+  
+  const fetchData = async () => {
+    const jwtToken = await getJwtTokenFromCookies();
+    console.log("jwttokenn",jwtToken)
+    if (jwtToken) {
+      const userDetails = await fetchUserDetails(jwtToken);
+      setUserInfo(userDetails);
     }
-    return null;
-  };
-
+  return null;
+};
   const fetchUserDetails = async (jwtToken) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {
@@ -65,7 +58,8 @@ export default function Signout() {
     signOut(auth).then(() => {
       console.log("Signed out successfully and session cookie cleared");
       toast.success("You Signed Out ");
-      document.cookie = "jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      // document.cookie = "jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      Cookies.remove('jwtToken', { path: '/' });
       if (redirectUrl) {
         router.push(`/${redirectUrl}`);
       } else {
