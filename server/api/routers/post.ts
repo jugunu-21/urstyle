@@ -29,12 +29,6 @@ export const postRouter = createTRPCRouter({
       post = { id: post.id + 1, name: input.name };
       return post;
     }),
-
-    // response {
-    //   data: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGVjMWQzNjAxY2IwMjhkNjBmM2FiNSIsImlhdCI6MTcyMjMzODU4NSwiZXhwIjoxNzIyMzQyMTg1fQ.EYsDf-zjddHHGYiEaGN7JA5vf6tGWhfND18685oUDyM',
-    //   message: 'OK',
-    //   status: 200
-    // }
   getLatest: publicProcedure.query(() => {
     return post;
   }),
@@ -42,20 +36,16 @@ export const postRouter = createTRPCRouter({
     .input(z.object({ phone_number: z.string().min(1) }))
     .output(z.object({data:z.string(),message:z.string(),status:z.number()}))
     .mutation (async({ input }) => {
-      console.log("yy")
       const response = await ApiSignin(input)
       console.log("response",response)
-      console.log("okke")
       return response
     }),
     sIgnup: publicProcedure
     .input(z.object({ phone_number: z.string().min(1) }))
     .output(z.object({data:z.string(),message:z.string(),status:z.number()}))
     .mutation (async({ input }) => {
-      console.log("yy")
       const response = await ApiSignup(input)
       console.log("response",response)
-      console.log("okke")
       return response
     })
 });

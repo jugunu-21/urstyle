@@ -1,4 +1,4 @@
-
+// "use client "
 export type MyObjectType = {
     myArray: Productsprops; // Replace YourArrayType with the actual type of elements in the array
     myString: string;
