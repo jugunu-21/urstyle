@@ -7,7 +7,7 @@ import Footer from "@/components/layout/footer/Footer";
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from "react";
 import { TRPCReactProvider } from "@/trpc/react";
-import {useStore,useToken} from "@/components/helpers/zustand"
+
 const inter = Inter({ subsets: ["latin"] });
  const metadata: Metadata = {
   title: "Urstyle",

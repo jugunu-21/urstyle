@@ -1,22 +1,8 @@
 
 import Image from "next/image"
-import Link from "next/link"
 import {
-    File,
-    Home,
-    LineChart,
-    ListFilter,
     MoreHorizontal,
-    Package,
-    Package2,
-    PanelLeft,
-    PlusCircle,
-    Search,
-    Settings,
-    ShoppingCart,
-    Users2,
 } from "lucide-react"
-
 import {
     Card,
     CardContent,
@@ -25,8 +11,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
-
 import {
     Table,
     TableBody,
@@ -41,19 +25,46 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-
 import StatusandFilter from "@/components/admin/product/productutils/layout/statusandFilter"
 import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
-import { ProductsContext, Productsprops } from '@/components/context/mycontext';
-import { useContext } from 'react';
+import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
 
 import { useState, useEffect } from "react";
-import {useStore,useToken} from "@/components/helpers/zustand"
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
-// import useJwtToken from "@/components/helpers/getToken"
-export function Dashboard() {
+import { useToken } from "@/components/helpers/zustand"
+
+import { api } from "@/trpc/react"
+import { LoadingPage, LoadingSpinner } from "@/components/admin/product/productutils/loaders";
+
+export function Dashboard() 
+{
+    const token = useToken((state) => state.token);
+    const productFetchPost = api.product.productfetch.useMutation()
+    const [fetchedData, setFetchedData] = useState<productlistprop>();
     
- const data = useStore((state)=>(state.data));
+    useEffect(() => {
+        console.log("fhe")
+        console.log("token", token)
+        if (token) {
+            console.log("token", token)
+            productFetchPost.mutateAsync({ jwtToken: token })
+            .then(response => {
+            setFetchedData(response.data);
+            }
+        )
+        }
+    },[]);
+
+    const handler = () => {
+        console.log("fhe")
+        console.log("token", token)
+        if (token) {
+            console.log("token", token)
+            productFetchPost.mutateAsync({ jwtToken: token }).then(response => {
+                setFetchedData(response.data);
+            });
+        }
+    }
+
     const trigger = () => {
         return (
             <>
@@ -64,12 +75,15 @@ export function Dashboard() {
     }
     const label = "Action"
     const item = ["Create", "Update"]
-  
-    return (
+   
+    return (<>
+        {productFetchPost.isPending ?( <div className="absolute top-0 right-0 flex h-screen w-screen items-center justify-center">
+     Loading
+    </div> ):(
         <div className="flex min-h-screen w-full flex-col bg-muted/40">
 
             <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-
+                <button onClick={handler}>presss</button>
                 <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
                     <Tabs defaultValue="all">
                         <StatusandFilter />
@@ -106,7 +120,7 @@ export function Dashboard() {
                                         </TableHeader>
                                         <TableBody>
 
-                                            {data.map((data, index) => (
+                                            {fetchedData && fetchedData.map((data, index) => (
                                                 <>
                                                     <TableRow key={index}>
 
@@ -156,6 +170,7 @@ export function Dashboard() {
                     </Tabs>
                 </main>
             </div>
-        </div>
+        </div>)
+    }</>
     )
 }

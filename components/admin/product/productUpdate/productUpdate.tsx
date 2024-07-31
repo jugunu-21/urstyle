@@ -55,9 +55,10 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useStore, useToken } from "@/components/helpers/zustand"
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
+import { api } from "@/trpc/react"
 export default function Dashboard({ index }: { index: number | undefined }) {
 
-
+const productUpdatepost=api.product.productUpdate.useMutation()
   const [pid, setPid] = useState<number | null>(null);
   const [id, setId] = useState<string|null>(null);
   const [name, setName] = useState<string | null>(null);
@@ -142,28 +143,15 @@ export default function Dashboard({ index }: { index: number | undefined }) {
               }
               console.log("iddd", id);
               if (token) {
-                ApiUpdateProduct({ requestBody, jwtToken: token, id: rawdata ? rawdata.id : undefined })
+                productUpdatepost.mutateAsync({ requestBody, jwtToken: token, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
                     console.log("updateedcompleteinfetch")
                     try {
-                      console.log("he");
-                      ApiFetchProducts({ jwtToken: token })
-                        .then
-                        ((response) => {
-                          if (response) {
-                            console.log(response);
-                            const result: Productsprops | undefined = response.data.data;
-                            if (result) {
-                              console.log("result in update", result);
-                              setData(result);
-                              console.log("successfully data list updated in update");
-                            }
-                          }
+                      
                           router.push("/admin/product/productfetch")
                           toast.success("sucessfully updated");
-                        })
-                        .catch((error) => console.error("submission error:", error));
+                      
                     }
                     catch (error) {
                       console.error("Error updating product:", error);

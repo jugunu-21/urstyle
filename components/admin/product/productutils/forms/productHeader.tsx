@@ -51,15 +51,18 @@ interface SubmitHandlerInterface {
   requestBody: ProductDataInterface
   id?: string|undefined
 }
-import { useStore, useToken } from "@/components/helpers/zustand"
+import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
 import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
 import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpdateProduct';
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
+import { api } from "@/trpc/react";
 export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandlerInterface) {
   const router = useRouter();
-  const setData = useStore((state) => state.setData);
+  const productaddpost = api.product.productAdd.useMutation();
+  const productUpdatepost = api.product.productUpdate.useMutation();
+  // const setData = useStore((state) => state.setData);
 
     const handlerupload = async () => {
       if (jwtToken === null) {
@@ -68,30 +71,11 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
       }
     
         if (jwtToken) {
-   ApiUploadProduct({ requestBody, jwtToken:jwtToken })
+          productaddpost.mutateAsync({ requestBody, jwtToken:jwtToken })
             .then(()=> {
-              try {
-                console.log("he");
-                ApiFetchProducts({ jwtToken: jwtToken })
-                  .then
-                  ((response) => {
-                    if (response) {
-                      console.log(response);
-                      const result: Productsprops | undefined = response.data.data;
-                      if (result) {
-                        console.log("result in update", result);
-                        setData(result);
-                        console.log("successfully data list updated in upload");
-                        router.push("/admin/product/productfetch")
-                        toast.success("sucessfully uploaded");
-                      }
-                    }
-  
-                  })
-                  .catch((error) => console.error("submission error:", error));
-              } catch (error) {
-                toast.error("error while upload ")
-              }
+              router.push("/admin/product/productfetch")
+              toast.success("sucessfully uploaded");
+            
             })
             .catch(function (error) {
               console.log("apiaddproduct", error);
@@ -100,19 +84,6 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
   
         }
       }
-  
-     
-
-
-
-
-
-
-
-
-
-
-
 
   const handlerupdate=async(id:string) => {
     if (jwtToken === null) {
@@ -121,34 +92,13 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
     }
     console.log("iddd", id);
     if (jwtToken) {
-      ApiUpdateProduct({ requestBody, jwtToken: jwtToken, id:id  })
+      productUpdatepost.mutateAsync({ requestBody, jwtToken: jwtToken, id:id  })
         .then
         (() => {
-          console.log("updateedcompleteinfetch")
-          try {
-            console.log("he");
-            ApiFetchProducts({ jwtToken: jwtToken })
-              .then
-              ((response) => {
-                if (response) {
-                  console.log(response);
-                  const result: Productsprops | undefined = response.data.data;
-                  if (result) {
-                    console.log("result in update", result);
-                    setData(result);
-                    console.log("successfully data list updated in update");
-                  }
-                }
-                router.push("/admin/product/productfetch")
-                toast.success("sucessfully updated");
-              })
-              .catch((error) => console.error("submission error:", error));
-          }
-          catch (error) {
-            console.error("Error updating product:", error);
-          }
-
-      }).catch((error) => console.error("submission error:", error))
+         
+          router.push("/admin/product/productfetch")
+          toast.success("sucessfully updated");}
+      ).catch((error) => console.error("submission error:", error))
     }
 
 
