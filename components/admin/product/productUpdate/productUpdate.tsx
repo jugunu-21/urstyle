@@ -54,13 +54,24 @@ import { createContext } from "react"
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useStore, useToken } from "@/components/helpers/zustand"
-import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
-import { api } from "@/trpc/react"
-export default function Dashboard({ index }: { index: number | undefined }) {
 
-const productUpdatepost=api.product.productUpdate.useMutation()
+import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
+import { api } from "@/trpc/react"
+type addprops = {
+  fetchedData?: productlistprop,
+  setSheetOpen: (sheetOpen: boolean) => void,
+  index: number
+}
+export default function Dashboard({ fetchedData, setSheetOpen, index }: addprops) {
+  const utils = api.useUtils();
+  const productUpdatepost = api.product.productUpdate.useMutation({
+    onSuccess: async () => {
+      console.log("successful")
+      await utils.product.invalidate();
+    },
+  })
   const [pid, setPid] = useState<number | null>(null);
-  const [id, setId] = useState<string|null>(null);
+  const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
   const [code, setCode] = useState<string | null>(null);
   const [link, setLink] = useState<string | null>(null);
@@ -71,22 +82,23 @@ const productUpdatepost=api.product.productUpdate.useMutation()
   const router = useRouter();
   const token = useToken((state) => state.token);
   const data = useStore((state) => (state.data));
-  const setData = useStore((state) => state.setData);
+
   useEffect(() => {
     if (index != undefined) {
+      console.log("fetchedData", fetchedData)
       console.log("index", index)
-      setRawdata(data[index])
+      { fetchedData && setRawdata(fetchedData[index]) }
     }
 
-  })
+  },[])
   const requestBody = {
-    pid: pid ?? rawdata?.pid??0, // Default to 0 if pid is null or undefined
-    name: name ??rawdata?.name??'', // Default to empty string if name is null or undefined
-    code: code ?? rawdata?.code??'', // Default to empty string if code is null or undefined
-    link: link ??rawdata?.link??'', // Default to empty string if link is null or undefined
-    description: description ?? rawdata?.description??'', // Default to empty string if description is null or undefined
-    price: price ?? rawdata?.price??'', // Ensure price is a string, defaulting to "0"
-    image: image ??rawdata?.image??'',
+    pid: pid ?? rawdata?.pid ?? 0, // Default to 0 if pid is null or undefined
+    name: name ?? rawdata?.name ?? '', // Default to empty string if name is null or undefined
+    code: code ?? rawdata?.code ?? '', // Default to empty string if code is null or undefined
+    link: link ?? rawdata?.link ?? '', // Default to empty string if link is null or undefined
+    description: description ?? rawdata?.description ?? '', // Default to empty string if description is null or undefined
+    price: price ?? rawdata?.price ?? '', // Ensure price is a string, defaulting to "0"
+    image: image ?? rawdata?.image ?? '',
   };
 
   // const handleaftersubmit = async () => {
@@ -109,10 +121,10 @@ const productUpdatepost=api.product.productUpdate.useMutation()
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} />
+        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)} />
+            <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />
 
             {/* <ProductTable price={price} setprice={setPrice}/> */}
 
@@ -148,10 +160,10 @@ const productUpdatepost=api.product.productUpdate.useMutation()
                   (() => {
                     console.log("updateedcompleteinfetch")
                     try {
-                      
-                          router.push("/admin/product/productfetch")
-                          toast.success("sucessfully updated");
-                      
+                      setSheetOpen(false)
+                      // router.push("/admin/product/productfetch")
+                      toast.success("sucessfully updated");
+
                     }
                     catch (error) {
                       console.error("Error updating product:", error);

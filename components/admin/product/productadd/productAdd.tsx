@@ -82,6 +82,7 @@ export default function Dashboard() {
     requestBody: ProductDataInterface;
     jwtToken: string; // Assuming jwtToken is a string
   }
+ 
   const productUpdatePost = api.product.productAdd.useMutation();
   const handler = async () => {
     if (token === null) {

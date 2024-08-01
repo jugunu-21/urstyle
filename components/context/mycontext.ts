@@ -36,7 +36,7 @@ export type productlistprop = {
     price: string;
     image: string;
     review: Record<string, unknown>[];
-    id?: any;
+    id: string;
 }[];
 
 // Adjusted myObject to match MyObjectType correctly

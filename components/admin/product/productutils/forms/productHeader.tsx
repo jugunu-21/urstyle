@@ -50,6 +50,7 @@ interface SubmitHandlerInterface {
   jwtToken: string
   requestBody: ProductDataInterface
   id?: string|undefined
+  setSheetOpen?: (value: boolean) => void;
 }
 import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
@@ -58,7 +59,7 @@ import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpd
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
 import { api } from "@/trpc/react";
-export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandlerInterface) {
+export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen }: SubmitHandlerInterface) {
   const router = useRouter();
   const productaddpost = api.product.productAdd.useMutation();
   const productUpdatepost = api.product.productUpdate.useMutation();
@@ -95,8 +96,8 @@ export default function ProductHeader({ jwtToken, requestBody, id }: SubmitHandl
       productUpdatepost.mutateAsync({ requestBody, jwtToken: jwtToken, id:id  })
         .then
         (() => {
-         
-          router.push("/admin/product/productfetch")
+         {setSheetOpen&&setSheetOpen(false)}
+          // router.push("/admin/product/productfetch")
           toast.success("sucessfully updated");}
       ).catch((error) => console.error("submission error:", error))
     }
