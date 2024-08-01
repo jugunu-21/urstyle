@@ -23,8 +23,8 @@ console.log("groupIndex",groupIndex)
     return (
         <div >
             <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            
-                <Dashboard index={ groupIndex} />
+            try to have from some other route
+                {/* <Dashboard index={ groupIndex} /> */}
             </div>
         </div>
 

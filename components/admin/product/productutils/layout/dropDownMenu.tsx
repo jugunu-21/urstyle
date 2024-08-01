@@ -83,18 +83,17 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"; // Corrected import path
 import ProductAdd from "@/components/admin/product/productadd/productAdd"
 type dropdownmenuprops = {
-  item: string[], trigger: () => JSX.Element, label: string, setIndex?:(index:number)=>void ,setSheetOpen:(sheetOpen:boolean)=>void,recentindex?:number
+  item: string[], 
+  trigger: () => JSX.Element,
+   label: string,
+    setIndex?:(index:number)=>void ,
+    setSheetOpen?:(sheetOpen:boolean)=>void,
+    recentindex?:number
 }
 export function DropDownMenu({ item, label, trigger, setIndex,setSheetOpen,recentindex }: dropdownmenuprops) {
-  const router = useRouter();
+  // const router = useRouter();
   const itemsLength = item.length;
-  // const [open, setOpen] = useState(false);
-  // const [sheetOpen, setSheetOpen] = useState(false);
-
-  const handleDropdownItemClick = () => {
-    setSheetOpen(true);
-    
-  };
+  
 
   return (
 <>
@@ -115,7 +114,7 @@ export function DropDownMenu({ item, label, trigger, setIndex,setSheetOpen,recen
             <div key={i} 
             onClick={() => {
               if(item==="Update"){
-                handleDropdownItemClick()
+               { setSheetOpen&&setSheetOpen(true)}
               { setIndex&&recentindex&&setIndex(recentindex)}
               }
             
