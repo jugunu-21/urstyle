@@ -48,7 +48,7 @@ export const productRouter = createTRPCRouter({
   productfetch: publicProcedure.input(apiProductsfetchZodSchema)
   
     .output(z.object({ data:z.array(simplifiedProducts) , message: z.string(), status: z.number() }))
-    .mutation(async ({ input }) => {
+    .query(async ({ input }) => {
       const response = await ApiFetchProducts(input)
       console.log("adddfetch")
       return response;

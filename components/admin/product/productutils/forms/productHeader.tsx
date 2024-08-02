@@ -51,6 +51,7 @@ interface SubmitHandlerInterface {
   requestBody: ProductDataInterface
   id?: string|undefined
   setSheetOpen?: (value: boolean) => void;
+  refetch?: (options?: RefetchOptions) => Promise<any>;
 }
 import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
@@ -59,7 +60,8 @@ import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpd
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
 import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
 import { api } from "@/trpc/react";
-export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen }: SubmitHandlerInterface) {
+import { RefetchOptions } from "@tanstack/react-query"
+export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen,refetch }: SubmitHandlerInterface) {
   const router = useRouter();
   const productaddpost = api.product.productAdd.useMutation();
   const productUpdatepost = api.product.productUpdate.useMutation();
@@ -97,6 +99,7 @@ export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen 
         .then
         (() => {
          {setSheetOpen&&setSheetOpen(false)}
+         {refetch&&refetch()}
           // router.push("/admin/product/productfetch")
           toast.success("sucessfully updated");}
       ).catch((error) => console.error("submission error:", error))

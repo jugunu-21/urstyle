@@ -104,7 +104,7 @@ export function DropDownMenu({ item, label, trigger, setIndex,setSheetOpen,recen
           size="icon"
           className="overflow-hidden rounded-full"
         >
-          {trigger()}   </Button>`  `
+          {trigger()}   </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{label}</DropdownMenuLabel>

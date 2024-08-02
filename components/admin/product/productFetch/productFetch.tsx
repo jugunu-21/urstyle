@@ -34,7 +34,7 @@ import { useToken } from "@/components/helpers/zustand"
 
 import { api } from "@/trpc/react"
 // import { LoadingPage, LoadingSpinner } from "@/components/admin/product/productutils/loaders";
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -50,25 +50,10 @@ import {
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
 export function Dashboard() {
     const token = useToken((state) => state.token);
-    const productFetchPost = api.product.productfetch.useMutation()
-    const [fetchedData, setFetchedData] = useState< productlistprop>();
+    const [fetchedData, setFetchedData] = useState<productlistprop>();
     const [sheetOpen, setSheetOpen] = useState(false);
     const [index, setIndex] = useState(0);
-    useEffect(() => {
-        console.log("fhe")
-        console.log("token", token)
-        if (token) {
-            console.log("token", token)
-            productFetchPost.mutateAsync({ jwtToken: token })
-                .then(response => {
-                    setFetchedData(response.data);
-                }
-                )
-        }
-    }, []);
-
-
-
+    const { data, isLoading, refetch, error } = api.product.productfetch.useQuery( { jwtToken: token || '' } );
     const trigger = () => {
         return (
             <>
@@ -79,105 +64,129 @@ export function Dashboard() {
     }
     const label = "Action"
     const item = ["Create", "Update"]
-
+    if (isLoading) { return <div>Loading...</div>; }
+    if (error) {
+        return <div>Error:
+            {error.message}</div>;
+    }
+   
+   
+    
     return (<>
-        {productFetchPost.isPending ? (<div className="absolute top-0 right-0 flex h-screen w-screen items-center justify-center">
-            Loading
-        </div>) : (
-            <div className="flex min-h-screen w-full flex-col bg-muted/40">
-                <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-                    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-                        <Tabs defaultValue="all">
-                            <StatusandFilter />
-                            <TabsContent value="all">
-                                <Card x-chunk="dashboard-06-chunk-0">
-                                    <CardHeader>
-                                        <CardTitle>Products</CardTitle>
-                                        <CardDescription>
-                                            Manage your products and view their sales performance.
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <Table>
-                                            <TableHeader>
-                                                <TableRow>
-                                                    <TableHead className="hidden w-[100px] sm:table-cell">
-                                                        <span className="sr-only">Image</span>
-                                                    </TableHead>
-                                                    <TableHead>Name</TableHead>
-                                                    <TableHead>Price</TableHead>
-                                                    <TableHead className="hidden md:table-cell">
-                                                        Description
-                                                    </TableHead>
-                                                    <TableHead className="hidden md:table-cell">
-                                                        Link
-                                                    </TableHead>
-                                                    <TableHead className="hidden md:table-cell">
-                                                        Created at
-                                                    </TableHead>
-                                                    <TableHead>
-                                                        <span className="sr-only">Actions</span>
-                                                    </TableHead>
-                                                </TableRow>
-                                            </TableHeader>
-                                            <TableBody>
-                                                {fetchedData && fetchedData.map((data, index) => (
-                                                    <>
-                                                        <TableRow key={index}>
+        {data &&
+            (
+                <div className="flex min-h-screen w-full flex-col bg-muted/40">
+                    <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+                        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+                            <Tabs defaultValue="all">
+                                <StatusandFilter />
+                                <TabsContent value="all">
+                                    <Card x-chunk="dashboard-06-chunk-0">
+                                        <CardHeader>
+                                            <CardTitle>Products</CardTitle>
+                                            <CardDescription>
+                                                Manage your products and view their sales performance.
+                                            </CardDescription>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <Table>
+                                                <TableHeader>
+                                                    <TableRow>
+                                                        <TableHead className="hidden w-[100px] sm:table-cell">
+                                                            <span className="sr-only">Image</span>
+                                                        </TableHead>
+                                                        <TableHead>Name</TableHead>
+                                                        <TableHead>Price</TableHead>
+                                                        <TableHead className="hidden md:table-cell">
+                                                            Description
+                                                        </TableHead>
+                                                        <TableHead className="hidden md:table-cell">
+                                                            Link
+                                                        </TableHead>
+                                                        <TableHead className="hidden md:table-cell">
+                                                            Created at
+                                                        </TableHead>
+                                                        <TableHead>
+                                                            <span className="sr-only">Actions</span>
+                                                        </TableHead>
+                                                    </TableRow>
+                                                </TableHeader>
+                                                <TableBody>
+                                                    {data.data.map((data, index) => (
+                                                        <>
+                                                            <TableRow key={index}>
 
-                                                            <TableCell className="hidden sm:table-cell">
-                                                                <Image
-                                                                    alt="Product image"
-                                                                    className="aspect-square rounded-md object-cover"
-                                                                    height="64"
-                                                                    src="/placeholder.svg"
-                                                                    width="64"
-                                                                />
-                                                            </TableCell>
-                                                            <TableCell className="font-medium">
-                                                                {data.name}
-                                                            </TableCell>
+                                                                <TableCell className="hidden sm:table-cell">
+                                                                    <Image
+                                                                        alt="Product image"
+                                                                        className="aspect-square rounded-md object-cover"
+                                                                        height="64"
+                                                                        src="/placeholder.svg"
+                                                                        width="64"
+                                                                    />
+                                                                </TableCell>
+                                                                <TableCell className="font-medium">
+                                                                    {data.name}
+                                                                </TableCell>
 
-                                                            <TableCell className="hidden md:table-cell">
-                                                                ${data.price}
-                                                            </TableCell>
-                                                            <TableCell className="hidden md:table-cell">
-                                                                {data.description}
-                                                            </TableCell>
-                                                            <TableCell className="hidden md:table-cell">
-                                                                {data.link}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                <DropDownMenu item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={index} setSheetOpen={setSheetOpen}/>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </CardContent>
-                                    <CardFooter>
-                                        <div className="text-xs text-muted-foreground">
-                                            Showing <strong>1-10</strong> of <strong>32</strong>{" "}
-                                            products
-                                        </div>
-                                    </CardFooter>
-                                </Card>
-                            </TabsContent>
-                        </Tabs>
-                        <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                            <SheetContent className=" w-full h-full p-0 border-lime-500 border-4 ">
-                                <div className=" overflow-y-auto w-full flex h-full  flex-col bg-muted/40 border-red-500 border-4">
-                                    <ProductUpdate fetchedData={fetchedData}  setSheetOpen={setSheetOpen} index={index} />
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </main>
-                </div>
-            </div>)
-        }
-    </>
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    ${data.price}
+                                                                </TableCell>
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    {data.description}
+                                                                </TableCell>
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    {data.link}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <DropDownMenu item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={index} setSheetOpen={setSheetOpen} />
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </CardContent>
+                                        <CardFooter>
+                                            <div className="text-xs text-muted-foreground">
+                                                Showing <strong>1-10</strong> of <strong>32</strong>{" "}
+                                                products
+                                            </div>
+                                        </CardFooter>
+                                    </Card>
+                                </TabsContent>
+                            </Tabs>
+                            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+                                <SheetContent className=" w-full h-full p-0 border-lime-500 border-4 ">
+                                    <div className=" overflow-y-auto w-full flex h-full  flex-col bg-muted/40 border-red-500 border-4">
+                                        <ProductUpdate fetchedData={data.data} setSheetOpen={setSheetOpen} index={index} refetch={refetch} />
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        </main>
+                    </div>
+                </div>)
+
+        } </>
     )
 }
 
 
+// useEffect(() => {
+//     console.log("fhe")
+//     console.log("token", token)
+//     if (token) {
+//         console.log("token", token)
+//         productFetchPost.mutateAsync({ jwtToken: token })
+//             .then(response => {
+//                 setFetchedData(response.data);
+//             }
+//             )
+//     }
+// }, []);
+
+// useEffect(() => {
+//     if (data) { // Check if data has a value before setting fetchedData
+//       setFetchedData(data.data);
+//     }
+//   }, [data]);

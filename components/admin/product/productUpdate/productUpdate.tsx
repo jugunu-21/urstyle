@@ -57,12 +57,14 @@ import { useStore, useToken } from "@/components/helpers/zustand"
 
 import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
 import { api } from "@/trpc/react"
+import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
   fetchedData?: productlistprop,
   setSheetOpen: (sheetOpen: boolean) => void,
-  index: number
+  index: number,
+  refetch: (options?: RefetchOptions) => Promise<any>;
 }
-export default function Dashboard({ fetchedData, setSheetOpen, index }: addprops) {
+export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: addprops) {
   const utils = api.useUtils();
   const productUpdatepost = api.product.productUpdate.useMutation({
     onSuccess: async () => {
@@ -121,7 +123,7 @@ export default function Dashboard({ fetchedData, setSheetOpen, index }: addprops
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} />
+        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />
@@ -161,6 +163,8 @@ export default function Dashboard({ fetchedData, setSheetOpen, index }: addprops
                     console.log("updateedcompleteinfetch")
                     try {
                       setSheetOpen(false)
+                      refetch();
+                      console.log("refetch",refetch)
                       // router.push("/admin/product/productfetch")
                       toast.success("sucessfully updated");
 
