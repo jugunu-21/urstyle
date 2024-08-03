@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import deleteUser from "@/components/authentications/deleteuser";
+import deleteUser from "@/components/authentications/deleteUser";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,12 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
-// import Cookies from 'js-cookie';
 
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts";
-import { Productsprops } from "@/components/context/mycontext";
-
-// import { useStore } from "zustand";
 export default function Navbardrop() {
 
 

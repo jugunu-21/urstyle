@@ -5,15 +5,15 @@ import { useParams } from 'next/navigation';
 
 import Link from "next/link";
 
-import Sitelink from "@/components/reusablecomponents/Sitelink";
+import Sitelink from "@/components/reusablecomponents/siteLink";
 
 import itemsData from "@/Data/items.json"
 
-import Star from '@/components/reusablecomponents/Star';
+import Star from '@/components/reusablecomponents/star';
 // import Summary from '@/components/details/overview/summary/Summary';
-import Faq from "@/components/details/moredetails/Faq"
-import Customereview from "@/components/details/moredetails/Customereview"
-import License from "@/components/details/moredetails/License"
+import Faq from "@/components/details/moreDetails/faq"
+import Customereview from "@/components/details/moreDetails/customeReview"
+import License from "@/components/details/moreDetails/license"
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
 const params = useParams();

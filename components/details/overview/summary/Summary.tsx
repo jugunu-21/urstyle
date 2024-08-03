@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Star from '@/components/reusablecomponents/Star';
-import Sitelink from '@/components/reusablecomponents/Sitelink';
-import avgg from '@/components/reusablecomponents/avgg';
+import Star from '@/components/reusablecomponents/star';
+import Sitelink from '@/components/reusablecomponents/siteLink';
+import avgg from '@/components/reusablecomponents/avg';
 interface CartItem {
   id: number;
   name: string;

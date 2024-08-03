@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
+
 import {
   Select,
   SelectContent,
@@ -38,23 +38,19 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 import toast from "react-hot-toast"
-import ProductStatus from "@/components/admin/product/productutils/forms/productStatus"
+import ProductStatus from "@/components/admin/product/productUtils/forms/productStatus"
 import { useState, useEffect } from "react";
-import getTokenFromCookies from "@/components/helpers/getcookie";
-import Productnamedespridetails from "@/components/admin/product/productutils/forms/productnamedespridetails"
-import ProductImageCard from "@/components/admin/product/productutils/forms/productImage"
-import ProductAffiandCateg from "@/components/admin/product/productutils/forms/productAffiandCateg"
-import ProductArchieve from "@/components/admin/product/productutils/forms/productArchieve"
-import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
-import ProductHeader from "../productutils/forms/productHeader"
-import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface"
-
+import getTokenFromCookies from "@/components/helpers/getCookie";
+import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productnamedespridetails"
+import ProductImageCard from "@/components/admin/product/productUtils/forms/productImage"
+import ProductAffiandCateg from "@/components/admin/product/productUtils/forms/productAffiandCateg"
+import ProductArchieve from "@/components/admin/product/productUtils/forms/productArchieve"
+import ProductTable from "@/components/admin/product/productUtils/forms/productDetailTable"
+import ProductHeader from "../productUtils/forms/productHeader"
+import { ProductDataInterface } from "@/components/admin/product/productUtils/productServices/productDataInterface"
 import Router from "next/router"
 import { api } from "@/trpc/react";
-import {ApiFetchProducts} from "@/components/admin/product/productutils/productFunctions"
 import { useRouter } from "next/navigation"
-// import useJwtToken from "@/components/helpers/getToken"
-// import { useToken } from "@/components/helpers/zustand"
 import { useStore, useToken } from "@/components/helpers/zustand"
 export default function Dashboard() {
   const token = useToken((state) => state.token);

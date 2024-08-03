@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import findkeyword from "./findkeyword";
+import findkeyword from "./findKeyword";
 export default function Sitelink({ sitelink, setsitelink }) {
   return (
     <div className="h-8 w-24 ">

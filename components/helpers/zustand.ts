@@ -1,24 +1,17 @@
 "use client"
 import { create } from 'zustand';
-import getJwtTokenFromCookies from "@/components/helpers/getcookie";
+import getJwtTokenFromCookies from "@/components/helpers/getCookie";
 import { persist, createJSONStorage } from 'zustand/middleware';
-
-import ApiFetchProducts from '../admin/product/productFunctions/apiFetchProducts';
-import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
-
+import { minimalProductArray,Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
 const jwt = getJwtTokenFromCookies()
 console.log("tokeninz", jwt)
-
-
 interface Store {
   data: Productsprops;
   setData: (data: Productsprops) => void;
 }
-
 interface token {
   token: string | null;
   changeToken: (token: string) => void;
-
 }
 export const useToken = create<token>((set) => ({
   token: jwt,

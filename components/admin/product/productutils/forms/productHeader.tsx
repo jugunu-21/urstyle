@@ -44,7 +44,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface";
+import { ProductDataInterface } from "@/components/admin/product/productUtils/productServices/productDataInterface";
 import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
   jwtToken: string
@@ -57,7 +57,7 @@ interface SubmitHandlerInterface {
 import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
 
-import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
+import {  Productsprops, minimalProductArray } from '@/components/admin/product/productUtils/service';
 import { api } from "@/trpc/react";
 import { RefetchOptions } from "@tanstack/react-query"
 export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen,refetch }: SubmitHandlerInterface) {

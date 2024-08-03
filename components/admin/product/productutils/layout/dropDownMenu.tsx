@@ -81,7 +81,7 @@ import {
 } from "@/components/ui/tooltip"
 import { useState } from "react"
 import { useRouter } from "next/navigation"; // Corrected import path
-import ProductAdd from "@/components/admin/product/productadd/productAdd"
+import ProductAdd from "@/components/admin/product/productAdd/productAdd"
 type dropdownmenuprops = {
   item: string[], 
   trigger: () => JSX.Element,

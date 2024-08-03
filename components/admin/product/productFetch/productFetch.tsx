@@ -25,9 +25,9 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import StatusandFilter from "@/components/admin/product/productutils/layout/statusandFilter"
-import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
-import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
+import StatusandFilter from "@/components/admin/product/productUtils/layout/statusandFilter"
+import { DropDownMenu } from "@/components/admin/product/productUtils/layout/dropDownMenu"
+
 
 import { useState, useEffect } from "react";
 import { useToken } from "@/components/helpers/zustand"
@@ -47,6 +47,8 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+
+import { Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
 export function Dashboard() {
     const token = useToken((state) => state.token);

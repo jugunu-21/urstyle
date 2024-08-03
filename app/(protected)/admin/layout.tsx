@@ -1,10 +1,10 @@
 "use client"
 import { ThemeProvider } from 'next-themes';
 import { Inter } from "next/font/google";
-import { SideToolTip } from '@/components/admin/product/productutils/layout/sideToolTip';
-import { ToggleSideToolTip } from "@/components/admin/product/productutils/layout/toggleSideToolTip"
-import BreadCrumbsList from "@/components/admin/product/productutils/layout/breadCrumbsList"
-import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
+import { SideToolTip } from '@/components/admin/product/productUtils/layout/sideToolTip';
+import { ToggleSideToolTip } from "@/components/admin/product/productUtils/layout/toggleSideToolTip"
+import BreadCrumbsList from "@/components/admin/product/productUtils/layout/breadCrumbsList"
+import { DropDownMenu } from "@/components/admin/product/productUtils/layout/dropDownMenu"
 import {
   ChevronLeft,
   Home,

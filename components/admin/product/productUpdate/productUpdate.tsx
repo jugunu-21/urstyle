@@ -37,24 +37,24 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import ProductStatus from "@/components/admin/product/productutils/forms/productStatus"
+import ProductStatus from "@/components/admin/product/productUtils/forms/productStatus"
 import { useState, useEffect } from "react";
-import Productnamedespridetails from "@/components/admin/product/productutils/forms/productnamedespridetails"
-import ProductImageCard from "@/components/admin/product/productutils/forms/productImage"
-import ProductAffiandCateg from "@/components/admin/product/productutils/forms/productAffiandCateg"
-import ProductArchieve from "@/components/admin/product/productutils/forms/productArchieve"
-import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
-import ProductHeader from "../productutils/forms/productHeader"
-import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productutils/productServices/productDataInterface"
+import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productnamedespridetails"
+import ProductImageCard from "@/components/admin/product/productUtils/forms/productImage"
+import ProductAffiandCateg from "@/components/admin/product/productUtils/forms/productAffiandCateg"
+import ProductArchieve from "@/components/admin/product/productUtils/forms/productArchieve"
+import ProductTable from "@/components/admin/product/productUtils/forms/productDetailTable"
+import ProductHeader from "../productUtils/forms/productHeader"
+import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productUtils/productServices/productDataInterface"
 
 import { useContext } from "react"
 import { createContext } from "react"
-// import { ProductsContext } from "@/components/context/mycontext"
+
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useStore, useToken } from "@/components/helpers/zustand"
 
-import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
+import { Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
