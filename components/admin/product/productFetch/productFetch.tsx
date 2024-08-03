@@ -48,7 +48,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 
-import { Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
+import { productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
 export function Dashboard() {
     const token = useToken((state) => state.token);

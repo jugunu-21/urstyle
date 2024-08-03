@@ -57,7 +57,7 @@ interface SubmitHandlerInterface {
 import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
 
-import {  Productsprops, minimalProductArray } from '@/components/admin/product/productUtils/service';
+import {  productsProp, minimalProductArray } from '@/components/admin/product/productUtils/productInterface';
 import { api } from "@/trpc/react";
 import { RefetchOptions } from "@tanstack/react-query"
 export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen,refetch }: SubmitHandlerInterface) {

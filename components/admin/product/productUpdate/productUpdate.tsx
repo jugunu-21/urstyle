@@ -54,7 +54,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useStore, useToken } from "@/components/helpers/zustand"
 
-import { Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
+import { productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {

@@ -4,7 +4,7 @@ import {ApiUploadProduct} from "@/components/admin/product/productUtils/function
 import {ApiFetchProducts} from "@/components/admin/product/productUtils/function";
 import {ApiUpdateProduct} from "@/components/admin/product/productUtils/function";
 
-const ProductDataInterface = z.object({
+const productDataInterface = z.object({
   pid: z.number(),
   name: z.string(),
   code: z.string(),
@@ -27,14 +27,14 @@ const simplifiedProducts= z.object({
 
 const apiProductsAddZodSchema = z.object({
   jwtToken: z.string(),
-  requestBody: ProductDataInterface, // Use z.any() or a more specific schema for ProductDataInterface
+  requestBody: productDataInterface, // Use z.any() or a more specific schema for ProductDataInterface
 });
 const apiProductsfetchZodSchema = z.object({
   jwtToken: z.string()
 });
 const apiProductUpdateZodSchema = z.object({
   jwtToken: z.string(),
-  requestBody: ProductDataInterface,
+  requestBody: productDataInterface,
   id: z.string().optional()
 });
 export const productRouter = createTRPCRouter({

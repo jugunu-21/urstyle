@@ -2,12 +2,12 @@
 import { create } from 'zustand';
 import getJwtTokenFromCookies from "@/components/helpers/getCookie";
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { minimalProductArray,Productsprops, productlistprop } from '@/components/admin/product/productUtils/service';
+import { minimalProductArray,productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
 const jwt = getJwtTokenFromCookies()
 console.log("tokeninz", jwt)
 interface Store {
-  data: Productsprops;
-  setData: (data: Productsprops) => void;
+  data: productsProp;
+  setData: (data: productsProp) => void;
 }
 interface token {
   token: string | null;
@@ -23,7 +23,7 @@ export const useStore = create
   (persist<Store>
     ((set) => ({
       data: minimalProductArray,
-      setData: (datas: Productsprops) => set((state) => (
+      setData: (datas: productsProp) => set((state) => (
         { data: datas }
       ))
     })
