@@ -51,6 +51,7 @@ import { ProductDataInterface } from "@/components/admin/product/productutils/pr
 import PostApiCall from "../productFunctions/postApiCall"
 import ApiUploadProduct from "../productFunctions/apiUploadProducts"
 import Router from "next/router"
+import { api } from "@/trpc/react";
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
 import { useRouter } from "next/navigation"
 // import useJwtToken from "@/components/helpers/getToken"
@@ -67,6 +68,7 @@ export default function Dashboard() {
   const [image, setImage] = useState<string | null>("");
   const setData = useStore((state) => state.setData);
   const router = useRouter();
+  // const productUpdatePost=api.product.productUpdate.useMutation()
   const requestBody = {
     pid: pid ?? 0, // Default to 0 if pid is null or undefined
     name: name ?? "", // Default to empty string if name is null or undefined
@@ -76,67 +78,30 @@ export default function Dashboard() {
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
     image: image ?? "",
   };
-
-
-  // const handleaftersubmit = () => {
-  //   console.log("aftersubmitaction")
-  //   setPid(null);
-  //   setName(null);
-  //   setCode(null);
-  //   setLink(null);
-  //   setDescription(null);
-  //   setPrice(null);
-  //   setImage(null);
-  //   console.log("name", name)
-  // }
   interface SubmitFunctionArgs {
     requestBody: ProductDataInterface;
     jwtToken: string; // Assuming jwtToken is a string
   }
-  
-
+ 
+  const productUpdatePost = api.product.productAdd.useMutation();
   const handler = async () => {
     if (token === null) {
       console.error("JWT Token is required");
       return;
     }
-  
-      if (token) {
- ApiUploadProduct({ requestBody, jwtToken: token })
-          .then(()=> {
-            try {
-              console.log("he");
-              ApiFetchProducts({ jwtToken: token })
-                .then
-                ((response) => {
-                  if (response) {
-                    console.log(response);
-                    const result: Productsprops | undefined = response.data.data;
-                    if (result) {
-                      console.log("result in update", result);
-                      setData(result);
-                      console.log("successfully data list updated in upload");
-                      router.push("/admin/product/productfetch")
-                      toast.success("sucessfully uploaded");
-                    }
-                  }
-
-                })
-                .catch((error) => console.error("submission error:", error));
-            } catch (error) {
-              toast.error("error while upload ")
-            }
-          })
-          .catch(function (error) {
-            console.log("apiaddproduct", error);
-            toast.error("failed to upload product")
-          });
-
-      }
+    if (token) {
+      productUpdatePost.mutateAsync({ requestBody, jwtToken: token })
+        .then(() => {
+          router.push("/admin/product/productfetch")
+          toast.success("sucessfully uploaded");
+        })
+        .catch(function (error) {
+          console.log("apiaddproduct", error);
+          toast.error("failed to upload product")
+        });
     }
+  }
 
-   
-  
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">

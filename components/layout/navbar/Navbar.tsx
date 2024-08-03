@@ -15,7 +15,7 @@ export default function Navbar() {
 
 
   return (
-    <div className="  bg-purple-200">
+    <div className=" bg-purple-200">
       <div className="flex relative h-16 mx-auto max-w-7xl px-4 items-center justify-between">
         <div className="flex items-center justify-between">
           <div className="">

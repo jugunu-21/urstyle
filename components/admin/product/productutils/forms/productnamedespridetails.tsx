@@ -16,8 +16,9 @@ interface ProductDetailFormProps {
   setDescription: (value: string) => void;
   price: string|null;
   setPrice: (value: string) => void;
+  setSheetOpen?: (value: boolean) => void;
 }
-const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice }: ProductDetailFormProps) => {
+const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice}: ProductDetailFormProps) => {
   return (
     <Card x-chunk="dashboard-07-chunk-0 mb-4">
       <CardHeader>

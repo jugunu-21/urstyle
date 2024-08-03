@@ -9,10 +9,10 @@ export default function Page() {
 
   const utils = api.useUtils();
   const [name, setName] = useState("");
-  const createPost = api.post.create.useMutation({
+const createPost = api.auth.create.useMutation({
     onSuccess: async () => {
       console.log("dataon sucees",createPost)
-      await utils.post.invalidate();
+      await utils.auth.invalidate();
       setName("");
     },
   });

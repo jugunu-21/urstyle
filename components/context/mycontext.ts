@@ -15,7 +15,7 @@ export const minimalProductArray: Productsprops = [{
     review: [],
 }];
 import React, { createContext, useContext, useState } from 'react';
-// Corrected Productsprops definition
+
 export type Productsprops = [{
     id: string,
     code: string,
@@ -27,6 +27,17 @@ export type Productsprops = [{
     price: string,
     review: Array<Record<string, unknown>>,
 }];
+export type productlistprop = {
+    code: string;
+    name: string;
+    link: string;
+    description: string;
+    pid: number;
+    price: string;
+    image: string;
+    review: Record<string, unknown>[];
+    id: string;
+}[];
 
 // Adjusted myObject to match MyObjectType correctly
 const myObject = {

@@ -18,15 +18,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
 // import Cookies from 'js-cookie';
-import { useToken,useStore } from "@/components/helpers/zustand";
+
 import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts";
 import { Productsprops } from "@/components/context/mycontext";
 
 // import { useStore } from "zustand";
 export default function Navbardrop() {
 
-  const token= useToken((state)=>state.token);
-  const setData= useStore((state)=>state.setData);
+
   const router = useRouter();
   const auth = getAuth(app)
   const handleLogout = () => {
@@ -50,25 +49,6 @@ export default function Navbardrop() {
 
   }
 
-
-      const fetchData = async () => {
-            const response = await ApiFetchProducts({jwtToken:token});
-            if (response) {
-                console.log(response)
-              const result: Productsprops | undefined = response.data.data
-              if (result) {
-                console.log(result)
-                setData(result);
-                console.log("successfuly data fetched in nav zustanddatain frtch")
-              }
-            }
-        
-        
-          }  
-     
-
-
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -86,7 +66,7 @@ export default function Navbardrop() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
         <DropdownMenuItem>   <Link href="/signin">Login</Link></DropdownMenuItem>
-        <DropdownMenuItem onClick={()=>fetchData()}>   <Link href="/admin/product">Products</Link></DropdownMenuItem>
+        <DropdownMenuItem >   <Link href="/admin/product">Products</Link></DropdownMenuItem>
         <DropdownMenuItem onClick={handledeleteuser}>deleteUser</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

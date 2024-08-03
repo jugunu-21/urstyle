@@ -11,7 +11,7 @@ export default function ApiUploadProduct({jwtToken,requestBody}:ApiFetchProducts
   const SubmitHandler = async () => {
     console.log("jwtToken present in uploadproduct func ",jwtToken)
      const response = await PostApiCall({ jwtToken, apiroute,requestBody });
-    return response;
+    return response.data;
   };
   return SubmitHandler();
 }

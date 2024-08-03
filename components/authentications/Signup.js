@@ -52,7 +52,7 @@ export default function Signup() {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
   };
-  const createPost = api.post.sIgnup.useMutation();
+  const createPost = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
       console.log("send otp");

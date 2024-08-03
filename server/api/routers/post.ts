@@ -10,7 +10,7 @@ let post = {
 type requestBodyprops = {
   phone_number: string,
 };
-export const postRouter = createTRPCRouter({
+export const authRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {

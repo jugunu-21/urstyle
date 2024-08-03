@@ -46,7 +46,7 @@ export default function Signin() {
     );
   }, [auth]);
   // const utils = api.useUtils
-  const createPost = api.post.sIgnin.useMutation();
+  const createPost = api.auth.sIgnin.useMutation();
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
     // console.log(selectedCountryCode)

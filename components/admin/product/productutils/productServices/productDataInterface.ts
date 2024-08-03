@@ -17,3 +17,4 @@ export interface ProductDataInterface {
       price: string;
       image: string ; // Assuming image can be null or a string URL
     }
+    
