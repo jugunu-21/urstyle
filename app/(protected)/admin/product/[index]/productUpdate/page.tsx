@@ -22,10 +22,11 @@ import { useParams } from 'next/navigation';
 console.log("groupIndex",groupIndex)
     return (
         <div >
-            <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            try to have from some other route
+     
+          try to fetch from some other place {groupIndex}
+
                 {/* <Dashboard index={ groupIndex} /> */}
-            </div>
+        
         </div>
 
     )

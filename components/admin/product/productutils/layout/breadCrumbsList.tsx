@@ -74,7 +74,7 @@ export default function BreadCrumbsList({ segments }: { segments: string[] }) {
 
 const itemsLength =segments.length
 return (
-  <div className="pl-2">
+  <div >
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>
         {Array.isArray(segments) &&

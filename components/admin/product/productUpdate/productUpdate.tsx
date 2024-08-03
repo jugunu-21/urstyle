@@ -46,8 +46,7 @@ import ProductArchieve from "@/components/admin/product/productutils/forms/produ
 import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
 import ProductHeader from "../productutils/forms/productHeader"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productutils/productServices/productDataInterface"
-import ApiUpdateProduct from "@/components/admin/product/productFunctions/apiUpdateProduct"
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
+
 import { useContext } from "react"
 import { createContext } from "react"
 // import { ProductsContext } from "@/components/context/mycontext"
@@ -121,7 +120,7 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
 
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
-    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
+    <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
         <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">

@@ -34,7 +34,7 @@ import { useToken } from "@/components/helpers/zustand"
 
 import { api } from "@/trpc/react"
 // import { LoadingPage, LoadingSpinner } from "@/components/admin/product/productutils/loaders";
-// import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -52,8 +52,9 @@ export function Dashboard() {
     const token = useToken((state) => state.token);
     const [fetchedData, setFetchedData] = useState<productlistprop>();
     const [sheetOpen, setSheetOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState();
     const [index, setIndex] = useState(0);
-    const { data, isLoading, refetch, error } = api.product.productfetch.useQuery( { jwtToken: token || '' } );
+    const { data:productData, isLoading, refetch, error } = api.product.productfetch.useQuery( { jwtToken: token || '' } );
     const trigger = () => {
         return (
             <>
@@ -73,7 +74,7 @@ export function Dashboard() {
    
     
     return (<>
-        {data &&
+        {productData &&
             (
                 <div className="flex min-h-screen w-full flex-col bg-muted/40">
                     <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -112,7 +113,7 @@ export function Dashboard() {
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
-                                                    {data.data.map((data, index) => (
+                                                    {productData.data.map((product, index) => (
                                                         <>
                                                             <TableRow key={index}>
 
@@ -126,20 +127,20 @@ export function Dashboard() {
                                                                     />
                                                                 </TableCell>
                                                                 <TableCell className="font-medium">
-                                                                    {data.name}
+                                                                    {product.name}
                                                                 </TableCell>
 
                                                                 <TableCell className="hidden md:table-cell">
-                                                                    ${data.price}
+                                                                    ${product.price}
                                                                 </TableCell>
                                                                 <TableCell className="hidden md:table-cell">
-                                                                    {data.description}
+                                                                    {product.description}
                                                                 </TableCell>
                                                                 <TableCell className="hidden md:table-cell">
-                                                                    {data.link}
+                                                                    {product.link}
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    <DropDownMenu item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={index} setSheetOpen={setSheetOpen} />
+                                                                    <DropDownMenu  item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={index} setSheetOpen={setSheetOpen} />
                                                                 </TableCell>
                                                             </TableRow>
                                                         </>
@@ -157,9 +158,9 @@ export function Dashboard() {
                                 </TabsContent>
                             </Tabs>
                             <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                                <SheetContent className=" w-full h-full p-0 border-lime-500 border-4 ">
-                                    <div className=" overflow-y-auto w-full flex h-full  flex-col bg-muted/40 border-red-500 border-4">
-                                        <ProductUpdate fetchedData={data.data} setSheetOpen={setSheetOpen} index={index} refetch={refetch} />
+                                <SheetContent >
+                                    <div className=" overflow-y-auto w-full  h-full">
+                                        <ProductUpdate fetchedData={productData.data} setSheetOpen={setSheetOpen} index={index} refetch={refetch} />
                                     </div>
                                 </SheetContent>
                             </Sheet>

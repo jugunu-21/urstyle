@@ -1,8 +1,8 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import ApiUploadProduct from "@/components/admin/product/productFunctions/apiUploadProducts";
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts";
-import ApiUpdateProduct from "@/components/admin/product/productFunctions/apiUpdateProduct";
+import {ApiUploadProduct} from "@/components/admin/product/productutils/function";
+import {ApiFetchProducts} from "@/components/admin/product/productutils/function";
+import {ApiUpdateProduct} from "@/components/admin/product/productutils/function";
 
 const ProductDataInterface = z.object({
   pid: z.number(),

@@ -21,16 +21,11 @@ export default function RootLayout({
   return (
      <html>
        <head>
-         {/* Include any head elements here, such as <title> or <meta> tags */}
        </head>
        <body>
        <TRPCReactProvider>
-       
        <div className={inter.className}>{children}</div>
-        
-      </TRPCReactProvider><Footer />
-        <Toaster />   
-    
+      </TRPCReactProvider>
        </body>
      </html>
   );

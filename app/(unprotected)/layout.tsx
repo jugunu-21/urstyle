@@ -22,6 +22,7 @@ export default function RootLayout({
                 <div className={inter.className}>{children}</div>
                 <Footer />
                 <Toaster />
+                
             </>
         
     );

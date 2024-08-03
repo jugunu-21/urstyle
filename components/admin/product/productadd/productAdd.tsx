@@ -48,11 +48,10 @@ import ProductArchieve from "@/components/admin/product/productutils/forms/produ
 import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
 import ProductHeader from "../productutils/forms/productHeader"
 import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface"
-import PostApiCall from "../productFunctions/postApiCall"
-import ApiUploadProduct from "../productFunctions/apiUploadProducts"
+
 import Router from "next/router"
 import { api } from "@/trpc/react";
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
+import {ApiFetchProducts} from "@/components/admin/product/productutils/productFunctions"
 import { useRouter } from "next/navigation"
 // import useJwtToken from "@/components/helpers/getToken"
 // import { useToken } from "@/components/helpers/zustand"
