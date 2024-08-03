@@ -58,12 +58,12 @@ import { productsProp, productlistprop } from '@/components/admin/product/produc
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
-  fetchedData?: productlistprop,
+  selectedProduct?: ProductDataInterfacewithid,
   setSheetOpen: (sheetOpen: boolean) => void,
-  index: number,
+ 
   refetch: (options?: RefetchOptions) => Promise<any>;
 }
-export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: addprops) {
+export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: addprops) {
   const utils = api.useUtils();
   const productUpdatepost = api.product.productUpdate.useMutation({
     onSuccess: async () => {
@@ -74,7 +74,7 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
   const [pid, setPid] = useState<number | null>(null);
   const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
-  const [code, setCode] = useState<string | null>(null);
+  const [code, setCode] = useState<string | null>(null);0
   const [link, setLink] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
@@ -85,11 +85,9 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
   const data = useStore((state) => (state.data));
 
   useEffect(() => {
-    if (index != undefined) {
-      console.log("fetchedData", fetchedData)
-      console.log("index", index)
-      { fetchedData && setRawdata(fetchedData[index]) }
-    }
+   
+      {selectedProduct && setRawdata(selectedProduct) }
+  
 
   },[])
   const requestBody = {
