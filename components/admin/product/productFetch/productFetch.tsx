@@ -1,4 +1,4 @@
-
+"use client"
 import Image from "next/image"
 import {
     MoreHorizontal,
@@ -54,7 +54,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productUtils/productServices/productDataInterface"
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
-export function Dashboard() {
+export default function Dashboard() {
     const token = useToken((state) => state.token);
     const [sheetOpen, setSheetOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
@@ -163,13 +163,8 @@ export function Dashboard() {
                                                                                             onClick={() => {
                                                                                                 if (item === "Update") {
                                                                                                     { setSheetOpen && setSheetOpen(true) }
-                                                                                                    const updatedProducts = fetchedData?.map(obj => {
-                                                                                                        if (obj.id === product.id) {
-                                                                                                            return obj; // Return the product to update
-                                                                                                        }
-                                                                                                        return obj; // Keep other products unchanged
-                                                                                                    });
-                                                                                                    { updatedProducts && setSelectedProduct(updatedProducts[0]) }
+                                                                                                    setSelectedProduct(product)
+                                                                                                  
                                                                                                 }
                                                                                             }}
                                                                                         >
