@@ -1,10 +1,10 @@
 "use client"
 import { ThemeProvider } from 'next-themes';
 import { Inter } from "next/font/google";
-import { SideToolTip } from '@/components/admin/product/productutils/layout/sideToolTip';
-import { ToggleSideToolTip } from "@/components/admin/product/productutils/layout/toggleSideToolTip"
-import BreadCrumbsList from "@/components/admin/product/productutils/layout/breadCrumbsList"
-import { DropDownMenu } from "@/components/admin/product/productutils/layout/dropDownMenu"
+import { SideToolTip } from '@/components/admin/product/productUtils/layout/sideToolTip';
+import { ToggleSideToolTip } from "@/components/admin/product/productUtils/layout/toggleSideToolTip"
+import BreadCrumbsList from "@/components/admin/product/productUtils/layout/breadCrumbsList"
+import { DropDownMenu } from "@/components/admin/product/productUtils/layout/dropDownMenu"
 import {
   ChevronLeft,
   Home,
@@ -72,29 +72,31 @@ export default function RootLayout({
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <div className='flex'>
+          <div className=" flex-col bg-muted/40">
+            <SideToolTip />
+          </div>
+          <div className='w-full'>
+            <div className=" bg-background  w-full flex-grow  sticky top-0 flex  sm:gap-4 sm:py-2 sm:pl-14 ">
+              <header className="flex-grow  z-50 flex h-14 items-center gap-4 border-b bg-primary-foreground  sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+                <ToggleSideToolTip />
+                <BreadCrumbsList segments={transformedLabels.flat()} />
+                <div className="relative ml-auto flex-1 md:grow-0">
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="search"
+                    placeholder="Search..."
+                    className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+                  />
+                </div>
+                <DropDownMenu item={item} label={label} trigger={trigger} />
 
-        <div className="flex  w-full flex-col bg-muted/40">
-          <SideToolTip />
-        </div>
-        <div className="  sticky top-0 flex flex-col sm:gap-4 sm:py-2 sm:pl-14 bg-gray-900">
-          <header className="  sticky top-0 z-99 flex h-14 items-center gap-4 border-b bg-background  px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <ToggleSideToolTip />
-            <BreadCrumbsList segments={transformedLabels.flat()} />
-            <div className="relative ml-auto flex-1 md:grow-0">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-              />
+              </header>
             </div>
-            <DropDownMenu item={item} label={label} trigger={trigger} />
 
-          </header>
+            <div className={inter.className}>{children}</div>
+          </div>
         </div>
-        <div>
-        </div>
-        <div className={inter.className}>{children}</div>
       </ThemeProvider>
     </>
   );

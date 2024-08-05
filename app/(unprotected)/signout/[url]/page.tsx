@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Signout from "@/components/authentications/Signout";
+import Signout from "@/components/authentications/signout";
 export default function Page() {
  
   return (

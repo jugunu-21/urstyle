@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import avgg from "@/components/reusablecomponents/avgg";
-import CalendarIcon from "@/components/reusablecomponents/CalendarIcon";
-import Star from "@/components/reusablecomponents/Star";
+import avgg from "@/components/reusablecomponents/avg";
+import CalendarIcon from "@/components/reusablecomponents/calendarIcon";
+import Star from "@/components/reusablecomponents/star";
 // import Sitelink from "@/components/reusablecomponents/Sitelink";
 import itemsData from "@/Data/items.json";
-import Cardlist from "@/components/details/overview/cardlist/Cardlist";
-import Summary from "@/components/details/overview/summary/Summary";
+import Cardlist from "@/components/details/overview/cardList/cardList";
+import Summary from "@/components/details/overview/summary/summary";
 
 function Details() {
   const params = useParams();

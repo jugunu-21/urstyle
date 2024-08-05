@@ -8,7 +8,7 @@ const navigation = [
   { order: "2", name: "Contact", to: "/Component/Contact" },
   { order: "3", name: "Home", to: "/Component/Home" },
 ];
-import Navbardrop from "@/components/layout/navbar/Navbardrop"
+import Navbardrop from "@/components/layout/navbar/navbarDrop"
 
 export default function Navbar() {
   const [isDropdownOpenHem, setIsDropdownOpenHem] = useState(false);

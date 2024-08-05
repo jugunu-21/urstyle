@@ -37,34 +37,33 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import ProductStatus from "@/components/admin/product/productutils/forms/productStatus"
+import ProductStatus from "@/components/admin/product/productUtils/forms/productStatus"
 import { useState, useEffect } from "react";
-import Productnamedespridetails from "@/components/admin/product/productutils/forms/productnamedespridetails"
-import ProductImageCard from "@/components/admin/product/productutils/forms/productImage"
-import ProductAffiandCateg from "@/components/admin/product/productutils/forms/productAffiandCateg"
-import ProductArchieve from "@/components/admin/product/productutils/forms/productArchieve"
-import ProductTable from "@/components/admin/product/productutils/forms/productDetailTable"
-import ProductHeader from "../productutils/forms/productHeader"
-import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productutils/productServices/productDataInterface"
-import ApiUpdateProduct from "@/components/admin/product/productFunctions/apiUpdateProduct"
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
+import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productnamedespridetails"
+import ProductImageCard from "@/components/admin/product/productUtils/forms/productImage"
+import ProductAffiandCateg from "@/components/admin/product/productUtils/forms/productAffiandCateg"
+import ProductArchieve from "@/components/admin/product/productUtils/forms/productArchieve"
+import ProductTable from "@/components/admin/product/productUtils/forms/productDetailTable"
+import ProductHeader from "../productUtils/forms/productHeader"
+import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productUtils/productServices/productDataInterface"
+
 import { useContext } from "react"
 import { createContext } from "react"
-// import { ProductsContext } from "@/components/context/mycontext"
+
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useStore, useToken } from "@/components/helpers/zustand"
 
-import { ProductsContext, Productsprops, productlistprop } from '@/components/context/mycontext';
+import { productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
-  fetchedData?: productlistprop,
+  selectedProduct?: ProductDataInterfacewithid,
   setSheetOpen: (sheetOpen: boolean) => void,
-  index: number,
-  refetch: (options?: RefetchOptions) => Promise<any>;
+ 
+  refetch?: (options?: RefetchOptions) => Promise<any>;
 }
-export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: addprops) {
+export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: addprops) {
   const utils = api.useUtils();
   const productUpdatepost = api.product.productUpdate.useMutation({
     onSuccess: async () => {
@@ -75,7 +74,7 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
   const [pid, setPid] = useState<number | null>(null);
   const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
-  const [code, setCode] = useState<string | null>(null);
+  const [code, setCode] = useState<string | null>(null);0
   const [link, setLink] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
@@ -86,11 +85,9 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
   const data = useStore((state) => (state.data));
 
   useEffect(() => {
-    if (index != undefined) {
-      console.log("fetchedData", fetchedData)
-      console.log("index", index)
-      { fetchedData && setRawdata(fetchedData[index]) }
-    }
+   
+      {selectedProduct && setRawdata(selectedProduct) }
+  
 
   },[])
   const requestBody = {
@@ -121,7 +118,7 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
 
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
-    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
+    <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
         <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
@@ -157,13 +154,13 @@ export default function Dashboard({ fetchedData, setSheetOpen, index,refetch }: 
               }
               console.log("iddd", id);
               if (token) {
-                productUpdatepost.mutateAsync({ requestBody, jwtToken: token, id: rawdata ? rawdata.id : undefined })
+                productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
                     console.log("updateedcompleteinfetch")
                     try {
                       setSheetOpen(false)
-                      refetch();
+                     {refetch&&refetch();}
                       console.log("refetch",refetch)
                       // router.push("/admin/product/productfetch")
                       toast.success("sucessfully updated");

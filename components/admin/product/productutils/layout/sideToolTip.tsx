@@ -78,9 +78,9 @@ import {
 export function SideToolTip() {
 
   return (
-    <div >
+    <div className='sticky top-0 h-screen'>
       {/* <aside  className={`fixed left-0 z-10 hidden h-full w-14 flex-col border-r bg-background sm:flex ${tooltipClass}`}> */}
-      <aside className="fixed z-10 inset-y-0 left-0  hidden w-14 flex-col border-r bg-background sm:flex">
+      <aside className=" h-screen z-10 inset-y-0 left-0  hidden w-14 flex-col border-r bg-background sm:flex">
 
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">

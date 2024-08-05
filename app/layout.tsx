@@ -2,8 +2,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/navbar/Navbar";
-import Footer from "@/components/layout/footer/Footer";
+import Navbar from "@/components/layout/navbar/navbar";
+import Footer from "@/components/layout/footer/footer";
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from "react";
 import { TRPCReactProvider } from "@/trpc/react";
@@ -21,16 +21,11 @@ export default function RootLayout({
   return (
      <html>
        <head>
-         {/* Include any head elements here, such as <title> or <meta> tags */}
        </head>
        <body>
        <TRPCReactProvider>
-       
        <div className={inter.className}>{children}</div>
-        
-      </TRPCReactProvider><Footer />
-        <Toaster />   
-    
+      </TRPCReactProvider>
        </body>
      </html>
   );

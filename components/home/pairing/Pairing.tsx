@@ -3,14 +3,14 @@ import React, { useState } from "react";
 
 import itemsData from "@/Data/items.json";
 import Link from "next/link";
-import Star from "@/components/reusablecomponents/Star";
+import Star from "@/components/reusablecomponents/star";
 import caropic from "@/Data/caropicData";
 
 import { clickFiltersData } from "@/Data/clickFiltersData";
-import avgg from "@/components/reusablecomponents/avgg";
-import Sitelink from "@/components/reusablecomponents/Sitelink";
-import Menudropdown from "@/components/reusablecomponents/Menudropdown";
-import CarouselImage from "@//components/home/pairing/carouselImage/CarouselImage";
+import avgg from "@/components/reusablecomponents/avg";
+import Sitelink from "@/components/reusablecomponents/siteLink";
+import Menudropdown from "@/components/reusablecomponents/menuDropDown";
+import CarouselImage from "@/components/home/pairing/carouselImage/carouselImage";
 
 function Clothes() {
   const [filter, setfilter] = useState("");

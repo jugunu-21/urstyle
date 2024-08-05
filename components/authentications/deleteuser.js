@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { useEffect } from "react";
-import getTokenFromCookies from "@/components/authentications/deleteuser";
+import getTokenFromCookies from "@/components/authentications/deleteUser";
 const deleteUser = async (jwtToken) => {
 
   try {

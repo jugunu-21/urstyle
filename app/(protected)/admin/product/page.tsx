@@ -3,7 +3,8 @@ import React from "react"
 
 export default function Page(){
     return(
-        <div>
+        <div className="ml-8">
+
        product page 
         </div>
 

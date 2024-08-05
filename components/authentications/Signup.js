@@ -9,15 +9,15 @@ import {
   signOut,
 } from "firebase/auth";
 import { api } from "@/trpc/react";
-import Countrycode from "./Countrycode";
+import Countrycode from "./countryCode";
 import { app } from "@/app/config";
-import Countrycodedata from "./ContextCountryCode";
+import Countrycodedata from "./contextCountryCode";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import OtpInput from "./OtpInput";
+import OtpInput from "./otpInput";
 import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
 import axios from "axios";

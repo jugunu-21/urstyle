@@ -44,7 +44,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import { ProductDataInterface } from "@/components/admin/product/productutils/productServices/productDataInterface";
+import { ProductDataInterface } from "@/components/admin/product/productUtils/productServices/productDataInterface";
 import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
   jwtToken: string
@@ -53,12 +53,11 @@ interface SubmitHandlerInterface {
   setSheetOpen?: (value: boolean) => void;
   refetch?: (options?: RefetchOptions) => Promise<any>;
 }
+// import Router from "next/router"
 import { useStore, } from "@/components/helpers/zustand"
 import { useRouter } from "next/navigation";
-import ApiUploadProduct from '@/components/admin/product/productFunctions/apiUploadProducts';
-import ApiUpdateProduct from '@/components/admin/product/productFunctions/apiUpdateProduct';
-import ApiFetchProducts from "@/components/admin/product/productFunctions/apiFetchProducts"
-import { ProductsContext, Productsprops, minimalProductArray } from '@/components/context/mycontext';
+
+import {  productsProp, minimalProductArray } from '@/components/admin/product/productUtils/productInterface';
 import { api } from "@/trpc/react";
 import { RefetchOptions } from "@tanstack/react-query"
 export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen,refetch }: SubmitHandlerInterface) {
@@ -120,7 +119,7 @@ export default function ProductHeader({ jwtToken, requestBody, id, setSheetOpen,
         In stock
       </Badge>
       <div className="hidden items-center gap-2 md:ml-auto md:flex">
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" onClick={()=>router.push("/admin/product")}>
           Discard
         </Button>
 

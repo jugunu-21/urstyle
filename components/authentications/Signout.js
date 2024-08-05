@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
 import { useParams } from "next/navigation"; // Corrected import path
-import getJwtTokenFromCookies from "../helpers/getcookie";
+import getJwtTokenFromCookies from "../helpers/getCookie";
 export default function Signout() {
   const [userInfo, setUserInfo] = useState(null);
   const router = useRouter();

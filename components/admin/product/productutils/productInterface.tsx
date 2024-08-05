@@ -1,9 +1,8 @@
-// "use client "
 export type MyObjectType = {
-    myArray: Productsprops; // Replace YourArrayType with the actual type of elements in the array
+    myArray: productsProp; // Replace YourArrayType with the actual type of elements in the array
     myString: string;
 };
-export const minimalProductArray: Productsprops = [{
+export const minimalProductArray: productsProp = [{
     id: '',
     link: '',
     code: '',
@@ -16,7 +15,7 @@ export const minimalProductArray: Productsprops = [{
 }];
 import React, { createContext, useContext, useState } from 'react';
 
-export type Productsprops = [{
+export type productsProp = [{
     id: string,
     code: string,
     link: string,
@@ -38,14 +37,3 @@ export type productlistprop = {
     review: Record<string, unknown>[];
     id: string;
 }[];
-
-// Adjusted myObject to match MyObjectType correctly
-const myObject = {
-    myArray: minimalProductArray,
-    myString: "true",
-};
-
-// Use myObject as the default value for createContext
-export const ProductsContext = createContext<MyObjectType>(myObject);
-
-// If you still need minimalProductArray for other purposes, keep it as is

@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from "@/components/reusablecomponents/Star";
+import Star from "@/components/reusablecomponents/star";
 
 interface Review {
   image: string;
