@@ -1,11 +1,11 @@
 
 import itemsData from "@/Data/items.json";
-export default function avgg(params) {
+export default function avgg(params:{ groupid:number, cartid?:number}) {
   const { groupid, cartid } = params;
 
   if (!cartid) {
     let sum = 0;
-    let array = [];
+    let array:number[] = [];
     let totalrating = 0;
     let avg = 0;
     const group = itemsData[groupid];
@@ -23,8 +23,7 @@ export default function avgg(params) {
       array.push(id);
 
       cart.review.forEach((review) => {
-        let rating = parseInt(review.rating);
-        totalrating += rating;
+        totalrating += review.rating;
       });
     });
 
@@ -43,8 +42,8 @@ export default function avgg(params) {
     let totalrating = 0;
 
     cart.review.forEach((review) => {
-      let rating = parseInt(review.rating);
-      totalrating += rating;
+   
+      totalrating += review.rating;
     });
     const reviewLength = cart.review.length; // Corrected from `cart.length`
 

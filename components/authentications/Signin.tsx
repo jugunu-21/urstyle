@@ -9,7 +9,7 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 import toast from "react-hot-toast";
-import Countrycode from "./countryCode";
+import Countrycode from "../countryCode";
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";

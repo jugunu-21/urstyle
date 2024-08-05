@@ -8,7 +8,7 @@ import caropic from "@/Data/caropicData";
 
 import { clickFiltersData } from "@/Data/clickFiltersData";
 import avgg from "@/components/reusablecomponents/avg";
-import Sitelink from "@/components/reusablecomponents/siteLink";
+import Sitelink from "@/components/reusablecomponents/sitelink";
 import Menudropdown from "@/components/reusablecomponents/menuDropDown";
 import CarouselImage from "@/components/home/pairing/carouselImage/carouselImage";
 

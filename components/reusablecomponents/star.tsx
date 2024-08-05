@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Star({len}) {
+export default function Star({len}:{len:number}) {
   return (
   
       <div className="flex  ">

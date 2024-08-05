@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import findkeyword from "./findKeyword";
-export default function Sitelink({ sitelink, setsitelink }) {
+export default function Sitelink({ sitelink, setsitelink }:{ sitelink:string; setsitelink :string}) {
   return (
     <div className="h-8 w-24 ">
       <Link

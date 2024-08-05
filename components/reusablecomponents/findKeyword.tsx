@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function findkeyword(params) {
+export default function findkeyword(params:{string:string}) {
   const { string } = params;
   const pattern = /\b(amazon|flipkart|mesho)\b/gi;
   const matches = string.match(pattern);

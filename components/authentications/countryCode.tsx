@@ -12,12 +12,13 @@ import Countrydata from "./contextCountryCode";
 const Countrycode = () => {
   const { selectedCountryCode, setSelectedCountryCode } =
     useContext(Countrydata);
-  const handleValueChange = (newValue) => {
+  const handleValueChange = (newValue:string) => {
     console.log("New value:", newValue); // Debugging line
     setSelectedCountryCode(newValue);
-    // console.log(selectedCountryCode);
+  
   };
   return (
+    
     <Select onValueChange={handleValueChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Country" />

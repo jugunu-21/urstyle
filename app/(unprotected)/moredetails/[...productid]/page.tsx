@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 
 import Link from "next/link";
 
-import Sitelink from "@/components/reusablecomponents/siteLink";
+import Sitelink from "@/components/reusablecomponents/sitelink";
 
 import itemsData from "@/Data/items.json"
 

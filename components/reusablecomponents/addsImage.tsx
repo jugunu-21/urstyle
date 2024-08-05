@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function CarouselImage({ caropicIndex, caropic }) {
+function CarouselImage({ caropicIndex, caropic }:{caropicIndex:number ; caropic:{url:string}[]}) {
   return (
     <div className="w-[vw] h-48 sm:h-[300px] my-6">
       <div

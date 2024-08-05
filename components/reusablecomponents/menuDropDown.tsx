@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-export default function Menudropdown({ name, dropdata, onfilterchange }) {
+export default function Menudropdown({ name, dropdata, onfilterchange }:{ name:string; dropdata:{link:string,name:string}[]; onfilterchange:(string:string)=>void ;}) {
   return (
     <DropdownMenu >
       <DropdownMenuTrigger className=" border-white">
