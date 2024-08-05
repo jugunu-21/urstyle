@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { createTRPCRouter, publicProcedure,protectedProcedure } from "@/server/api/trpc";
 import {ApiUploadProduct} from "@/components/admin/product/productUtils/function";
 import {ApiFetchProducts} from "@/components/admin/product/productUtils/function";
 import {ApiUpdateProduct} from "@/components/admin/product/productUtils/function";
@@ -26,37 +26,51 @@ const simplifiedProducts= z.object({
  })
 
 const apiProductsAddZodSchema = z.object({
-  jwtToken: z.string(),
+  // jwtToken: z.string(),
   requestBody: productDataInterface, // Use z.any() or a more specific schema for ProductDataInterface
 });
 const apiProductsfetchZodSchema = z.object({
-  jwtToken: z.string()
+  // jwtToken: z.string()
 });
 const apiProductUpdateZodSchema = z.object({
-  jwtToken: z.string(),
+  // jwtToken: z.string(),
   requestBody: productDataInterface,
   id: z.string().optional()
 });
 export const productRouter = createTRPCRouter({
-  productAdd: publicProcedure.input(apiProductsAddZodSchema)
+  productAdd: protectedProcedure.input(apiProductsAddZodSchema)
     .output(z.object({ message: z.string(), status: z.number() }))
-    .mutation(async ({ input }) => {
-      const response = await ApiUploadProduct(input)
+      .mutation(async ({ ctx, input }) => {
+        console.log("productadd",)
+        const token = ctx.token
+        const modifiedInput={...input,
+          jwtToken:token
+        }
+        console.log("extractedInput",token)
+      const response = await ApiUploadProduct(modifiedInput)
       console.log("adddproduct")
       return response;
     }),
-  productfetch: publicProcedure.input(apiProductsfetchZodSchema)
+  productfetch: protectedProcedure
   
     .output(z.object({ data:z.array(simplifiedProducts) , message: z.string(), status: z.number() }))
-    .query(async ({ input }) => {
-      const response = await ApiFetchProducts(input)
-      console.log("adddfetch")
+    .query(async ({ ctx, input}) => {
+      const token = ctx.token
+      const modifiedInput={
+        jwtToken:token
+      }
+      const response = await ApiFetchProducts(modifiedInput)
+      // console.log("adddfetch")
       return response;
     }),
-  productUpdate: publicProcedure.input( apiProductUpdateZodSchema)
+  productUpdate: protectedProcedure.input( apiProductUpdateZodSchema)
   .output(z.object({data:z.string() , message:z.string() , status:z.number()}))
-    .mutation(async ({ input }) => {
-      const response = await ApiUpdateProduct(input)
+    .mutation(async ({ input,ctx }) => {
+      const token = ctx.token
+      const modifiedInput={...input,
+        jwtToken:token
+      }
+      const response = await ApiUpdateProduct(modifiedInput)
       console.log("adddproduct")
       return response;
     })

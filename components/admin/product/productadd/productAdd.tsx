@@ -84,8 +84,8 @@ export default function Dashboard() {
       console.error("JWT Token is required");
       return;
     }
-    if (token) {
-      productUpdatePost.mutateAsync({ requestBody, jwtToken: token })
+  
+      productUpdatePost.mutateAsync({ requestBody})
         .then(() => {
           router.push("/admin/product/productfetch")
           toast.success("sucessfully uploaded");
@@ -94,7 +94,7 @@ export default function Dashboard() {
           console.log("apiaddproduct", error);
           toast.error("failed to upload product")
         });
-    }
+ 
   }
 
   return (

@@ -58,7 +58,7 @@ export function Dashboard() {
     const token = useToken((state) => state.token);
     const [sheetOpen, setSheetOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
-    const { data: productData, isLoading, refetch, error } = api.product.productfetch.useQuery({ jwtToken: token || '' });
+    const { data: productData, isLoading, refetch, error } = api.product.productfetch.useQuery();
     const trigger = () => {
         return (
             <>

@@ -31,7 +31,7 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
 export async function ApiFetchProducts({ jwtToken }: { jwtToken: string }) {
   const apiroute = "/media/product/fetch"
   const SubmitHandler = async () => {
-    console.log("jwtToken present in fetchproduct func ", jwtToken)
+    // console.log("jwtToken present in fetchproduct func ", jwtToken)
     const response = await PostApiCall({ jwtToken, apiroute })
     return response.data;
   };
@@ -57,7 +57,7 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
 export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
   const apiroute = "/media/product/upload"
   const SubmitHandler = async () => {
-    console.log("jwtToken present in uploadproduct func ", jwtToken)
+    // console.log("jwtToken present in uploadproduct func ", jwtToken)
     const response = await PostApiCall({ jwtToken, apiroute, requestBody });
     return response.data;
   };

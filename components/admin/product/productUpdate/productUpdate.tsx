@@ -61,7 +61,7 @@ type addprops = {
   selectedProduct?: ProductDataInterfacewithid,
   setSheetOpen: (sheetOpen: boolean) => void,
  
-  refetch: (options?: RefetchOptions) => Promise<any>;
+  refetch?: (options?: RefetchOptions) => Promise<any>;
 }
 export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: addprops) {
   const utils = api.useUtils();
@@ -154,13 +154,13 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
               }
               console.log("iddd", id);
               if (token) {
-                productUpdatepost.mutateAsync({ requestBody, jwtToken: token, id: rawdata ? rawdata.id : undefined })
+                productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
                     console.log("updateedcompleteinfetch")
                     try {
                       setSheetOpen(false)
-                      refetch();
+                     {refetch&&refetch();}
                       console.log("refetch",refetch)
                       // router.push("/admin/product/productfetch")
                       toast.success("sucessfully updated");

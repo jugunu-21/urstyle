@@ -1,3 +1,4 @@
+
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -6,10 +7,17 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC } from "@trpc/server";
+import { NextApiRequest } from 'next';
 import superjson from "superjson";
 import { ZodError } from "zod";
-
+import Cookies from 'js-cookie';
+import getJwtTokenFromCookies from "@/components/helpers/getCookie"
+import { initTRPC, TRPCError } from "@trpc/server";
+import cookieParser from 'cookie-parser';
+// import { cookies, headers } from "next/headers";
+import * as cookie from 'cookie';
+import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { headers } from "next/headers";
 /**
  * 1. CONTEXT
  *
@@ -22,9 +30,28 @@ import { ZodError } from "zod";
  *
  * @see https://trpc.io/docs/server/context
  */
+// export const createTRPCContext = async (opts: { headers: Headers }) => {
+//   return {
+//     ...opts,
+//   };
+// };
 export const createTRPCContext = async (opts: { headers: Headers }) => {
+  const result = () => {
+    const cookies = opts.headers.get('cookie')
+    // console.log("cookie", cookies)
+    if (cookies) {
+      const jwtTokenMatch = cookies.split('; ').find(row => row.startsWith('jwtToken'));
+      if (jwtTokenMatch) {
+        const jwtToken = jwtTokenMatch.split('=')[1];
+        return jwtToken
+      }
+    }
+  }
+
+  // console.log("tokenjwttt", result())
   return {
     ...opts,
+    token: result()
   };
 };
 
@@ -43,12 +70,28 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       data: {
         ...shape.data,
         zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+          error.cause instanceof ZodError ?
+            error.cause.flatten() : null,
       },
     };
   },
 });
 
+
+const enforceUserIsHavingToken = t.middleware(async ({ next, ctx }) => {
+  const token = ctx.token
+  // console.log("tokennnnnn", token)
+  if (token == null) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+    });
+  }
+  return next({
+    ctx: {
+      token: token,
+    },
+  });
+});
 /**
  * Create a server-side caller.
  *
@@ -78,3 +121,8 @@ export const createTRPCRouter = t.router;
  * are logged in.
  */
 export const publicProcedure = t.procedure;
+export const protectedProcedure = t.procedure.use(enforceUserIsHavingToken);
+
+// export const protectedProcedure = t.procedure.use(enforceUserIsHavingToken);
+
+
