@@ -65,6 +65,43 @@ export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductspro
 }
 
 
+export async function ApiUploadImage  (imaggg: File,jwtToken:string) {
+  if (imaggg) {
+    const imageFile = imaggg;
+    const formData = new FormData();
+    formData.append('files', imageFile);
+   
+    try {
+      const response = await axios.post('http://localhost:8000/media/image/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${jwtToken}`
+        }
+      });
+      console.log('Image upload successful:', response.data);
+      return response.data
+    } catch (error) {
+      console.error('Image upload failed:', error);
+    }
+  }
+};
+export async function ApiUploadMultipleImages (formData: FormData ,jwtToken:string){
+  try {
+    const response = await axios.post('http://localhost:8000/media/images/upload', formData, {
 
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${jwtToken}`
+      }
+    });
+    return response.data
+    console.log('Image upload successful:', response.data);
+    // Handle successful upload (e.g., display success message)
+  } catch (error) {
+    throw error
+    console.error('Image upload failed:', error);
+    // Handle upload errors (e.g., display error message)
+  }
+}
 
 

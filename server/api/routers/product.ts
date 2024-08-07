@@ -1,8 +1,6 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure,protectedProcedure } from "@/server/api/trpc";
-import {ApiUploadProduct} from "@/components/admin/product/productUtils/function";
-import {ApiFetchProducts} from "@/components/admin/product/productUtils/function";
-import {ApiUpdateProduct} from "@/components/admin/product/productUtils/function";
+import {ApiUpdateProduct, ApiUploadImage,ApiFetchProducts,ApiUploadProduct} from "@/components/admin/product/productUtils/function";
 
 const productDataInterface = z.object({
   pid: z.number(),
@@ -37,6 +35,9 @@ const apiProductUpdateZodSchema = z.object({
   requestBody: productDataInterface,
   id: z.string().optional()
 });
+// const apiImageUploadZodSchema = z.object({
+// files:z.
+// });
 export const productRouter = createTRPCRouter({
   productAdd: protectedProcedure.input(apiProductsAddZodSchema)
     .output(z.object({ message: z.string(), status: z.number() }))
@@ -74,4 +75,15 @@ export const productRouter = createTRPCRouter({
       console.log("adddproduct")
       return response;
     })
+    // imageUpload: protectedProcedure.input()
+    // .output(z.object({data:z.string() , message:z.string() , status:z.number()}))
+    //   .mutation(async ({ input,ctx }) => {
+    //     const token = ctx.token
+    //     const modifiedInput={...input,
+    //       jwtToken:token
+    //     }
+    //     const response = await  ApiUploadImage(modifiedInput)
+    //     console.log("adddproduct")
+    //     return response;
+    //   })
 })
