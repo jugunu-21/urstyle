@@ -67,11 +67,15 @@ export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductspro
 
 export async function ApiUploadImage  (imaggg: File,jwtToken:string) {
   if (imaggg) {
+   
     const imageFile = imaggg;
+   
     const formData = new FormData();
     formData.append('files', imageFile);
-   
+    console.log("type",typeof(imageFile))
     try {
+      console.log("type")
+      console.log("type",typeof(imageFile))
       const response = await axios.post('http://localhost:8000/media/image/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
