@@ -19,7 +19,6 @@ import axios from 'axios';  // Assuming you're using Axios for requests
 import { useToken } from "@/components/helpers/zustand"
 import { ApiUploadImage } from "@/components/admin/product/productUtils/function"
 function ProductImageCard({ image, setImage }: ProductImageCardprops) {
-  const [images, setImages] = useState<File[] | null>(null)
   const jwtToken = useToken((state) => state.token)
   let imaggg: File
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +27,6 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
     }
   };
   const formData = new FormData();
-  let i = 0
   const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.length) {
       // formData.append(`files[${i++}]`, event.target.files[0]);
@@ -39,8 +37,7 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
   };
   return (
     <div> <Card
-      className="overflow-hidden" x-chunk="dashboard-07-chunk-4"
-    >
+      className="overflow-hidden" x-chunk="dashboard-07-chunk-4">
       <CardHeader>
         <CardTitle>Product Images</CardTitle>
         <CardDescription>
@@ -50,10 +47,11 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
       <CardContent>
         <div className="grid gap-2">
           <Image
+          src={image?image:'/placeholder.svg'}
             alt="Product image"
             className="aspect-square w-full rounded-md object-cover"
             height="300"
-            src="/placeholder.svg"
+            // src="/placeholder.svg"
             width="300"
           />
           <div className="grid grid-cols-3 gap-2">
@@ -84,17 +82,17 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
             <span className="sr-only"
             >Upload</span>
           </button> */}
-            <div className="relative">
+            <div >
               <input
                 type="file"
                 id="fileInput"
                 name="image"
-                onChange={(e) => { console.log("e", e); console.log("e", jwtToken); handleFileChange(e) }}
+                onChange={(e) => {handleFileChange(e) }}
               />
               <button onClick={() => {
                 console.log("cll"); ApiUploadImage(imaggg, jwtToken ? jwtToken : '').then(response => {
                   setImage(response.data.url)
-                  console.log("response.data.id", response.data.id)
+                  console.log("response.data.id", response.data.url)
                 })
               }}>Submit</button>
               {/* <button onClick={() => { console.log("cll"); handleImageUpload(formData) }}>Submit</button> */}

@@ -37,7 +37,6 @@ export async function ApiFetchProducts({ jwtToken }: { jwtToken: string }) {
   };
   return SubmitHandler();
 }
-
 export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
   const apiroute = `/media/product/update/${id}`
   const SubmitHandler = async () => {
@@ -53,7 +52,6 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
   };
   return SubmitHandler();
 }
-
 export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
   const apiroute = "/media/product/upload"
   const SubmitHandler = async () => {
@@ -63,19 +61,12 @@ export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductspro
   };
   return SubmitHandler();
 }
-
-
 export async function ApiUploadImage  (imaggg: File,jwtToken:string) {
   if (imaggg) {
-   
     const imageFile = imaggg;
-   
     const formData = new FormData();
     formData.append('files', imageFile);
-    console.log("type",typeof(imageFile))
-    try {
-      console.log("type")
-      console.log("type",typeof(imageFile))
+        try {
       const response = await axios.post('http://localhost:8000/media/image/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
