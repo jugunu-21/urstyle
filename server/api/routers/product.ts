@@ -24,8 +24,7 @@ const simplifiedProducts= z.object({
  })
 
 const apiProductsAddZodSchema = z.object({
-  // jwtToken: z.string(),
-  requestBody: productDataInterface, // Use z.any() or a more specific schema for ProductDataInterface
+  requestBody: productDataInterface,
 });
 const apiProductsfetchZodSchema = z.object({
   // jwtToken: z.string()
@@ -42,12 +41,10 @@ export const productRouter = createTRPCRouter({
   productAdd: protectedProcedure.input(apiProductsAddZodSchema)
     .output(z.object({ message: z.string(), status: z.number() }))
       .mutation(async ({ ctx, input }) => {
-        console.log("productadd",)
         const token = ctx.token
         const modifiedInput={...input,
           jwtToken:token
         }
-        console.log("extractedInput",token)
       const response = await ApiUploadProduct(modifiedInput)
       console.log("adddproduct")
       return response;
@@ -61,7 +58,6 @@ export const productRouter = createTRPCRouter({
         jwtToken:token
       }
       const response = await ApiFetchProducts(modifiedInput)
-      // console.log("adddfetch")
       return response;
     }),
   productUpdate: protectedProcedure.input( apiProductUpdateZodSchema)

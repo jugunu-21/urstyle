@@ -10,31 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Files, Upload } from 'lucide-react'
 interface ProductImageCardprops {
   image: string | null
   setImage: (image: string) => void
 }
-import axios from 'axios';  // Assuming you're using Axios for requests
-import { useToken } from "@/components/helpers/zustand"
-import { ApiUploadImage } from "@/components/admin/product/productUtils/function"
-function ProductImageCard({ image, setImage }: ProductImageCardprops) {
-  const jwtToken = useToken((state) => state.token)
-  let imaggg: File
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files?.length) {
-      imaggg = event.target.files[0]
-    }
-  };
-  const formData = new FormData();
-  const handleFilesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files?.length) {
-      // formData.append(`files[${i++}]`, event.target.files[0]);
-      formData.append('files', event.target.files[0]);
-      console.log(" formData", formData)
-      console.log("toke", jwtToken)
-    }
-  };
+import { encodeBase64 ,Base64toSrc} from "@/components/admin/product/productUtils/productServices/imageServices"
+function ProductImageCard({ image, setImage}: ProductImageCardprops) {
   return (
     <div> <Card
       className="overflow-hidden" x-chunk="dashboard-07-chunk-4">
@@ -51,7 +32,6 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
             alt="Product image"
             className="aspect-square w-full rounded-md object-cover"
             height="300"
-            // src="/placeholder.svg"
             width="300"
           />
           <div className="grid grid-cols-3 gap-2">
@@ -87,14 +67,23 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
                 type="file"
                 id="fileInput"
                 name="image"
-                onChange={(e) => {handleFileChange(e) }}
+                onChange={(event) =>{if (event.target.files?.length) {
+                  const file = event.target.files[0]
+                  encodeBase64(file ).then(resolve=>{
+                    const dataUrl =Base64toSrc(resolve)
+                    setImage(dataUrl)
+                  })
+                }} }
               />
-              <button onClick={() => {
-                console.log("cll"); ApiUploadImage(imaggg, jwtToken ? jwtToken : '').then(response => {
+              {/* <button 
+              onClick={() => {
+                ApiUploadImage(imaggg, jwtToken ? jwtToken : '').then(response => {
                   setImage(response.data.url)
                   console.log("response.data.id", response.data.url)
                 })
-              }}>Submit</button>
+              }}
+              // onClick={()=>setImage(imaggg)}
+              >Submit</button> */}
               {/* <button onClick={() => { console.log("cll"); handleImageUpload(formData) }}>Submit</button> */}
             </div>
           </div>

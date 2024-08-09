@@ -126,7 +126,7 @@ export default function Dashboard() {
                                                                             alt="Product image"
                                                                             className="aspect-square rounded-md object-cover"
                                                                             height="64"
-                                                                            src="/placeholder.svg"
+                                                                            src={product.image}
                                                                             width="64"
                                                                         />
                                                                     </TableCell>
