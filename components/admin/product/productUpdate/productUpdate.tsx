@@ -120,7 +120,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={token || ""} requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
+        <ProductHeader requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />

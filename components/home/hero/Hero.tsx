@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Carrousel from "@/components/reusablecomponents/carrousel"
+import Carrousel from "@/components/reusableComponent/carrousel"
 // import caropicData from "@/Data/caropicData"
 import caropic from "@/Data/caropicData";
 export default function Hero() {

@@ -1,18 +1,12 @@
 "use client"
 import React, { useState } from "react";
-;
 import { useParams } from 'next/navigation';
-
 import Link from "next/link";
-
-import Sitelink from "@/components/reusablecomponents/siteLink";
-
+import Sitelink from "@/components/reusableComponent/siteLink";
 import itemsData from "@/Data/items.json"
-
-import Star from '@/components/reusablecomponents/star';
-// import Summary from '@/components/details/overview/summary/Summary';
+import Star from '@/components/reusableComponent/star';
 import Faq from "@/components/details/moreDetails/faq"
-import Customereview from "@/components/details/moreDetails/customeReview"
+import CustomerReview from "@/components/details/moreDetails/customerReview"
 import License from "@/components/details/moreDetails/license"
 export default function Moredetails() {
   const [selectedContent, setSelectedContent] = useState("customers");
@@ -170,7 +164,7 @@ const params = useParams();
         <div className="my-4 border-t border-gray-200 "></div>
         <div>
           {selectedContent === "customers" && (
-            <Customereview reviewData={finalItem.review} />
+            < CustomerReview reviewData={finalItem.review} />
           )}
         </div>
 

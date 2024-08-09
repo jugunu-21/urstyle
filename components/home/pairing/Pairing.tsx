@@ -3,14 +3,16 @@ import React, { useState } from "react";
 
 import itemsData from "@/Data/items.json";
 import Link from "next/link";
-import Star from "@/components/reusablecomponents/star";
+import Star from "@/components/reusableComponent/star";
 import caropic from "@/Data/caropicData";
 
 import { clickFiltersData } from "@/Data/clickFiltersData";
-import avgg from "@/components/reusablecomponents/avg";
-import Sitelink from "@/components/reusablecomponents/siteLink";
-import Menudropdown from "@/components/reusablecomponents/menuDropDown";
-import CarouselImage from "@/components/home/pairing/carouselImage/carouselImage";
+import avgg from "@/components/reusableComponent/avg";
+import Sitelink from "@/components/reusableComponent/siteLink";
+import Menudropdown from "@/components/reusableComponent/menuDropDown";
+// import CarouselImage from "@/components/home/pairing/carouselImage/carouselImage";
+import CarouselImage from "@/components/home/pairing/carouselImage/carouselImages";
+// import CarouselImage from "@/components/reusableComponent/addImage";
 
 function Clothes() {
   const [filter, setfilter] = useState("");

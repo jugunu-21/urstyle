@@ -1,7 +1,5 @@
 "use client"
 import Signin from "@/components/authentications/signin";
-
-
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
