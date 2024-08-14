@@ -52,9 +52,6 @@ import { createContext } from "react"
 
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useStore, useToken } from "@/components/helpers/zustand"
-
-import { productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
@@ -81,8 +78,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
   const [image, setImage] = useState<string | null>(null);
   const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
   const router = useRouter();
-  const token = useToken((state) => state.token);
-  const data = useStore((state) => (state.data));
 
   useEffect(() => {
    
@@ -148,12 +143,9 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
           </Button>
           <Button size="sm" onClick=
             {() => {
-              if (token === null) {
-                console.error("JWT Token is required");
-                return;
-              }
+           
               console.log("iddd", id);
-              if (token) {
+            
                 productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
@@ -171,7 +163,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
                     }
 
                   }).catch((error) => console.error("submission error:", error))
-              }
+            
 
 
             }}

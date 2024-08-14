@@ -19,12 +19,8 @@ export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
 <>
     <DropdownMenu>
       <DropdownMenuTrigger >
-        <Button
-          variant="outline"
-          size="icon"
-          className="overflow-hidden rounded-full"
-        >
-          {trigger()}   </Button>
+       
+          {trigger()}   
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{label}</DropdownMenuLabel>

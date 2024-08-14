@@ -9,7 +9,7 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 import toast from "react-hot-toast";
-import Countrycode from "./countryCode";
+
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,11 +19,11 @@ import { Label } from "@/components/ui/label";
 import OtpInput from "./otpInput";
 import Countrycodedata from "./contextCountryCode";
 import ApiSignin from "@/components/authentications/authfunction/apiSignin"
-import { useToken } from "../helpers/zustand";
+
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
 export default function Signin() {
-  const changeToken = useToken((state) => (state.changeToken))
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);

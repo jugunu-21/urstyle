@@ -20,7 +20,7 @@ export default function ProductHeader({ requestBody, id, setSheetOpen,refetch }:
   const router = useRouter();
   const productaddpost = api.product.productAdd.useMutation();
   const productUpdatepost = api.product.productUpdate.useMutation();
-  // const setData = useStore((state) => state.setData);
+ 
 
     const handlerupload = async () => {
     

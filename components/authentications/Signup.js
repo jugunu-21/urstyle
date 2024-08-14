@@ -9,7 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { api } from "@/trpc/react";
-import Countrycode from "./countryCode";
+import Countrycode from "./countriesCode";
 import { app } from "@/app/config";
 import Countrycodedata from "./contextCountryCode";
 import Image from "next/image";
@@ -22,9 +22,9 @@ import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import ApiSignup from "./authfunction/apiSignup";
-import { useToken } from "../helpers/zustand";
+
 export default function Signup() {
-  const changeToken = useToken((state) => (state.changeToken))
+ 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);

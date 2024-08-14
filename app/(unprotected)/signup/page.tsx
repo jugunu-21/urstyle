@@ -1,5 +1,6 @@
 "use client"
-import Signup from "@/components/authentications/signup";
+import Signup from "@/components/authentications/signUp";
+
 
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation";
@@ -8,7 +9,6 @@ import { signOut } from "firebase/auth";
 
 import toast from 'react-hot-toast';
 
-import { Button } from "@/components/ui/button";
 
 export default function Page() {
  
