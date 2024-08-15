@@ -28,9 +28,10 @@ interface Props {
   filteredItems: FilteredItems;
   groupIndex: number|undefined;
 }
+
 function Summary({ filteredItems, groupIndex }: Props) {
-  return (
-    <>
+  if(filteredItems&&groupIndex){
+    return( <>
       {filteredItems.cart.map((cart, cartIndex) => (
         <div key={cartIndex}>
           <div className=" grid grid-cols-2 md:flex md:ml-10 m-2 bg-stone-200 ">
@@ -95,7 +96,10 @@ function Summary({ filteredItems, groupIndex }: Props) {
           <div className="my-4 border-t border-gray-200"></div>
         </div>
       ))}
-    </>
+    </>)
+  }
+  return (
+   <div>error</div>
   );
 }
 
