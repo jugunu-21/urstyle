@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/toggle-group"
 import ProductStatus from "@/components/admin/product/productUtils/forms/productStatus"
 import { useState, useEffect } from "react";
-import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productnamedespridetails"
+import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productNameDespriDetails"
 import ProductImageCard from "@/components/admin/product/productUtils/forms/productImage"
 import ProductAffiandCateg from "@/components/admin/product/productUtils/forms/productAffiandCateg"
 import ProductArchieve from "@/components/admin/product/productUtils/forms/productArchieve"

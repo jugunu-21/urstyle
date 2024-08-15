@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {Countrycodedata} from "./ContextCountryCode";
+import {Countrycodedata} from "./contextCountryCode";
 const Countrycode = () => {
   const { selectedCountryCode, setSelectedCountryCode } =
     useContext(Countrycodedata);

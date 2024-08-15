@@ -7,6 +7,7 @@ import Star from "@/components/reusableComponent/star";
 import itemsData from "@/Data/items.json";
 import Cardlist from "@/components/details/overview/cardList/cardList";
 import Summary from "@/components/details/overview/summary/Summary";
+
 function Details() {
   const params = useParams();
   const productIdArray = Array.isArray(params.index)

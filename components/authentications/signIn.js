@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./otpInput";
-import {Countrycodedata} from "./ContextCountryCode";
+import {Countrycodedata} from "./contextCountryCode";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
 function Signin() {
