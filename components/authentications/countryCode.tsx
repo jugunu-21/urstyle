@@ -1,4 +1,3 @@
-// "use client "
 
 import React, { useContext } from "react";
 import {
@@ -8,14 +7,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {Countrycodedata} from "./contextCountryCode";
-const Countrycode = () => {
-  const { selectedCountryCode, setSelectedCountryCode } =
-    useContext(Countrycodedata);
-  const handleValueChange = (newValue) => {
-    console.log("New value:", newValue); // Debugging line
+interface CountrycodeProps {
+  setSelectedCountryCode: (value: string) => void;
+}
+
+const Countrycode = ( {setSelectedCountryCode}:CountrycodeProps) => {
+  
+  const handleValueChange = (newValue: string) => {
+    console.log("New value:", newValue);
     setSelectedCountryCode(newValue);
-    // console.log(selectedCountryCode);
+   
   };
   return (
     <Select onValueChange={handleValueChange}>
@@ -25,16 +26,11 @@ const Countrycode = () => {
       <SelectContent>
         <SelectItem
           value="91"
-          // onClick={() => setSelectedCountryCode("91")}
         >
           India
         </SelectItem>
         <SelectItem
           value="1"
-          // onClick={() => {
-          //   console.log("Africa clicked"); // Debugging line
-          //   setSelectedCountryCode("90");
-          // }}
         >
           Austria
         </SelectItem>
@@ -63,4 +59,4 @@ const Countrycode = () => {
   );
 };
 
-export default Countrycode;
+export {Countrycode};

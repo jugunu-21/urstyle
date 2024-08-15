@@ -41,7 +41,7 @@ export default function ProductHeader({ requestBody, id, setSheetOpen,refetch }:
         (() => {
          {setSheetOpen&&setSheetOpen(false)}
          {refetch&&refetch()}
-          // router.push("/admin/product/productfetch")
+         
           toast.success("sucessfully updated");}
       ).catch((error) => console.error("submission error:", error))
     }
@@ -61,8 +61,7 @@ export default function ProductHeader({ requestBody, id, setSheetOpen,refetch }:
       <div className="hidden items-center gap-2 md:ml-auto md:flex">
         <Button variant="outline" size="sm" onClick={()=>router.push("/admin/product")}>
           Discard
-        </Button>
-
+        </Button> 
         {id == null ? (
           <Button size="sm" onClick={()=>handlerupload()}>Save Product</Button>
 

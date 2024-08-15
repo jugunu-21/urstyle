@@ -1,9 +1,8 @@
 "use client"
-import {Signin} from "@/components/authentications/signIn";
-;
+import SignIn from "@/components/authentications/signIn";
 export default function Page() {
   return (
-    <> <Signin/>
-    </>
+  // <div>hlww </div>
+ <SignIn/>
      ) 
 }

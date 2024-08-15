@@ -154,7 +154,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
                       setSheetOpen(false)
                      {refetch&&refetch();}
                       console.log("refetch",refetch)
-                      // router.push("/admin/product/productfetch")
+                     
                       toast.success("sucessfully updated");
 
                     }

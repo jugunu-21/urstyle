@@ -1,30 +1,39 @@
 "use client";
-import React, { useState, useEffect, createContext } from "react";
+import  { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
 import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
+
+declare global {
+  interface Window {
+    recaptchaVerifier: any; // Use the specific type if available
+  }
+}
 import toast from "react-hot-toast";
+import React, { useContext } from 'react';
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ConfirmationResult } from "firebase/auth";
 import OtpInput from "./otpInput";
-import { Countrycodedata } from "./contextCountryCode";
+import { CountryCodeData } from "./contextCountryCode";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
-function Signin() {
+import {Countrycode} from "@/components/authentications/countryCode"
+export default function Signin () {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
-  const [jwtToken, setJwtToken] = useState(null);
+  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const auth = getAuth(app);
   const router = useRouter();
   useEffect(() => {
@@ -33,13 +42,12 @@ function Signin() {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => { },
         "expired-callback": () => { },
       }
     );
   }, [auth]);
   const createPost = api.auth.sIgnin.useMutation();
-  const handlePhoneNumberChange = (event) => {
+  const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(event.target.value);
     console.log("Phone number:", event.target.value);
   };
@@ -52,31 +60,12 @@ function Signin() {
         phone_number: phonenumbertosend,
       };
       console.log(requestBody);
-
-      // const response = await ApiSignin(requestBody)
       const result = await createPost.mutateAsync(requestBody)
-    
-      // console.log("Before conditional block, createPost.isSuccess:", createPost.isSuccess);
-
-      // console.log("success")
       const response = result.data;
-      // Now you can use `response` within this block
-
       console.log("response", response);
-      // Assuming the JWT token is stored under `data.jwtToken` in the response
       setJwtToken(result.data);
-      // console.log("response.data", result.data)
-      // console.log("response.data.jwtToken", result.data)
-      // console.log("jwtTokenn", jwtToken);
-
-
-
       const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-      // console.log(formattedPhoneNumber);
-
-      // Directly awaiting the signInWithPhoneNumber promise
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-
       console.log("confirmation", confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
@@ -84,31 +73,32 @@ function Signin() {
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     }
-
     catch (error) {
       console.error(error);
-      // Handle error appropriately
+
       toast.error("An error occurred. Please try again.");
-      // window.location.reload();
+    
     }
   };
   const handleOtpSubmit = async () => {
     try {
+      if (!confirmationResult) {
+        throw new Error("No confirmation result available.");
+      }
       await confirmationResult.confirm(otp);
       setOtp("");
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
-      Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
-      changeToken(jwtToken)
+      Cookies.set('jwtToken', jwtToken!, { expires: 1, path: '/', secure: true });
+      // changeToken(jwtToken!); // Assuming changeToken accepts a string argument
       router.push("/");
-      // console.log(sessionId);
     } catch (error) {
       console.error("Error occurred while authenticating:", error);
     }
   };
-  const handleMouseDown = (event) => {
+  const handleMouseDown = (eventt: React.MouseEvent<HTMLButtonElement>) => {
     if (selectedCountryCode === "" || phoneNumber == "") {
-      event.preventDefault();
+      eventt.preventDefault();
       const result =
         selectedCountryCode == ""
           ? phoneNumber == ""
@@ -131,20 +121,19 @@ function Signin() {
           </p>
           <div className="grid gap-4">
             <div className="grid gap-2">
-        <Label >Phone Number </Label>
+              <Label >Phone Number </Label>
               <div className="flex space-x-2">
-                <Countrycodedata.Provider
-                  value={{ selectedCountryCode, setSelectedCountryCode }}
-                >
-                  <Countrycodedata />
-                </Countrycodedata.Provider>
+                <Countrycode
+                 setSelectedCountryCode={setSelectedCountryCode}
+                />
+              
                 <Input
                   type="tel"
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter 10-digit phone number"
                   className="your-class-names-here"
-                //   disabled={selectedCountryCode == ""}
+             
                 />
               </div>
 
@@ -198,7 +187,7 @@ function Signin() {
                 <p>Please Enter a Valid Number</p>
               </div>
             ) : (
-              <></> // Return an empty fragment if otpSentYN is neither "yes" nor "no"
+              <></> 
             )}
           </div>
           <div className="mt-4 text-center text-sm">
@@ -220,4 +209,4 @@ function Signin() {
       </div>
     </div>
   );
-} export { Signin}
+} 
