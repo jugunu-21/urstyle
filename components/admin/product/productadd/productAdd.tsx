@@ -39,21 +39,14 @@ import {
 } from "@/components/ui/toggle-group"
 import toast from "react-hot-toast"
 import ProductStatus from "@/components/admin/product/productUtils/forms/productStatus"
-import { useState, useEffect } from "react";
-import getTokenFromCookies from "@/components/helpers/getCookie";
+import { useState, useEffect } from "react";;
 import Productnamedespridetails from "@/components/admin/product/productUtils/forms/productnamedespridetails"
 import ProductImageCard from "@/components/admin/product/productUtils/forms/productImage"
 import ProductAffiandCateg from "@/components/admin/product/productUtils/forms/productAffiandCateg"
-import ProductArchieve from "@/components/admin/product/productUtils/forms/productArchieve"
-import ProductTable from "@/components/admin/product/productUtils/forms/productDetailTable"
 import ProductHeader from "../productUtils/forms/productHeader"
-import { ProductDataInterface } from "@/components/admin/product/productUtils/productServices/productDataInterface"
-import Router from "next/router"
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation"
-import { useStore, useToken } from "@/components/helpers/zustand"
 export default function Dashboard() {
-  const token = useToken((state) => state.token);
   const [pid, setPid] = useState<number | null>();
   const [name, setName] = useState<string | null>("");
   const [code, setCode] = useState<string | null>("");
@@ -61,9 +54,7 @@ export default function Dashboard() {
   const [description, setDescription] = useState<string | null>("");
   const [price, setPrice] = useState<string | null>("");
   const [image, setImage] = useState<string | null>("");
-  const setData = useStore((state) => state.setData);
-  const router = useRouter();
-  // const productUpdatePost=api.product.productUpdate.useMutation()
+  const router = useRouter()
   const requestBody = {
     pid: pid ?? 0, // Default to 0 if pid is null or undefined
     name: name ?? "", // Default to empty string if name is null or undefined
@@ -73,19 +64,9 @@ export default function Dashboard() {
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
     image: image ?? "",
   };
-  interface SubmitFunctionArgs {
-    requestBody: ProductDataInterface;
-    jwtToken: string; // Assuming jwtToken is a string
-  }
- 
-  const productUpdatePost = api.product.productAdd.useMutation();
+  const productAddPost = api.product.productAdd.useMutation();
   const handler = async () => {
-    if (token === null) {
-      console.error("JWT Token is required");
-      return;
-    }
-  
-      productUpdatePost.mutateAsync({ requestBody})
+    productAddPost.mutateAsync({ requestBody})
         .then(() => {
           router.push("/admin/product/productfetch")
           toast.success("sucessfully uploaded");
@@ -94,14 +75,12 @@ export default function Dashboard() {
           console.log("apiaddproduct", error);
           toast.error("failed to upload product")
         });
- 
   }
-
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader jwtToken={token || ""} requestBody={requestBody} />
+        <ProductHeader  requestBody={requestBody}  />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || "0"} setPrice={(value: string) => setPrice(value)} />
@@ -119,7 +98,7 @@ export default function Dashboard() {
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <ProductStatus />
-            <ProductImageCard image={image || ""} setImage={setImage} />
+            <ProductImageCard image={image || ""} setImage={setImage}  />
             {/* <ProductArchieve /> */}
           </div>
         </div>
@@ -127,7 +106,9 @@ export default function Dashboard() {
           <Button variant="outline" size="sm">
             Discard
           </Button>
-          <Button size="sm" onClick={() => handler()} >Save Product</Button>
+          <Button size="sm" onClick={()=>
+             handler()}
+           >Save Product</Button>
         </div>
       </div>
     </main>

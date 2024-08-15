@@ -133,7 +133,7 @@ export default function Signin() {
       <div className="flex items-center justify-center py-12">
         <div className=" mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold ">Signin</h1>
+            <h1 className="text-3xl font-bold ">Signinn</h1>
           </div>
           <p className="text-balance text-muted-foreground my-2 left-0">
             Enter your phone number below to signin

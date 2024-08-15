@@ -11,7 +11,6 @@ import { NextApiRequest } from 'next';
 import superjson from "superjson";
 import { ZodError } from "zod";
 import Cookies from 'js-cookie';
-import getJwtTokenFromCookies from "@/components/helpers/getCookie"
 import { initTRPC, TRPCError } from "@trpc/server";
 import cookieParser from 'cookie-parser';
 // import { cookies, headers } from "next/headers";

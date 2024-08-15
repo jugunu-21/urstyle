@@ -117,16 +117,16 @@ export default function Dashboard() {
                                                         </TableRow>
                                                     </TableHeader>
                                                     <TableBody>
-                                                        {fetchedData.map((product, index) => (
-                                                            <>
-                                                                <TableRow key={index}>
+                                                        {fetchedData.map((product) => (
+                                                          
+                                                                <TableRow key={product.id}>
 
                                                                     <TableCell className="hidden sm:table-cell">
                                                                         <Image
                                                                             alt="Product image"
                                                                             className="aspect-square rounded-md object-cover"
                                                                             height="64"
-                                                                            src="/placeholder.svg"
+                                                                            src={product.image}
                                                                             width="64"
                                                                         />
                                                                     </TableCell>
@@ -157,8 +157,8 @@ export default function Dashboard() {
                                                                             <DropdownMenuContent align="end">
                                                                                 <DropdownMenuLabel>{label}</DropdownMenuLabel>
                                                                                 <DropdownMenuSeparator />
-                                                                                {item.map((item, i) => {
-                                                                                    return (
+                                                                                {item.map((item, i) => 
+                                                                                     (
                                                                                         <div key={i}
                                                                                             onClick={() => {
                                                                                                 if (item === "Update") {
@@ -171,13 +171,13 @@ export default function Dashboard() {
                                                                                             <DropdownMenuItem>{item}</DropdownMenuItem>
                                                                                             {i !== itemsLength - 1 && <DropdownMenuSeparator />}
                                                                                         </div>
-                                                                                    );
-                                                                                })}
+                                                                                    )
+                                                                                )}
                                                                             </DropdownMenuContent>
                                                                         </DropdownMenu>
                                                                     </TableCell>
                                                                 </TableRow>
-                                                            </>
+                                                           
                                                         ))}
                                                     </TableBody>
                                                 </Table>
