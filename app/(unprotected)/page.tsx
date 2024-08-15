@@ -1,6 +1,6 @@
 "use client"
-import Hero from "@/components/home/hero/hero";
-import Pairing from "@/components/home/pairing/pairing";
+import Hero from "@/components/home/hero/Hero";
+import Pairing from "@/components/home/pairing/Pairing";
 import Benefits from "@/components/home/benefits/benefit";
 import Navbar from "@/components/layout/navbar/navbar";
 import Footer from "@/components/layout/footer/footer";

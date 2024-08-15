@@ -1,15 +1,12 @@
 "use client";
 import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-// import Cookies from 'js-cookie';
 import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
 import toast from "react-hot-toast";
-
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,13 +14,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./otpInput";
-import Countrycodedata from "./contextCountryCode";
-import ApiSignin from "@/components/authentications/authfunction/apiSignin"
-
+import {Countrycodedata} from "./ContextCountryCode";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
-export default function Signin() {
-
+function Signin() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
@@ -33,7 +27,6 @@ export default function Signin() {
   const [jwtToken, setJwtToken] = useState(null);
   const auth = getAuth(app);
   const router = useRouter();
-
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -45,11 +38,9 @@ export default function Signin() {
       }
     );
   }, [auth]);
-  // const utils = api.useUtils
   const createPost = api.auth.sIgnin.useMutation();
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
-    // console.log(selectedCountryCode)
     console.log("Phone number:", event.target.value);
   };
 
@@ -140,16 +131,13 @@ export default function Signin() {
           </p>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              {/* <Label htmlFor="phone">Phone number</Label> */}
-              <Label >Phone Number </Label>
+        <Label >Phone Number </Label>
               <div className="flex space-x-2">
                 <Countrycodedata.Provider
                   value={{ selectedCountryCode, setSelectedCountryCode }}
                 >
-                  <Countrycode />
+                  <Countrycodedata />
                 </Countrycodedata.Provider>
-                {/* {selectedCountryCode !== "" ? ():()} */}
-
                 <Input
                   type="tel"
                   value={phoneNumber}
@@ -232,4 +220,4 @@ export default function Signin() {
       </div>
     </div>
   );
-}
+} export { Signin}

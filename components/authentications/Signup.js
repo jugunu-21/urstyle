@@ -11,7 +11,7 @@ import {
 import { api } from "@/trpc/react";
 import Countrycode from "./countriesCode";
 import { app } from "@/app/config";
-import Countrycodedata from "./contextCountryCode";
+import {Countrycodedata} from "./ContextCountryCode";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";

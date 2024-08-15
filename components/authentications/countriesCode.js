@@ -8,10 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Countrydata from "./contextCountryCode";
+import {Countrycodedata} from "./ContextCountryCode";
 const Countrycode = () => {
   const { selectedCountryCode, setSelectedCountryCode } =
-    useContext(Countrydata);
+    useContext(Countrycodedata);
   const handleValueChange = (newValue) => {
     console.log("New value:", newValue); // Debugging line
     setSelectedCountryCode(newValue);
