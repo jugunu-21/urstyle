@@ -17,7 +17,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
-import deleteUser from "@/components/authentications/deleteuser";
+import deleteUser from "@/components/authentications/deleteUser";
+
 
 export default function Navbardrop() {
 
