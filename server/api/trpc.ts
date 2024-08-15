@@ -10,14 +10,8 @@
 import { NextApiRequest } from 'next';
 import superjson from "superjson";
 import { ZodError } from "zod";
-import Cookies from 'js-cookie';
-import getJwtTokenFromCookies from "@/components/helpers/getCookie"
 import { initTRPC, TRPCError } from "@trpc/server";
-import cookieParser from 'cookie-parser';
-// import { cookies, headers } from "next/headers";
-import * as cookie from 'cookie';
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { headers } from "next/headers";
+
 /**
  * 1. CONTEXT
  *
@@ -86,11 +80,14 @@ const enforceUserIsHavingToken = t.middleware(async ({ next, ctx }) => {
       code: "UNAUTHORIZED",
     });
   }
-  return next({
-    ctx: {
-      token: token,
-    },
-  });
+  else{
+    return next({
+      ctx: {
+        token: token,
+      },
+    });
+  }
+  
 });
 /**
  * Create a server-side caller.

@@ -28,7 +28,7 @@ import {
 import StatusandFilter from "@/components/admin/product/productUtils/layout/statusandFilter"
 import { DropDownMenu } from "@/components/admin/product/productUtils/layout/dropDownMenu"
 import { useState, useEffect } from "react";
-import { useToken } from "@/components/helpers/zustand"
+
 import { api } from "@/trpc/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -55,7 +55,6 @@ import {
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productUtils/productServices/productDataInterface"
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
 export default function Dashboard() {
-    const token = useToken((state) => state.token);
     const [sheetOpen, setSheetOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const { data: productData, isLoading, refetch, error } = api.product.productfetch.useQuery();
@@ -117,16 +116,16 @@ export default function Dashboard() {
                                                         </TableRow>
                                                     </TableHeader>
                                                     <TableBody>
-                                                        {fetchedData.map((product, index) => (
-                                                            <>
-                                                                <TableRow key={index}>
+                                                        {fetchedData.map((product) => (
+                                                          
+                                                                <TableRow key={product.id}>
 
                                                                     <TableCell className="hidden sm:table-cell">
                                                                         <Image
                                                                             alt="Product image"
                                                                             className="aspect-square rounded-md object-cover"
                                                                             height="64"
-                                                                            src="/placeholder.svg"
+                                                                            src={product.image}
                                                                             width="64"
                                                                         />
                                                                     </TableCell>
@@ -157,8 +156,8 @@ export default function Dashboard() {
                                                                             <DropdownMenuContent align="end">
                                                                                 <DropdownMenuLabel>{label}</DropdownMenuLabel>
                                                                                 <DropdownMenuSeparator />
-                                                                                {item.map((item, i) => {
-                                                                                    return (
+                                                                                {item.map((item, i) => 
+                                                                                     (
                                                                                         <div key={i}
                                                                                             onClick={() => {
                                                                                                 if (item === "Update") {
@@ -171,13 +170,13 @@ export default function Dashboard() {
                                                                                             <DropdownMenuItem>{item}</DropdownMenuItem>
                                                                                             {i !== itemsLength - 1 && <DropdownMenuSeparator />}
                                                                                         </div>
-                                                                                    );
-                                                                                })}
+                                                                                    )
+                                                                                )}
                                                                             </DropdownMenuContent>
                                                                         </DropdownMenu>
                                                                     </TableCell>
                                                                 </TableRow>
-                                                            </>
+                                                           
                                                         ))}
                                                     </TableBody>
                                                 </Table>
