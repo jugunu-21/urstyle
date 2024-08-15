@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import deleteUser from "@/components/authentications/deleteUser";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
+import deleteUser from "@/components/authentications/deleteuser";
 
 export default function Navbardrop() {
 

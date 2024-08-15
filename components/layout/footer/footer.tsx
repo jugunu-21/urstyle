@@ -1,6 +1,7 @@
 "use client"
 import React from "react";
-import Newsletter from "./newsletter/newsletter";
+import Newsletter from "./newsLetter/newsLetter";
+
 
 export default function Footer() {
   return (
