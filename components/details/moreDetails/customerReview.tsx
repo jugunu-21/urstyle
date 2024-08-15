@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from "@/components/reusablecomponents/star";
+import Star from "@/components/reusableComponent/star";
 
 interface Review {
   image: string;
@@ -13,7 +13,7 @@ interface Props {
   reviewData: Review[];
 }
 
-const Customereview: React.FC<Props> = ({ reviewData }) => {
+const CustomerReview: React.FC<Props> = ({ reviewData }) => {
   return (
     <div className="my-8">
       {reviewData.map((review, index) => (
@@ -44,4 +44,4 @@ const Customereview: React.FC<Props> = ({ reviewData }) => {
   );
 };
 
-export default Customereview;
+export default CustomerReview;

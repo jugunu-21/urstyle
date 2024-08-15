@@ -28,7 +28,7 @@ import {
 import StatusandFilter from "@/components/admin/product/productUtils/layout/statusandFilter"
 import { DropDownMenu } from "@/components/admin/product/productUtils/layout/dropDownMenu"
 import { useState, useEffect } from "react";
-import { useToken } from "@/components/helpers/zustand"
+
 import { api } from "@/trpc/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -55,7 +55,6 @@ import {
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/productUtils/productServices/productDataInterface"
 import ProductUpdate from "@/components/admin/product/productUpdate/productUpdate"
 export default function Dashboard() {
-    const token = useToken((state) => state.token);
     const [sheetOpen, setSheetOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const { data: productData, isLoading, refetch, error } = api.product.productfetch.useQuery();

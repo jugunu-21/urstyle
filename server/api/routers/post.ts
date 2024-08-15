@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import ApiSignin from "@/components/authentications/authfunction/apiSignin";
-import ApiSignup from "@/components/authentications/authfunction/apiSignup";
+import ApiSignin from "@/components/authentications/authFunction/apiSignin";
+import ApiSignup from "@/components/authentications/authFunction/apiSignup";
 let post = {
   id: 1,
   name: "Hello World",
