@@ -3,7 +3,7 @@
 "use client"
 // import React, { useEffect } from 'react';
 import React, { useState,useEffect } from 'react';
-import Dashboard from "@/components/admin/product/productFetch/productFetch"
+import Dashboard from "@/components/admin/product/product-fetch/product-fetch"
 
 
 export default function ProductFetch() {

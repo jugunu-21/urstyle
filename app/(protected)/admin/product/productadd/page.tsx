@@ -2,7 +2,7 @@
 
 import React, { useState,useEffect } from 'react';
 
-import Dashboard from "@/components/admin/product/productAdd/productAdd"
+import Dashboard from "@/components/admin/product/product-add/product-add"
 
 // import ProductImageCard from "@/components/admin/forms/productImage"
 export default function Productadd() {

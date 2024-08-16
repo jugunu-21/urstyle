@@ -2,7 +2,7 @@
 
 import React, { useState,useEffect } from 'react';
 
-import Dashboard from "@/components/admin/product/productUpdate/productUpdate"
+import Dashboard from "@/components/admin/product/product-update/product-update"
 import { useParams } from 'next/navigation';
 
   export default function ProductUpdate() {

@@ -1,8 +1,8 @@
 "use client"
 import { create } from 'zustand';
-import getJwtTokenFromCookies from "@/components/helpers/getCookie";
+import getJwtTokenFromCookies from "@/components/helpers/get-cookie";
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { minimalProductArray,productsProp, productlistprop } from '@/components/admin/product/productUtils/productInterface';
+import { minimalProductArray,productsProp, productlistprop } from '@/components/admin/product/product-utils/product-interface';
 const jwt = getJwtTokenFromCookies()
 console.log("tokeninz", jwt)
 interface Store {

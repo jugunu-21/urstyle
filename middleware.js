@@ -15,7 +15,7 @@ export default function middleware(request) {
   // Add more routes as needed
 ];
 const authRoutes=[
-'/signin','/signup'
+'/sign-in','/sign-up'
 ]
 const isAuthRoute = authRoutes.some(route => new RegExp(route).test(intendedRoute));
 
@@ -27,14 +27,14 @@ const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRo
   } else if (jwtToken !== null && isAuthRoute) {
     // toast.message("already a user")
     const url = request.nextUrl.clone();
-    url.pathname = `/signout${intendedRoute}`;
+    url.pathname = `/sign-out${intendedRoute}`;
     return NextResponse.rewrite(url);
   } 
   else if (jwtToken == null && isAdminRoute) {
     // toast.success("need to signin first")
     const url = request.nextUrl.clone();
     toast.success("Need to signin or signup first")
-    url.pathname = `/signin`;
+    url.pathname = `/sign-in`;
     return NextResponse.rewrite(url);
   } 
   else {
@@ -45,5 +45,5 @@ const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRo
 
 // app/middleware/auth.js
 export const config = {
-  matcher: ['/signin', '/signup','/admin/:path*'] 
+  matcher: ['/sign-in', '/sign-up','/admin/:path*'] 
 };
