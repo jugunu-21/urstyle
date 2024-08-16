@@ -1,7 +1,7 @@
 "use client"
-import Benefits from "@/components/home/benefits/benefit";
-import Hero from "@/components/home/hero/hero";
-import Pairing from "@/components/home/pairing/pairing";
+import Hero from "@/components/homee/heroo/heroo";
+import Pairing from "@/components/homee/pairingg/pairingg";
+import Benefits from "@/components/homee/benefitss/benefitss";
 export default function Page() {
 
   return (

@@ -2,8 +2,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/navbar/navbar";
-import Footer from "@/components/layout/footer/footer";
+import Navbar from "@/components/layoutt/navbarr/navbarr";
+import Footer from "@/components/layoutt/footerr/footerr";
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from "react";
 import { TRPCReactProvider } from "@/trpc/react";
