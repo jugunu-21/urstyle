@@ -9,9 +9,9 @@ export default function middleware(request) {
  console.log("rouete",intendedRoute)
  const adminRoutes = [
   '/admin/product',
-  '/admin/product/productUpdate',
+  '/admin/product/productupdate',
   '/admin/product/productFetch',
-  '/admin/product/productAdd',
+  '/admin/product/productadd',
   // Add more routes as needed
 ];
 const authRoutes=[
