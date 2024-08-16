@@ -146,12 +146,8 @@ export default function Dashboard() {
                                                                         {/* <DropDownMenu  item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={product.id} setSheetOpen={setSheetOpen} /> */}
                                                                         <DropdownMenu>
                                                                             <DropdownMenuTrigger >
-                                                                                <Button
-                                                                                    variant="outline"
-                                                                                    size="icon"
-                                                                                    className="overflow-hidden rounded-full"
-                                                                                >
-                                                                                    {trigger()}   </Button>
+                                                                               
+                                                                                    {trigger()}   
                                                                             </DropdownMenuTrigger>
                                                                             <DropdownMenuContent align="end">
                                                                                 <DropdownMenuLabel>{label}</DropdownMenuLabel>
