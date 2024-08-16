@@ -98,7 +98,8 @@ export default function Signin() {
       console.error(error);
       // Handle error appropriately
       toast.error("An error occurred. Please try again.");
-      // window.location.reload();
+   
+
     }
   };
   const handleOtpSubmit = async () => {
