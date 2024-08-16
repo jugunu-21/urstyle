@@ -31,7 +31,6 @@ const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRo
     return NextResponse.rewrite(url);
   } 
   else if (jwtToken == null && isAdminRoute) {
-    // toast.success("need to signin first")
     const url = request.nextUrl.clone();
     toast.success("Need to signin or signup first")
     url.pathname = `/sign-in`;
