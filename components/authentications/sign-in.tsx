@@ -1,4 +1,9 @@
 "use client";
+declare global {
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier;
+  }
+}
 import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -23,14 +28,14 @@ import { useToken } from "../helpers/zustand";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
 export default function Signin() {
-  const changeToken = useToken((state) => (state.changeToken))
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState("");
-  const [jwtToken, setJwtToken] = useState(null);
+  const changeToken = useToken((state) => (state.changeToken));
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [otp, setOtp] = useState<string>("");
+  const [confirmationResult, setConfirmationResult] = useState<any>(null);
+  const [otpSent, setOtpSent] = useState<boolean>(false);
+  const [otpSentYN, setOtpSentYN] = useState<string>("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState<string>("");
+  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -40,18 +45,18 @@ export default function Signin() {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => { },
-        "expired-callback": () => { },
+        callback: (response: any) => {},
+        "expired-callback": () => {},
       }
     );
   }, [auth]);
-  // const utils = api.useUtils
-  const createPost = api.auth.sIgnin.useMutation();
-  const handlePhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value);
-  
-  };
 
+  const createPost = api.auth.sIgnin.useMutation();
+
+  const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(event.target.value);
+  };
+ 
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
@@ -59,20 +64,15 @@ export default function Signin() {
       const requestBody = {
         phone_number: phonenumbertosend,
       };
-   
 
-      // const response = await ApiSignin(requestBody)
-      const result = await createPost.mutateAsync(requestBody)
-  
+      const result = await createPost.mutateAsync(requestBody);
       const response = result.data;
-      // Now you can use `response` within this block
 
       console.log("response", response);
-   
-      setJwtToken(result.data);
-     
+      setJwtToken(response); // Assuming response contains the JWT token
+
       const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-     
+
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
 
       console.log("confirmation", confirmation);
@@ -80,40 +80,36 @@ export default function Signin() {
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
-      
-    }
-
-    catch (error) {
+    } catch (error) {
       console.error(error);
-      // Handle error appropriately
       toast.error("An error occurred. Please try again.");
-   
-
     }
   };
+
   const handleOtpSubmit = async () => {
     try {
-      await confirmationResult.confirm(otp);
+      await confirmationResult?.confirm(otp);
       setOtp("");
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
-      Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
-      changeToken(jwtToken)
+      Cookies.set('jwtToken', jwtToken!, { expires: 1, path: '/', secure: true });
+      changeToken(jwtToken!);
       router.push("/");
-   
     } catch (error) {
       console.error("Error occurred while authenticating:", error);
+      router.push("/sign-in");
     }
   };
-  const handleMouseDown = (event) => {
-    if (selectedCountryCode === "" || phoneNumber == "") {
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+    if (selectedCountryCode === "" || phoneNumber === "") {
       event.preventDefault();
-      const result =
-        selectedCountryCode == ""
-          ? phoneNumber == ""
-            ? "please Enter phone number and also select the country"
-            : "please select country"
-          : "Please enter phone number ";
+      let result: string;
+      if (selectedCountryCode === "") {
+        result = phoneNumber === "" ? "please Enter phone number and also select the country" : "please select country";
+      } else {
+        result = "Please enter phone number ";
+      }
       alert(result);
     }
   };
@@ -158,7 +154,7 @@ export default function Signin() {
                     type="submit"
                     className="w-full"
                     onClick={handleSendOtp}
-                    onMouseDown={handleMouseDown}
+                    onMouseDown={handleMouseDown} 
                   >
                     Send OTP
                   </Button>
@@ -205,7 +201,7 @@ export default function Signin() {
           </div>
           <div className="mt-4 text-center text-sm">
             Dont have an account?{" "}
-            <Link href="/signup" className="underline">
+            <Link href="/sign-up" className="underline">
               Sign up
             </Link>
           </div>

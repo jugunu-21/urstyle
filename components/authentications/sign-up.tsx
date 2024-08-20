@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
@@ -22,35 +23,32 @@ import toast from "react-hot-toast";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 import ApiSignup from "./auth-function/apiSignup";
+import { ConfirmationResult } from "firebase/auth";
+import { ChangeEvent } from "react";
 import { useToken } from "../helpers/zustand";
 export default function Signup() {
   const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("");
-
   const auth = getAuth(app);
   const router = useRouter();
-
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => {},
+        callback: (response: any) => {},
         "expired-callback": () => {},
       }
     );
   }, [auth]);
-  const handlePhoneNumberChange = (event) => {
+  const handlePhoneNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(event.target.value);
-    console.log("Phone number:", event.target.value);
   };
   const createPost = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
@@ -61,36 +59,27 @@ export default function Signup() {
         ""
       )}`;
 
-      console.log(formattedPhoneNumber);
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formattedPhoneNumber,
-        window.recaptchaVerifier
-      );
-
-      console.log(confirmation);
+      console.log("formattedPhoneNumber",formattedPhoneNumber);
+     
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
+      console.log("confirmation",confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
-      // setPhoneNumber("");
-      // alert("Otp has been sent");
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
       setOtpSent(false);
       setOtpSentYN("");
-      // alert("please enter a valid number ");
-      toast.success("please enter a valid number");
-
+      toast.error("please enter a valid number");
       setPhoneNumber("");
-
       console.error(error);
     }
   };
 
   const handleOtpSubmit = async () => {
     try {
-      await confirmationResult.confirm(otp);
+      await confirmationResult?.confirm(otp);
       setOtp("");
 
       const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
@@ -99,17 +88,16 @@ export default function Signup() {
       )}`;
       setPhoneNumber("");
       const requestBody = {
-        // email: email,
+
         phone_number: phonenumbertosend,
-        // password: password,
+
       };
       console.log(requestBody);
-      // Make a POST request to your backend API to store the phone number
-
+     
       const result = await createPost.mutateAsync(requestBody)
       // Check if the response is successful (status code 200-299)
       if (result) {
-        const jwtToken = result.data; 
+        const jwtToken = result.data;
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
         changeToken(jwtToken)
         console.log("Phone number stored successfully on the backend.");
@@ -119,22 +107,23 @@ export default function Signup() {
 
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
-        // If the response is not successful, handle the error
         console.error(
-          "Failed to store phone number on the backend:",
-          response.statusText
-        );
+          "Failed to store phone number on the backend:");
 
-        toast.error("error while storing phone number on the backend");
+        toast.error("Error !!! Please try again..");
+        setOtpSentYN("");
+        return Error
 
-        console.log("reload");
       }
     } catch (error) {
       console.error("Error occurred while storing phone number:", error);
-      router.push("/");
+      toast.error("Error !!! Please try again");
+      router.push("/sign-up")
+      setOtpSentYN("");
+      return Error
     }
   };
-  const handleMouseDown = (event) => {
+  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (selectedCountryCode === "" || phoneNumber == "") {
       event.preventDefault();
       const result =
@@ -230,7 +219,7 @@ export default function Signup() {
           </div>
           <div className="mt-4 text-center text-sm">
             Have an account?{" "}
-            <Link href="/signin" className="underline">
+            <Link href="/sign-in" className="underline">
               Sign in
             </Link>
           </div>

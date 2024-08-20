@@ -8,8 +8,12 @@ import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
 import { useParams } from "next/navigation"; // Corrected import path
 import getJwtTokenFromCookies from "../helpers/get-cookie";
+interface UserInfo {
+  phone_number?: string; // Assuming phone_number is a string and optional
+}
 export default function Signout() {
-  const [userInfo, setUserInfo] = useState(null);
+  
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const router = useRouter();
   const params = useParams();
   const param1 = Array.isArray(params.url) ? params.url : [params.url];
@@ -23,7 +27,7 @@ export default function Signout() {
 
   
   const fetchData = async () => {
-    const jwtToken = await getJwtTokenFromCookies();
+    const jwtToken =  getJwtTokenFromCookies();
     console.log("jwttokenn",jwtToken)
     if (jwtToken) {
       const userDetails = await fetchUserDetails(jwtToken);
@@ -31,7 +35,7 @@ export default function Signout() {
     }
   return null;
 };
-  const fetchUserDetails = async (jwtToken) => {
+  const fetchUserDetails = async (jwtToken:string) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {
         method: "GET",
