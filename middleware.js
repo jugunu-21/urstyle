@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import toast from 'react-hot-toast';
 export default function middleware(request) {
-  console.log("inside of middleware");
+  // console.log("inside of middleware");
   const cookies = request.headers.get('Cookie');
   const jwtToken = cookies ? cookies.split('; ').find(row => row.startsWith('jwtToken')).split('=')[1] : null;
-  console.log(jwtToken, "JWT Token inside of middleware ");
+  // console.log(jwtToken, "JWT Token inside of middleware ");
   const intendedRoute = request.nextUrl.pathname;
- console.log("rouete",intendedRoute)
+//  console.log("rouete",intendedRoute)
  const adminRoutes = [
   '/admin/product',
   '/admin/product/productupdate',
@@ -22,7 +22,7 @@ const isAuthRoute = authRoutes.some(route => new RegExp(route).test(intendedRout
 const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRoute));
 
   if (jwtToken !== null && isAdminRoute) {
-    console.log(`Intended route: ${intendedRoute}`);
+    // console.log(`Intended route: ${intendedRoute}`);
     return NextResponse.next();
   } else if (jwtToken !== null && isAuthRoute) {
     // toast.message("already a user")
@@ -37,7 +37,7 @@ const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRo
     return NextResponse.rewrite(url);
   } 
   else {
-    console.log("User is not authenticated");
+    // console.log("User is not authenticated");
     return NextResponse.next();
   }
 }

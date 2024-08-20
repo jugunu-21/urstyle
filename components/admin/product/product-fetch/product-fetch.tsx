@@ -28,7 +28,15 @@ import {
 import StatusandFilter from "@/components/admin/product/product-utils/layout/status-filter"
 import { DropDownMenu } from "@/components/admin/product/product-utils/layout/drop-down-menu"
 import { useState, useEffect } from "react";
-
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination"
 import { api } from "@/trpc/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -55,9 +63,13 @@ import {
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-services/product-data-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
 export default function Dashboard() {
+    const LIMIT=4
     const [sheetOpen, setSheetOpen] = useState(false);
+    const [page, setPage] = useState(1)
+
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
-    const { data: productData, isLoading, refetch, error } = api.product.productfetch.useQuery();
+    const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit:LIMIT } );
+
     const trigger = () => {
         return (
             <>
@@ -74,8 +86,13 @@ export default function Dashboard() {
         return <div>Error:
             {error.message}</div>;
     }
-    if (productData) {
-        const fetchedData = productData.data
+    if (response) {
+      
+        const fetchedData = response.data.simplifiedProducts
+        const totalDocs = response.data.totalDocs
+        const totalPages = Math.floor(totalDocs / LIMIT) + 1;
+        const startno=((page-1)*LIMIT)+1
+        const endno=(startno+LIMIT-1)>totalDocs?totalDocs:startno+LIMIT-1
         return (<>
             {fetchedData &&
                 (
@@ -117,69 +134,69 @@ export default function Dashboard() {
                                                     </TableHeader>
                                                     <TableBody>
                                                         {fetchedData.map((product) => (
-                                                          
-                                                                <TableRow key={product.id}>
 
-                                                                    <TableCell className="hidden sm:table-cell">
-                                                                        <Image
-                                                                            alt="Product image"
-                                                                            className="aspect-square rounded-md object-cover"
-                                                                            height="64"
-                                                                            src={product.image}
-                                                                            width="64"
-                                                                        />
-                                                                    </TableCell>
-                                                                    <TableCell className="font-medium">
-                                                                        {product.name}
-                                                                    </TableCell>
+                                                            <TableRow key={product.id}>
 
-                                                                    <TableCell className="hidden md:table-cell">
-                                                                        ${product.price}
-                                                                    </TableCell>
-                                                                    <TableCell className="hidden md:table-cell">
-                                                                        {product.description}
-                                                                    </TableCell>
-                                                                    <TableCell className="hidden md:table-cell">
-                                                                        {product.link}
-                                                                    </TableCell>
-                                                                    <TableCell>
-                                                                        {/* <DropDownMenu  item={item} label={label} trigger={trigger} setIndex={setIndex} recentindex={product.id} setSheetOpen={setSheetOpen} /> */}
-                                                                        <DropdownMenu>
-                                                                            <DropdownMenuTrigger >
-                                                                               
-                                                                                    {trigger()}   
-                                                                            </DropdownMenuTrigger>
-                                                                            <DropdownMenuContent align="end">
-                                                                                <DropdownMenuLabel>{label}</DropdownMenuLabel>
-                                                                                <DropdownMenuSeparator />
-                                                                                {item.map((item, i) => 
-                                                                                     (
-                                                                                        <div key={i}
-                                                                                            onClick={() => {
-                                                                                                if (item === "Update") {
-                                                                                                    { setSheetOpen && setSheetOpen(true) }
-                                                                                                    setSelectedProduct(product)
-                                                                                                  
-                                                                                                }
-                                                                                            }}
-                                                                                        >
-                                                                                            <DropdownMenuItem>{item}</DropdownMenuItem>
-                                                                                            {i !== itemsLength - 1 && <DropdownMenuSeparator />}
-                                                                                        </div>
-                                                                                    )
-                                                                                )}
-                                                                            </DropdownMenuContent>
-                                                                        </DropdownMenu>
-                                                                    </TableCell>
-                                                                </TableRow>
-                                                           
+                                                                <TableCell className="hidden sm:table-cell">
+                                                                    <Image
+                                                                        alt="Product image"
+                                                                        className="aspect-square rounded-md object-cover"
+                                                                        height="64"
+                                                                        src={product.image}
+                                                                        width="64"
+                                                                    />
+                                                                </TableCell>
+                                                                <TableCell className="font-medium">
+                                                                    {product.name}
+                                                                </TableCell>
+
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    ${product.price}
+                                                                </TableCell>
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    {product.description}
+                                                                </TableCell>
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    {product.link}
+                                                                </TableCell>
+                                                                <TableCell>
+
+                                                                    <DropdownMenu>
+                                                                        <DropdownMenuTrigger >
+
+                                                                            {trigger()}
+                                                                        </DropdownMenuTrigger>
+                                                                        <DropdownMenuContent align="end">
+                                                                            <DropdownMenuLabel>{label}</DropdownMenuLabel>
+                                                                            <DropdownMenuSeparator />
+                                                                            {item.map((item, i) =>
+                                                                            (
+                                                                                <div key={i}
+                                                                                    onClick={() => {
+                                                                                        if (item === "Update") {
+                                                                                            { setSheetOpen && setSheetOpen(true) }
+                                                                                            setSelectedProduct(product)
+
+                                                                                        }
+                                                                                    }}
+                                                                                >
+                                                                                    <DropdownMenuItem>{item}</DropdownMenuItem>
+                                                                                    {i !== itemsLength - 1 && <DropdownMenuSeparator />}
+                                                                                </div>
+                                                                            )
+                                                                            )}
+                                                                        </DropdownMenuContent>
+                                                                    </DropdownMenu>
+                                                                </TableCell>
+                                                            </TableRow>
+
                                                         ))}
                                                     </TableBody>
                                                 </Table>
                                             </CardContent>
                                             <CardFooter>
                                                 <div className="text-xs text-muted-foreground">
-                                                    Showing <strong>1-10</strong> of <strong>32</strong>{" "}
+                                                    Showing <strong>{startno}-{endno}</strong> of <strong>{totalDocs}</strong>{" "}
                                                     products
                                                 </div>
                                             </CardFooter>
@@ -194,6 +211,39 @@ export default function Dashboard() {
                                     </SheetContent>
                                 </Sheet>
                             </main>
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        {page > 1 && (
+                                            <PaginationPrevious
+                                                onClick={() => {
+                                                    setPage((prev) => prev - 1);
+                                                }}
+                                            />
+                                        )}
+
+                                    </PaginationItem>
+                                    <PaginationItem>
+                                        <PaginationLink >{page}</PaginationLink>
+                                    </PaginationItem>
+
+                                    <PaginationItem>
+                                        <PaginationEllipsis />
+                                    </PaginationItem>
+                                    <PaginationItem>
+                                        {page < totalPages && (
+                                            <PaginationNext
+                                                onClick={() => {
+                                                    // if(page!==1){
+                                                    setPage((prev) => prev + 1)
+                                                    // }
+
+                                                }} />
+                                        )}
+
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
                         </div>
                     </div>)
 

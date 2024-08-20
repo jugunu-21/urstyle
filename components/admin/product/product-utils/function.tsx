@@ -44,8 +44,9 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
     throw error
   }
 }
-export async function ApiFetchProducts({ jwtToken }: { jwtToken: string }) {
-  const apiroute = "/media/product/fetch"
+export async function ApiFetchProducts({ jwtToken,page,limit }: { jwtToken: string ,page:number,limit:number}) {
+  const apiroute = `/media/product/fetch?page=${page}&&limit=${limit}`
+  console.log("apiroute",apiroute)
   const SubmitHandler = async () => {
     // console.log("jwtToken present in fetchproduct func ", jwtToken)
     const response = await PostApiCall({ jwtToken, apiroute })

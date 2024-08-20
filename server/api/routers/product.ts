@@ -34,6 +34,10 @@ const apiProductUpdateZodSchema = z.object({
   requestBody: productDataInterface,
   id: z.string().optional()
 });
+const paginationSchema = z.object({
+  page: z.number(),
+  limit: z.number(),
+});
 // const apiImageUploadZodSchema = z.object({
 // files:z.
 // });
@@ -50,13 +54,17 @@ export const productRouter = createTRPCRouter({
       return response;
     }),
   productfetch: protectedProcedure
-  
-    .output(z.object({ data:z.array(simplifiedProducts) , message: z.string(), status: z.number() }))
+  .input(paginationSchema)
+    .output(z.object({ data:z.object({simplifiedProducts:z.array(simplifiedProducts),totalDocs:z.number()}) , message: z.string(), status: z.number() }))
     .query(async ({ ctx, input}) => {
       const token = ctx.token
+      const {page,limit}=input
       const modifiedInput={
-        jwtToken:token
+        jwtToken:token,
+        page:page,
+        limit:limit
       }
+      console.log(" modifiedInput", modifiedInput)
       const response = await ApiFetchProducts(modifiedInput)
       return response;
     }),
