@@ -49,8 +49,7 @@ export default function Signin() {
   const createPost = api.auth.sIgnin.useMutation();
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
-    // console.log(selectedCountryCode)
-    console.log("Phone number:", event.target.value);
+  
   };
 
   const handleSendOtp = async () => {
@@ -60,30 +59,20 @@ export default function Signin() {
       const requestBody = {
         phone_number: phonenumbertosend,
       };
-      console.log(requestBody);
+   
 
       // const response = await ApiSignin(requestBody)
       const result = await createPost.mutateAsync(requestBody)
-    
-      // console.log("Before conditional block, createPost.isSuccess:", createPost.isSuccess);
-
-      // console.log("success")
+  
       const response = result.data;
       // Now you can use `response` within this block
 
       console.log("response", response);
-      // Assuming the JWT token is stored under `data.jwtToken` in the response
+   
       setJwtToken(result.data);
-      // console.log("response.data", result.data)
-      // console.log("response.data.jwtToken", result.data)
-      // console.log("jwtTokenn", jwtToken);
-
-
-
+     
       const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-      // console.log(formattedPhoneNumber);
-
-      // Directly awaiting the signInWithPhoneNumber promise
+     
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
 
       console.log("confirmation", confirmation);
@@ -91,7 +80,7 @@ export default function Signin() {
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
-      console.log("handlsendotp");
+      
     }
 
     catch (error) {
@@ -111,7 +100,7 @@ export default function Signin() {
       Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
       changeToken(jwtToken)
       router.push("/");
-      // console.log(sessionId);
+   
     } catch (error) {
       console.error("Error occurred while authenticating:", error);
     }

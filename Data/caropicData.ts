@@ -1,9 +1,7 @@
 
  const caropic =
   [
-        {
-          "url": "https://colorlib.com/wp/wp-content/uploads/sites/2/5_apparel-mockups.jpg",
-        },
+       
         {
           "url": "https://m.media-amazon.com/images/I/61Pdr3h6MmL._SX3000_.jpg",
         },
