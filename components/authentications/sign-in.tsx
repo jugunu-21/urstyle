@@ -4,9 +4,8 @@ declare global {
     recaptchaVerifier: RecaptchaVerifier;
   }
 }
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useRef  } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
   getAuth,
@@ -14,20 +13,18 @@ import {
   signInWithPhoneNumber,
 } from "firebase/auth";
 import toast from "react-hot-toast";
-import Countrycode from "./country-code";
 import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+
 import { Label } from "@/components/ui/label";
 import OtpInput from "./otp-input";
-import Countrycodedata from "./context-country-code";
-import ApiSignin from "@/components/authentications/auth-function/apiSignin"
 import { useToken } from "../helpers/zustand";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 export default function Signin() {
   const changeToken = useToken((state) => (state.changeToken));
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -42,7 +39,7 @@ export default function Signin() {
   interface Window {
     recaptchaVerifier: RecaptchaVerifier | null;
   }
-
+  const phoneInputRef = useRef(null);
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -58,10 +55,9 @@ export default function Signin() {
 
   const createPost = api.auth.sIgnin.useMutation();
 
-  const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(event.target.value);
+  const handlePhoneNumberChange = (value: string) => {
+    setPhoneNumber(value);
   };
-
   const handleSendOtp = async () => {
     try {
       // console.log("send otp");
@@ -72,17 +68,16 @@ export default function Signin() {
       const result = await createPost.mutateAsync(requestBody);
       const response = result.data;
       setJwtToken(response);
-      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
       console.log("confirmation", confirmation);
-      
+
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
     } catch (error) {
       console.error(error);
-      // initializeRecaptchaVerifier();
       setPhoneNumber("")
 
       if (isFirebaseAuthError(error)) {
@@ -118,7 +113,6 @@ export default function Signin() {
       setOtp("");
       setOtpSentYN("");
       setPhoneNumber("")
-      // initializeRecaptchaVerifier();
 
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
@@ -139,17 +133,14 @@ export default function Signin() {
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-    if (selectedCountryCode === "" || phoneNumber === "") {
+    if (phoneNumber=="") {
       event.preventDefault();
       let result: string;
-      if (selectedCountryCode === "") {
-        result = phoneNumber === "" ? "please Enter phone number and also select the country" : "please select country";
-      } else {
-        result = "Please enter phone number ";
-      }
+      result = "Please enter correct phone number phone number ";
       alert(result);
     }
   };
+
   return (
     <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0 my-4">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
@@ -162,24 +153,20 @@ export default function Signin() {
             Enter your phone number below to signin
           </p>
           <div className="grid gap-4">
-            <div className="grid gap-2">
+            <div className="grid gap-2 w-3/4">
               {/* <Label htmlFor="phone">Phone number</Label> */}
               <Label >Phone Number </Label>
-              <div className="flex space-x-2">
-                <Countrycodedata.Provider
-                  value={{ selectedCountryCode, setSelectedCountryCode }}
-                >
-                  <Countrycode />
-                </Countrycodedata.Provider>
-                {/* {selectedCountryCode !== "" ? ():()} */}
+              <div className="w-full">
 
-                <Input
-                  type="tel"
+                <PhoneInput
+                
+                  country={'in'}
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter 10-digit phone number"
-                  className="your-class-names-here"
-                //   disabled={selectedCountryCode == ""}
+               containerClass="w-full"
+                  inputClass="text-black "
+                  dropdownClass="text-black"
                 />
               </div>
 

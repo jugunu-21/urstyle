@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
   getAuth,
@@ -11,21 +13,14 @@ import {
   signOut,
 } from "firebase/auth";
 import { api } from "@/trpc/react";
-import Countrycode from "./country-code";
 import { app } from "@/app/config";
-import Countrycodedata from "./context-country-code";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import OtpInput from "./otp-input";
 import toast from "react-hot-toast";
-import jwt from "jsonwebtoken";
-import axios from "axios";
-import ApiSignup from "./auth-function/apiSignup";
 import { ConfirmationResult } from "firebase/auth";
-import { ChangeEvent } from "react";
 import { useToken } from "../helpers/zustand";
 export default function Signup() {
   const changeToken = useToken((state) => (state.changeToken))
@@ -34,7 +29,6 @@ export default function Signup() {
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const [selectedCountryCode, setSelectedCountryCode] = useState("");
   const auth = getAuth(app);
   const router = useRouter();
   useEffect(() => {
@@ -48,22 +42,20 @@ export default function Signup() {
       }
     );
   }, [auth]);
-  const handlePhoneNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(event.target.value);
+  const handlePhoneNumberChange = (value:string) => {
+    setPhoneNumber(value);
   };
   const createPost = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
-      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(
+      const formattedPhoneNumber = `+${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
 
       console.log("formattedPhoneNumber",formattedPhoneNumber);
-      if (!window.recaptchaVerifier) {
-        throw new Error("reCAPTCHA verifier not found.");
-      }
+     
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
       console.log("confirmation",confirmation);
       setConfirmationResult(confirmation);
@@ -72,7 +64,7 @@ export default function Signup() {
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
-      setOtpSent(false);
+      // setOtpSent(false);
     
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
@@ -96,7 +88,7 @@ export default function Signup() {
     try {
       await confirmationResult?.confirm(otp);
       setOtp("");
-      const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
+      const phonenumbertosend = `${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
@@ -111,7 +103,7 @@ export default function Signup() {
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
         changeToken(jwtToken)
         router.push("/");
-        toast.success("Otp submitted successfully ");
+        toast.success( "sucessfully signup");
         setPhoneNumber("");
       } else {
         console.error("Failed to store phone number on the backend");
@@ -137,15 +129,11 @@ export default function Signup() {
       return Error
     }
   };
-  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (selectedCountryCode === "" || phoneNumber == "") {
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+    if (phoneNumber=="") {
       event.preventDefault();
-      const result =
-        selectedCountryCode == ""
-          ? phoneNumber == ""
-            ? "please Enter phone number and also select the country"
-            : "please select country"
-          : "Please enter phone number ";
+      let result: string;
+      result = "Please enter correct phone number phone number ";
       alert(result);
     }
   };
@@ -162,20 +150,19 @@ export default function Signup() {
             </p>
           </div>
           <div className="grid gap-4">
-            <div className="grid gap-2">
+            <div className="grid gap-2 w-3/4">
               <Label htmlFor="email">Phone Number </Label>
               <div className=" flex space-x-2">
-                <Countrycodedata.Provider
-                  value={{ selectedCountryCode, setSelectedCountryCode }}
-                >
-                  <Countrycode />
-                </Countrycodedata.Provider>
-                <Input
-                  type="tel"
+              
+                <PhoneInput
+                //  ref={phoneInputRef}
+                  country={'in'}
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
-                  placeholder="Enter 10-digit phone number "
-                  className="your-class-names-here"
+                  placeholder="Enter 10-digit phone number"
+           
+                  inputClass="text-black"
+                  dropdownClass="text-black"
                 />
               </div>
               <div className="text-center">
