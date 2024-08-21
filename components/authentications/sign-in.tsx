@@ -69,13 +69,13 @@ export default function Signin() {
       const requestBody = {
         phone_number: phonenumbertosend,
       };
-
-      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-      console.log("confirmation", confirmation);
       const result = await createPost.mutateAsync(requestBody);
       const response = result.data;
       setJwtToken(response);
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
+      console.log("confirmation", confirmation);
+      
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
