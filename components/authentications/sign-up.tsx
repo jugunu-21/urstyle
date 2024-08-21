@@ -92,41 +92,29 @@ export default function Signup() {
       console.error(error);
     }
   };
-
   const handleOtpSubmit = async () => {
     try {
       await confirmationResult?.confirm(otp);
       setOtp("");
-
       const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
       setPhoneNumber("");
       const requestBody = {
-
         phone_number: phonenumbertosend,
-
       };
       console.log(requestBody);
-     
       const result = await createPost.mutateAsync(requestBody)
       if (result) {
         const jwtToken = result.data;
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
         changeToken(jwtToken)
-        console.log("Phone number stored successfully on the backend.");
         router.push("/");
         toast.success("Otp submitted successfully ");
         setPhoneNumber("");
-
-        // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
-       
-        console.error(
-          "Failed to store phone number on the backend:");
-
-        
+        console.error("Failed to store phone number on the backend");
         setOtpSentYN("");
         return Error
 
