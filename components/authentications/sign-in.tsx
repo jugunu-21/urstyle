@@ -53,7 +53,7 @@ export default function Signin() {
 
   }, []);
 
-  const createPost = api.auth.sIgnin.useMutation();
+  const signIn = api.auth.sIgnin.useMutation();
 
   const handlePhoneNumberChange = (value: string) => {
     setPhoneNumber(value);
@@ -65,7 +65,7 @@ export default function Signin() {
       const requestBody = {
         phone_number: phonenumbertosend,
       };
-      const result = await createPost.mutateAsync(requestBody);
+      const result = await signIn.mutateAsync(requestBody);
       const response = result.data;
       setJwtToken(response);
       const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;

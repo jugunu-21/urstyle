@@ -45,7 +45,7 @@ export default function Signup() {
   const handlePhoneNumberChange = (value:string) => {
     setPhoneNumber(value);
   };
-  const createPost = api.auth.sIgnup.useMutation();
+  const signUp= api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
       console.log("send otp");
@@ -64,8 +64,6 @@ export default function Signup() {
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
-      // setOtpSent(false);
-    
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
           toast.error("There was an issue with reCAPTCHA verification. Please try again.");
@@ -97,7 +95,7 @@ export default function Signup() {
         phone_number: phonenumbertosend,
       };
       console.log(requestBody);
-      const result = await createPost.mutateAsync(requestBody)
+      const result = await signUp.mutateAsync(requestBody)
       if (result) {
         const jwtToken = result.data;
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
