@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
+import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
   getAuth,
   RecaptchaVerifier,
@@ -60,7 +61,9 @@ export default function Signup() {
       )}`;
 
       console.log("formattedPhoneNumber",formattedPhoneNumber);
-     
+      if (!window.recaptchaVerifier) {
+        throw new Error("reCAPTCHA verifier not found.");
+      }
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
       console.log("confirmation",confirmation);
       setConfirmationResult(confirmation);
@@ -70,8 +73,21 @@ export default function Signup() {
       console.log("handlsendotp");
     } catch (error) {
       setOtpSent(false);
-      setOtpSentYN("");
-      toast.error("please enter a valid number");
+    
+      if (isFirebaseAuthError(error)) {
+        if (error instanceof Error && error.message.includes("reCAPTCHA")) {
+          toast.error("There was an issue with reCAPTCHA verification. Please try again.");
+        }
+        else if ((error as any).code === 'auth/invalid-phone-number') {
+          toast.error("The phone number you entered is invalid. Please try again.");
+        }
+        else {
+          toast.error("An unexpected error occurred. Please try again ");
+        }
+      }
+      else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
       setPhoneNumber("");
       console.error(error);
     }
@@ -95,7 +111,6 @@ export default function Signup() {
       console.log(requestBody);
      
       const result = await createPost.mutateAsync(requestBody)
-      // Check if the response is successful (status code 200-299)
       if (result) {
         const jwtToken = result.data;
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
@@ -107,19 +122,30 @@ export default function Signup() {
 
         // Assuming 'confirmationResult' and 'otp' are defined elsewhere
       } else {
+       
         console.error(
           "Failed to store phone number on the backend:");
 
-        toast.error("Error !!! Please try again..");
+        
         setOtpSentYN("");
         return Error
 
       }
     } catch (error) {
-      console.error("Error occurred while storing phone number:", error);
-      toast.error("Error !!! Please try again");
-      router.push("/sign-up")
+      if (isFirebaseAuthError(error)) {
+        if ((error as any).code === 'auth/invalid-verification-code') {
+          toast.error("The verification code you entered is incorrect. Please try again.");
+        }
+        else {
+          toast.error("An unexpected error occurred. Please try again later.");
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
       setOtpSentYN("");
+      setOtp("");
+      // setOtpSentYN("");
+      setPhoneNumber("")
       return Error
     }
   };

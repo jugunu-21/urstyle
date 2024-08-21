@@ -7,7 +7,7 @@ declare global {
 import React, { useState, useEffect, createContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-// import Cookies from 'js-cookie';
+import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
   getAuth,
   RecaptchaVerifier,
@@ -27,6 +27,7 @@ import ApiSignin from "@/components/authentications/auth-function/apiSignin"
 import { useToken } from "../helpers/zustand";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
+
 export default function Signin() {
   const changeToken = useToken((state) => (state.changeToken));
   const [phoneNumber, setPhoneNumber] = useState<string>("");
@@ -38,6 +39,9 @@ export default function Signin() {
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const auth = getAuth(app);
   const router = useRouter();
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier | null;
+  }
 
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -45,44 +49,58 @@ export default function Signin() {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response: any) => {},
-        "expired-callback": () => {},
+        callback: (response: any) => { /* Handle successful verification */ },
+        "expired-callback": () => { /* Handle expiration */ },
       }
     );
-  }, [auth]);
+
+  }, []);
 
   const createPost = api.auth.sIgnin.useMutation();
 
   const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(event.target.value);
   };
- 
+
   const handleSendOtp = async () => {
     try {
-      console.log("send otp");
+      // console.log("send otp");
       const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
       const requestBody = {
         phone_number: phonenumbertosend,
       };
 
+      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
+      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
+      console.log("confirmation", confirmation);
       const result = await createPost.mutateAsync(requestBody);
       const response = result.data;
-
-      console.log("response", response);
-      setJwtToken(response); // Assuming response contains the JWT token
-
-      const formattedPhoneNumber = `+${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
-
-      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-
-      console.log("confirmation", confirmation);
+      setJwtToken(response);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
     } catch (error) {
       console.error(error);
-      toast.error("An error occurred. Please try again.");
+      // initializeRecaptchaVerifier();
+      setPhoneNumber("")
+
+      if (isFirebaseAuthError(error)) {
+        if (error instanceof Error && error.message.includes("reCAPTCHA")) {
+          toast.error("There was an issue with reCAPTCHA verification. Please try again.");
+        }
+        else if ((error as any).code === 'auth/invalid-phone-number') {
+          toast.error("The phone number you entered is invalid. Please try again.");
+        }
+        else {
+          toast.error("An unexpected error occurred. Please try again ");
+        }
+      }
+      else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
+      console.log("ERRorr", error)
+      return error
     }
   };
 
@@ -90,14 +108,33 @@ export default function Signin() {
     try {
       await confirmationResult?.confirm(otp);
       setOtp("");
+
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
       Cookies.set('jwtToken', jwtToken!, { expires: 1, path: '/', secure: true });
       changeToken(jwtToken!);
       router.push("/");
     } catch (error) {
-      console.error("Error occurred while authenticating:", error);
-      router.push("/sign-in");
+      setOtp("");
+      setOtpSentYN("");
+      setPhoneNumber("")
+      // initializeRecaptchaVerifier();
+
+      if (isFirebaseAuthError(error)) {
+        if ((error as any).code === 'auth/invalid-verification-code') {
+          toast.error("The verification code you entered is incorrect. Please try again.");
+        }
+        else {
+          toast.error("An unexpected error occurred. Please try again later.");
+        }
+      } else {
+        toast.error("An unexpected error occurred. Please try again later.");
+      }
+
+      console.error("Erroorr", error);
+
+
+      return;
     }
   };
 
@@ -154,7 +191,7 @@ export default function Signin() {
                     type="submit"
                     className="w-full"
                     onClick={handleSendOtp}
-                    onMouseDown={handleMouseDown} 
+                    onMouseDown={handleMouseDown}
                   >
                     Send OTP
                   </Button>
