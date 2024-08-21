@@ -18,16 +18,16 @@ const isAuthRoute = authRoutes.some(route => new RegExp(route).test(intendedRout
 
 const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRoute));
 
-  if (jwtToken !== null || jwtToken !== undefined && isAdminRoute) {
+  if (jwtToken !== undefined && isAdminRoute) {
     // console.log(`Intended route: ${intendedRoute}`);
     return NextResponse.next();
-  } else if (jwtToken !== null || jwtToken !== undefined && isAuthRoute) {
+  } else if ( jwtToken !== undefined && isAuthRoute) {
     // toast.message("already a user")
     const url = request.nextUrl.clone();
     url.pathname = `/sign-out${intendedRoute}`;
     return NextResponse.rewrite(url);
   } 
-  else if (jwtToken == null || jwtToken === undefined && isAdminRoute) {
+  else if (jwtToken === undefined && isAdminRoute) {
     const url = request.nextUrl.clone();
     toast.success("Need to signin or signup first")
     url.pathname = `/sign-in`;
