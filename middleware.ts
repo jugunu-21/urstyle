@@ -1,8 +1,12 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import toast from 'react-hot-toast';
-export default function middleware(request) {
+import { string } from 'zod';
+
+export default function middleware(request:NextRequest) {
   const cookies = request.headers.get('Cookie');
-  const jwtToken = cookies ? cookies.split('; ').find(row => row.startsWith('jwtToken')).split('=')[1] : null;
+  // const jwtToken = cookies ? cookies.split('; ').find(row => row.startsWith('jwtToken')).split('=')[1] : null;
+  const jwtToken = cookies?.includes('jwtToken') ? cookies.split('; ').find(row => row.startsWith('jwtToken'))?.split('=')[1] : null;
+
   const intendedRoute = request.nextUrl.pathname;
  const adminRoutes = [
   '/admin/product',
@@ -18,16 +22,15 @@ const isAuthRoute = authRoutes.some(route => new RegExp(route).test(intendedRout
 
 const isAdminRoute = adminRoutes.some(route => new RegExp(route).test(intendedRoute));
 
-  if (jwtToken !== undefined && isAdminRoute) {
-    // console.log(`Intended route: ${intendedRoute}`);
+  if (jwtToken  && isAdminRoute) {
     return NextResponse.next();
-  } else if ( jwtToken !== undefined && isAuthRoute) {
-    // toast.message("already a user")
+  } else if ( (jwtToken !== null || jwtToken !== undefined) && isAuthRoute) {
+
     const url = request.nextUrl.clone();
     url.pathname = `/sign-out${intendedRoute}`;
     return NextResponse.rewrite(url);
   } 
-  else if (jwtToken === undefined && isAdminRoute) {
+  else if ((jwtToken !== null || jwtToken !== undefined) && isAdminRoute) {
     const url = request.nextUrl.clone();
     toast.success("Need to signin or signup first")
     url.pathname = `/sign-in`;
