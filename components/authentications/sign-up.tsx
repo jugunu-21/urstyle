@@ -64,6 +64,7 @@ export default function Signup() {
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
+      window.location.reload()
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
           toast.error("There was an issue with reCAPTCHA verification. Please try again.");
@@ -96,20 +97,16 @@ export default function Signup() {
       };
       console.log(requestBody);
       const result = await signUp.mutateAsync(requestBody)
-      if (result) {
+     
         const jwtToken = result.data;
         Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
         changeToken(jwtToken)
         router.push("/");
         toast.success( "sucessfully signup");
         setPhoneNumber("");
-      } else {
-        console.error("Failed to store phone number on the backend");
-        setOtpSentYN("");
-        return Error
-
-      }
+     
     } catch (error) {
+      window.location.reload()
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
           toast.error("The verification code you entered is incorrect. Please try again.");

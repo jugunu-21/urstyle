@@ -77,6 +77,7 @@ export default function Signin() {
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
     } catch (error) {
+      window.location.reload()
       console.error(error);
       setPhoneNumber("")
 
@@ -110,6 +111,7 @@ export default function Signin() {
       changeToken(jwtToken!);
       router.push("/");
     } catch (error) {
+      window.location.reload()
       setOtp("");
       setOtpSentYN("");
       setPhoneNumber("")
@@ -124,10 +126,7 @@ export default function Signin() {
       } else {
         toast.error("An unexpected error occurred. Please try again later.");
       }
-
       console.error("Erroorr", error);
-
-
       return;
     }
   };
