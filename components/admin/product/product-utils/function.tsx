@@ -1,7 +1,7 @@
 
 import { ProductDataInterface } from "./product-services/product-data-interface"
 import axios, { AxiosRequestConfig } from 'axios';
-import { decodeBase64,srctoBase64 } from "@/components/admin/product/product-utils/product-services/image-services"
+import { decodeBase64, srctoBase64 } from "@/components/admin/product/product-utils/product-services/image-services"
 import { error } from "console";
 type ApiUploadProductsprops = {
   responses?: string
@@ -13,32 +13,34 @@ type ApiFetchProductsprops = {
   requestBody: ProductDataInterface
   id?: string
 }
-async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken: string, apiroute: string}) {
+async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken: string, apiroute: string }) {
   try {
-    const { requestBody, jwtToken, apiroute} = args;
+    const { requestBody, jwtToken, apiroute } = args;
     const formData = new FormData();
     if (requestBody) {
       Object.entries(requestBody).forEach(([key, value]) => {
         if (key !== 'image') {
-            formData.append(key, String(value));   
+          formData.append(key, String(value));
         }
       });
     }
-
     if (requestBody?.image) {
-      if (requestBody.image.includes("cloudinary.com")) {
- 
-        console.log("Image is hosted on Cloudinary:", requestBody.image);
-        // Optionally, append the image URL directly to formData without conversion
-        formData.append('image', requestBody.image);
-      } else {
-        // If not hosted on Cloudinary, proceed with the original conversion and appending
+      try {
         const blob = srctoBase64(requestBody.image);
         const file = decodeBase64(blob);
-        formData.append('file', file);
-      }
-    }
+        formData.append('image', file);
 
+      }
+      catch {
+
+        formData.append('image', requestBody.image);
+
+      }
+
+
+
+    }
+    console.log("formData", formData)
     const response = axios({
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
@@ -54,9 +56,9 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
     throw error
   }
 }
-export async function ApiFetchProducts({ jwtToken,page,limit }: { jwtToken: string ,page:number,limit:number}) {
+export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: string, page: number, limit: number }) {
   const apiroute = `/media/product/fetch?page=${page}&&limit=${limit}`
-  console.log("apiroute",apiroute)
+  console.log("apiroute", apiroute)
   const SubmitHandler = async () => {
     const response = await PostApiCall({ jwtToken, apiroute })
     return response.data;
@@ -65,11 +67,11 @@ export async function ApiFetchProducts({ jwtToken,page,limit }: { jwtToken: stri
 }
 export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
   const apiroute = `/media/product/update/${id}`
-  console.log("routeupdatehheeeeeeeee",apiroute)
+
   const SubmitHandler = async () => {
     if (jwtToken === null) {
       console.error("JWT Token is required");
-       throw error; 
+      throw error;
     }
     const result = await PostApiCall({ jwtToken, apiroute, requestBody });
     console.log("sucessufully updated")
@@ -77,7 +79,7 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
   };
   return SubmitHandler();
 }
-export function ApiUploadProduct({ jwtToken, requestBody}: ApiUploadProductsprops) {
+export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
 
   const apiroute = "/media/product/upload"
   const SubmitHandler = async () => {
@@ -116,10 +118,10 @@ export async function ApiUploadMultipleImages(formData: FormData, jwtToken: stri
       }
     });
     return response.data
-    
+
   } catch (error) {
     throw error
-   
+
   }
 }
 
