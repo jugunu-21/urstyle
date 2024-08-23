@@ -64,7 +64,7 @@ export default function Signup() {
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
-      window.location.reload()
+    
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
           toast.error("There was an issue with reCAPTCHA verification. Please try again.");
@@ -79,8 +79,7 @@ export default function Signup() {
       else {
         toast.error("An unexpected error occurred. Please try again later.");
       }
-      setPhoneNumber("");
-      console.error(error);
+      window.location.reload()
     }
   };
   const handleOtpSubmit = async () => {
@@ -106,7 +105,7 @@ export default function Signup() {
         setPhoneNumber("");
      
     } catch (error) {
-      window.location.reload()
+    
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
           toast.error("The verification code you entered is incorrect. Please try again.");
@@ -117,11 +116,7 @@ export default function Signup() {
       } else {
         toast.error("An unexpected error occurred. Please try again later.");
       }
-      setOtpSentYN("");
-      setOtp("");
-      // setOtpSentYN("");
-      setPhoneNumber("")
-      return Error
+      window.location.reload()
     }
   };
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {

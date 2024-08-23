@@ -77,9 +77,9 @@ export default function Signin() {
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
     } catch (error) {
-      window.location.reload()
-      console.error(error);
-      setPhoneNumber("")
+    
+      // console.error(error);
+      // setPhoneNumber("")
 
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
@@ -96,7 +96,7 @@ export default function Signin() {
         toast.error("An unexpected error occurred. Please try again later.");
       }
       console.log("ERRorr", error)
-      return error
+      window.location.reload()
     }
   };
 
@@ -111,10 +111,10 @@ export default function Signin() {
       changeToken(jwtToken!);
       router.push("/");
     } catch (error) {
-      window.location.reload()
-      setOtp("");
-      setOtpSentYN("");
-      setPhoneNumber("")
+    
+      // setOtp("");
+      // setOtpSentYN("");
+      // setPhoneNumber("")
 
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
@@ -127,7 +127,8 @@ export default function Signin() {
         toast.error("An unexpected error occurred. Please try again later.");
       }
       console.error("Erroorr", error);
-      return;
+      window.location.reload()
+      // return;
     }
   };
 
