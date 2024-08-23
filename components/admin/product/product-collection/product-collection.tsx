@@ -21,37 +21,45 @@ import { Textarea } from "@/components/ui/textarea"
 import { api } from "@/trpc/react"
 import { collectionproductInterface } from "../../product/product-utils/product-interface"
 import { RefetchOptions } from "@tanstack/react-query"
+import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 type addprops = {
-  collection?: Array<collectionproductInterface>,
+  collection: Array<collectionproductInterface>,
   setSheetOpen: (sheetOpen: boolean) => void,
-
+  setCollection:( collection: Array<collectionproductInterface>)=>(void);
   refetch?: (options?: RefetchOptions) => Promise<any>;
+  setSelectProduct:(sheetOpen: boolean) => void,
 }
-export default function Dashboard({ collection, setSheetOpen, refetch }: addprops) {
-  const utils = api.useUtils();
-  const productUpdatepost = api.product.productUpdate.useMutation({
-    onSuccess: async () => {
-      console.log("successful")
-      await utils.product.invalidate();
-    },
-  })
+export default function Dashboard({  setSelectProduct,collection,setCollection, setSheetOpen, refetch }: addprops) {
+  const collectionAddPost = api.collection.collectionAdd.useMutation();
 
   const [name, setName] = useState<string | null>(null);
-
-
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
-  const [image, setImage] = useState<string | null>(null);
-  const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
   const router = useRouter();
-  const token = useToken((state) => state.token);
-  const data = useStore((state) => (state.data));
-
   interface SubmitFunctionArgs {
     requestBody: ProductDataInterface;
     jwtToken: string; // Assuming jwtToken is a string
   }
-
+  const requestBody = {
+    CollectionName: name ?? '', // Provide a default empty string if name is null
+    CollectionDescription: description ?? '', // Provide a default empty string if description is null
+    CollectionIds: collection?.map(item => item.productId) || [],
+  }
+  const handler = async () => {
+    collectionAddPost.mutateAsync({ requestBody: requestBody })
+      .then(() => {
+        setSheetOpen(false)
+        setCollection([])
+        setSelectProduct(false)
+        { refetch && refetch(); }
+        toast.success("sucessfully created the collection")
+      })
+      .catch(function (error) {
+        console.log("apicollectionUpload ", error);
+        toast.error("failed to add collection")
+      });
+  }
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
@@ -91,6 +99,7 @@ export default function Dashboard({ collection, setSheetOpen, refetch }: addprop
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
+              <Button onClick={() => handler()}>click</Button>
               {collection?.map((item) => {
                 return (
                   <div key={item.productId}>
