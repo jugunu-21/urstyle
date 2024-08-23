@@ -62,14 +62,29 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-services/product-data-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
+import ProductCollection from "@/components/admin/product/product-collection/product-collection"
+import { Checkbox } from "@/components/ui/checkbox"
+import {collectionproductInterface} from "../../product/product-utils/product-interface"
 export default function Dashboard() {
-    const LIMIT=4
-    const [sheetOpen, setSheetOpen] = useState(false);
+  
+    const LIMIT = 4
+    const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
+    const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
+    const [selectProduct, setSelectProduct] = useState(false);
     const [page, setPage] = useState(1)
 
-    const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
-    const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit:LIMIT } );
 
+    function CheckboxDemo() {
+        return (
+            <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+
+            </div>
+        )
+    }
+    const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
+    const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
+    const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit: LIMIT });
     const trigger = () => {
         return (
             <>
@@ -87,12 +102,13 @@ export default function Dashboard() {
             {error.message}</div>;
     }
     if (response) {
-      
+
         const fetchedData = response.data.simplifiedProducts
         const totalDocs = response.data.totalDocs
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
-        const startno=((page-1)*LIMIT)+1
-        const endno=(startno+LIMIT-1)>totalDocs?totalDocs:startno+LIMIT-1
+        const startno = ((page - 1) * LIMIT) + 1
+        const endno = (startno + LIMIT - 1) > totalDocs ? totalDocs : startno + LIMIT - 1
+       
         return (<>
             {fetchedData &&
                 (
@@ -100,7 +116,7 @@ export default function Dashboard() {
                         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
                             <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
                                 <Tabs defaultValue="all">
-                                    <StatusandFilter />
+                                    <StatusandFilter setSheetOpenCollection={setSheetOpenCollection} setSelectProduct={setSelectProduct} collection={collection} />
                                     <TabsContent value="all">
                                         <Card x-chunk="dashboard-06-chunk-0">
                                             <CardHeader>
@@ -125,11 +141,12 @@ export default function Dashboard() {
                                                                 Link
                                                             </TableHead>
                                                             <TableHead className="hidden md:table-cell">
-                                                                Created at
+                                                                Action
                                                             </TableHead>
-                                                            <TableHead>
-                                                                <span className="sr-only">Actions</span>
-                                                            </TableHead>
+                                                            {selectProduct ? <TableHead >
+                                                                Select
+                                                            </TableHead> : null}
+
                                                         </TableRow>
                                                     </TableHeader>
                                                     <TableBody>
@@ -174,7 +191,7 @@ export default function Dashboard() {
                                                                                 <div key={i}
                                                                                     onClick={() => {
                                                                                         if (item === "Update") {
-                                                                                            { setSheetOpen && setSheetOpen(true) }
+                                                                                            { setSheetOpenUpdate && setSheetOpenUpdate(true) }
                                                                                             setSelectedProduct(product)
 
                                                                                         }
@@ -188,6 +205,27 @@ export default function Dashboard() {
                                                                         </DropdownMenuContent>
                                                                     </DropdownMenu>
                                                                 </TableCell>
+                                                                {selectProduct ? <TableCell className="hidden md:table-cell">
+                                                                    <div className="flex items-center space-x-2">
+                                                                        <Checkbox id="terms"   checked={collection.some(item => item.productId === product.id)} onClick={()=>{ 
+                                                                             const existingIndex = collection.findIndex(item => item.productId === product.id);
+                                                                             if (existingIndex >= 0) {
+                                                                               // Product exists in the collection, remove it
+                                                                               setCollection(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
+                                                                             } else {
+                                                                               // Product does not exist in the collection, add it
+                                                                               const collectionproduct = {
+                                                                                 productId: product.id,
+                                                                                 productName: product.name,
+                                                                                 ProductImage: product.image
+                                                                               };
+                                                                               setCollection(prev => [...prev, collectionproduct]);
+                                                                             }
+                                                                             console.log("Updated collection:", collection);
+                                                                        }}/>
+
+                                                                    </div>
+                                                                </TableCell> : null}
                                                             </TableRow>
 
                                                         ))}
@@ -203,10 +241,17 @@ export default function Dashboard() {
                                         </Card>
                                     </TabsContent>
                                 </Tabs>
-                                <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+                                <Sheet open={sheetOpenUpdate} onOpenChange={setSheetOpenUpdate}>
                                     <SheetContent >
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <ProductUpdate selectedProduct={selectedProduct} setSheetOpen={setSheetOpen} refetch={refetch} />
+                                            <ProductUpdate selectedProduct={selectedProduct} setSheetOpen={setSheetOpenUpdate} refetch={refetch} />
+                                        </div>
+                                    </SheetContent>
+                                </Sheet>
+                                <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
+                                    <SheetContent >
+                                        <div className=" overflow-y-auto w-full  h-full">
+                                            <ProductCollection collection={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
                                         </div>
                                     </SheetContent>
                                 </Sheet>

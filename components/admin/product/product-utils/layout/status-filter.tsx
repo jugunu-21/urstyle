@@ -67,8 +67,9 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-
-export default function statusandFilter() {
+import { useState } from "react"
+import {collectionproductInterface} from "../product-interface"
+export default function statusandFilter({setSheetOpenCollection,collection,setSelectProduct}:{collection:Array<collectionproductInterface>,setSheetOpenCollection:(sheetOpenCollection:boolean)=>(void),setSelectProduct:(selectProduct:boolean)=>(void)}) {
 
 
     return (
@@ -110,16 +111,43 @@ export default function statusandFilter() {
                     </span>
                 </Button>
                 <Button size="sm" variant="outline" className="h-8">
-                   
-                    <Link  href="/admin/product/productadd" className="flex gap-1 items-center ">
-                    <PlusCircle className="h-3.5 w-3.5  " />
-                    <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                        Add Product
 
-                    </span>
+                    <Link href="/admin/product/productadd" className="flex gap-1 items-center ">
+                    <PlusCircle className="h-3.5 w-3.5  " />
+                        <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                            Add Product
+
+                        </span>
                     </Link>
-                    
-                </Button>
+
+                </Button >
+                {(collection.length>0 ? <Button size="sm" variant="outline" className="h-8" onClick={()=>setSheetOpenCollection
+                    (true)} >
+                
+                {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
+                <PlusCircle className="h-3.5 w-3.5  " />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                Create collection
+
+                </span>
+                {/* </Link> */}
+
+            </Button>: <Button size="sm" variant="outline" className="h-8" onClick={()=>setSelectProduct
+                    (true)
+                }>
+                
+                {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
+                <PlusCircle className="h-3.5 w-3.5  " />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  
+                    Select Product
+                </span>
+                {/* </Link> */}
+
+            </Button>)
+
+                }
+               
             </div>
         </div>
 

@@ -37,3 +37,9 @@ export type productlistprop = {
     review: Record<string, unknown>[];
     id: string;
 }[];
+export interface collectionproductInterface{
+    productId:string,
+    productName:string,
+    ProductImage:string
+
+}
