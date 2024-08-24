@@ -2,7 +2,7 @@ import { z } from "zod"
 import { createTRPCRouter, publicProcedure,protectedProcedure } from "@/server/api/trpc";
 import {ApiUpdateProduct, ApiUploadImage,ApiFetchProducts,ApiUploadProduct} from "@/components/admin/product/product-utils/function";
 
-const productDataInterface = z.object({
+const zproductDataInterface = z.object({
   pid: z.number(),
   name: z.string(),
   code: z.string(),
@@ -24,14 +24,14 @@ const simplifiedProducts= z.object({
  })
 
 const apiProductsAddZodSchema = z.object({
-  requestBody: productDataInterface,
+  requestBody: zproductDataInterface,
 });
 const apiProductsfetchZodSchema = z.object({
   // jwtToken: z.string()
 });
 const apiProductUpdateZodSchema = z.object({
   // jwtToken: z.string(),
-  requestBody: productDataInterface,
+  requestBody: zproductDataInterface,
   id: z.string().optional()
 });
 const paginationSchema = z.object({

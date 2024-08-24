@@ -45,7 +45,7 @@ import ProductAffiandCateg from "@/components/admin/product/product-utils/forms/
 import ProductArchieve from "@/components/admin/product/product-utils/forms/product-archieve"
 import ProductTable from "@/components/admin/product/product-utils/forms/product-detailtable"
 import ProductHeader from "../product-utils/forms/product-header"
-import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-services/product-data-interface"
+import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 
 import { useContext } from "react"
 import { createContext } from "react"

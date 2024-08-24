@@ -1,6 +1,5 @@
 
-import { ProductDataInterface } from "./product-services/product-data-interface"
-import { collectionproductInterface } from "./product-interface"
+import { ProductDataInterface,  } from "@/components/admin/product/product-utils/product-interface"
 import axios, { AxiosRequestConfig } from 'axios';
 import { decodeBase64, srctoBase64 } from "@/components/admin/product/product-utils/product-services/image-services"
 import { error } from "console";
@@ -9,16 +8,6 @@ type ApiUploadProductsprops = {
   jwtToken: string
   requestBody: ProductDataInterface
 };
-type collectionInterface = {
-  CollectionName: string,
-
-  CollectionDescription: string,
-  CollectionIds: string[],
-}
-type ApiUploadCollectionprops = {
-  jwtToken: string
-  requestBody: collectionInterface
-}
 type ApiFetchProductsprops = {
   jwtToken: string
   requestBody: ProductDataInterface
@@ -68,46 +57,7 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
     throw error
   }
 }
-async function PostApiColectionCall(args: { requestBody: collectionInterface | null; jwtToken: string, apiroute: string }) {
-  try {
-    const { requestBody, jwtToken, apiroute } = args;
-    const requestBOd = {
-      name: requestBody?.CollectionName,
-      description: requestBody?.CollectionDescription,
-      Ids: requestBody?.CollectionIds
-    }
-    const formData = new FormData();
 
-    if (requestBOd) {
-      Object.entries(requestBOd).forEach(([key, value]) => {
-        formData.append(key, String(value));
-      });
-    }
-
-
-    console.log("formData", formData)
-    console.log("jwtToken", jwtToken)
-    console.log("apiroute", apiroute)
-
-    const response = await axios({
-      method: "POST",
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
-      withCredentials: true,
-      data: requestBOd,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwtToken}`,
-        'Cache-Control': 'public, max-age=3600', 
-      },
-    });
-
-    return response
-
-  } catch (error) {
-    console.log(error)
-    throw error
-  }
-}
 export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: string, page: number, limit: number }) {
   const apiroute = `/product/fetch?page=${page}&&limit=${limit}`
   console.log("apiroute", apiroute)
@@ -141,16 +91,7 @@ export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductspro
   };
   return SubmitHandler();
 }
-export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollectionprops) {
 
-  const apiroute = "/collection/upload"
-  const SubmitHandler = async () => {
-
-    const response = await PostApiColectionCall({ jwtToken, apiroute, requestBody });
-    return response.data;
-  };
-  return SubmitHandler();
-}
 export async function ApiUploadImage(imaggg: File, jwtToken: string) {
   if (imaggg) {
     const imageFile = imaggg;

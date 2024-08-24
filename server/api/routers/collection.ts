@@ -1,13 +1,13 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/api/trpc";
-import { ApiUpdateProduct, ApiUploadImage, ApiFetchProducts, ApiUploadProduct, ApiUploadCollection } from "@/components/admin/product/product-utils/function";
-const productDataInterface = z.object({
+import { ApiUploadCollection } from "@/components/admin/collection/collection-utils/function";
+const zcollectiontDataInterface = z.object({
     CollectionName: z.string(),
     CollectionDescription: z.string(),
     CollectionIds: z.array(z.string()),
 })
 const apiProductsAddZodSchema = z.object({
-    requestBody: productDataInterface,
+    requestBody:  zcollectiontDataInterface,
 });
 export const collectionRouter = createTRPCRouter({
     collectionAdd: protectedProcedure.input(apiProductsAddZodSchema)

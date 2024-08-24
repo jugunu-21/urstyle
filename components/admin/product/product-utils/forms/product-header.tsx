@@ -5,7 +5,7 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ProductDataInterface } from "@/components/admin/product/product-utils/product-services/product-data-interface";
+import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
   requestBody: ProductDataInterface

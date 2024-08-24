@@ -60,11 +60,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-services/product-data-interface"
+import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
-import ProductCollection from "@/components/admin/product/product-collection/product-collection"
+import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
-import {collectionproductInterface} from "../../product/product-utils/product-interface"
+import {collectionproductInterface} from "../../collection/collection-utils/collection-interface"
 export default function Dashboard() {
   
     const LIMIT = 4
