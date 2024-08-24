@@ -10,7 +10,7 @@ import { clickFiltersData } from "@/Data/clickFiltersData";
 import avgg from "@/components/reusable-components/avg";
 import Sitelink from "@/components/reusable-components/site-link";
 import Menudropdown from "@/components/reusable-components/menu-drop-down";
-import CarouselImage from "@/components/homee/pairingg/carousel-Image/carousel-Image";
+import CarouselImage from "@/components/home/pairingg/carousel-Image/carousel-Image";
 
 function Clothes() {
   const [filter, setfilter] = useState("");

@@ -19,8 +19,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { Label } from "@/components/ui/label";
-import OtpInput from "./otp-input";
-import { useToken } from "../helpers/zustand";
+import OtpInput from "../auth-utils/layout/otp-input";
+import { useToken } from "../../helpers/zustand";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
 import PhoneInput from 'react-phone-input-2'

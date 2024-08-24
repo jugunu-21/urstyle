@@ -1,5 +1,5 @@
 "use client"
-import Signin from "@/components/authentications/sign-in";
+import Signin from "@/components/authentications/sign-in/sign-in";
 
 
 import { getAuth, onAuthStateChanged } from "firebase/auth"

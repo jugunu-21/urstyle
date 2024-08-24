@@ -1,5 +1,5 @@
 "use client"
-import Signup from "@/components/authentications/sign-up";
+import Signup from "@/components/authentications/sign-up/sign-up";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 import { useRouter } from "next/navigation";

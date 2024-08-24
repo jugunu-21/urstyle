@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 
-import Navbar from "@/components/layoutt/navbarr/navbarr";
-import Footer from "@/components/layoutt/footerr/footerr";
+import Navbar from "@/components/layout/navbarr/navbarr";
+import Footer from "@/components/layout/footerr/footerr";
 import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });

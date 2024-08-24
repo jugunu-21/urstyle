@@ -38,7 +38,7 @@
     "**/*.jsx",
     "**/*.js",
     ".next/types/**/*.ts"
-  ],
+, "components/details/detail/detail-image-collage"  ],
   "exclude": [
     "node_modules"
   ]

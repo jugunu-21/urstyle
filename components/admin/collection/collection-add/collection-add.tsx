@@ -38,7 +38,8 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
   const requestBody = {
     CollectionName: name ?? '', // Provide a default empty string if name is null
     CollectionDescription: description ?? '', // Provide a default empty string if description is null
-    CollectionIds: collection?.map(item => item.productId) || [],
+    // CollectionIds: collection?.map(item => item.productId) || [],
+    CollectionIds: selectedIds
   }
   const productInclude = collection?.filter((product) => {
     const isIncluded = selectedIds.includes(product.productId);

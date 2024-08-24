@@ -7,7 +7,7 @@ import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import deleteUser from "@/components/authentications/delete-user";
+import deleteUser from "@/components/authentications/delete-user/delete-user";
 import {
   DropdownMenu,
   DropdownMenuContent,
