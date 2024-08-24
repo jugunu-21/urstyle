@@ -103,23 +103,13 @@ async function PostApiColectionCall(args: { requestBody: collectionInterface | n
 
     return response
 
-    // const response = axios({
-    //   method: 'post',
-    //   url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
-    //   data: formData,
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //     Authorization: `Bearer ${jwtToken}`,
-    //   },
-    // });
-    // return response;
   } catch (error) {
     console.log(error)
     throw error
   }
 }
 export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: string, page: number, limit: number }) {
-  const apiroute = `/media/product/fetch?page=${page}&&limit=${limit}`
+  const apiroute = `/product/fetch?page=${page}&&limit=${limit}`
   console.log("apiroute", apiroute)
   const SubmitHandler = async () => {
     const response = await PostApiCall({ jwtToken, apiroute })
@@ -128,7 +118,7 @@ export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: st
   return SubmitHandler();
 }
 export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
-  const apiroute = `/media/product/update/${id}`
+  const apiroute = `/product/update/${id}`
 
   const SubmitHandler = async () => {
     if (jwtToken === null) {
@@ -143,7 +133,7 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
 }
 export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
 
-  const apiroute = "/media/product/upload"
+  const apiroute = "/product/upload"
   const SubmitHandler = async () => {
 
     const response = await PostApiCall({ jwtToken, apiroute, requestBody });
@@ -153,7 +143,7 @@ export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductspro
 }
 export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollectionprops) {
 
-  const apiroute = "/media/collection/upload"
+  const apiroute = "/collection/upload"
   const SubmitHandler = async () => {
 
     const response = await PostApiColectionCall({ jwtToken, apiroute, requestBody });

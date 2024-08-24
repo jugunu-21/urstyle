@@ -1,12 +1,6 @@
 "use client"
-
-import { useState, useEffect } from "react";
-
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-services/product-data-interface"
-
 import { useRouter } from "next/navigation";
-
-import { useStore, useToken } from "@/components/helpers/zustand"
 import {
   Card,
   CardContent,
@@ -26,11 +20,25 @@ import toast from "react-hot-toast";
 type addprops = {
   collection: Array<collectionproductInterface>,
   setSheetOpen: (sheetOpen: boolean) => void,
-  setCollection:( collection: Array<collectionproductInterface>)=>(void);
+  setCollection: (collection: Array<collectionproductInterface>) => (void);
   refetch?: (options?: RefetchOptions) => Promise<any>;
-  setSelectProduct:(sheetOpen: boolean) => void,
+  setSelectProduct: (sheetOpen: boolean) => void,
 }
-export default function Dashboard({  setSelectProduct,collection,setCollection, setSheetOpen, refetch }: addprops) {
+
+import React, { useState } from "react";
+import { MultiSelect } from "@/components/admin/collection/multi-select";
+import { Cat, Dog, Fish, Rabbit, Turtle } from "lucide-react";
+
+const frameworksList = [
+  { value: "react", label: "React", icon: Turtle },
+  { value: "angular", label: "Angular", icon: Cat },
+  { value: "vue", label: "Vue", icon: Dog },
+  { value: "svelte", label: "Svelte", icon: Rabbit },
+  { value: "ember", label: "Ember", icon: Fish },
+];
+
+export default function Dashboard({ setSelectProduct, collection, setCollection, setSheetOpen, refetch }: addprops) {
+  const [selectedFrameworks, setSelectedFrameworks] = useState<string[]>(["react", "angular"]);
   const collectionAddPost = api.collection.collectionAdd.useMutation();
 
   const [name, setName] = useState<string | null>(null);
@@ -110,6 +118,26 @@ export default function Dashboard({  setSelectProduct,collection,setCollection, 
 
 
               })}
+              <div className="p-4 max-w-xl">
+                <h1 className="text-2xl font-bold mb-4">Multi-Select Component</h1>
+                <MultiSelect
+                  options={frameworksList}
+                  onValueChange={setSelectedFrameworks}
+                  defaultValue={selectedFrameworks}
+                  placeholder="Select frameworks"
+                  variant="inverted"
+                  animation={2}
+                  maxCount={3}
+                />
+                <div className="mt-4">
+                  <h2 className="text-xl font-semibold">Selected Frameworks:</h2>
+                  <ul className="list-disc list-inside">
+                    {selectedFrameworks.map((framework) => (
+                      <li key={framework}>{framework}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
               <div className="grid gap-3">
                 <Label htmlFor="price">Price</Label>
                 <Input
