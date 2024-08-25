@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label";
 import OtpInput from "../auth-utils/layout/otp-input";
 import toast from "react-hot-toast";
 import { ConfirmationResult } from "firebase/auth";
-import { useToken } from "../../helpers/zustand";
+import { useToken } from "../auth-utils/layout/zustand";
 export default function Signup() {
   const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");

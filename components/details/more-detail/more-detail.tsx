@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import Sitelink from "@/components/reusable-components/site-link";
 
-import itemsData from "@/Data/items.json"
+import itemsData from "@/public/items.json"
 
 import Star from '@/components/reusable-components/star-icon';
 // import Summary from '@/components/details/overview/summary/Summary';

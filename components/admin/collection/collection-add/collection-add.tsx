@@ -29,7 +29,8 @@ import { MultiSelect } from "@/components/admin/collection/collection-utils/layo
 import CollectionImageCard from "../collection-utils/layout/collection-image"
 
 export default function Dashboard({ setSelectProduct, collection, setCollection, setSheetOpen, refetch }: addprops) {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const collectionIds=()=>collection.map((product=>product.productId));
+  const [selectedIds, setSelectedIds] = useState<string[]>(collectionIds);
   const collectionAddPost = api.collection.collectionAdd.useMutation();
 
   const [name, setName] = useState<string | null>(null);
@@ -41,6 +42,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
     // CollectionIds: collection?.map(item => item.productId) || [],
     CollectionIds: selectedIds
   }
+ 
   const productInclude = collection?.filter((product) => {
     const isIncluded = selectedIds.includes(product.productId);
     return isIncluded ? product.ProductImage : null;
@@ -62,6 +64,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
       });
   }
   const imgg = collection.filter(product => selectedIds.includes(product.productId)).map(product => product.ProductImage);
+
   const selectedNames = collection.filter(product => selectedIds.includes(product.productId)).map(product => product.productName);
   return (
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
@@ -105,7 +108,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                   options={collection}
                   onValueChange={setSelectedIds}
                   defaultValue={selectedIds}
-                  placeholder="Select frameworks"
+                  placeholder="Select Products"
                   variant="inverted"
                   animation={2}
                   maxCount={3}

@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { useEffect } from "react";
-import { useToken } from "../../helpers/zustand";
+import { useToken } from "../auth-utils/helpers/zustand";
 const deleteUser = async (jwtToken: string) => {
 
     try {

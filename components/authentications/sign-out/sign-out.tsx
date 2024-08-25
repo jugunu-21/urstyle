@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
 import { useParams } from "next/navigation"; // Corrected import path
-import getJwtTokenFromCookies from "../../helpers/get-cookie";
+import getJwtTokenFromCookies from "../auth-utils/helpers/get-cookie";
 interface UserInfo {
   phone_number?: string; // Assuming phone_number is a string and optional
 }

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import itemsData from "@/Data/items.json";
+import itemsData from "@/public/items.json";
 import Details from "@/components/details/detail/detail";
 function Dashboard() {
   const params = useParams();

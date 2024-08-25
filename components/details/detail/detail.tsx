@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import avgg from "@/components/reusable-components/avg";
+import avgg from "@/components/reusable-components/average-review";
 import CalendarIcon from "@/components/reusable-components/calendar-icon";
 import Star from "@/components/reusable-components/star-icon";
-import itemsData from "@/Data/items.json";
+import itemsData from "@/public/items.json";
 import Cardlist from "./detail-image-collage";
 import Summary from "./detail-card";
 import {Icollection} from "../interface"

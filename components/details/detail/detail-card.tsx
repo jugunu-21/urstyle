@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Star from '@/components/reusable-components/star-icon';
 import Sitelink from '@/components/reusable-components/site-link';
-import avgg from '@/components/reusable-components/avg';
+import avgg from '@/components/reusable-components/average-review';
 interface CartItem {
   id: number;
   name: string;

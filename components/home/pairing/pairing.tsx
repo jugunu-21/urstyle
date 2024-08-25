@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
 
-import itemsData from "@/Data/items.json";
+import itemsData from "@/public/items.json";
 import Link from "next/link";
 import Star from "@/components/reusable-components/star-icon";
-import caropic from "@/Data/caropicData";
+import caropicData from "@/public/caropicData";
 
-import { clickFiltersData } from "@/Data/clickFiltersData";
-import avgg from "@/components/reusable-components/avg";
+import { clickFiltersData } from "@/public/clickFiltersData";
+import avgg from "@/components/reusable-components/average-review";
 import Sitelink from "@/components/reusable-components/site-link";
 import Menudropdown from "@/components/reusable-components/menu-drop-down";
-import CarouselImage from "@/components/home/pairingg/carousel-Image/carousel-Image";
+import CarouselImage from "@/components/home/pairing/carousel-Image/carousel-Image";
 
 function Clothes() {
   const [filter, setfilter] = useState("");
@@ -34,7 +34,7 @@ function Clothes() {
             {(filter === "" || group.look === filter) && (
               <section>
                 {(group.id + 1) % 3 === 0 && ( 
-                   <CarouselImage caropicData={caropic} />
+                   <CarouselImage caropicData={caropicData} />
                 )}
                 <div className=" px-4 my-4 bg-stone-100 rounded-lg ">
                   <div className="flex space-x-10 m-1 p-2">

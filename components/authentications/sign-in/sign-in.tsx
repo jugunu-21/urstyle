@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 
 import { Label } from "@/components/ui/label";
 import OtpInput from "../auth-utils/layout/otp-input";
-import { useToken } from "../../helpers/zustand";
+import { useToken } from "../auth-utils/helpers/zustand";
 import { api } from "@/trpc/react";
 import Cookies from 'js-cookie';
 import PhoneInput from 'react-phone-input-2'

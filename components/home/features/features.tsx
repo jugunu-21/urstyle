@@ -1,5 +1,5 @@
 import React from 'react';
-import icon from "@/Data/iconsData"
+import icon from "@/public/iconsData"
 export default function benefit() {
   return (
     <div>

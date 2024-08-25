@@ -46,15 +46,7 @@ import ProductArchieve from "@/components/admin/product/product-utils/forms/prod
 import ProductTable from "@/components/admin/product/product-utils/forms/product-detailtable"
 import ProductHeader from "../product-utils/forms/product-header"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
-
-import { useContext } from "react"
-import { createContext } from "react"
-
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { useStore, useToken } from "@/components/helpers/zustand"
-
-import { productsProp, productlistprop } from '@/components/admin/product/product-utils/product-interface';
 import { api } from "@/trpc/react"
 import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
@@ -80,15 +72,9 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
   const [price, setPrice] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
-  const router = useRouter();
-  const token = useToken((state) => state.token);
-  const data = useStore((state) => (state.data));
-
+ 
   useEffect(() => {
-   
       {selectedProduct && setRawdata(selectedProduct) }
-  
-
   },[])
   const requestBody = {
     pid: pid ?? rawdata?.pid ?? 0, // Default to 0 if pid is null or undefined
@@ -100,21 +86,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
     image: image ?? rawdata?.image ?? '',
   };
 
-  // const handleaftersubmit = async () => {
-  //   console.log("aftersubmitaction")
-  //   setPid(null);
-  //   setName(null);
-  //   setCode(null);
-  //   setLink(null);
-  //   setDescription(null);
-  //   setPrice(null);
-  //   setImage(null);
-
-  // }
-  interface SubmitFunctionArgs {
-    requestBody: ProductDataInterface;
-    jwtToken: string; // Assuming jwtToken is a string
-  }
 
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -148,12 +119,8 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
           </Button>
           <Button size="sm" onClick=
             {() => {
-              if (token === null) {
-                console.error("JWT Token is required");
-                return;
-              }
-              console.log("iddd", id);
-              if (token) {
+             
+              
                 productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
@@ -171,7 +138,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
                     }
 
                   }).catch((error) => console.error("submission error:", error))
-              }
+              
 
 
             }}

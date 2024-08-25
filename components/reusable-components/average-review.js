@@ -1,5 +1,5 @@
 
-import itemsData from "@/Data/items.json";
+import itemsData from "@/public/items.json";
 export default function avgg(params) {
   const { groupid, cartid } = params;
 
