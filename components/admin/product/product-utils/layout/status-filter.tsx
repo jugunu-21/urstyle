@@ -68,7 +68,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useState } from "react"
-import {collectionproductInterface} from "../product-interface"
+import {collectionproductInterface} from "../../../collection/collection-utils/collection-interface"
 export default function statusandFilter({setSheetOpenCollection,collection,setSelectProduct}:{collection:Array<collectionproductInterface>,setSheetOpenCollection:(sheetOpenCollection:boolean)=>(void),setSelectProduct:(selectProduct:boolean)=>(void)}) {
 
 

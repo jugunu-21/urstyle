@@ -25,7 +25,7 @@ function CollectionImageCard({ image }: { image: string[] }) {
             {image && image.map((image) => {
               console.log("imageee",image)
               return (
-                <Image
+                <Image key={image}
                   alt="image"
                   className="aspect-square w-full rounded-md object-cover"
                   height="84"

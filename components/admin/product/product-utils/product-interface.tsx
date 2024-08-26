@@ -13,8 +13,6 @@ export const minimalProductArray: productsProp = [{
     price: '',
     review: [],
 }];
-import React, { createContext, useContext, useState } from 'react';
-
 export type productsProp = [{
     id: string,
     code: string,
