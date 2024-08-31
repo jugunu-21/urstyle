@@ -60,31 +60,22 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
+import {ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
 import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import {collectionproductInterface} from "../../collection/collection-utils/collection-interface"
 export default function Dashboard() {
-  
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
     const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
     const [selectProduct, setSelectProduct] = useState(false);
     const [page, setPage] = useState(1)
 
-
-    function CheckboxDemo() {
-        return (
-            <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-
-            </div>
-        )
-    }
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
     const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit: LIMIT });
+   
     const trigger = () => {
         return (
             <>
@@ -295,4 +286,5 @@ export default function Dashboard() {
             } </>
         )
     }
+    
 }

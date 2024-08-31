@@ -11,7 +11,7 @@ import {
 import caropic from "@/public/caropicData"
 export function HeroCarousel() {
   const backgroundStyle = (url: string) => ({
-    backgroundImage: `url(${url});`,
+    backgroundImage: `url(${url})`,
     backgroundSize: 'cover',
     width: '100%',
     height: '100%'

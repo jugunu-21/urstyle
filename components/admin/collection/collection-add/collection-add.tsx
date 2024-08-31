@@ -124,7 +124,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                   </ul>
                 </div>
               </div>
-              <div className="grid gap-3">
+              {/* <div className="grid gap-3">
                 <Label htmlFor="price">Price</Label>
                 <Input
                   type="number"
@@ -136,7 +136,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                   placeholder="Enter price..."
 
                 />
-              </div>
+              </div> */}
               <Button className="mx-auto" onClick={() => handler()}>Save Collection</Button>
             </div>
           </CardContent>
