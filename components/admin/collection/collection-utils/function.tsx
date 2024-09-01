@@ -3,9 +3,10 @@
 import { ProductDataInterface, } from "@/components/admin/product/product-utils/product-interface"
 import axios, { AxiosRequestConfig } from 'axios';
 type collectionInterface = {
-  CollectionName: string,
-  CollectionDescription: string,
-  CollectionIds: string[],
+  collectionName: string,
+  collectionDescription: string,
+  collectionIds: string[],
+  collectionCategory: string[],
 }
 type ApiUploadCollectionprops = {
   jwtToken: string
@@ -15,9 +16,10 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
   try {
     const { requestBody, jwtToken, apiroute } = args;
     const requestBOd = {
-      name: requestBody?.CollectionName,
-      description: requestBody?.CollectionDescription,
-      Ids: requestBody?.CollectionIds
+      name: requestBody?.collectionName,
+      description: requestBody?.collectionDescription,
+      Ids: requestBody?.collectionIds,
+      category:requestBody?. collectionCategory
     }
 
     const response = await axios({

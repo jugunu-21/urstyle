@@ -28,21 +28,36 @@ import React, { useState } from "react";
 import { MultiSelect } from "@/components/admin/collection/collection-utils/layout/multi-select";
 import CollectionImageCard from "../collection-utils/layout/collection-image"
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuItem
+} from "@/components/ui/dropdown-menu"
+import { fashionCategory } from "@/public/category"
+import { Checkbox } from "@/components/ui/checkbox";
 export default function Dashboard({ setSelectProduct, collection, setCollection, setSheetOpen, refetch }: addprops) {
-  const collectionIds=()=>collection.map((product=>product.productId));
+  const collectionIds = () => collection.map((product => product.productId));
   const [selectedIds, setSelectedIds] = useState<string[]>(collectionIds);
   const collectionAddPost = api.collection.collectionAdd.useMutation();
+  const [category, setCategory] = useState<string[]>([])
+  const fashionCategoryLength = fashionCategory.length;
 
   const [name, setName] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
   const requestBody = {
-    CollectionName: name ?? '', // Provide a default empty string if name is null
-    CollectionDescription: description ?? '', // Provide a default empty string if description is null
+    collectionName: name ?? '', // Provide a default empty string if name is null
+    collectionDescription: description ?? '', // Provide a default empty string if description is null
     // CollectionIds: collection?.map(item => item.productId) || [],
-    CollectionIds: selectedIds
+    collectionIds: selectedIds,
+    collectionCategory: category
   }
- 
+
   const productInclude = collection?.filter((product) => {
     const isIncluded = selectedIds.includes(product.productId);
     return isIncluded ? product.ProductImage : null;
@@ -122,6 +137,40 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                       <li key={name}>{name}</li>
                     ))}
                   </ul>
+                </div>
+                <div className="mt-4">
+
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline">Select the Collection Type</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56">
+                      <DropdownMenuLabel>Panel category</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+
+                      {fashionCategory.map((fashion, index) => (
+                        <div key={index} className="h-full"  >
+                          <DropdownMenuItem >{fashion.look}
+                            <Checkbox className="mx-2 " id="terms" checked={category.some(item => item === fashion.look)} onClick={() => {
+                              const existingIndex = category.findIndex(item => item === fashion.look);
+                              if (existingIndex >= 0) {
+                              
+                                setCategory(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
+                              } else {
+                                
+
+                                setCategory(prev => [...prev, fashion.look]);
+                              }
+                              console.log("Updated catgeory:", category);
+                            }} /></DropdownMenuItem>
+                          {index !== fashionCategoryLength - 1 && <DropdownMenuSeparator />}
+                        </div>
+                      ))}
+
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+
+
                 </div>
               </div>
               {/* <div className="grid gap-3">
