@@ -20,7 +20,7 @@ export default function RootLayout({
      <html>
        <head>
        </head>
-       <body>
+       <body className="">
        <TRPCReactProvider>
        <div className={inter.className}>{children}</div>
       </TRPCReactProvider>

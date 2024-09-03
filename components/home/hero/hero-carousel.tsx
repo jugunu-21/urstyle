@@ -22,16 +22,14 @@ export function HeroCarousel() {
         align: "start",
         loop: true
       }}
-      className="my-8 px-32 "
+      className="my-1 px-32 "
       plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
+        
       ]}
     >
       <CarouselContent className=" m-0 p-0">
         {caropic.map((item, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 h-48 m-0 p-0 ">
+          <CarouselItem key={index} className="md:basis-1/2 h-44 m-0 p-0 ">
               <div style={backgroundStyle(item.url)} className=""></div>
           </CarouselItem>
         ))}

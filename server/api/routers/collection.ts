@@ -5,7 +5,7 @@ const zcollectiontDataInterface = z.object({
     collectionName: z.string(),
     collectionDescription: z.string(),
     collectionIds: z.array(z.string()),
-    collectionCategory:z.array(z.string()),
+    collectionCategory: z.array(z.string()),
 })
 const apiProductsAddZodSchema = z.object({
     requestBody: zcollectiontDataInterface,
@@ -36,15 +36,19 @@ export const collectionRouter = createTRPCRouter({
             console.log("collection")
             return response;
         }),
-    collectionFetch: protectedProcedure
+    collectionFetch: publicProcedure
+        .input(z.object({
+            categoryQuery: z.string().optional()
+        }))
         .output(z.object({
-            data: z.array(z.object({ name: z.string(),collectionId: z.string(), description: z.string(), products: z.array(zsimplifiedProducts) }))
+            data: z.array(z.object({ name: z.string(), collectionId: z.string(), description: z.string(), products: z.array(zsimplifiedProducts) }))
             , message: z.string(), status: z.number()
         }))
-        .query(async ({ ctx }) => {
-            const token = ctx.token
+        .query(async ({  input }) => {
+            // const token = ctx.token
             const modifiedInput = {
-                jwtToken: token
+                // jwtToken: token,
+                ...input
             }
             const response = await ApiFetchCollection(modifiedInput)
             console.log("collection", response)

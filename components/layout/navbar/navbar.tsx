@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Link from "next/link";
-
+import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 const navigation = [
   { order: "1", name: "About", to: "/Component/About" },
   { order: "2", name: "Contact", to: "/Component/Contact" },
@@ -11,6 +11,7 @@ const navigation = [
 import Navbardrop from "@/components/layout/navbar/navbar-drop"
 
 export default function Navbar() {
+  const jwtToken=useToken().token
   const [isDropdownOpenHem, setIsDropdownOpenHem] = useState(false);
 
 

@@ -12,7 +12,7 @@ type ApiUploadCollectionprops = {
   jwtToken: string
   requestBody: collectionInterface
 }
-async function PostApiCollectionCall(args: { requestBody?: collectionInterface | null; jwtToken: string, apiroute: string }) {
+async function PostApiCollectionCall(args: { requestBody?: collectionInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
     const requestBOd = {
@@ -53,12 +53,12 @@ export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollecti
   };
   return SubmitHandler();
 }
-export function ApiFetchCollection({ jwtToken }: { jwtToken: string }) {
+export function ApiFetchCollection({categoryQuery }: { categoryQuery?:string }) {
 
-  const apiroute = "/collection/fetch"
+  const apiroute = `/collection/fetch?categoryQuery=${categoryQuery}`
   const SubmitHandler = async () => {
 
-    const response = await PostApiCollectionCall({ jwtToken, apiroute });
+    const response = await PostApiCollectionCall({ apiroute });
     // console.log("response.data", response.data)
     console.log("response.data.data.products", response.data.data.products)
     return response.data;

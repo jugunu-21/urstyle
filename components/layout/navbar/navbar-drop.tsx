@@ -17,9 +17,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
-
+import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 export default function Navbardrop() {
-
+  const jwtToken = useToken().token
 
   const router = useRouter();
   const auth = getAuth(app)
@@ -29,13 +29,10 @@ export default function Navbardrop() {
       .then(() => {
         Cookies.remove('jwtToken', { path: '/' });
         console.log("Signed out successfully and session cookie cleared");
-
-        // Redirect to home page or any other page
         router.push("/");
         toast.success("successfully sign Out")
       })
       .catch((error) => {
-        // An error happened.
         console.error("Error signing out:", error);
       });
   };
@@ -56,13 +53,16 @@ export default function Navbardrop() {
       <DropdownMenuContent>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href="/sign-up">signup</Link>
+        {jwtToken !== null && <>
+          <DropdownMenuItem >   <Link href="/admin/product">Products</Link></DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}> Signout</DropdownMenuItem>
+          <DropdownMenuItem onClick={handledeleteuser}>DeleteUser</DropdownMenuItem>
+        </>}
+        {jwtToken === null && <> <DropdownMenuItem>
+          <Link href="/sign-up">Signup</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout}> signout</DropdownMenuItem>
-        <DropdownMenuItem>   <Link href="/sign-in">Login</Link></DropdownMenuItem>
-        <DropdownMenuItem >   <Link href="/admin/product">Products</Link></DropdownMenuItem>
-        <DropdownMenuItem onClick={handledeleteuser}>deleteUser</DropdownMenuItem>
+          <DropdownMenuItem>   <Link href="/sign-in">Login</Link></DropdownMenuItem></>
+        }
       </DropdownMenuContent>
     </DropdownMenu>
   );

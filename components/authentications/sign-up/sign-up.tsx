@@ -98,7 +98,7 @@ export default function Signup() {
       const result = await signUp.mutateAsync(requestBody)
      
         const jwtToken = result.data;
-        Cookies.set('jwtToken', jwtToken, { expires: 1, path: '/', secure: true });
+        Cookies.set('jwtToken', jwtToken, { expires: 2, path: '/', secure: true });
         changeToken(jwtToken)
         router.push("/");
         toast.success( "sucessfully signup");
