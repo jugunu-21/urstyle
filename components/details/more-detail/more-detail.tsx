@@ -8,14 +8,14 @@ import Link from "next/link";
 import Sitelink from "@/components/reusable-components/site-link";
 
 import itemsData from "@/public/items.json"
-
+import Image from "next/image";
 import Star from '@/components/reusable-components/star-icon';
 // import Summary from '@/components/details/overview/summary/Summary';
 import Faq from "./faq"
 import Customereview from "./customer-review"
 import License from "./license"
 import { ICartItem, Icollection } from "../interface"
-export default function Moredetails({ finalItem }: {finalItem: ICartItem}) {
+export default function Moredetails({ finalItem }: { finalItem: ICartItem }) {
     const [selectedContent, setSelectedContent] = useState("customers");
     interface Review {
         rating: number;
@@ -34,7 +34,9 @@ export default function Moredetails({ finalItem }: {finalItem: ICartItem}) {
                     className="  rounded-lg overflow-hidden"
                     style={{ height: "600px" }}
                 >
-                    <img
+                    <Image
+                        width={100}
+                        height={100}
                         src={finalItem.image_url}
                         className=" object-cover object-center h-full w-full hover:border-4 hover:border-stone-300"
                         alt=""
@@ -102,21 +104,26 @@ export default function Moredetails({ finalItem }: {finalItem: ICartItem}) {
                     <h2 className="text-sm  text-gray-900   font-bold pb-4 ">Share </h2>
                     <div className=" flex  space-x-6  ">
                         <Link href="#" className="aspect-square size-5  ">
-                            <img
+                            <Image
+                                width={100}
+                                height={100}
                                 src="https://1.bp.blogspot.com/-qYwreqeIN6w/XN0LzjGE2GI/AAAAAAAAAmA/PV1m0NfGuxUEXFBS8Ge4VMXWE34XzrfYgCPcBGAYYCw/s20/facebook-logo-Grey-%2Bhigh%2Bresolution.png"
                                 alt=""
                             />
                         </Link>
                         <Link href="#" className="aspect-square size-5 ">
-                            <img
+                            <Image
+                                width={100}
+                                height={100}
                                 src="https://www.iconninja.com/files/611/75/580/instagram-icon.png"
                                 alt=""
 
-                                srcSet=""
                             />
                         </Link>
                         <Link href="#" className="aspect-square size-8   ">
-                            <img
+                            <Image
+                                width={100}
+                                height={100}
                                 className="rounded-full"
                                 src="https://logowik.com/content/uploads/images/twitter-x-line9741.logowik.com.webp"
                                 alt=""

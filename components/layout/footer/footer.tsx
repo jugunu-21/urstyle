@@ -45,32 +45,9 @@ export default function Footer() {
             <div>Track My Order</div>
             <div>Help</div>
           </div>
-          {/* <div className="pt-2">
-            <div className="font-bold ">Follow us</div>
-            <div>From App Store or Google Play</div>
-            <div className="flex space-x-4 pt-10">
-             
-              <div className=" md:flex items-center">
-                <img
-                  className="object-contain h-10"
-                  src="https://logos-download.com/wp-content/uploads/2016/06/Download_on_the_App_Store_logo.png"
-                  alt="App Store Logo"
-                />
-                <img
-                  className="object-contain h-10"
-                  src="https://i1.wp.com/www.oispice.com/wp-content/uploads/2020/07/Google-Play-Store-app.jpg?fit=1200%2C675&ssl=1"
-                  alt="Google Play Store Logo"
-                />
-              </div>
-            </div>
 
-            <div>Secured Payment Gateway</div>
-          </div> */}
         </div>
-        {/* <div>follow us on</div>
-              <div className="flex">
-                  <img src="" alt="" /><img src="" alt="" /><img src="" alt="" /><img src="" alt="" />
-              </div> */}
+       
       </div>
       <div className="pl-6 pt-4 pb-10">© 2023-2024 urstyle.com </div>
     </div>

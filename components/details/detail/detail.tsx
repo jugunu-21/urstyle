@@ -5,7 +5,7 @@ import avgg from "@/components/reusable-components/average-review";
 import CalendarIcon from "@/components/reusable-components/calendar-icon";
 import Star from "@/components/reusable-components/star-icon";
 import itemsData from "@/public/items.json";
-import Cardlist from "./detail-image-collage";
+import {DetailCollage} from "./detail-image-collage";
 import Summary from "./detail-card";
 import {Icollection} from "../interface"
 function Details ({filteredItems ,groupIndex}:{filteredItems:Icollection,groupIndex:number}) {
@@ -46,7 +46,7 @@ function Details ({filteredItems ,groupIndex}:{filteredItems:Icollection,groupIn
           </div>
           <div className="m-1">{filteredItems.overall_description}</div>
         </div>
-        <Cardlist filteredItems={filteredItems} />
+        <DetailCollage filteredItems={filteredItems} />
       </div>
       <div>
         <Summary filteredItems={filteredItems} groupIndex={groupIndex} />

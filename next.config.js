@@ -5,6 +5,7 @@ import withLess from 'next-with-less';
 
 const config = {
   images: {
+    unoptimized: true,
     domains: ['res.cloudinary.com'],
   },
 };

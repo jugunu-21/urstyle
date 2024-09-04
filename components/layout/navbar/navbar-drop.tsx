@@ -17,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import toast from "react-hot-toast";
+import Image from "next/image";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 export default function Navbardrop() {
   const jwtToken = useToken().token
@@ -44,7 +45,9 @@ export default function Navbardrop() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <img
+      <Image
+              width={100}
+              height={100}
           className="h-8 w-10 rounded-full"
           src="https://cdnb.artstation.com/p/assets/images/images/048/110/613/small/pankaj-kumar-roy-12.jpg?1649236129"
           alt=""

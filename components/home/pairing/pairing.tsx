@@ -11,7 +11,7 @@ import avgg from "@/components/reusable-components/average-review";
 import Sitelink from "@/components/reusable-components/site-link";
 import Menudropdown from "@/components/reusable-components/menu-drop-down";
 import CarouselImage from "@/components/home/pairing/carousel-Image/carousel-Image";
-
+import Image from "next/image";
 function Clothes() {
   const [filter, setfilter] = useState("");
 
@@ -66,7 +66,9 @@ function Clothes() {
                     {group.cart.map((cart, index) => (
                       <div key={index} className="mb-4 ">
                         <div className=" m-2 sm:m-auto  sm:w-64 h-[22rem] relative group grid [grid-template-areas:stack] overflow-hidden rounded-lg  content-center hover:border-2 hover:border-stone-200 bg-white my-1 ">
-                          <img
+                        <Image
+              width={100}
+              height={100}
                             alt="photos"
                             className=" sm:w-46 max-h-[16rem]  object-cover align-middle  aspect-product  overflow-hidden "
                             src={cart.image_url}

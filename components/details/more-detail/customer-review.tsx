@@ -12,7 +12,7 @@ interface Review {
 interface Props {
   reviewData: Review[];
 }
-
+import Image from 'next/image';
 const Customereview: React.FC<Props> = ({ reviewData }) => {
   return (
     <div className="my-8">
@@ -20,7 +20,9 @@ const Customereview: React.FC<Props> = ({ reviewData }) => {
         <div key={index} className="my-6  text-sm  ">
           <div className="flex">
             <div className="flex-shrink-0">
-              <img
+              <Image
+              width={100}
+              height={100}
                 className="h-10 w-10 rounded-full"
                 src={review.image}
                 alt=""

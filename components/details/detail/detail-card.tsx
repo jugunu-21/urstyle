@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Star from '@/components/reusable-components/star-icon';
 import Sitelink from '@/components/reusable-components/site-link';
 import avgg from '@/components/reusable-components/average-review';
@@ -26,7 +27,7 @@ interface FilteredItems {
 
 interface Props {
   filteredItems: FilteredItems;
-  groupIndex: number|undefined;
+  groupIndex: number | undefined;
 }
 function Summary({ filteredItems, groupIndex }: Props) {
   return (
@@ -36,12 +37,15 @@ function Summary({ filteredItems, groupIndex }: Props) {
           <div className=" grid grid-cols-2 md:flex md:ml-10 m-2 bg-stone-200 ">
             {cart && (
               <>
-                <div className="m-2 overflow-hidden  bg-cover bg-top   sm:w-52 h-52  bg-white hover:border-4 rounded-lg  border-2 hover:border-stone-300">
-                  <img
-                    className=" mx-auto max-w-full h-full object-cover align-middle  "
+                <div className="m-2  bg-cover bg-top   sm:w-52 h-52  bg-white hover:border-4 rounded-lg   hover:border-stone-300">
+                  <Image
+                    width={100}
+                    height={100}
+                    className=" w-full h-full object-cover align-middle "
                     src={cart.image_url}
                     alt=""
                   />
+
                 </div>
 
                 <div className=" m-2 pl-3  ">
@@ -49,10 +53,10 @@ function Summary({ filteredItems, groupIndex }: Props) {
                     {cart.name}
                   </div>
                   <div className=" flex flex-row  content-center ">
-            <div className="w-28">
-            <div className="h-4 w-6">
-                    <Star len={avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} />
-</div></div>
+                    <div className="w-28">
+                      <div className="h-4 w-6">
+                        <Star len={avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} />
+                      </div></div>
                     <div className="ml-2 content-center">
                       {avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} Reviews
                     </div>
@@ -60,9 +64,9 @@ function Summary({ filteredItems, groupIndex }: Props) {
                   <div className="font-semibold my-1">{cart.price}</div>
                   <div className="mb-2">{cart.description}</div>
                   <div className="h-8 w-28 my-2">
-                  <Sitelink setsitelink={cart.image_url} sitelink={cart.link}/>
+                    <Sitelink setsitelink={cart.image_url} sitelink={cart.link} />
                   </div>
-                 
+
 
                   <div className=" flex my-2 items-center space-x-3 font-medium">
                     <Link

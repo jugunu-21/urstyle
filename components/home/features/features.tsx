@@ -1,5 +1,6 @@
 import React from 'react';
 import icon from "@/public/iconsData"
+import Image from 'next/image';
 export default function benefit() {
   return (
     <div>
@@ -9,7 +10,9 @@ export default function benefit() {
             <div key={index}>
               <div className="  border-2 border-blue-300 rounded-lg m-2 ">
             
-                <img src={item.url} alt="" />
+              <Image
+              width={100}
+              height={100} src={item.url} alt="" />
                 <div className=" m-2 pb-2 text-center pr-2 bg-blue-200 rounded-lg">
                   {item.des}{" "}
                 </div>

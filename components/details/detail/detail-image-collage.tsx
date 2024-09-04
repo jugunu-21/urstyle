@@ -24,8 +24,9 @@ interface FilteredItems {
 interface Props {
   filteredItems: FilteredItems;
 }
+import Image from 'next/image';
+function DetailCollage({ filteredItems }: Props) {
 
-function Cardlist({ filteredItems }: Props) {
   return (
     <div className="h-[340px] w-[450px] m-auto px-2 items-center">
       <div className="flex flex-col flex-wrap h-96 m-2">
@@ -34,15 +35,19 @@ function Cardlist({ filteredItems }: Props) {
           return (
             <div key={cartIndex}>
               {code === 3 && (
-                <img
-                  className="max-h-[300px] w-auto rounded-lg"
+                <Image
+                  width={100}
+                  height={100}
+                  className="max-h-[300px] h-full w-full  rounded-lg"
                   src={cart.image_url}
                   alt=""
                 />
               )}
               {code === 1 && (
                 <div className="">
-                  <img
+                  <Image
+                    width={100}
+                    height={100}
                     className="max-h-[100px] w-auto rounded-lg"
                     src={cart.image_url}
                     alt=""
@@ -57,4 +62,4 @@ function Cardlist({ filteredItems }: Props) {
   );
 }
 
-export default Cardlist;
+export { DetailCollage };

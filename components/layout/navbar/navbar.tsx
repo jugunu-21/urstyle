@@ -95,8 +95,3 @@ export default function Navbar() {
     </div>
   );
 }
-{/* <img
-                    className="h-8 w-10 rounded-full"
-                    src="https://cdnb.artstation.com/p/assets/images/images/048/110/613/small/pankaj-kumar-roy-12.jpg?1649236129"
-                    alt=""
-                  /> */}
