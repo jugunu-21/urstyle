@@ -75,7 +75,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
  
   useEffect(() => {
       {selectedProduct && setRawdata(selectedProduct) }
-  },[])
+  },[selectedProduct])
   const requestBody = {
     pid: pid ?? rawdata?.pid ?? 0, // Default to 0 if pid is null or undefined
     name: name ?? rawdata?.name ?? '', // Default to empty string if name is null or undefined

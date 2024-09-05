@@ -33,7 +33,7 @@ export default function DeleteUser() {
     const Token = useToken((state) => (state.token)); // Renamed to start with an uppercase letter
     useEffect(() => {
         {Token&&deleteUser(Token)};
-    }, []);
+    }, [Token]);
 
     return (
         <div>

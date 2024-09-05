@@ -12,13 +12,17 @@ const CarouselImage: React.FC<CarouselImageProps> = ({ caropicData }) => {
 
   const getNextIndex = () => (caropicIndex + 1) % caropicData.length;
 
-  const handleClick = () => {
-    setCaropicIndex(getNextIndex());
-  };
   useEffect(() => {
-    // This function will run automatically when the component mounts
-   handleClick();
-  }, []); 
+    const handleClick = () => {
+      // Your existing handleClick logic here
+    };
+
+    window.addEventListener('click', handleClick);
+
+    return () => {
+      window.removeEventListener('click', handleClick);
+    };
+  }, []);
   return (
     <div className="w-[vw] h-48 sm:h-[300px] my-6">
       <div

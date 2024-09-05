@@ -51,7 +51,7 @@ export default function Signin() {
       }
     );
 
-  }, []);
+  }, [auth]);
 
   const signIn = api.auth.sIgnin.useMutation();
 
