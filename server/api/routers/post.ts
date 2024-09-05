@@ -37,7 +37,7 @@ export const authRouter = createTRPCRouter({
     .output(z.object({data:z.string(),message:z.string(),status:z.number()}))
     .mutation (async({ input }) => {
       const response = await ApiSignin(input)
-      console.log("response",response)
+      // console.log("response",response)
       return response
     }),
     sIgnup: publicProcedure

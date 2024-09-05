@@ -60,27 +60,22 @@ export default function Signin() {
   };
   const handleSendOtp = async () => {
     try {
-      // console.log("send otp");
       const phonenumbertosend = `${selectedCountryCode}${phoneNumber.replace(/\D/g, "")}`;
       const requestBody = {
         phone_number: phonenumbertosend,
       };
       const result = await signIn.mutateAsync(requestBody);
       const response = result.data;
+      
       setJwtToken(response);
       const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-      console.log("confirmation", confirmation);
-
+      
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
     } catch (error) {
-    
-      // console.error(error);
-      // setPhoneNumber("")
-
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
           toast.error("There was an issue with reCAPTCHA verification. Please try again.");
@@ -95,7 +90,7 @@ export default function Signin() {
       else {
         toast.error("An unexpected error occurred. Please try again later.");
       }
-      console.log("ERRorr", error)
+      console.log("errror", error)
       window.location.reload()
     }
   };
@@ -104,7 +99,6 @@ export default function Signin() {
     try {
       await confirmationResult?.confirm(otp);
       setOtp("");
-
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
       Cookies.set('jwtToken', jwtToken!, { expires:2, path: '/', secure: true });
@@ -112,11 +106,6 @@ export default function Signin() {
       localStorage.removeItem('theme');
       router.push("/");
     } catch (error) {
-    
-      // setOtp("");
-      // setOtpSentYN("");
-      // setPhoneNumber("")
-
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
           toast.error("The verification code you entered is incorrect. Please try again.");
