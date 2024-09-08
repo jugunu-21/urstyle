@@ -37,34 +37,34 @@ export default function Signup() {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response: any) => {},
-        "expired-callback": () => {},
+        callback: (response: any) => { },
+        "expired-callback": () => { },
       }
     );
   }, [auth]);
-  const handlePhoneNumberChange = (value:string) => {
+  const handlePhoneNumberChange = (value: string) => {
     setPhoneNumber(value);
   };
-  const signUp= api.auth.sIgnup.useMutation();
+  const signUp = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
+      
       console.log("send otp");
       const formattedPhoneNumber = `+${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
-
-      console.log("formattedPhoneNumber",formattedPhoneNumber);
-     
+      console.log("auth",process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN)
+      console.log("formattedPhoneNumber", formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-      console.log("confirmation",confirmation);
+      console.log("confirmation", confirmation);
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
       console.log("handlsendotp");
     } catch (error) {
-    
+      console.log("eror", error)
       if (isFirebaseAuthError(error)) {
         if (error instanceof Error && error.message.includes("reCAPTCHA")) {
           toast.error("There was an issue with reCAPTCHA verification. Please try again.");
@@ -79,7 +79,7 @@ export default function Signup() {
       else {
         toast.error("An unexpected error occurred. Please try again later.");
       }
-      window.location.reload()
+      // window.location.reload()
     }
   };
   const handleOtpSubmit = async () => {
@@ -96,16 +96,16 @@ export default function Signup() {
       };
       console.log(requestBody);
       const result = await signUp.mutateAsync(requestBody)
-     
-        const jwtToken = result.data;
-        Cookies.set('jwtToken', jwtToken, { expires: 2, path: '/', secure: true });
-        changeToken(jwtToken)
-        router.push("/");
-        toast.success( "sucessfully signup");
-        setPhoneNumber("");
-     
+
+      const jwtToken = result.data;
+      Cookies.set('jwtToken', jwtToken, { expires: 2, path: '/', secure: true });
+      changeToken(jwtToken)
+      router.push("/");
+      toast.success("sucessfully signup");
+      setPhoneNumber("");
+
     } catch (error) {
-    
+
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
           toast.error("The verification code you entered is incorrect. Please try again.");
@@ -120,7 +120,7 @@ export default function Signup() {
     }
   };
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-    if (phoneNumber=="") {
+    if (phoneNumber == "") {
       event.preventDefault();
       let result: string;
       result = "Please enter correct phone number phone number ";
@@ -143,14 +143,14 @@ export default function Signup() {
             <div className="grid gap-2 w-3/4">
               <Label htmlFor="email">Phone Number </Label>
               <div className=" flex space-x-2">
-              
+
                 <PhoneInput
-                //  ref={phoneInputRef}
+                  //  ref={phoneInputRef}
                   country={'in'}
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter 10-digit phone number"
-           
+
                   inputClass="text-black"
                   dropdownClass="text-black"
                 />

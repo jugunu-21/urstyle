@@ -30,7 +30,7 @@ export default function Navbardrop() {
       .then(() => {
         Cookies.remove('jwtToken', { path: '/' });
         console.log("Signed out successfully and session cookie cleared");
-        router.push("/");
+        window.location.reload()
         toast.success("successfully sign Out")
       })
       .catch((error) => {
