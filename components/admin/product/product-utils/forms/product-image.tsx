@@ -14,26 +14,29 @@ interface ProductImageCardprops {
   image: string | null
   setImage: (image: string) => void
 }
-import { encodeBase64 ,Base64toSrc} from "@/components/admin/product/product-utils/product-services/image-services"
-function ProductImageCard({ image, setImage}: ProductImageCardprops) {
+import { encodeBase64, Base64toSrc } from "@/components/admin/product/product-utils/product-services/image-services"
+import { ImagePlus } from "lucide-react"
+function ProductImageCard({ image, setImage }: ProductImageCardprops) {
   return (
     <div> <Card
       className="overflow-hidden" x-chunk="dashboard-07-chunk-4">
       <CardHeader>
         <CardTitle>Product Images</CardTitle>
         <CardDescription>
-          Lipsum dolor sit amet, consectetur adipiscing elit
+          Add product Image
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-2">
-          <Image
-          src={image?image:'/placeholder.svg'}
-            alt="Product image"
+      
+        {image? <Image
+            src={image ? image : ""}
+            alt=""
             className="aspect-square w-full rounded-md object-cover"
             height="300"
             width="300"
-          />
+          />:  <ImagePlus />}
+         
           <div className="grid grid-cols-3 gap-2">
             {/* <button>
               <Image
@@ -67,13 +70,15 @@ function ProductImageCard({ image, setImage}: ProductImageCardprops) {
                 type="file"
                 id="fileInput"
                 name="image"
-                onChange={(event) =>{if (event.target.files?.length) {
-                  const file = event.target.files[0]
-                  encodeBase64(file ).then(resolve=>{
-                    const dataUrl =Base64toSrc(resolve)
-                    setImage(dataUrl)
-                  })
-                }} }
+                onChange={(event) => {
+                  if (event.target.files?.length) {
+                    const file = event.target.files[0]
+                    encodeBase64(file).then(resolve => {
+                      const dataUrl = Base64toSrc(resolve)
+                      setImage(dataUrl)
+                    })
+                  }
+                }}
               />
               {/* <button 
               onClick={() => {

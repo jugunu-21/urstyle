@@ -43,7 +43,7 @@ import { useState, useEffect } from "react";;
 import Productnamedespridetails from "@/components/admin/product/product-utils/forms/product-name-despridetails"
 import ProductImageCard from "@/components/admin/product/product-utils/forms/product-image"
 import ProductAffiandCateg from "@/components/admin/product/product-utils/forms/product-affiliate"
-import ProductHeader from "../product-utils/forms/product-header"
+import ProductHeader from "../product-utils/layout/add-product-header"
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation"
 export default function Dashboard() {
@@ -97,7 +97,7 @@ export default function Dashboard() {
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
-            <ProductStatus />
+            {/* <ProductStatus /> */}
             <ProductImageCard image={image || ""} setImage={setImage}  />
             {/* <ProductArchieve /> */}
           </div>

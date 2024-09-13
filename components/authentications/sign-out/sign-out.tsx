@@ -11,8 +11,25 @@ import getJwtTokenFromCookies from "../auth-utils/helpers/get-cookie";
 interface UserInfo {
   phone_number?: string; // Assuming phone_number is a string and optional
 }
+
+
+export const useLogout = () => {
+  const router = useRouter();
+
+  const logout = () => {
+    const auth = getAuth(app);
+    signOut(auth).then(() => {
+      toast.success("You Signed Out ");
+      Cookies.remove('jwtToken', { path: '/' });
+      router.push("/");
+    }).catch((error) => {
+      console.error("Error signing out:", error);
+    });
+  };
+
+  return logout;
+};
 export default function Signout() {
-  
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const router = useRouter();
   const params = useParams();
@@ -57,20 +74,6 @@ export default function Signout() {
     }
   };
 
-  const handleLogout = () => {
-    const auth = getAuth(app);
-    signOut(auth).then(() => {
-      console.log("Signed out successfully and session cookie cleared");
-      toast.success("You Signed Out ");
-      // document.cookie = "jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      Cookies.remove('jwtToken', { path: '/' });
-      if (redirectUrl) {
-        router.push(`/${redirectUrl}`);
-      } else {
-        router.push("/");
-      }
-    });
-  };
 
   return (
     <>
@@ -79,7 +82,7 @@ export default function Signout() {
           <span>{userInfo && userInfo.phone_number}</span>
       </h1> 
       <div className="bg-orange-700"></div>
-      <Button onClick={handleLogout}>Sign Out</Button>
+      <Button onClick={useLogout}>Logout</Button>
     </>
   );
 }

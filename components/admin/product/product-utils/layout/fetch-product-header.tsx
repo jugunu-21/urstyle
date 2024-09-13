@@ -1,6 +1,5 @@
 
 
-
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -68,19 +67,19 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { useState } from "react"
-import {collectionproductInterface} from "../../../collection/collection-utils/collection-interface"
-export default function statusandFilter({setSheetOpenCollection,collection,setSelectProduct}:{collection:Array<collectionproductInterface>,setSheetOpenCollection:(sheetOpenCollection:boolean)=>(void),setSelectProduct:(selectProduct:boolean)=>(void)}) {
+import { collectionproductInterface } from "../../../collection/collection-utils/collection-interface"
+export default function statusandFilter({ setSheetOpenCollection, collection, setSelectProduct }: { collection: Array<collectionproductInterface>, setSheetOpenCollection: (sheetOpenCollection: boolean) => (void), setSelectProduct: (selectProduct: boolean) => (void) }) {
 
 
     return (
         <div className="flex items-center">
             <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="active">Active</TabsTrigger>
-                <TabsTrigger value="draft">Draft</TabsTrigger>
+                <TabsTrigger value="">Active</TabsTrigger>
+                {/* <TabsTrigger value="draft">Draft</TabsTrigger>
                 <TabsTrigger value="archived" className="hidden sm:flex">
                     Archived
-                </TabsTrigger>
+                </TabsTrigger> */}
             </TabsList>
             <div className="ml-auto flex items-center gap-2">
                 {/* <DropdownMenu>
@@ -104,50 +103,50 @@ export default function statusandFilter({setSheetOpenCollection,collection,setSe
                         </DropdownMenuCheckboxItem>
                     </DropdownMenuContent>
                 </DropdownMenu> */}
-                <Button size="sm" variant="outline" className="h-8 gap-1">
+                {/* <Button size="sm" variant="outline" className="h-8 gap-1">
                     <File className="h-3.5 w-3.5" />
                     <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                         Export
                     </span>
-                </Button>
+                </Button> */}
                 <Button size="sm" variant="outline" className="h-8">
 
                     <Link href="/admin/product/productadd" className="flex gap-1 items-center ">
-                    <PlusCircle className="h-3.5 w-3.5  " />
-                        <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                        <PlusCircle className="h-3.5 w-3.5  " />
+                        <span className=" sm:not-sr-only sm:whitespace-nowrap">
                             Add Product
 
                         </span>
                     </Link>
 
                 </Button >
-                {(collection.length>0 ? <Button size="sm" variant="outline" className="h-8" onClick={()=>setSheetOpenCollection
+                {(collection.length > 0 ? <Button size="sm" variant="outline" className="h-8" onClick={() => setSheetOpenCollection
                     (true)} >
-                
-                {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
-                <PlusCircle className="h-3.5 w-3.5  " />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Create collection
 
-                </span>
-                {/* </Link> */}
+                    {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
+                    <PlusCircle className="h-3.5 w-3.5  " />
+                    <span className=" sm:not-sr-only sm:whitespace-nowrap">
+                        Create collection
 
-            </Button>: <Button size="sm" variant="outline" className="h-8" onClick={()=>setSelectProduct
+                    </span>
+                    {/* </Link> */}
+
+                </Button> : <Button size="sm" variant="outline" className="h-8" onClick={() => setSelectProduct
                     (true)
                 }>
-                
-                {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
-                <PlusCircle className="h-3.5 w-3.5  " />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  
-                    Select Product
-                </span>
-                {/* </Link> */}
 
-            </Button>)
+                    {/* <Link  href="/admin/product/productadd" className="flex gap-1 items-center "> */}
+                    <PlusCircle className="h-3.5 w-3.5  " />
+                    <span className=" sm:not-sr-only sm:whitespace-nowrap">
+
+                        Select Product
+                    </span>
+                    {/* </Link> */}
+
+                </Button>)
 
                 }
-               
+
             </div>
         </div>
 

@@ -13,7 +13,9 @@ import {
   Search,
   Settings,
   ShoppingCart,
+  ListPlus,
   Upload,
+  Table2,
   Users2,
 } from "lucide-react"
 
@@ -91,18 +93,7 @@ export function SideToolTip() {
               <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
               <span className="sr-only">Acme Inc</span>
             </Link>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin/product"
-                  className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Home className="h-5 w-5" />
-                  <span className="sr-only">Dashboard</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Dashboard</TooltipContent>
-            </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button className=' bg-blue focus:none hover:bg-blue'
@@ -112,12 +103,12 @@ export function SideToolTip() {
                     href="/admin/product/productfetch" // Use React Router's `to` prop for navigation
                     className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   >
-                    <ShoppingCart className="h-5 w-5" />
-                    <span className="sr-only">ProductsTable</span>
+                    <Table2 className="h-5 w-5" />
+                    <span className="sr-only">Products Table</span>
                   </Link>
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="right">ProductsTable</TooltipContent>
+              <TooltipContent side="right">Products Table</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -125,13 +116,13 @@ export function SideToolTip() {
                   href="/admin/product/productadd"
                   className="flex h-9 w-9 items-center justify-center rounded-lg focus:bg-accent text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <Package className="h-5 w-5" />
-                  <span className="sr-only"> AddProducts</span>
+                    < ListPlus className="h-5 w-5 " />
+                  <span className="sr-only"> Add Product</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">AddProducts</TooltipContent>
+              <TooltipContent side="right">Add Product</TooltipContent>
             </Tooltip>
-            <Tooltip>
+            {/* <Tooltip>
               <TooltipTrigger asChild>
                 <Link
                   href="#"
@@ -142,19 +133,19 @@ export function SideToolTip() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Customers</TooltipContent>
-            </Tooltip>
-            <Tooltip>
+            </Tooltip> */}
+            {/* <Tooltip>
               <TooltipTrigger asChild>
                 <Link
                   href="#"
                   className="flex h-9 w-9 items-center justify-center focus:bg-accent rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <LineChart className="h-5 w-5" />
-                  <span className="sr-only">Analytics</span>
+                  <PlusCircle className="h-5 w-5 " />
+                  <span className="sr-only">Add Product</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Analytics</TooltipContent>
-            </Tooltip>
+              <TooltipContent side="right">Add Product</TooltipContent>
+            </Tooltip> */}
           </nav>
           <nav className="mt-auto flex flex-col items-center focus:bg-accent gap-4 px-2 sm:py-5">
             <Tooltip>

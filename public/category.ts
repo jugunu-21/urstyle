@@ -15,37 +15,38 @@ export const fashionCategory = [
         look: "Business Casual",
         description: "A balanced mix between formal and casual, suitable for workplace environments that are not overly formal.",
         keyPieces: ["Blazers", "Dress Pants", "Skirts", "Button-Down Shirts", "Blouses", "Loafers", "Modest Heels"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
+        image: "/business-look.jpg"
     },
     {
         look: "Street Style",
         description: "Trendy and expressive fashion inspired by urban culture and streetwear.",
         keyPieces: ["Graphic Tees", "Oversized Jackets", "Sneakers", "Ripped Jeans", "Caps", "Backpacks"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
+        image: "/street-style.jpg"
     },
     {
         look: "Party Look",
         description: "Glamorous and eye-catching outfits designed for social gatherings and nightlife.",
         keyPieces: ["Sparkly Dresses", "Stylish Suits", "Bold Accessories", "High Heels", "Statement Pieces"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
+        image: "/party-look.jpg"
     },
     {
         look: "Bohemian (Boho) Style",
         description: "Free-spirited and eclectic fashion inspired by hippie and bohemian influences.",
         keyPieces: ["Flowy Dresses", "Floral Patterns", "Fringes", "Layered Jewelry", "Natural Fabrics"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
+        image: "/bohemian-look.jpg"
+    },
+   
+    {
+        look: "Minimalist Look",
+        description: "Simple and clean fashion focusing on neutral colors and uncomplicated designs.",
+        keyPieces: ["Solid-Colored Garments", "Streamlined Silhouettes", "Minimal Accessories"],
+        image: "/vintage-look.jpg"
     },
     {
         look: "Athleisure",
         description: "A blend of athletic and leisure wear, combining comfort with style.",
         keyPieces: ["Leggings", "Joggers", "Sports Bras", "Hoodies", "Stylish Sneakers"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
-    },
-    {
-        look: "Minimalist Look",
-        description: "Simple and clean fashion focusing on neutral colors and uncomplicated designs.",
-        keyPieces: ["Solid-Colored Garments", "Streamlined Silhouettes", "Minimal Accessories"],
-        image: "/pexels-emrekeshavarz-3707987.jpg"
+        image: "/athletics-look.jpg"
     },
     {
         look: "Vintage Style",

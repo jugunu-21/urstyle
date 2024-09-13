@@ -25,7 +25,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import StatusandFilter from "@/components/admin/product/product-utils/layout/status-filter"
+import StatusandFilter from "@/components/admin/product/product-utils/layout/fetch-product-header"
 import { DropDownMenu } from "@/components/admin/product/product-utils/layout/drop-down-menu"
 import { useState, useEffect } from "react";
 import {
@@ -65,6 +65,7 @@ import ProductUpdate from "@/components/admin/product/product-update/product-upd
 import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import {collectionproductInterface} from "../../collection/collection-utils/collection-interface"
+import { useRouter } from "next/navigation"
 export default function Dashboard() {
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
@@ -99,7 +100,7 @@ export default function Dashboard() {
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
         const startno = ((page - 1) * LIMIT) + 1
         const endno = (startno + LIMIT - 1) > totalDocs ? totalDocs : startno + LIMIT - 1
-       
+        const router = useRouter()
         return (<>
             {fetchedData &&
                 (
@@ -120,9 +121,7 @@ export default function Dashboard() {
                                                 <Table>
                                                     <TableHeader>
                                                         <TableRow>
-                                                            <TableHead className="hidden w-[100px] sm:table-cell">
-                                                                <span className="sr-only">Image</span>
-                                                            </TableHead>
+                                                            <TableHead className="hidden w-[100px] sm:table-cell">Image</TableHead>
                                                             <TableHead>Name</TableHead>
                                                             <TableHead>Price</TableHead>
                                                             <TableHead className="hidden md:table-cell">
@@ -131,7 +130,7 @@ export default function Dashboard() {
                                                             <TableHead className="hidden md:table-cell">
                                                                 Link
                                                             </TableHead>
-                                                            <TableHead className="hidden md:table-cell">
+                                                            <TableHead >
                                                                 Action
                                                             </TableHead>
                                                             {selectProduct ? <TableHead >
@@ -145,7 +144,7 @@ export default function Dashboard() {
 
                                                             <TableRow key={product.id}>
 
-                                                                <TableCell className="hidden sm:table-cell">
+                                                                <TableCell className="hidden w-[100px] sm:table-cell">
                                                                     <Image
                                                                         alt="Product image"
                                                                         className="aspect-square rounded-md object-cover"
@@ -158,7 +157,7 @@ export default function Dashboard() {
                                                                     {product.name}
                                                                 </TableCell>
 
-                                                                <TableCell className="hidden md:table-cell">
+                                                                <TableCell className="font-medium">
                                                                     ${product.price}
                                                                 </TableCell>
                                                                 <TableCell className="hidden md:table-cell">
@@ -196,7 +195,7 @@ export default function Dashboard() {
                                                                         </DropdownMenuContent>
                                                                     </DropdownMenu>
                                                                 </TableCell>
-                                                                {selectProduct ? <TableCell className="hidden md:table-cell">
+                                                                {selectProduct ? <TableCell className="">
                                                                     <div className="flex items-center space-x-2">
                                                                         <Checkbox id="terms"   checked={collection.some(item => item.productId === product.id)} onClick={()=>{ 
                                                                              const existingIndex = collection.findIndex(item => item.productId === product.id);

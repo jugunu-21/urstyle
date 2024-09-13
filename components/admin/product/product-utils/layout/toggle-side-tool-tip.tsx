@@ -13,6 +13,7 @@ import {
   ShoppingCart,
   Upload,
   Users2,
+  Table2
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"

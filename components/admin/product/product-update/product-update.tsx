@@ -44,7 +44,7 @@ import ProductImageCard from "@/components/admin/product/product-utils/forms/pro
 import ProductAffiandCateg from "@/components/admin/product/product-utils/forms/product-affiliate"
 import ProductArchieve from "@/components/admin/product/product-utils/forms/product-archieve"
 import ProductTable from "@/components/admin/product/product-utils/forms/product-detailtable"
-import ProductHeader from "../product-utils/forms/product-header"
+import ProductHeader from "../product-utils/layout/add-product-header"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import toast from "react-hot-toast";
 import { api } from "@/trpc/react"

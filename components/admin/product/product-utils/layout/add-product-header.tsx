@@ -49,17 +49,20 @@ export default function ProductHeader({ requestBody, id, setSheetOpen,refetch }:
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="icon" className="h-7 w-7">
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft className="h-4 w-4" onClick={()=>{
+          window.history.back();
+          // console.log(window.location.href)
+        }} />
         <span className="sr-only">Back</span>
       </Button>
       <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-        Pro Controller
+        Add Product
       </h1>
       <Badge variant="outline" className="ml-auto sm:ml-0">
         In stock
       </Badge>
       <div className="hidden items-center gap-2 md:ml-auto md:flex">
-        <Button variant="outline" size="sm" onClick={()=>router.push("/admin/product")}>
+        <Button variant="outline" size="sm" onClick={()=>location.reload()}>
           Discard
         </Button>
 

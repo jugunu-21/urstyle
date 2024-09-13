@@ -1,5 +1,4 @@
 "use client"
-
 import React from "react";
 import Cookies from 'js-cookie';
 import { app } from "@/app/config"
@@ -58,7 +57,7 @@ export default function Navbardrop() {
         <DropdownMenuSeparator />
         {jwtToken !== null && <>
           <DropdownMenuItem >   <Link href="/admin/product">Products</Link></DropdownMenuItem>
-          <DropdownMenuItem onClick={handleLogout}> Signout</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           <DropdownMenuItem onClick={handledeleteuser}>DeleteUser</DropdownMenuItem>
         </>}
         {jwtToken === null && <> <DropdownMenuItem>
