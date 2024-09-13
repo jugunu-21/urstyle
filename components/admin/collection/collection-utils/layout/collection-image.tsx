@@ -10,29 +10,33 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
+import { ImagePlus } from "lucide-react"
 import { encodeBase64, Base64toSrc } from "@/components/admin/product/product-utils/product-services/image-services"
+import { Label } from "@/components/ui/label"
 function CollectionImageCard({ image }: { image: string[] }) {
   return (
     <Card
-      className="overflow-hidden my-2" x-chunk="dashboard-07-chunk-4">
-      <CardHeader>
+      className="overflow-hidden my-4 " x-chunk="dashboard-07-chunk-4">
+      {/* <CardHeader>
         <CardTitle>Products Images</CardTitle>
-      </CardHeader>
+      </CardHeader> */}
+      <Label className="text-xl" htmlFor="description">Products Images</Label>
       <CardContent>
         <div className="grid gap-2 m-2">
           <div className="grid grid-cols-4 gap-2">
             {image && image.map((image) => {
               console.log("imageee",image)
               return (
-                <Image key={image}
-                  alt="image"
-                  className="aspect-square w-full rounded-md object-cover"
-                  height="84"
-                  src={image ? image : '/placeholder.svg'}
-                  width="84"
-                />
-              )
+                <>
+                {image? <Image key={image}
+                alt="image"
+                className="aspect-square w-full rounded-md object-cover"
+                height="84"
+                src={image ? image : '/placeholder.svg'}
+                width="84"
+              />:<ImagePlus/>}
+                
+                </> )
             })}
             {/* <Image
               alt="Product image"

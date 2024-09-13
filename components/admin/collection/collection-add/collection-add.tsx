@@ -118,7 +118,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                 />
               </div>
               <div className=" max-w-xl">
-                <Label htmlFor="name">Products to Add In Collection</Label>
+                <Label className="text-xl" htmlFor="name">Products to Add In Collection</Label>
                 <MultiSelect
                   options={collection}
                   onValueChange={setSelectedIds}
@@ -127,24 +127,26 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                   variant="inverted"
                   animation={2}
                   maxCount={3}
-                />{
-                }
+                />
+
                 {(imgg.length > 0) && <CollectionImageCard image={imgg} />}
                 <div className="mt-4">
-                  <h2 className=" font-semibold">Selected Products</h2>
+                  {/* <h2 className=" font-semibold">Selected Products</h2> */}
+                  <Label className="text-xl" htmlFor="name">Selected Products</Label>
                   <ul className="list-disc list-inside">
                     {selectedNames.map((name) => (
                       <li key={name}>{name}</li>
                     ))}
                   </ul>
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 ">
 
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="outline">Select the Collection Type</Button>
+                  <DropdownMenu >
+                    <DropdownMenuTrigger asChild className=" pl-0 mt-2" >
+                      {/* <button className="text-xl" htmlFor="name">Select the Collection Type</Label> */}
+                      <Button variant="outline" className="text-lg ml-0">Select the Categories</Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56">
+                    <DropdownMenuContent className="w-56 overflow-y-auto max-h-[200px]">
                       <DropdownMenuLabel>Panel category</DropdownMenuLabel>
                       <DropdownMenuSeparator />
 
@@ -154,10 +156,10 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                             <Checkbox className="mx-2 " id="terms" checked={category.some(item => item === fashion.look)} onClick={() => {
                               const existingIndex = category.findIndex(item => item === fashion.look);
                               if (existingIndex >= 0) {
-                              
+
                                 setCategory(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
                               } else {
-                                
+
 
                                 setCategory(prev => [...prev, fashion.look]);
                               }
@@ -169,7 +171,11 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
 
                     </DropdownMenuContent>
                   </DropdownMenu>
-
+                  <ul className="list-disc list-inside" >
+                  {category.map((cat, index) => (
+                    //  <li key={name}>{name}</li>
+                    <li key={index}>{cat}</li>
+                  ))}</ul>
 
                 </div>
               </div>

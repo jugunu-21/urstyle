@@ -1,55 +1,46 @@
 
 "use client"
-import Image from "next/image";
 import Navbardrop from "@/components/layout/navbar/navbar-drop"
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useState } from "react";
 import { FiMenu, FiArrowRight } from "react-icons/fi";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { handler } from "tailwindcss-animate";
-import { GradientShadowButton } from "../../hover.me/button";
 import Link from "next/link";
-import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 export const FlipNavWrapper = () => {
   return (
-    <div className="bg-gray-50 sticky top-0 h-14 z-50 pb-4 ">
+    <div className="bg-gray-50 sticky top-0 h-16 z-50 pb-4  ">
       <FlipNav />
     </div>
   );
 };
 const FlipNav = () => {
   const [isOpen, setIsOpen] = useState(false);
- const handler=()=>{
-   setIsOpen((isOpen) => !isOpen)
- } 
- return (
-  <div className="bg-white p-4 border-b-[1px] border-gray-200 flex items-center justify-between relative">
-    <NavLeft setIsOpen={setIsOpen} />
-    <NavRight />
-    <NavMenu handler={handler} isOpen={isOpen} />
-  </div>
-);
-};
-const Logo = () => {
-  // Temp logo from https://logoipsum.com/
+  const handler = () => {
+    setIsOpen((isOpen) => !isOpen)
+  }
   return (
-    // <Image className="border-2 border-green-400" src="/urstyllogo.jpg" width={40} height={40} alt="img"/>
-    <Link
-              href="/"
-              className="font-serif text-cyan-800 text-xl font-extrabold"
-            >
-              URSTYLE
-            </Link>
+    <div className="bg-white p-2 border-b-[1px] border-gray-200 flex items-center justify-between relative">
+      <NavLeft setIsOpen={setIsOpen} />
+      <NavRight />
+      <NavMenu handler={handler} isOpen={isOpen} />
+    </div>
   );
 };
-
+const Logo = () => {
+  return (
+    <Link
+      href="/"
+      className="font-serif text-cyan-800 text-xl font-extrabold"
+    >
+      URSTYLE
+    </Link>
+  );
+};
 const NavLeft = ({
   setIsOpen,
 }: {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-
   return (
     <div className="flex items-center gap-6">
       <motion.button
@@ -61,44 +52,39 @@ const NavLeft = ({
         <FiMenu />
       </motion.button>
       <Logo />
-      
-      <NavLink  text="About" link="/Component/About"/>
-      <NavLink  text="Home" link="/Component/Home"/>
-      <NavLink  text="Contact" link="/Component/Contact"/>
-      <NavLink text="Testimonials"link="/#testimonial" />
-      <NavLink text="Features" link="/#feature"/>
+      <NavLink text="About" link="/Component/About" />
+      <NavLink text="Home" link="/Component/Home" />
+      <NavLink text="Contact" link="/Component/Contact" />
+      {/* <NavLink text="Testimonials" link="/#testimonial" />
+      <NavLink text="Features" link="/#feature" /> */}
     </div>
   );
 };
-
-const NavLink = ({ text,link }: { text: string,link:string }) => {
+const NavLink = ({ text, link }: { text: string, link: string }) => {
   return (
     <a
-    href={link}
-    rel="nofollow"
-    className="hidden lg:block h-[30px] overflow-hidden font-medium"
-  >
-    <motion.div whileHover={{ y: -30 }}>
-      <span className="flex items-center h-[30px] text-gray-500">{text}</span>
-      <span className="flex items-center h-[30px] text-indigo-600">
-        {text}
-      </span>
-    </motion.div>
-  </a>
+      href={link}
+      rel="nofollow"
+      className="hidden lg:block h-[30px] overflow-hidden font-medium"
+    >
+      <motion.div whileHover={{ y: -30 }}>
+        <span className="flex items-center h-[30px] text-gray-800">{text}</span>
+        <span className="flex items-center h-[30px] text-indigo-600">
+          {text}
+        </span>
+      </motion.div>
+    </a>
   );
 };
-
 const NavRight = () => {
-    const router=useRouter()
+  const router = useRouter()
   return (
-
     <div className="px-4 py-2 items-center gap-4 ">
-     <Navbardrop/>
+      <Navbardrop />
     </div>
   );
 };
-
-const NavMenu = ({ isOpen,handler }: { isOpen: boolean,handler:()=>void }) => {
+const NavMenu = ({ isOpen, handler }: { isOpen: boolean, handler: () => void }) => {
   return (
     <motion.div
       variants={menuVariants}
@@ -106,15 +92,16 @@ const NavMenu = ({ isOpen,handler }: { isOpen: boolean,handler:()=>void }) => {
       animate={isOpen ? "open" : "closed"}
       className="absolute p-4 bg-white shadow-lg left-0 right-0 top-full origin-top flex flex-col gap-4"
     >
-      <MenuLink handler={handler} text="Home" link="#"/>
-      <MenuLink handler={handler}text="Contact" link="#"/>
-      <MenuLink handler={handler} text="Testimonials"link="#" />
-      <MenuLink  handler={handler} text="Features" link="#"/>
+      {/* <NavLink text="About" link="/Component/About" /> */}
+      <MenuLink handler={handler} text="About" link="#" />
+      <MenuLink handler={handler} text="Home" link="#" />
+      <MenuLink handler={handler} text="Contact" link="#" />
+      {/* <MenuLink handler={handler} text="Testimonials" link="#" />
+      <MenuLink handler={handler} text="Features" link="#" /> */}
     </motion.div>
   );
 };
-
-const MenuLink = ({ text ,link,handler}: { text: string, link:string ,handler:()=>void}) => {
+const MenuLink = ({ text, link, handler }: { text: string, link: string, handler: () => void }) => {
   return (
     <motion.a
       variants={menuLinkVariants}
@@ -127,7 +114,7 @@ const MenuLink = ({ text ,link,handler}: { text: string, link:string ,handler:()
         <FiArrowRight className="h-[20px] text-gray-950" />
       </motion.span>
       <motion.div whileHover={{ y: -20 }}>
-        <span className="flex items-center h-[20px] text-gray-500">{text}</span>
+        <span className="flex items-center h-[20px] text-gray-800">{text}</span>
         <span className="flex items-center h-[20px] text-indigo-600">
           {text}
         </span>
@@ -135,9 +122,6 @@ const MenuLink = ({ text ,link,handler}: { text: string, link:string ,handler:()
     </motion.a>
   );
 };
-
-
-
 const menuVariants = {
   open: {
     scaleY: 1,
@@ -154,7 +138,6 @@ const menuVariants = {
     },
   },
 };
-
 const menuLinkVariants = {
   open: {
     y: 0,
@@ -165,7 +148,6 @@ const menuLinkVariants = {
     opacity: 0,
   },
 };
-
 const menuLinkArrowVariants = {
   open: {
     x: 0,

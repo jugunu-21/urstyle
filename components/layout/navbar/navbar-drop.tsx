@@ -20,11 +20,9 @@ import Image from "next/image";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 export default function Navbardrop() {
   const jwtToken = useToken().token
-
   const router = useRouter();
   const auth = getAuth(app)
   const handleLogout = () => {
-    // Sign out from Firebase
     signOut(auth)
       .then(() => {
         Cookies.remove('jwtToken', { path: '/' });
@@ -38,9 +36,7 @@ export default function Navbardrop() {
   };
   const handledeleteuser = () => {
     deleteUser();
-
   }
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
