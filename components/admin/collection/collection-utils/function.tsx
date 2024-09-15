@@ -59,10 +59,10 @@ export function ApiLikeCollection({ jwtToken, collectionId}: ApiLikeCollectionpr
   };
   return SubmitHandler();
 }
-export function ApiFetchCollection({ categoryQuery }: { categoryQuery?: string }) {
+export function ApiFetchCollection({ categoryQuery,jwtToken }: { categoryQuery?: string,jwtToken:string }) {
   const apiroute = `/collection/fetch?categoryQuery=${categoryQuery}`
   const SubmitHandler = async () => {
-    const response = await PostApiCollectionCall({ apiroute });
+    const response = await PostApiCollectionCall({ apiroute ,jwtToken});
     console.log("response.data.data.products", response.data.data.products)
     return response.data;
   };

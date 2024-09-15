@@ -3,7 +3,7 @@ import { Card} from "@/components/home/cards/card";
 import { api } from "@/trpc/react";
 import { Divide } from "lucide-react";
 export function Collection({categoryQuery}:{categoryQuery:string}) {
-    const { data: response, isLoading, refetch, error }  = api.collection.collectionFetch.useQuery({categoryQuery:categoryQuery});
+    const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetch.useQuery({categoryQuery:categoryQuery});
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
         return <div>Error:
@@ -21,7 +21,7 @@ export function Collection({categoryQuery}:{categoryQuery:string}) {
             {response.data.map((productCollection, index) => (
                 <div key={productCollection.name} className="  mx-14 my-2 sm:m-0 ">
                     <div className="col-span-1  mx-1 bg-slate-300" >
-                        <Card productColl={productCollection}/>
+                        <Card productColl={productCollection} refetch={refetch }/>
                     </div>
                 </div>
             )

@@ -89,6 +89,23 @@ const enforceUserIsHavingToken = t.middleware(async ({ next, ctx }) => {
   }
   
 });
+const UserMayHaveToken = t.middleware(async ({ next, ctx }) => {
+  const token = ctx.token
+  // console.log("tokennnnnn", token)
+  // if (token == null) {
+  //   throw new TRPCError({
+  //     code: "UNAUTHORIZED",
+  //   });
+  // }
+  // else{
+    return next({
+      ctx: {
+        token: token,
+      },
+    });
+  // }
+  
+});
 /**
  * Create a server-side caller.
  *
@@ -119,6 +136,7 @@ export const createTRPCRouter = t.router;
  */
 export const publicProcedure = t.procedure;
 export const protectedProcedure = t.procedure.use(enforceUserIsHavingToken);
+export const publicAndProtectedProcedure = t.procedure.use(UserMayHaveToken);
 
 // export const protectedProcedure = t.procedure.use(enforceUserIsHavingToken);
 

@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/api/trpc";
+import { createTRPCRouter, publicProcedure, protectedProcedure,publicAndProtectedProcedure } from "@/server/api/trpc";
 import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection } from "@/components/admin/collection/collection-utils/function";
 const zcollectiontDataInterface = z.object({
     collectionName: z.string(),
@@ -36,22 +36,22 @@ export const collectionRouter = createTRPCRouter({
             console.log("collection")
             return response;
         }),
-    collectionFetch: publicProcedure
+    collectionFetch: publicAndProtectedProcedure
         .input(z.object({
             categoryQuery: z.string().optional()
         }))
         .output(z.object({
-            data: z.array(z.object({ name: z.string(), collectionId: z.string(), description: z.string(), products: z.array(zsimplifiedProducts) }))
+            data: z.array(z.object({ name: z.string(), likestatus: z.boolean().optional(), collectionId: z.string(), description: z.string(), products: z.array(zsimplifiedProducts) }))
             , message: z.string(), status: z.number()
         }))
-        .query(async ({ input }) => {
-            // const token = ctx.token
+        .query(async ({ input,ctx }) => {
+            const token = ctx.token?ctx.token:""
             const modifiedInput = {
-                // jwtToken: token,
+                jwtToken: token,
                 ...input
             }
             const response = await ApiFetchCollection(modifiedInput)
-            // console.log("collection", response)
+            console.log("collectionfetch", response)
             return response;
         }),
     collectionLike: protectedProcedure
