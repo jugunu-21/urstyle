@@ -42,17 +42,17 @@ export default function Signout() {
     fetchData();
   }, []);
 
-  
+
   const fetchData = async () => {
-    const jwtToken =  getJwtTokenFromCookies();
-    console.log("jwttokenn",jwtToken)
+    const jwtToken = getJwtTokenFromCookies();
+    console.log("jwttokenn", jwtToken)
     if (jwtToken) {
       const userDetails = await fetchUserDetails(jwtToken);
       setUserInfo(userDetails);
     }
-  return null;
-};
-  const fetchUserDetails = async (jwtToken:string) => {
+    return null;
+  };
+  const fetchUserDetails = async (jwtToken: string) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {
         method: "GET",
@@ -78,9 +78,9 @@ export default function Signout() {
   return (
     <>
       <h1 className="bg-black text-red-900">
-          you are a user with phone number{" "}
-          <span>{userInfo && userInfo.phone_number}</span>
-      </h1> 
+        you are a user with phone number{" "}
+        <span>{userInfo && userInfo.phone_number}</span>
+      </h1>
       <div className="bg-orange-700"></div>
       <Button onClick={useLogout}>Logout</Button>
     </>

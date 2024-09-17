@@ -43,7 +43,6 @@ import Productnamedespridetails from "@/components/admin/product/product-utils/f
 import ProductImageCard from "@/components/admin/product/product-utils/forms/product-image"
 import ProductAffiandCateg from "@/components/admin/product/product-utils/forms/product-affiliate"
 import ProductArchieve from "@/components/admin/product/product-utils/forms/product-archieve"
-import ProductTable from "@/components/admin/product/product-utils/forms/product-detailtable"
 import ProductHeader from "../product-utils/layout/add-product-header"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import toast from "react-hot-toast";
@@ -52,7 +51,6 @@ import { RefetchOptions } from "@tanstack/react-query"
 type addprops = {
   selectedProduct?: ProductDataInterfacewithid,
   setSheetOpen: (sheetOpen: boolean) => void,
- 
   refetch?: (options?: RefetchOptions) => Promise<any>;
 }
 export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: addprops) {
@@ -72,7 +70,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
   const [price, setPrice] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
- 
   useEffect(() => {
       {selectedProduct && setRawdata(selectedProduct) }
   },[selectedProduct])
@@ -85,8 +82,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
     price: price ?? rawdata?.price ?? '', // Ensure price is a string, defaulting to "0"
     image: image ?? rawdata?.image ?? '',
   };
-
-
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
@@ -95,9 +90,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />
-
-            {/* <ProductTable price={price} setprice={setPrice}/> */}
-
             <ProductAffiandCateg
               code={rawdata ? rawdata.code : null}
               setCode={setCode}
@@ -119,8 +111,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
           </Button>
           <Button size="sm" onClick=
             {() => {
-             
-              
                 productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                   .then
                   (() => {
@@ -129,7 +119,6 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
                       setSheetOpen(false)
                      {refetch&&refetch();}
                       console.log("refetch",refetch)
-                      // router.push("/admin/product/productfetch")
                       toast.success("sucessfully updated");
 
                     }
@@ -138,11 +127,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
                     }
 
                   }).catch((error) => console.error("submission error:", error))
-              
-
-
             }}
-
           >Save Product</Button>
         </div>
       </div>

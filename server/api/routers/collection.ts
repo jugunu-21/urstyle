@@ -38,7 +38,8 @@ export const collectionRouter = createTRPCRouter({
         }),
     collectionFetch: publicAndProtectedProcedure
         .input(z.object({
-            categoryQuery: z.string().optional()
+            categoryQuery: z.string().optional(),
+            likedQuery: z.string().optional()
         }))
         .output(z.object({
             data: z.array(z.object({ name: z.string(), likestatus: z.boolean().optional(), collectionId: z.string(), description: z.string(), products: z.array(zsimplifiedProducts) }))
@@ -51,9 +52,10 @@ export const collectionRouter = createTRPCRouter({
                 ...input
             }
             const response = await ApiFetchCollection(modifiedInput)
-            console.log("collectionfetch", response)
+            // console.log("collectionfetch", response)
             return response;
         }),
+        
     collectionLike: protectedProcedure
     .input(z.object({ collectionId: z.string() }))
     .output(z.object({

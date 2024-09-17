@@ -214,9 +214,10 @@ export default function Signin() {
             )}
           </div>
           <div className="mt-4 text-center text-sm">
-            Dont have an account?{" "}
+          No account?
             <Link href="/sign-up" className="underline">
-              Sign up
+           Create one
+            
             </Link>
           </div>
         </div>

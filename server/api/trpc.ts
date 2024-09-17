@@ -97,7 +97,7 @@ const UserMayHaveToken = t.middleware(async ({ next, ctx }) => {
   //     code: "UNAUTHORIZED",
   //   });
   // }
-  // else{
+  // else{ 
     return next({
       ctx: {
         token: token,

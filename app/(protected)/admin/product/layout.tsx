@@ -72,7 +72,7 @@ export default function RootLayout({
   const [hoverContent, setHoverContent] = useState<JSX.Element | null>(null);
   return (
     <>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem> */}
         <div className='flex'>
           <div className=" flex-col bg-muted/40">
             <SideToolTip />
@@ -112,7 +112,7 @@ export default function RootLayout({
             <div className={inter.className}>{children}</div>
           </div>
         </div>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   );
 }

@@ -272,10 +272,8 @@ export default function Dashboard() {
                                                     // if(page!==1){
                                                     setPage((prev) => prev + 1)
                                                     // }
-
                                                 }} />
                                         )}
-
                                     </PaginationItem>
                                 </PaginationContent>
                             </Pagination>

@@ -9,9 +9,9 @@ export default function RootLayout({
  }>) {
   return (
   <div>
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem> */}
     <div className={inter.className}>{children}</div>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
     
     </div>
   );

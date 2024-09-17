@@ -2,8 +2,8 @@
 import { Card} from "@/components/home/cards/card";
 import { api } from "@/trpc/react";
 import { Divide } from "lucide-react";
-export function Collection({categoryQuery}:{categoryQuery:string}) {
-    const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetch.useQuery({categoryQuery:categoryQuery});
+export function Collection({categoryQuery,likedQuery}:{categoryQuery?:string,likedQuery?:string}) {
+    const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetch.useQuery({categoryQuery:categoryQuery,likedQuery:likedQuery});
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
         return <div>Error:

@@ -2,7 +2,6 @@
 import { GoHeartFill } from "react-icons/go";
 import { FiPlus } from "react-icons/fi";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
-// In a separate file, e.g., types.ts
 import { api } from "@/trpc/react"
 import { useEffect, useState } from "react";
 import { RefetchOptions } from "@tanstack/react-query"
@@ -24,17 +23,14 @@ export interface ProductCollection {
     collectionId: string
     likestatus?: boolean
 }
-export const Card = ({ productColl,refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
-    // const [like, setLike] = useState<boolean>(false)
+export const Card = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
     const likemut = api.collection.collectionLike.useMutation()
-    // const jwtToken = useToken().token
     const backgroundStyle = (url: string) => ({
         backgroundImage: `url(${url})`,
         backgroundSize: 'cover',
         width: '100%',
         height: '100%'
     });
-    console.log(productColl.  likestatus,"productColl.likeStatus..........")
     return (
         <div className="my-4 p-2  ">
             <div>{productColl.name}</div>
@@ -62,15 +58,12 @@ export const Card = ({ productColl,refetch }: { productColl: ProductCollection, 
                         </div>
                     </div>
                 </div>{productColl.products.length > 4 && <div className="absolute bottom-10 right-4 "><FiPlus className=" h-8 w-8    p-1" /></div>}
-                
                 {productColl.hasOwnProperty('likestatus') &&
-                    
                     <button className="absolute bottom-0  right-1 " onClick={() => {
-                        // setLike((prev) => !prev)
                         likemut.mutateAsync({ collectionId: productColl.collectionId })
                         refetch()
                     }}>
-                        <GoHeartFill fill={productColl. likestatus ? '#ff8000' : ''} className="aspect-square rounded-full h-8 w-8  p-1  bg-white" />
+                        <GoHeartFill fill={productColl.likestatus ? '#ff8000' : ''} className="aspect-square rounded-full h-8 w-8  p-1  bg-white" />
                     </button>
                 }
             </div>
