@@ -37,12 +37,6 @@ export default function Signout() {
   const [paramsUrl] = param1;
   const redirectUrl = paramsUrl ? paramsUrl : "/";
   console.log("redirectUrllll", redirectUrl);
-  useEffect(() => {
-
-    fetchData();
-  }, []);
-
-
   const fetchData = async () => {
     const jwtToken = getJwtTokenFromCookies();
     console.log("jwttokenn", jwtToken)
@@ -52,6 +46,11 @@ export default function Signout() {
     }
     return null;
   };
+  useEffect(() => {
+
+    fetchData();
+  }, [fetchData()]);
+
   const fetchUserDetails = async (jwtToken: string) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {

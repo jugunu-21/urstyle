@@ -128,17 +128,18 @@ export default function Signup() {
     }
   };
   return (
-    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] py-4">
+    <div className="w-full lg:grid  mt-8 pt-4 ml-0 my-0 ">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center ">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold">Signup</h1>
+            <h1 className="text-3xl font-bold mb-1">Sign-Up</h1>
 
-            <p className="text-balance text-muted-foreground my-2">
+           
+          </div>
+          <p className="text-balance text-muted-foreground my-2 left-0">
               Enter your phone number below to signup
             </p>
-          </div>
           <div className="grid gap-4">
             <div className="grid gap-2 w-3/4">
               <Label htmlFor="email">Phone Number </Label>

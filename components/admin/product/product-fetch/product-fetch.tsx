@@ -65,7 +65,7 @@ import ProductUpdate from "@/components/admin/product/product-update/product-upd
 import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import {collectionproductInterface} from "../../collection/collection-utils/collection-interface"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 export default function Dashboard() {
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
@@ -100,7 +100,7 @@ export default function Dashboard() {
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
         const startno = ((page - 1) * LIMIT) + 1
         const endno = (startno + LIMIT - 1) > totalDocs ? totalDocs : startno + LIMIT - 1
-        const router = useRouter()
+        // const router = useRouter()
         return (<>
             {fetchedData &&
                 (

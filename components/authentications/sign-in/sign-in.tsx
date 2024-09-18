@@ -132,12 +132,12 @@ export default function Signin() {
   };
 
   return (
-    <div className="w-full lg:grid lg:min-h-[600px]  xl:min-h-[800px] ml-0 my-4">
+    <div className="w-full lg:grid  mt-8 pt-4 ml-0 my-0 ">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
-      <div className="flex items-center justify-center py-12">
-        <div className=" mx-auto grid w-[350px] gap-6">
-          <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold ">Sign-In</h1>
+      <div className="flex items-center justify-center">
+        <div className="  grid w-[350px] gap-6">
+          <div className="grid gap-2 text-center ">
+            <h1 className="text-3xl font-bold  ">Sign-In</h1>
           </div>
           <p className="text-balance text-muted-foreground my-2 left-0">
             Enter your phone number below to signin
@@ -222,7 +222,7 @@ export default function Signin() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted md:block">
+      {/* <div className="hidden bg-muted md:block border-2 border-green-800">
         <Image
           src="/placeholder.svg"
           alt="Image"
@@ -230,7 +230,7 @@ export default function Signin() {
           height="1080"
           className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
-      </div>
+      </div> */}
     </div>
   );
 }
