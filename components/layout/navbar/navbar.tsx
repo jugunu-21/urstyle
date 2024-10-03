@@ -93,9 +93,9 @@ const NavMenu = ({ isOpen, handler }: { isOpen: boolean, handler: () => void }) 
       className="absolute p-4 bg-white shadow-lg left-0 right-0 top-full origin-top flex flex-col gap-4"
     >
       {/* <NavLink text="About" link="/Component/About" /> */}
-      <MenuLink handler={handler} text="About" link="#" />
-      <MenuLink handler={handler} text="Home" link="#" />
-      <MenuLink handler={handler} text="Contact" link="#" />
+      <MenuLink handler={handler} text="About" link="/Component/About" />
+      <MenuLink handler={handler} text="Home" link="/" />
+      <MenuLink handler={handler} text="Contact" link="/Component/Contact" />
       {/* <MenuLink handler={handler} text="Testimonials" link="#" />
       <MenuLink handler={handler} text="Features" link="#" /> */}
     </motion.div>

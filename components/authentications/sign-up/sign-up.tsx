@@ -133,7 +133,7 @@ export default function Signup() {
       <div className="flex items-center justify-center ">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
-            <h1 className="text-3xl font-bold mb-1">Sign-Up</h1>
+            <h1 className="text-3xl font-bold mb-1 items-center justify-center">Sign-Up</h1>
 
            
           </div>
