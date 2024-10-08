@@ -57,7 +57,7 @@ export default function Navbardrop() {
   const handledeleteuser = () => {
     deleteUser();
   }
-  const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
+  const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div>
       <DropdownMenu>
@@ -74,7 +74,7 @@ export default function Navbardrop() {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {jwtToken !== null && <>
-            <DropdownMenuItem onClick={() =>{ setLiked(true); setSheetOpenCollection(true)} }>Liked Products</DropdownMenuItem>
+            <DropdownMenuItem onClick={() =>{ setLiked(true); setSheetOpenLikedCollection(true)} }>Liked Products</DropdownMenuItem>
             <DropdownMenuItem >   <Link href="/admin/product">Admin Dashboard</Link></DropdownMenuItem>
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>
@@ -88,15 +88,15 @@ export default function Navbardrop() {
         </DropdownMenuContent>
       </DropdownMenu>
       {liked &&
-      <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
+      <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
         <SheetContent className="h-full overflow-y-auto" >
           <div className=" overflow-y-auto w-full  h-full">
-            {/* <ProductCollection setSelectProduct={setSelectProduct}  setSheetOpen={setSheetOpenCollection}  /> */}
+            {/* <ProductCollection setSelectProduct={setSelectProduct}  setSheetOpen={setSheetOpenLikedCollection}  /> */}
             <Collection likedQuery="user"  />
           </div>
           <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit" onClick={()=>setSheetOpenCollection(false)}>close</Button>
+            <Button type="submit" onClick={()=>setSheetOpenLikedCollection(false)}>close</Button>
           </SheetClose>
         </SheetFooter>
         </SheetContent>

@@ -73,18 +73,18 @@ export default function Footer() {
               <h2 className="title-font font-bold  text-gray-900 tracking-widest text-base mb-3">Contact</h2>
               <nav className="list-none mb-10">
                 <li className="flex   ">
-                  <Link href="#" className="text-gray-600 hover:text-gray-800">Address</Link>
+                  <Link href="#" className="text-gray-600 hover:text-gray-800">Address:-</Link>
                   <Link href="#" className="text-gray-600 hover:text-gray-800">Chuaras, Sringar, Uttarakhand</Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-gray-600 hover:text-gray-800">phone:</Link>
+                  <Link href="#" className="text-gray-600 hover:text-gray-800">phone:-</Link>
                   <Link href="#" className="text-gray-600 hover:text-gray-800">+6306441401/ (+91)0123456789</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-800"><span className="font-semibold text-wrap">hours:</span>10:00-18:00, mon-sat</Link>
-                </li>
+                </li> */}
                
-                <div className="font-bold">Contact</div>
+                {/* <div className="font-bold">Contact</div> */}
 
               </nav>
             </div>
@@ -143,9 +143,9 @@ export default function Footer() {
         <div className="bg-gray-100">
           <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
             <Link href="#" className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+              {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
+              </svg> */}
               <span className="ml-3 text-xl">Urstyle</span>
             </Link>
             <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2020 Urstyle —
