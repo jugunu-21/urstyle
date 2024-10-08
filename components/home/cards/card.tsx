@@ -32,6 +32,8 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
         height: '100%'
     });
     return (
+
+        
         <div className="my-4 p-2  ">
             <div>{productColl.name}</div>
             <div className=" relative h-72 md:h-80    grid grid-cols-3">
