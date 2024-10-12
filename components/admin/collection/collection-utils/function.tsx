@@ -68,3 +68,13 @@ export function ApiFetchCollection({ categoryQuery,jwtToken,likedQuery }: { cate
   };
   return SubmitHandler();
 }
+export function ApiFetchCollectionById({collectionId,jwtToken }: { collectionId: string,jwtToken:string }) 
+{
+  const apiroute = `/collection/collectionById/${collectionId}`
+  const SubmitHandler = async () => {
+    const response = await PostApiCollectionCall({ apiroute ,jwtToken});
+    console.log("response.data.data.products", response.data.data.products)
+    return response.data;
+  };
+  return SubmitHandler();
+}

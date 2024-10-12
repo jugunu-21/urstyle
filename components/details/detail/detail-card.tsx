@@ -1,38 +1,32 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Star from '@/components/reusable-components/star-icon';
+
 import Sitelink from '@/components/reusable-components/site-link';
-import avgg from '@/components/reusable-components/average-review';
-interface CartItem {
-  id: number;
+// import avgg from '@/components/reusable-components/average-review';
+interface Product {
+  image: string;
+  id: string;
+  pid: number;
   name: string;
   code: string;
-  link: string;
-  image_url: string;
   price: string;
-  review: {
-    image: string;
-    rname: string;
-    date: string;
-    content: string;
-    rating: number;
-  }[];
+  link: string;
+  review: Record<string, unknown>[];
   description: string;
 }
-
-interface FilteredItems {
-  cart: CartItem[];
+interface CollectionData {
+  name: string;
+  description: string;
+  collectionId: string;
+  products: Product[];
 }
-
-interface Props {
-  filteredItems: FilteredItems;
-  groupIndex: number | undefined;
-}
-function Summary({ filteredItems, groupIndex }: Props) {
+function Summary({ products, groupIndex }: {
+  products:Product[], groupIndex:string
+}) {
   return (
     <>
-      {filteredItems.cart.map((cart, cartIndex) => (
+      {products.map((cart, cartIndex) => (
         <div key={cartIndex}>
           <div className=" grid grid-cols-2 md:flex md:ml-10 m-2 bg-stone-200 ">
             {cart && (
@@ -42,7 +36,7 @@ function Summary({ filteredItems, groupIndex }: Props) {
                     width={100}
                     height={100}
                     className=" w-full h-full object-cover align-middle "
-                    src={cart.image_url}
+                    src={cart.image}
                     alt=""
                   />
 
@@ -55,16 +49,16 @@ function Summary({ filteredItems, groupIndex }: Props) {
                   <div className=" flex flex-row  content-center ">
                     <div className="w-28">
                       <div className="h-4 w-6">
-                        <Star len={avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} />
+                        {/* <Star len={avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} /> */}
                       </div></div>
                     <div className="ml-2 content-center">
-                      {avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} Reviews
+                      {/* {avgg({ groupid: groupIndex, cartid: cartIndex }).avgRating} Reviews */}
                     </div>
                   </div>
                   <div className="font-semibold my-1">{cart.price}</div>
                   <div className="mb-2">{cart.description}</div>
                   <div className="h-8 w-28 my-2">
-                    <Sitelink setsitelink={cart.image_url} sitelink={cart.link} />
+                    <Sitelink setsitelink={cart.image} sitelink={cart.link} />
                   </div>
 
 

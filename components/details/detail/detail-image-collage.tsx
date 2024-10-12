@@ -1,55 +1,43 @@
 import React from 'react';
 
-interface CartItem {
-  id: number;
+interface ProductProps {
+  image: string;
+  id: string;
+  pid: number;
   name: string;
   code: string;
-  link: string;
-  image_url: string;
   price: string;
-  review: {
-    image: string;
-    rname: string;
-    date: string;
-    content: string;
-    rating: number;
-  }[];
+  link: string;
+  review: Record<string, unknown>[];
   description: string;
 }
 
-interface FilteredItems {
-  cart: CartItem[];
-}
-
-interface Props {
-  filteredItems: FilteredItems;
-}
 import Image from 'next/image';
-function DetailCollage({ filteredItems }: Props) {
+function ImageCollage({ products }: { products: ProductProps[] }) {
 
   return (
-    <div className="h-[340px] w-[450px] m-auto px-2 items-center">
-      <div className="flex flex-col flex-wrap h-96 m-2">
-        {filteredItems.cart.map((cart, cartIndex) => {
+    <div className="h-[340px] w-[450px] m-auto px-2 items-center border-2 border-green-400">
+      <div className="flex flex-col flex-wrap h-96 m-2 border-2 border-green-400">
+      {products.map((cart, cartIndex) => {
           const code = parseInt(cart.code);
           return (
             <div key={cartIndex}>
-              {code === 3 && (
+              {code === 13 && (
                 <Image
                   width={100}
                   height={100}
-                  className="max-h-[300px] h-full w-full  rounded-lg"
-                  src={cart.image_url}
-                  alt=""
+                  className="max-h-[300px] h-full w-full  rounded-lg border-2 border-green-400"
+                  src={cart.image}
+                  alt="sorry cannot find the image"
                 />
               )}
-              {code === 1 && (
+              {code === 11 && (
                 <div className="">
                   <Image
                     width={100}
                     height={100}
                     className="max-h-[100px] w-auto rounded-lg"
-                    src={cart.image_url}
+                    src={cart.image}
                     alt=""
                   />
                 </div>
@@ -62,4 +50,4 @@ function DetailCollage({ filteredItems }: Props) {
   );
 }
 
-export { DetailCollage };
+export {  ImageCollage };

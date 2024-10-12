@@ -8,6 +8,6 @@ export default function findkeyword(params) {
   if (matches && matches.includes("amazon")) {
     return "https://www.citypng.com/public/uploads/preview/-115963234920bla0rqz8j.png"; // Image URL for Amazon
   } else {
-    return ""; // Return empty string for no image
+    return "https://www.citypng.com/public/uploads/preview/-115963234920bla0rqz8j.png"; // Return empty string for no image
   }
 }
