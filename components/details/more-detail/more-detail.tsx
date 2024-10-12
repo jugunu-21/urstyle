@@ -1,32 +1,34 @@
 "use client"
 import React, { useState } from "react";
-;
-import { useParams } from 'next/navigation';
-
 import Link from "next/link";
-
 import Sitelink from "@/components/reusable-components/site-link";
-
-import itemsData from "@/public/items.json"
 import Image from "next/image";
 import Star from '@/components/reusable-components/star-icon';
-// import Summary from '@/components/details/overview/summary/Summary';
 import Faq from "./faq"
 import Customereview from "./customer-review"
 import License from "./license"
 import { ICartItem, Icollection } from "../interface"
-export default function Moredetails({ finalItem }: { finalItem: ICartItem }) {
+interface interfaceProduct {
+    image: string;
+    id: string;
+    pid: number;
+    name: string;
+    code: string;
+    price: string;
+    link: string;
+    review: Record<string, unknown>[];
+    description: string;
+  }
+export default function Moredetails({ product }: { product : interfaceProduct}) {
     const [selectedContent, setSelectedContent] = useState("customers");
     interface Review {
         rating: number;
     }
-
     const calculateAverageRating = (reviews: Review[] | undefined): number => {
         if (!reviews || reviews.length === 0) return 0;
         const totalRating = reviews.reduce((acc, curr) => acc + curr.rating, 0);
         return totalRating / reviews.length;
     };
-
     return (
         <div className=" text-slate-900 p-4 lg:grid lg:grid-cols-2 lg:grid-rows-4  space-x-4 -space-y-1 bg-stone-200">
             <div className="lg:col-span-1  lg:row-span-2 ">
@@ -37,7 +39,7 @@ export default function Moredetails({ finalItem }: { finalItem: ICartItem }) {
                     <Image
                         width={100}
                         height={100}
-                        src={finalItem.image_url}
+                        src={product.image}
                         className=" object-cover object-center h-full w-full hover:border-4 hover:border-stone-300"
                         alt=""
                     />
@@ -46,26 +48,26 @@ export default function Moredetails({ finalItem }: { finalItem: ICartItem }) {
             <div className="lg:col-span-1  lg:row-span-4 pr-10 ">
                 <div className="mt-6">
                     <h3 className="sr-only">Reviews</h3>
-                    <h1 className="pt-4 pb-2 text-3xl font-bold">{finalItem.name}</h1>
+                    <h1 className="pt-4 pb-2 text-3xl font-bold">{product.name}</h1>
                     <div className="flex items-center">
                         <div className="flex items-center">
                             <div className="flex">
-                                <Star len={calculateAverageRating(finalItem.review)} />
+                                {/* <Star len={calculateAverageRating(Product.review)} /> */}
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div>
-                    <div className="font-bold my-2"> Total Price : {finalItem.price}</div>
+                    <div className="font-bold my-2"> Total Price : {product.price}</div>
                     <h1 className="pb-4  ">Your look should talk rather than you</h1>
                     <div className="space-y-6">
-                        <p className="text-base  ">{finalItem.description}</p>
+                        <p className="text-base  ">{product.description}</p>
                     </div>
                 </div>
 
                 <div className="h-8 w-28 my-2 ">
-                    <Sitelink setsitelink={finalItem.image_url} sitelink={finalItem.link} />
+                    <Sitelink setsitelink={product.image} sitelink={product.link} />
                 </div>
                 <div className="my-2 border-t border-gray-200  "></div>
 
@@ -159,9 +161,9 @@ export default function Moredetails({ finalItem }: { finalItem: ICartItem }) {
 
                 <div className="my-4 border-t border-gray-200 "></div>
                 <div>
-                    {selectedContent === "customers" && (
-                        <Customereview reviewData={finalItem.review} />
-                    )}
+                    {/* {selectedContent === "customers" && (
+                        <Customereview reviewData={Product.review} />
+                    )} */}
                 </div>
 
                 <div>{selectedContent === "FAQ" && <Faq />}</div>

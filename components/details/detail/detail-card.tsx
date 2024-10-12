@@ -21,8 +21,8 @@ interface CollectionData {
   collectionId: string;
   products: Product[];
 }
-function Summary({ products, groupIndex }: {
-  products:Product[], groupIndex:string
+function Summary({ products, collectionId }: {
+  products:Product[], collectionId:string
 }) {
   return (
     <>
@@ -64,7 +64,7 @@ function Summary({ products, groupIndex }: {
 
                   <div className=" flex my-2 items-center space-x-3 font-medium">
                     <Link
-                      href={`/more-details/${groupIndex}/${cartIndex}`}
+                      href={`/more-details/${collectionId}/${cart.id}`}
                       rel="noopener noreferrer"
                       className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
                     >

@@ -80,7 +80,7 @@ interface CollectionData {
   collectionId: string;
   products: Product[];
 }
-function Details({ filteredItems, groupIndex }: { filteredItems: CollectionData , groupIndex: string }) {
+function Details({ filteredItems, collectionId }: { filteredItems: CollectionData , collectionId: string }) {
   // const images = filteredItems.products.map(product => product.image);
 
   return (
@@ -119,7 +119,7 @@ function Details({ filteredItems, groupIndex }: { filteredItems: CollectionData 
         <ImageCollage products ={filteredItems.products} />
       </div>
       <div>
-        <Summary products={filteredItems.products} groupIndex={groupIndex} />
+        <Summary products={filteredItems.products} collectionId={collectionId} />
       </div>
     </div>
   );

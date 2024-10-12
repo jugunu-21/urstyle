@@ -1,7 +1,6 @@
 import { z } from "zod"
-import { createTRPCRouter, publicProcedure,protectedProcedure } from "@/server/api/trpc";
-import {ApiUpdateProduct, ApiUploadImage,ApiFetchProducts,ApiUploadProduct} from "@/components/admin/product/product-utils/function";
-
+import { createTRPCRouter, publicProcedure,protectedProcedure , publicAndProtectedProcedure} from "@/server/api/trpc";
+import {ApiUpdateProduct, ApiUploadImage,ApiFetchProducts,ApiUploadProduct,ApiFetchProductById} from "@/components/admin/product/product-utils/function";
 const zproductDataInterface = z.object({
   pid: z.number(),
   name: z.string(),
@@ -53,21 +52,24 @@ export const productRouter = createTRPCRouter({
       console.log("adddproduct")
       return response;
     }),
-  productfetch: protectedProcedure
-  .input(paginationSchema)
-    .output(z.object({ data:z.object({simplifiedProducts:z.array(simplifiedProducts),totalDocs:z.number()}) , message: z.string(), status: z.number() }))
-    .query(async ({ ctx, input}) => {
-      const token = ctx.token
-      const {page,limit}=input
-      const modifiedInput={
-        jwtToken:token,
-        page:page,
-        limit:limit
-      }
-      console.log(" modifiedInput", modifiedInput)
-      const response = await ApiFetchProducts(modifiedInput)
-      return response;
-    }),
+ 
+    productfetchById:publicAndProtectedProcedure
+    .input(z.object({
+      productId: z.string(),
+    }))
+      .output(z.object({ data:z.object({simplifiedProducts:simplifiedProducts}) , message: z.string(), status: z.number() }))
+      .query(async ({ ctx, input}) => {
+        const token = ctx.token
+        const {productId}=input
+        const modifiedInput={
+          jwtToken:token,
+          productId
+          
+        }
+        console.log(" modifiedInput", modifiedInput)
+        const response = await ApiFetchProductById(modifiedInput)
+        return response;
+      }),
   productUpdate: protectedProcedure.input( apiProductUpdateZodSchema)
   .output(z.object({data:z.string() , message:z.string() , status:z.number()}))
     .mutation(async ({ input,ctx }) => {

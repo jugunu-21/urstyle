@@ -11,8 +11,8 @@ function Dashboard() {
     : [params.index];
   const [param1] = productIdArray;
   console.log(param1,"groupIndex")
-  const groupIndex = String(param1);
-  console.log(groupIndex,"groupIndex")
+  const collectionId = String(param1);
+  console.log(collectionId,"collectionId")
 
   // if (
   //   groupIndex === undefined ||
@@ -24,7 +24,7 @@ function Dashboard() {
   // }
   // const filteredItems = itemsData[groupIndex];
 
-  const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetchById.useQuery({collectionId:groupIndex});
+  const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetchById.useQuery({collectionId:collectionId});
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
         return <div>Error:
@@ -32,7 +32,7 @@ function Dashboard() {
     }
     if (response?.data) {
       return (
-        <Details filteredItems={response.data} groupIndex={groupIndex} />
+        <Details filteredItems={response.data} collectionId={collectionId} />
       );
   }
 

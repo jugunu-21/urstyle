@@ -13,7 +13,7 @@ type ApiFetchProductsprops = {
   requestBody: ProductDataInterface
   id?: string
 }
-async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken: string, apiroute: string }) {
+async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
 
@@ -60,6 +60,15 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
 
 export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: string, page: number, limit: number }) {
   const apiroute = `/product/fetch?page=${page}&&limit=${limit}`
+  console.log("apiroute", apiroute)
+  const SubmitHandler = async () => {
+    const response = await PostApiCall({ jwtToken, apiroute })
+    return response.data;
+  };
+  return SubmitHandler();
+}
+export async function ApiFetchProductById({ jwtToken, productId }: { jwtToken?: string, productId : string }) {
+  const apiroute = `/product/fetch/${productId}`
   console.log("apiroute", apiroute)
   const SubmitHandler = async () => {
     const response = await PostApiCall({ jwtToken, apiroute })
