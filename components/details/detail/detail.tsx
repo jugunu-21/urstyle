@@ -63,24 +63,9 @@ import CalendarIcon from "@/components/reusable-components/calendar-icon";
 import Star from "@/components/reusable-components/star-icon";
 import { ImageCollage} from "./detail-image-collage";
 import Summary from "./detail-card";
-interface Product {
-  image: string;
-  id: string;
-  pid: number;
-  name: string;
-  code: string;
-  price: string;
-  link: string;
-  review: Record<string, unknown>[];
-  description: string;
-}
-interface CollectionData {
-  name: string;
-  description: string;
-  collectionId: string;
-  products: Product[];
-}
-function Details({ filteredItems, collectionId }: { filteredItems: CollectionData , collectionId: string }) {
+import { IProduct } from "../interface";
+import {ICollectionData } from "../interface";
+function Details({ filteredItems, collectionId }: { filteredItems: ICollectionData , collectionId: string }) {
   // const images = filteredItems.products.map(product => product.image);
 
   return (

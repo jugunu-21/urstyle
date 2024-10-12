@@ -1,19 +1,8 @@
 import React from 'react';
-
-interface ProductProps {
-  image: string;
-  id: string;
-  pid: number;
-  name: string;
-  code: string;
-  price: string;
-  link: string;
-  review: Record<string, unknown>[];
-  description: string;
-}
+import { IProduct } from '../interface';
 
 import Image from 'next/image';
-function ImageCollage({ products }: { products: ProductProps[] }) {
+function ImageCollage({ products }: { products: IProduct[] }) {
 
   return (
     <div className="h-[340px] w-[450px] m-auto px-2 items-center border-2 border-green-400">

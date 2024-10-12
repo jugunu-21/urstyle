@@ -56,16 +56,13 @@ function Dashboard() {
             {error.message}</div>;
     }
     if (response?.data ) {
-
       return (
-        // <div>{response.data.simplifiedProducts.map(product => product.name).join(', ')}</div>
         <Moredetails product={response.data.simplifiedProducts} />
       );
     }
 
   return (
-    // <Details filteredItems={response.data} groupIndex={groupIndex} />
-    <div>error</div>
+    <div>Cannot Find the products</div>
   );
 
 }

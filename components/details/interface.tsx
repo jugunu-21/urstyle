@@ -23,3 +23,21 @@ export interface ICartItem {
     cart: ICartItem[];
     overall_description: string;
   }
+
+  export interface ICollectionData {
+    name: string;
+    description: string;
+    collectionId: string;
+    products: IProduct[];
+  }
+   export interface IProduct {
+    image: string;
+    id: string;
+    pid: number;
+    name: string;
+    code: string;
+    price: string;
+    link: string;
+    review: Record<string, unknown>[];
+    description: string;
+  }

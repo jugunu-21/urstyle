@@ -3,26 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import Sitelink from '@/components/reusable-components/site-link';
-// import avgg from '@/components/reusable-components/average-review';
-interface Product {
-  image: string;
-  id: string;
-  pid: number;
-  name: string;
-  code: string;
-  price: string;
-  link: string;
-  review: Record<string, unknown>[];
-  description: string;
-}
-interface CollectionData {
-  name: string;
-  description: string;
-  collectionId: string;
-  products: Product[];
-}
+import { IProduct } from '../interface';
+
 function Summary({ products, collectionId }: {
-  products:Product[], collectionId:string
+  products:IProduct[], collectionId:string
 }) {
   return (
     <>
