@@ -22,9 +22,9 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
                 {response.data.map((productCollection, index) => (
                     <div key={productCollection.name} className="  mx-14 my-2 sm:m-0 ">
                         <div className="col-span-1  mx-1 bg-slate-300" >
-                            <Link className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950" href={`/details/${productCollection.collectionId}`}>
+                         
                                 <Card productColl={productCollection} refetch={refetch} />
-                            </Link>
+                 
                         </div>
                     </div>
                 )

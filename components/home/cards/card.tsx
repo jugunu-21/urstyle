@@ -5,6 +5,7 @@ import { useToken } from "@/components/authentications/auth-utils/helpers/zustan
 import { api } from "@/trpc/react"
 import { useEffect, useState } from "react";
 import { RefetchOptions } from "@tanstack/react-query"
+import Link from "next/link";
 export interface Product {
     code: string;
     name: string;
@@ -33,7 +34,7 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
     });
     return (
 
-        
+        <Link className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950" href={`/details/${ productColl.collectionId}`}>
         <div className="my-4 p-2  ">
             <div>{productColl.name}</div>
             <div className=" relative h-72 md:h-80    grid grid-cols-3">
@@ -46,6 +47,7 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
                 ))} */}
                 <div className="col-span-2" style={backgroundStyle(productColl.products[0].image)}>
                 </div>
+
                 <div className=" col-span-1 grid grid-rows-3 ">
                     <div className=" mx-2 mb-2">
                         <div className="row-span-1   " style={backgroundStyle(productColl.products[1].image)}>
@@ -61,17 +63,20 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
                     </div>
                 </div>{productColl.products.length > 4 && <div className="absolute bottom-10 right-4 "><FiPlus className=" h-8 w-8    p-1" /></div>}
                 {productColl.hasOwnProperty('likestatus') &&
-                    <button className="absolute bottom-0  right-1 " onClick={() => {
+                    <button className="absolute bottom-0  right-1 "  onClick={(e) => {
+                        e.preventDefault();
                         likemut.mutateAsync({ collectionId: productColl.collectionId })
                         refetch()
                     }}>
                         <GoHeartFill fill={productColl.likestatus ? '#ff8000' : ''} className="aspect-square rounded-full h-8 w-8  p-1  bg-white" />
                     </button>
                 }
+
+
             </div>
             <div className="flex h-24  border-green-500 my-2 space-x-4">
                 <div>{productColl.description}</div>
             </div>
         </div>
-    )
+        </Link>  )
 }
