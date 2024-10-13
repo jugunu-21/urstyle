@@ -5,8 +5,8 @@ import Image from 'next/image';
 function ImageCollage({ products }: { products: IProduct[] }) {
 
   return (
-    <div className="h-[340px] w-[450px] m-auto px-2 items-center border-2 border-green-400">
-      <div className="flex flex-col flex-wrap h-96 m-2 border-2 border-green-400">
+    <div className="h-[340px] w-[450px] m-auto px-2 items-center ">
+      <div className="flex flex-col flex-wrap h-96 m-2 ">
       {products.map((cart, cartIndex) => {
           const code = parseInt(cart.code);
           return (
@@ -15,7 +15,7 @@ function ImageCollage({ products }: { products: IProduct[] }) {
                 <Image
                   width={100}
                   height={100}
-                  className="max-h-[300px] h-full w-full  rounded-lg border-2 border-green-400"
+                  className="max-h-[300px] h-full w-full  rounded-lg "
                   src={cart.image}
                   alt="sorry cannot find the image"
                 />
