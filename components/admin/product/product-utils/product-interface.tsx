@@ -5,8 +5,8 @@ export type MyObjectType = {
 export const minimalProductArray: productsProp = [{
     id: '',
     link: '',
-    code: '',
-    pid: 0,
+    subCategory: '',
+    category: '',
     image: '',
     description: '',
     name: '',
@@ -15,9 +15,9 @@ export const minimalProductArray: productsProp = [{
 }];
 export type productsProp = [{
     id: string,
-    code: string,
+    subCategory: string,
     link: string,
-    pid: number,
+    category: string,
     image: string,
     description: string,
     name: string,
@@ -25,11 +25,11 @@ export type productsProp = [{
     review: Array<Record<string, unknown>>,
 }];
 export type productlistprop = {
-    code: string;
+    subCategory: string;
     name: string;
     link: string;
     description: string;
-    pid: number;
+    category: string;
     price: string;
     image: string;
     review: Record<string, unknown>[];
@@ -37,9 +37,9 @@ export type productlistprop = {
 }[];
 
 export interface ProductDataInterface {
-    pid: number;
+    category: string;
     name: string;
-    code: string;
+    subCategory: string;
     link: string;
     description: string;
     price: string;
@@ -47,9 +47,9 @@ export interface ProductDataInterface {
   }
   export interface ProductDataInterfacewithid {
     id:string
-      pid: number;
+    category: string;
       name: string;
-      code: string;
+      subCategory: string;
       link: string;
       description: string;
       price: string;

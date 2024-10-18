@@ -1,7 +1,7 @@
 export interface ICartItem {
     id: number;
     name: string;
-    code: string;
+    subCategory: string;
     link: string;
     image_url: string;
     price: string;
@@ -33,9 +33,9 @@ export interface ICartItem {
    export interface IProduct {
     image: string;
     id: string;
-    pid: number;
+   category : string;
     name: string;
-    code: string;
+    subCategory: string;
     price: string;
     link: string;
     review: Record<string, unknown>[];

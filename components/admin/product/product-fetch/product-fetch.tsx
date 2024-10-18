@@ -123,7 +123,9 @@ export default function Dashboard() {
                                                         <TableRow>
                                                             <TableHead className="hidden w-[100px] sm:table-cell">Image</TableHead>
                                                             <TableHead>Name</TableHead>
-                                                            <TableHead>Price</TableHead>
+                                                            <TableHead>Price(in rupee)
+
+                                                            </TableHead>
                                                             <TableHead className="hidden md:table-cell">
                                                                 Description
                                                             </TableHead>
@@ -158,7 +160,7 @@ export default function Dashboard() {
                                                                 </TableCell>
 
                                                                 <TableCell className="font-medium">
-                                                                    ${product.price}
+                                                                    {product.price}
                                                                 </TableCell>
                                                                 <TableCell className="hidden md:table-cell">
                                                                     {product.description}

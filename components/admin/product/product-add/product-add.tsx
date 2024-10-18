@@ -47,18 +47,18 @@ import ProductHeader from "../product-utils/layout/add-product-header"
 import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation"
 export default function Dashboard() {
-  const [pid, setPid] = useState<number | null>();
+  const [category, setCategory] = useState<string | null>("");
   const [name, setName] = useState<string | null>("");
-  const [code, setCode] = useState<string | null>("");
+  const [subCategory, setSubCategory] = useState<string | null>("");
   const [link, setLink] = useState<string | null>("");
   const [description, setDescription] = useState<string | null>("");
   const [price, setPrice] = useState<string | null>("");
   const [image, setImage] = useState<string | null>("");
   const router = useRouter()
   const requestBody = {
-    pid: pid ?? 0, // Default to 0 if pid is null or undefined
+    category: category ?? "", // Default to 0 if pid is null or undefined
     name: name ?? "", // Default to empty string if name is null or undefined
-    code: code ?? "", // Default to empty string if code is null or undefined
+    subCategory: subCategory ?? "", // Default to empty string if subCategory is null or undefined
     link: link ?? "", // Default to empty string if link is null or undefined
     description: description ?? "", // Default to empty string if description is null or undefined
     price: price ?? "0", // Ensure price is a string, defaulting to "0"
@@ -88,12 +88,12 @@ export default function Dashboard() {
             {/* <ProductTable price={price} setprice={setPrice}/> */}
 
             <ProductAffiandCateg
-              code={code || ""}
-              setCode={setCode}
+              subCategory={subCategory || ""}
+              setSubCategory={setSubCategory}
               link={link || ""}
               setLink={setLink}
-              pid={pid || 0}
-              setPid={setPid}
+              category={category || ''}
+              setCategory={setCategory}
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">

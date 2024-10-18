@@ -61,10 +61,10 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
       await utils.product.invalidate();
     },
   })
-  const [pid, setPid] = useState<number | null>(null);
+  const [category, setCategory] = useState<string | null>(null);
   const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
-  const [code, setCode] = useState<string | null>(null);0
+  const [subCategory, setSubCategory] = useState<string | null>(null);0
   const [link, setLink] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
@@ -74,9 +74,9 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
       {selectedProduct && setRawdata(selectedProduct) }
   },[selectedProduct])
   const requestBody = {
-    pid: pid ?? rawdata?.pid ?? 0, // Default to 0 if pid is null or undefined
+    category: category ?? rawdata?.category ?? '', // Default to 0 if pid is null or undefined
     name: name ?? rawdata?.name ?? '', // Default to empty string if name is null or undefined
-    code: code ?? rawdata?.code ?? '', // Default to empty string if code is null or undefined
+    subCategory: subCategory ?? rawdata?.subCategory ?? '', // Default to empty string if subCategory is null or undefined
     link: link ?? rawdata?.link ?? '', // Default to empty string if link is null or undefined
     description: description ?? rawdata?.description ?? '', // Default to empty string if description is null or undefined
     price: price ?? rawdata?.price ?? '', // Ensure price is a string, defaulting to "0"
@@ -91,12 +91,12 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />
             <ProductAffiandCateg
-              code={rawdata ? rawdata.code : null}
-              setCode={setCode}
+              subCategory={rawdata ? rawdata.subCategory : null}
+              setSubCategory={setSubCategory}
               link={rawdata ? rawdata.link : null}
               setLink={setLink}
-              pid={rawdata ? rawdata.pid : null}
-              setPid={setPid}
+              category={rawdata ? rawdata.category : null}
+              setCategory={setCategory}
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">

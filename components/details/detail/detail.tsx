@@ -65,7 +65,7 @@ import { ImageCollage} from "./detail-image-collage";
 import Summary from "./detail-card";
 import { IProduct } from "../interface";
 import {ICollectionData } from "../interface";
-function Details({ filteredItems, collectionId }: { filteredItems: ICollectionData , collectionId: string }) {
+function Details({ filteredItems}: { filteredItems: ICollectionData }) {
   // const images = filteredItems.products.map(product => product.image);
 
   return (
@@ -104,7 +104,7 @@ function Details({ filteredItems, collectionId }: { filteredItems: ICollectionDa
         <ImageCollage products ={filteredItems.products} />
       </div>
       <div>
-        <Summary products={filteredItems.products} collectionId={collectionId} />
+        <Summary products={filteredItems.products} collectionId={filteredItems.collectionId} />
       </div>
     </div>
   );

@@ -11,9 +11,9 @@ import { ICartItem, Icollection } from "../interface"
 interface interfaceProduct {
     image: string;
     id: string;
-    pid: number;
+    category: string;
     name: string;
-    code: string;
+    subCategory: string;
     price: string;
     link: string;
     review: Record<string, unknown>[];

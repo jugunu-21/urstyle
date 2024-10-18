@@ -22,7 +22,7 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
       name: requestBody?.collectionName,
       description: requestBody?.collectionDescription,
       Ids: requestBody?.collectionIds,
-      category: requestBody?.collectionCategory
+      collectionCategory: requestBody?.collectionCategory
     }
     const response = await axios({
       method: "POST",

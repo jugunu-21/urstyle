@@ -8,10 +8,10 @@ function ImageCollage({ products }: { products: IProduct[] }) {
     <div className="h-[340px] w-[450px] m-auto px-2 items-center ">
       <div className="flex flex-col flex-wrap h-96 m-2 ">
       {products.map((cart, cartIndex) => {
-          const code = parseInt(cart.code);
+          const subCategory = parseInt(cart.subCategory);
           return (
             <div key={cartIndex}>
-              {code === 13 && (
+              {subCategory === 13 && (
                 <Image
                   width={100}
                   height={100}
@@ -20,7 +20,7 @@ function ImageCollage({ products }: { products: IProduct[] }) {
                   alt="sorry cannot find the image"
                 />
               )}
-              {code === 11 && (
+              {subCategory === 11 && (
                 <div className="">
                   <Image
                     width={100}

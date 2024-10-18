@@ -10,20 +10,7 @@ function Dashboard() {
     ? params.index
     : [params.index];
   const [param1] = productIdArray;
-  console.log(param1,"groupIndex")
   const collectionId = String(param1);
-  console.log(collectionId,"collectionId")
-
-  // if (
-  //   groupIndex === undefined ||
-  //   isNaN(groupIndex) ||
-  //   groupIndex < 0 ||
-  //   groupIndex >= itemsData.length
-  // ) {
-  //   return <div>Item not found</div>;
-  // }
-  // const filteredItems = itemsData[groupIndex];
-
   const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetchById.useQuery({collectionId:collectionId});
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
@@ -32,7 +19,7 @@ function Dashboard() {
     }
     if (response?.data) {
       return (
-        <Details filteredItems={response.data} collectionId={collectionId} />
+        <Details filteredItems={response.data} />
       );
   }
 

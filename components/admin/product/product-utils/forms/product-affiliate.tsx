@@ -43,12 +43,12 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 type ProductAffiandCategProps = {
-  code: string|null;
-  setCode: (code: string) => void;
+  subCategory: string|null;
+  setSubCategory: (subCategory: string) => void;
   link: string|null;
   setLink: (link: string) => void;
-  pid: number|null;
-  setPid: (pid: number) => void;
+  category: string|null;
+  setCategory: (category: string) => void;
 };
 const item = ["heyy", "hlww"]
 const label = "LL"
@@ -64,8 +64,30 @@ const trigger: () => JSX.Element = () => {
   );
 };
 import { useState } from "react"
-export default function ProductAffiandCateg({ code, setCode, link, setLink, pid, setPid }: ProductAffiandCategProps) {
+export default function ProductAffiandCateg({ subCategory, setSubCategory, link, setLink, category, setCategory }: ProductAffiandCategProps) {
   const [prelink,setPrelink]=useState("")
+
+  const [categories, setCategories] = useState([
+    { id: 1, name: 'Clothing', subCategoryegories: ['T-Shirts', 'Sweatshirts', 'Hoodies'] },
+    { id: 2, name: 'Footwear', subCategoryegories: ['Shoes', 'Boots', 'Sandals'] },
+    { id: 3, name: 'Accessories', subCategoryegories: ['Hats', 'Scarves', 'Belts'] }
+  ]);
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(category|| '');
+  const [selectedsubCategoryegoryId, setSelectedsubCategoryegoryId] = useState(subCategory || '');
+
+  const handleCategoryChange = (value: string) => {
+    console.log("value",value)
+    setSelectedCategoryId(value);
+    setSelectedsubCategoryegoryId('');
+    setCategory(value);
+  ;
+  };
+
+  const handlesubCategoryegoryChange = (value: string ) => {
+    setSelectedsubCategoryegoryId(value);
+    setSubCategory(value);
+  };
 
 //   const urlInput = document.getElementById('urlInput');
 //   if (urlInput !== null) {
@@ -117,8 +139,8 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
             </Label>
             <Input
               className="w-full grid-cols-2"
-              type="text"
-              placeholder=".com"
+              type="url"
+              placeholder="Enter the url "
               defaultValue={link?link:''}
               // id="urlInput"
               onChange={(e) => setLink(e.target.value)}
@@ -126,63 +148,41 @@ export default function ProductAffiandCateg({ code, setCode, link, setLink, pid,
           </div>
         </div>
       </CardContent>
+      {/* <Card x-chunk="dashboard-07-chunk-2"> */}
       <CardHeader>
-        <CardTitle>Product Category</CardTitle>
+        <CardTitle>Product affiliate details </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="grid gap-3">
-            <Label htmlFor="pid">Category</Label>
-
-            <Select onValueChange={(value) => {
-              const numericValue = Number(value);
-              setPid(numericValue);
-            }}>
-
-              <SelectTrigger
-                id="pid"
-                aria-label="Select category"
-                defaultValue={pid?pid:0}
-              >
+            <Label htmlFor="category">Category</Label>
+            <Select onValueChange={handleCategoryChange}>
+              <SelectTrigger id="category" aria-label="Select category">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
-              <SelectContent  >
-                <SelectItem value="1">Clothing</SelectItem>
-                <SelectItem value="2" >
-                  Footwear
-                </SelectItem>
-                <SelectItem value="3"  >
-                  Accessories
-                </SelectItem>
+              <SelectContent>
+                {categories.map(category => (
+                  <SelectItem value={`${category.name}`} key={category.id}>{category.name}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
           <div className="grid gap-3">
-            <Label htmlFor="code">
-              Subcategory
-            </Label>
-            <Select onValueChange={(value) => {
-              setCode(value)
-              console.log("code ", code)
-            }} >
-              <SelectTrigger
-                id="code"
-                aria-label="Select subcategory"
-                defaultValue={code?code:''}
-              >
-                <SelectValue placeholder="Select subcategory" />
+            <Label htmlFor="subCategory">subCategoryegory</Label>
+            <Select onValueChange={handlesubCategoryegoryChange}>
+              <SelectTrigger id="subCategory" aria-label="Select subCategoryegory">
+                <SelectValue placeholder="Select subCategoryegory" />
               </SelectTrigger>
-              <SelectContent
-
-              >
-                <SelectItem value="11" >T-Shirts</SelectItem>
-                <SelectItem value="13" >Sweatshirts</SelectItem>
-                <SelectItem value="12"  >Hoodies</SelectItem>
+              <SelectContent>
+                {selectedCategoryId.length!==0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map(subCategoryegory => (
+                  <SelectItem value={subCategoryegory} key={subCategoryegory}>{subCategoryegory}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
         </div>
       </CardContent>
+    {/* </Card> */}
     </Card>
   )
 }

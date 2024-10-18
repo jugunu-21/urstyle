@@ -13,9 +13,9 @@ const apiProductsAddZodSchema = z.object({
 const zsimplifiedProducts = z.object({
     image: z.string(),
     id: z.string(),
-    pid: z.number(),
+    category: z.string(),
     name: z.string(),
-    code: z.string(),
+    subCategory: z.string(),
     price: z.string(),
     link: z.string(),
     review: z.array(z.record(z.unknown())),
@@ -51,8 +51,9 @@ export const collectionRouter = createTRPCRouter({
                 jwtToken: token,
                 ...input
             }
+            console.log("modifiedInput", modifiedInput)
             const response = await ApiFetchCollection(modifiedInput)
-            // console.log("collectionfetch", response)
+            console.log("collectionfetch", response)
             return response;
         }),
     collectionFetchById: publicAndProtectedProcedure

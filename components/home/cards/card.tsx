@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { RefetchOptions } from "@tanstack/react-query"
 import Link from "next/link";
 export interface Product {
-    code: string;
+    subCategory: string;
     name: string;
     link: string;
     description: string;
-    pid: number;
+    category: string;
     price: string;
     image: string;
     id: string;
