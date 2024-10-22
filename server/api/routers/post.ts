@@ -1,8 +1,6 @@
 import { z } from "zod";
-
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "@/server/api/trpc";
 import { ApiSignin, ApiSignup, ApiUserDetail } from "@/components/authentications/auth-utils/function";
-
 let post = {
   id: 1,
   name: "Hello World",
@@ -18,14 +16,11 @@ export const authRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
-
   create: publicProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ input }) => {
-      // simulate a slow db call
       console.log("cr")
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
       post = { id: post.id + 1, name: input.name };
       return post;
     }),
@@ -37,7 +32,6 @@ export const authRouter = createTRPCRouter({
     .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
     .mutation(async ({ input }) => {
       const response = await ApiSignin(input)
-      // console.log("response",response)
       return response
     }),
   sIgnup: publicProcedure
@@ -49,7 +43,6 @@ export const authRouter = createTRPCRouter({
       return response
     }),
   userDetail: protectedProcedure
-
     .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
     .mutation(async ({ ctx }) => {
       const response = await ApiUserDetail(ctx.token)

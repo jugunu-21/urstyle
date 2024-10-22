@@ -86,7 +86,7 @@ export default function Dashboard() {
         )
     }
     const label = "Action"
-    const item = ["Create", "Update"]
+    const item = [ "Update"]
     const itemsLength = item.length;
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {

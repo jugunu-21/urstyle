@@ -74,7 +74,7 @@ export default function Navbardrop() {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           {jwtToken !== null && <>
-            <DropdownMenuItem onClick={() =>{ setLiked(true); setSheetOpenLikedCollection(true)} }>Liked Products</DropdownMenuItem>
+            <DropdownMenuItem onClick={() =>{ setLiked(true); setSheetOpenLikedCollection(true)} }>Wishlist</DropdownMenuItem>
             <DropdownMenuItem >   <Link href="/admin/product">Admin Dashboard</Link></DropdownMenuItem>
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>

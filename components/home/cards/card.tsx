@@ -33,7 +33,6 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
         height: '100%'
     });
     return (
-
         <Link className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950" href={`/details/${ productColl.collectionId}`}>
         <div className="my-4 p-2  ">
             <div>{productColl.name}</div>
@@ -47,7 +46,6 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
                 ))} */}
                 <div className="col-span-2" style={backgroundStyle(productColl.products[0].image)}>
                 </div>
-
                 <div className=" col-span-1 grid grid-rows-3 ">
                     <div className=" mx-2 mb-2">
                         <div className="row-span-1   " style={backgroundStyle(productColl.products[1].image)}>

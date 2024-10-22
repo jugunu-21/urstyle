@@ -64,7 +64,7 @@ const NavLink = ({ text, link }: { text: string, link: string }) => {
   return (
     <a
       href={link}
-      rel="nofollow"
+      // rel="nofollow"
       className="hidden lg:block h-[30px] overflow-hidden font-medium"
     >
       <motion.div whileHover={{ y: -30 }}>

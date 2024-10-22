@@ -49,7 +49,7 @@ function Summary({ products, collectionId }: {
                   <div className=" flex my-2 items-center space-x-3 font-medium">
                     <Link
                       href={`/more-details/${collectionId}/${cart.id}`}
-                      rel="noopener noreferrer"
+                      // rel="noopener noreferrer"
                       className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
                     >
                       Details
