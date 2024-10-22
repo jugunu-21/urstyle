@@ -16,7 +16,7 @@ function ImageCollage({ products }: { products: IProduct[] }) {
         <div className=" h-80 grid grid-cols-3 ">
           <div className="col-span-2 rounded-lg my-2 " style={backgroundStyle(products[0].image)}>
           </div>
-          <div className=" col-span-1 grid grid-rows-3 ">
+          <div className=" col-span-1 grid grid-rows-3  rounded-lg">
             {products[1] ? <div className=" mx-2 mt-2">
               <div className="row-span-1 rounded-lg " style={backgroundStyle(products[1]?.image)}>
               </div>
@@ -30,7 +30,7 @@ function ImageCollage({ products }: { products: IProduct[] }) {
               <div className="row-span-1 rounded-lg  " style={backgroundStyle(products[2]?.image)}>
               </div>
             </div> : <>
-              <div className="bg-red-100  mx-2 mt-2 ">
+              <div className="bg-red-100 rounded-lg  mx-2 mt-2 ">
                 <div className="row-span-1 rounded-lg  "></div>
 
               </div>
@@ -40,8 +40,8 @@ function ImageCollage({ products }: { products: IProduct[] }) {
               <div className="row-span-1  rounded-lg " style={backgroundStyle(products[3]?.image)}>
               </div>
             </div> : <>
-              <div className="bg-red-100   mx-2 mt-2 ">
-                <div className="row-span-1 rounded-lg  h-full w-full  "></div>
+              <div className="mx-2 mt-2 ">
+                <div className="bg-red-100    row-span-1 rounded-lg  h-full w-full  "></div>
 
               </div>
 

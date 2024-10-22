@@ -71,8 +71,8 @@ function Details({ filteredItems}: { filteredItems: ICollectionData }) {
   return (
     <div className=" m-1">
    
-      <div className="sm:grid grid-cols-3 rounded-lg  border-2  border-green-600   m-2 ">
-        <div className="m-4   border-2  border-green-600 ">
+      <div className="sm:grid grid-cols-3 rounded-lg    m-2 ">
+        <div className="m-4    ">
           <div className="m-1 font-bold text-xl">
             {filteredItems && filteredItems.description && (
               <div className="m-1 font-bold text-xl">{filteredItems.description}</div>
@@ -96,7 +96,7 @@ function Details({ filteredItems}: { filteredItems: ICollectionData }) {
           </div>
 
         </div>
-        <div className=" m-4 col-span-2 border-2  border-green-600   ">  
+        <div className=" m-4 col-span-2 items-end justify-end  ">  
                  <ImageCollage products ={filteredItems.products} />
                  </div>
 

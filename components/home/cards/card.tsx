@@ -37,7 +37,8 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
             <div className="my-4 p-2  ">
                 <div>{productColl.name}</div>
                 <div className=" relative h-72 md:h-80 grid grid-cols-3">
-                    <div className="col-span-2" style={backgroundStyle(productColl.products[0].image)}>
+                    <div className="mt-2 col-span-2">  <div className="" style={backgroundStyle(productColl.products[0].image)}></div>
+                  
                     </div>
                     <div className=" col-span-1 grid grid-rows-3 ">
                         {productColl.products[1] ? <div className=" mx-2 mt-2">
