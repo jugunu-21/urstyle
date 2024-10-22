@@ -71,7 +71,7 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
 
                         </>}
 
-                    </div>{productColl.products.length > 4 && <div className="absolute bottom-10 right-4 "><FiPlus className=" h-8 w-8    p-1" /></div>}
+                    </div>{productColl.products.length > 4 && <div className="absolute bottom-10 right-4 text-gray-100 flex  "><FiPlus className=" h-6 w-6  " /> <span className="font-mono text-base">{productColl.products.length-4}</span></div>}
                     
                     {productColl.hasOwnProperty('likestatus') &&
                         <button className="absolute bottom-0  right-1 " onClick={(e) => {
