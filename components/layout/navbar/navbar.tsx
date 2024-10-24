@@ -79,7 +79,7 @@ const NavLink = ({ text, link }: { text: string, link: string }) => {
 const NavRight = () => {
   const router = useRouter()
   return (
-    <div className="px-4 py-2 items-center gap-4 ">
+    <div className="items-center gap-4 ">
       <Navbardrop />
     </div>
   );
