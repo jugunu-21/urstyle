@@ -1,5 +1,5 @@
 "use client"
-import { ThemeProvider } from 'next-themes';
+
 import { Inter } from "next/font/google";
 import {
   Tooltip,
@@ -73,45 +73,45 @@ export default function RootLayout({
   return (
     <>
       {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem> */}
-        <div className='flex'>
-          <div className=" flex-col bg-muted/40">
-            <SideToolTip />
-          </div>
-          <div className='w-full'>
-            <div className=" bg-background  w-full flex-grow  sticky top-0 flex  sm:gap-4 sm:py-2 sm:pl-14 ">
-              <header className="flex-grow  z-50 flex h-14 items-center gap-4 border-b bg-primary-foreground  sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-                <ToggleSideToolTip />
-                <BreadCrumbsList segments={transformedLabels.flat()} />
-                <div className="relative ml-auto flex-1 md:grow-0">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search..."
-                    className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-                  />
-                </div>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Link
-                        href="/"
-                        className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                      >
-                        <Home className="h-5 w-5" />
-                        <span className="sr-only">Main Page</span>
-                      </Link>
-                     
-                    </TooltipTrigger>
-
-                    <TooltipContent side="bottom">Main Page</TooltipContent>
-                  </Tooltip></TooltipProvider>
-                <DropDownMenu item={item} label={label} trigger={trigger} />
-              </header>
-            </div>
-
-            <div className={inter.className}>{children}</div>
-          </div>
+      <div className='flex'>
+        <div className=" flex-col bg-muted/40">
+          <SideToolTip />
         </div>
+        <div className='w-full'>
+          <div className=" bg-background  w-full flex-grow  sticky top-0 flex  sm:gap-4 sm:py-2 sm:pl-14 ">
+            <header className="flex-grow  z-50 flex h-14 items-center gap-4 border-b bg-primary-foreground  sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+              <ToggleSideToolTip />
+              <BreadCrumbsList segments={transformedLabels.flat()} />
+              <div className="relative ml-auto flex-1 md:grow-0">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search..."
+                  className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+                />
+              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href="/"
+                      className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                    >
+                      <Home className="h-5 w-5" />
+                      <span className="sr-only">Main Page</span>
+                    </Link>
+
+                  </TooltipTrigger>
+
+                  <TooltipContent side="bottom">Main Page</TooltipContent>
+                </Tooltip></TooltipProvider>
+              <DropDownMenu item={item} label={label} trigger={trigger} />
+            </header>
+          </div>
+
+          <div className={inter.className}>{children}</div>
+        </div>
+      </div>
       {/* </ThemeProvider> */}
     </>
   );

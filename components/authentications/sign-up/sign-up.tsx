@@ -48,13 +48,13 @@ export default function Signup() {
   const signUp = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
-      
+
       console.log("send otp");
       const formattedPhoneNumber = `+${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
-      console.log("auth",process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN)
+      console.log("auth", process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN)
       console.log("formattedPhoneNumber", formattedPhoneNumber);
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
       console.log("confirmation", confirmation);
@@ -135,11 +135,11 @@ export default function Signup() {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold mb-1 items-center justify-center">Sign-Up</h1>
 
-           
+
           </div>
           <p className="text-balance text-muted-foreground my-2 left-0">
-              Enter your phone number below to signup
-            </p>
+            Enter your phone number below to signup
+          </p>
           <div className="grid gap-4">
             <div className="grid gap-2 w-3/4">
               <Label htmlFor="email">Phone Number </Label>

@@ -4,7 +4,7 @@ declare global {
     recaptchaVerifier: RecaptchaVerifier;
   }
 }
-import React, { useState, useEffect, createContext, useRef  } from "react";
+import React, { useState, useEffect, createContext, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
@@ -66,11 +66,11 @@ export default function Signin() {
       };
       const result = await signIn.mutateAsync(requestBody);
       const response = result.data;
-      
+
       setJwtToken(response);
       const formattedPhoneNumber = `+${phoneNumber.replace(/\D/g, "")}`;
       const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-      
+
       setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
@@ -101,9 +101,9 @@ export default function Signin() {
       setOtp("");
       toast.success("you are successfully signin");
       console.log("jwtToken", jwtToken);
-      Cookies.set('jwtToken', jwtToken!, { expires:2, path: '/', secure: true });
+      Cookies.set('jwtToken', jwtToken!, { expires: 2, path: '/', secure: true });
       changeToken(jwtToken!);
-      localStorage.removeItem('theme');
+      // localStorage.removeItem('theme');
       router.push("/");
     } catch (error) {
       if (isFirebaseAuthError(error)) {
@@ -123,7 +123,7 @@ export default function Signin() {
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-    if (phoneNumber=="") {
+    if (phoneNumber == "") {
       event.preventDefault();
       let result: string;
       result = "Please enter correct phone number phone number ";
@@ -149,12 +149,12 @@ export default function Signin() {
               <div className="w-full">
 
                 <PhoneInput
-                
+
                   country={'in'}
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   placeholder="Enter 10-digit phone number"
-               containerClass="w-full"
+                  containerClass="w-full"
                   inputClass="text-black "
                   dropdownClass="text-black"
                 />
@@ -214,10 +214,10 @@ export default function Signin() {
             )}
           </div>
           <div className="mt-4 text-center text-sm">
-          No account?
+            No account?
             <Link href="/sign-up" className="underline">
-           Create one
-            
+              Create one
+
             </Link>
           </div>
         </div>
