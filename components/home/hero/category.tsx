@@ -18,14 +18,14 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
       ></div>
       <div className="flex gap-1 ">
         {fashionCategory.map((fashion, index) => (
-          <Button key={index} className="h-32 w-24 flex flex-col items-center focus:bg-slate-200 rounded-2xl bg-white hover:bg-slate-100">
-            <div className="w-20 h-20 ">
+          <Button key={index} className="h-28 w-20 flex flex-col items-center focus:bg-slate-200 rounded-2xl bg-white hover:bg-slate-100">
+            <div className="w-16 h-16 ">
               <Image
                 src={fashion.image}
                 alt="Image"
                 width={84}
                 height={84}
-                className="w-20 h-20 rounded-full object-cover dark:brightness-[0.2] dark:grayscale"
+                className=" w-16 h-16 rounded-full object-cover dark:brightness-[0.2] dark:grayscale"
               />
             </div>
 
