@@ -30,7 +30,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="font-serif text-cyan-800 text-xl font-extrabold"
+      className="font-serif text-cyan-800 text-xl font-extrabold hover:bg-gray-100 focus:bg-gray-200 p-2 rounded-lg"
     >
       URSTYLE
     </Link>
