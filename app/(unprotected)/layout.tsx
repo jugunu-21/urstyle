@@ -9,11 +9,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <>
+        < div className="bg-slate-100">
             <FlipNavWrapper />
             <div className={inter.className}>{children}</div>
             <Footer />
             <Toaster />
-        </>
+        </div>
     );
 }

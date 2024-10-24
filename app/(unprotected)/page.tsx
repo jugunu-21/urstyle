@@ -13,7 +13,7 @@ export default function Page() {
       <div className="justify-center  items-center  my-8 px-32  ">
         <Category setCategoryQuery={setCategoryQuery} />
       </div>
-      <HeroCarousel />
+      {/* <HeroCarousel /> */}
       <Collection categoryQuery={categoryQuery} />
     </main>
   );

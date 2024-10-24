@@ -9,7 +9,7 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
       <div className="absolute top-0 bottom-0 left-0 w-6 z-10 bg-gradient-to-r from-white to-transparent" />
       <div className="  flex h-32 overflow-x-auto w-full gap-1 ">
 
-        <Button onClick={() => setCategoryQuery('')} className="h-32 rounded-2xl aspect-square flex flex-col justify-center items-center bg-white hover:bg-white">
+        <Button variant="ghost" onClick={() => setCategoryQuery('')} className="h-32 rounded-2xl aspect-square flex flex-col justify-center items-center ">
           <div className="aspect-square rounded-full border-2 border-y-red-300 overflow-hidden">
             <img src="/f1.png" alt="Background Image" className="w-full h-full object-cover" />
           </div>
@@ -21,7 +21,7 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
         ></div>
         <div className="flex gap-1 ">
           {fashionCategory.map((fashion, index) => (
-            <Button key={index} className="h-28 w-20 flex flex-col items-center focus:bg-slate-200 rounded-2xl bg-white hover:bg-slate-100">
+            <Button variant="ghost" key={index} className="h-28 w-20 flex flex-col items-center focus:bg-slate-200 hover:border-2 hover:border-cyan-800 rounded-2xl  hover:bg-slate-100">
               <div className="w-16 h-16 ">
                 <Image
                   src={fashion.image}

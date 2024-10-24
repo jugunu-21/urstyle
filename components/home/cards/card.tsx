@@ -1,11 +1,16 @@
 
 import { GoHeartFill } from "react-icons/go";
+import { IoHeartOutline } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 import { api } from "@/trpc/react"
 import { useEffect, useState } from "react";
 import { RefetchOptions } from "@tanstack/react-query"
 import Link from "next/link";
+import { FaAmazon, } from "react-icons/fa";
+import { CiShop } from "react-icons/ci";
+import { SiFlipkart } from "react-icons/si";
+import { Button } from "@/components/ui/button";
 export interface Product {
     subCategory: string;
     name: string;
@@ -33,12 +38,12 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
         height: '100%'
     });
     return (
-        <Link className=" bg-stone-200 rounded-lg hover:bg-stone-300 text-lg font-semibold text-neutral-950" href={`/details/${productColl.collectionId}`}>
-            <div className="my-4 p-2  ">
+        <Link className=" rounded-lg  text-lg font-semibold text-neutral-950" href={`/details/${productColl.collectionId}`}>
+            <div className="my-4 p-2 bg-white  ">
                 <div>{productColl.name}</div>
                 <div className=" relative h-72 md:h-80 grid grid-cols-3">
                     <div className="mt-2 col-span-2">  <div className="" style={backgroundStyle(productColl.products[0].image)}></div>
-                  
+
                     </div>
                     <div className=" col-span-1 grid grid-rows-3 ">
                         {productColl.products[1] ? <div className=" mx-2 mt-2">
@@ -71,22 +76,38 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
 
                         </>}
 
-                    </div>{productColl.products.length > 4 && <div className="absolute bottom-10 right-4 text-gray-100 flex  "><FiPlus className=" h-6 w-6  " /> <span className="font-mono text-base">{productColl.products.length-4}</span></div>}
-                    
+                    </div>
+                    {productColl.products.length > 4 && <div className="absolute bottom-10 right-4 text-gray-100 flex bg-opacity-95"><FiPlus className=" font-mono text-2xl" /> <span className="font-mono text-2xl">{productColl.products.length - 4}</span></div>}
+
                     {productColl.hasOwnProperty('likestatus') &&
                         <button className="absolute bottom-0  right-1 " onClick={(e) => {
                             e.preventDefault();
                             likemut.mutateAsync({ collectionId: productColl.collectionId })
                             refetch()
                         }}>
-                            <GoHeartFill fill={productColl.likestatus ? '#ff8000' : ''} className="aspect-square rounded-full h-8 w-8  p-1  bg-white" />
+                            {productColl.likestatus ? <GoHeartFill fill='#ff8000' className=" aspect-square rounded-full h-8 w-8  p-1  bg-white" /> :
+                                <IoHeartOutline className=" aspect-square rounded-full h-8 w-8  p-1  bg-white" />
+                            }
                         </button>
                     }
+                </div>
+                <span className="inline-flex sm:ml-auto sm:mt-0  justify-center sm:justify-start p-2">
+                    <Link href="#" className="text-xl">
+                        <FaAmazon className="text-cyan-800 hover:text-rose-600" />
+                    </Link>
+                    <Link href="#" className="ml-3  text-xl ">
+                        <SiFlipkart className="text-cyan-800 hover:text-rose-600" />
+                    </Link>
+                    <Link href="#" className="ml-3   text-xl ">
+                        <CiShop className="text-cyan-800 hover:text-rose-600" />
+                    </Link>
+                </span>
 
-                </div>
-                <div className="flex h-24  border-green-500 my-2 space-x-4">
-                    <div>{productColl.description}</div>
-                </div>
+                <Button variant="ghost" className="flex flex-row  m-0 p-0   " >
+                    <Link href={`/details/${productColl.collectionId}`} className=" text-black  hover:text-rose-600 " > see all details</Link>
+                </Button>
+
+
             </div>
         </Link>)
 }
