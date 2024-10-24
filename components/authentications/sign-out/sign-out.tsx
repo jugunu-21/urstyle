@@ -2,20 +2,17 @@ import React, { useEffect, useState } from "react";
 import { app } from "@/app/config";
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
-import { useRouter } from "next/navigation"; // Corrected import path
+import { useRouter } from "next/navigation"; 
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
-import { useParams } from "next/navigation"; // Corrected import path
+import { useParams } from "next/navigation"; 
 import getJwtTokenFromCookies from "../auth-utils/helpers/get-cookie";
 interface UserInfo {
-  phone_number?: string; // Assuming phone_number is a string and optional
+  phone_number?: string; 
 }
-
-
 export const useLogout = () => {
   const router = useRouter();
-
   const logout = () => {
     const auth = getAuth(app);
     signOut(auth).then(() => {
@@ -26,7 +23,6 @@ export const useLogout = () => {
       console.error("Error signing out:", error);
     });
   };
-
   return logout;
 };
 export default function Signout() {
@@ -47,10 +43,8 @@ export default function Signout() {
     return null;
   };
   useEffect(() => {
-
     fetchData();
   }, [fetchData()]);
-
   const fetchUserDetails = async (jwtToken: string) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/me`, {
@@ -60,11 +54,9 @@ export default function Signout() {
           Authorization: `Bearer ${jwtToken}`,
         },
       });
-
       if (!response.ok) {
         throw new Error("Failed to fetch user details");
       }
-
       const data = await response.json();
       return data.data;
     } catch (error) {

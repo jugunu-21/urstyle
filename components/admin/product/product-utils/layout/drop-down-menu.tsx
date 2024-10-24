@@ -1,6 +1,4 @@
 
-import { Button } from "@/components/ui/button"
-import {useLogout} from "@/components/authentications/sign-out/sign-out";
 import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
@@ -15,15 +13,35 @@ type dropdownmenuprops = {
   trigger: () => JSX.Element,
    label: string, 
 }
+import toast from "react-hot-toast";
+import { signOut } from "firebase/auth";
+import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
+import { app } from "@/app/config"
+import { getAuth } from "firebase/auth";
+import Cookies from 'js-cookie';
+
 export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
   const itemsLength = item.length;
   const router=useRouter()
-  const logout = useLogout();
+  const jwtToken = useToken().token
+  const auth = getAuth(app)
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        Cookies.remove('jwtToken', { path: '/' });
+        console.log("Signed out successfully and session cookie cleared");
+        router.push("/")
+          console.log("jwttoken",jwtToken)
+        toast.success("successfully sign Out");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  };
   return (
 <>
     <DropdownMenu>
       <DropdownMenuTrigger >
-      
           {trigger()}  
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -36,7 +54,7 @@ export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
               router.push("/")
             }
             if(item==="Logout"){
-              logout();
+              handleLogout();
             }
           }}>{item}</DropdownMenuItem>
           {i !== itemsLength - 1 && <DropdownMenuSeparator />}

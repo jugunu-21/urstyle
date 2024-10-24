@@ -4,10 +4,7 @@ import Cookies from 'js-cookie';
 import { app } from "@/app/config"
 import { signOut } from "firebase/auth";
 import { getAuth } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { api } from "@/trpc/react"
 import Link from "next/link";
-import { ApiUserDetail } from "@/components/authentications/auth-utils/function"
 import deleteUser from "@/components/authentications/delete-user/delete-user";
 import {
   DropdownMenu,
@@ -21,28 +18,16 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 interface UserInfo {
-  phone_number?: string; // Assuming phone_number is a string and optional
+  phone_number?: string; 
 }
 import { Collection } from "@/components/home/hero/card-collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-
 export default function Navbardrop() {
-  // const userDetail = api.auth.userDetail.useMutation()
   const jwtToken = useToken().token
-  // const [userInfo, setUserInfo] = useState<string | null>(null);
   const [liked, setLiked] = useState<boolean>(false);
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-  // const fetchData = async () => {
-  //   const userDetails = await userDetail.mutateAsync();
-  //   const updatePhoneNumber = userDetails.data
-  //   console.log("updatePhoneNumber", updatePhoneNumber)
-  //   setUserInfo(updatePhoneNumber);
-  // };
   const auth = getAuth(app)
-  const handleLogout = () => {
+ const handleLogout = () => {
     signOut(auth)
       .then(() => {
         Cookies.remove('jwtToken', { path: '/' });
@@ -80,7 +65,6 @@ export default function Navbardrop() {
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>
           </>}
           {jwtToken === null && <> <DropdownMenuItem>
-
             <Link href="/sign-up">Signup</Link>
           </DropdownMenuItem>
             <DropdownMenuItem>   <Link href="/sign-in">Login</Link></DropdownMenuItem></>
@@ -91,7 +75,6 @@ export default function Navbardrop() {
       <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
         <SheetContent className="h-full overflow-y-auto" >
           <div className=" overflow-y-auto w-full  h-full">
-            {/* <ProductCollection setSelectProduct={setSelectProduct}  setSheetOpen={setSheetOpenLikedCollection}  /> */}
             <Collection likedQuery="user"  />
           </div>
           <SheetFooter>
