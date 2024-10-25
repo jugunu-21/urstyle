@@ -31,7 +31,7 @@ const CollectionNotFound = () => {
 };
 export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery });
-    if (isLoading) { return <div>< App /> </div>; }
+    if (isLoading) { return <div className="h-64">< App /> </div>; }
     if (error) {
         return <div>Error:
             {error.message}
