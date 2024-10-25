@@ -6,9 +6,14 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FiMenu, FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
+import { FaRegHeart } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import { Collection } from "@/components/home/hero/card-collection";
+import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 export const FlipNavWrapper = () => {
   return (
-    <div className="bg-gray-50 sticky top-0 h-16 z-50 pb-4  ">
+    <div className="bg-gray-50 sticky top-0 h-20 z-50   ">
       <FlipNav />
     </div>
   );
@@ -77,9 +82,29 @@ const NavLink = ({ text, link }: { text: string, link: string }) => {
   );
 };
 const NavRight = () => {
+  const jwtToken = useToken().token
   const router = useRouter()
+  const [liked, setLiked] = useState<boolean>(false);
+  const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
-    <div className="items-center gap-4 ">
+    <div className="gap-4  flex ">
+      {jwtToken !== null && <>   <Button onClick={() => { setLiked(true); setSheetOpenLikedCollection(true) }} variant={'ghost'} className=" flex flex-col h-14  data-[state=open]:bg-slate-200  ">
+        <FaRegHeart />  <div className="text-xs ">Wishlist</div></Button></>}
+      {liked &&
+        <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
+          <SheetContent className="h-full overflow-y-auto" >
+            <div className=" overflow-y-auto w-full  h-full">
+              <Collection likedQuery="user" />
+            </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button type="submit" onClick={() => setSheetOpenLikedCollection(false)}>close</Button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>}
+
+
       <Navbardrop />
     </div>
   );

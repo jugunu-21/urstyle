@@ -47,7 +47,7 @@ export default function Navbardrop() {
   return (
     <div className="">
       <DropdownMenu >
-        <DropdownMenuTrigger className="flex flex-col gap-1 items-center  mt-2 mr-4    p-2 rounded-full hover:bg-slate-100  data-[state=open]:bg-slate-200 "  >
+        <DropdownMenuTrigger className=" p-3   rounded-lg     gap-1 items-center   h-14 hover:bg-slate-100  data-[state=open]:bg-slate-200 "  >
 
           <FaUser className=" " />
           <div className="text-xs">Profile</div>

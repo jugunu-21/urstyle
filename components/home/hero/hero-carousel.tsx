@@ -42,7 +42,7 @@ export function HeroCarousel() {
           <button
             key={index}
             type="button"
-            className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-orange-700" : "bg-gray-300"
+            className={`w-2 h-2 rounded-full ${index === currentSlide ? "bg-cyan-700" : "bg-gray-300"
               }`}
             onClick={() => setCurrentSlide(index)}
           />

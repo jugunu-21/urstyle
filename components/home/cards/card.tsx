@@ -46,41 +46,44 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
 
                     </div>
                     <div className=" col-span-1 grid grid-rows-3 ">
-                        {productColl.products[1] ? <div className=" mx-2 mt-2">
-                            <div className="row-span-1  " style={backgroundStyle(productColl.products[1]?.image)}>
-                            </div>
-                        </div> : <>
-                            <div className="bg-red-100 h-full  mx-2 mt-2 ">
-                                <div className="row-span-1  "></div>
+                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
+                            <div
+                                className="row-span-1"
+                                style={productColl.products[1] ? backgroundStyle(productColl.products[1]?.image) : {}}
+                            ></div>
 
-                            </div>
-                        </>}
-                        {productColl.products[2] ? <div className=" mx-2 mt-2">
-                            <div className="row-span-1  " style={backgroundStyle(productColl.products[2]?.image)}>
-                            </div>
-                        </div> : <>
-                            <div className="bg-red-100  mx-2 mt-2 ">
-                                <div className="row-span-1  "></div>
+                        </div>
 
-                            </div>
+                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
+                            <div
+                                className="row-span-1"
+                                style={productColl.products[2] ? backgroundStyle(productColl.products[2]?.image) : {}}
+                            ></div>
 
-                        </>}
-                        {productColl.products[3] ? <div className=" mx-2 mt-2">
-                            <div className="row-span-1  " style={backgroundStyle(productColl.products[3]?.image)}>
-                            </div>
-                        </div> : <>
-                            <div className="bg-red-100   mx-2 mt-2 ">
-                                <div className="row-span-1  h-full w-full  "></div>
+                        </div>
 
-                            </div>
 
-                        </>}
+                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
+                            <div
+                                className="row-span-1"
+                                style={productColl.products[3] ? backgroundStyle(productColl.products[3]?.image) : {}}
+                            ></div>
+                            {productColl.products.length > 4 && (
+                                <div className="absolute inset-0 flex items-center justify-center z-10 h-full w-full">
+                                    <div className="bg-black bg-opacity-70 px-3 py-1 flex items-center justify-center text-white h-full w-full">
+                                        <FiPlus className="font-bold text-3xl " />
+                                        <span className="font-mono text-3xl">{productColl.products.length - 4}</span>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
 
                     </div>
-                    {productColl.products.length > 4 && <div className="absolute bottom-10 right-4 text-gray-100 flex bg-opacity-95"><FiPlus className=" font-mono text-2xl" /> <span className="font-mono text-2xl">{productColl.products.length - 4}</span></div>}
+
 
                     {productColl.hasOwnProperty('likestatus') &&
-                        <button className="absolute bottom-0  right-1 " onClick={(e) => {
+                        <button className="absolute bottom-0  right-1 z-30" onClick={(e) => {
                             e.preventDefault();
                             likemut.mutateAsync({ collectionId: productColl.collectionId })
                             refetch()
@@ -103,7 +106,7 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
                     </Link>
                 </span>
 
-                <Button variant="ghost" className="flex flex-row  m-0 p-0   " >
+                <Button variant="ghost" className="flex flex-row  m-0 p-0    " >
                     <Link href={`/details/${productColl.collectionId}`} className=" text-black  hover:text-rose-600 " > see all details</Link>
                 </Button>
 

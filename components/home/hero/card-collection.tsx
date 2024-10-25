@@ -4,9 +4,23 @@ import { api } from "@/trpc/react";
 import { Divide } from "lucide-react";
 import Link from "next/link";
 import { FaAmazon } from "react-icons/fa";
+
+
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+const App = () => {
+    return (
+        <DotLottieReact
+            className="h-40"
+            src="/Animation.lottie"
+            loop
+            autoplay
+        />
+    );
+};
 export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery });
-    if (isLoading) { return <div>Loading...</div>; }
+    if (isLoading) { return <div>< App /> </div>; }
     if (error) {
         return <div>Error:
             {error.message}
