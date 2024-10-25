@@ -35,7 +35,7 @@ export const fashionCategory = [
         keyPieces: ["Flowy Dresses", "Floral Patterns", "Fringes", "Layered Jewelry", "Natural Fabrics"],
         image: "/bohemian-look.jpg"
     },
-   
+
     // {
     //     look: "Minimalist Look",
     //     description: "Simple and clean fashion focusing on neutral colors and uncomplicated designs.",
@@ -84,7 +84,7 @@ export const fashionCategory = [
         keyPieces: ["Athletic Jerseys", "Shorts", "Tracksuits", "Sneakers", "Sports Accessories"],
         image: "/sporty-look.jpg"
     },
-  
+
     {
         look: "Ethnic Style",
         description: "Fashion that reflects traditional clothing from various cultures around the world.",

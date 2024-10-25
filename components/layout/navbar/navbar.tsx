@@ -88,8 +88,33 @@ const NavRight = () => {
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div className="gap-4  flex ">
-      {jwtToken !== null && <>   <Button onClick={() => { setLiked(true); setSheetOpenLikedCollection(true) }} variant={'ghost'} className=" flex flex-col h-14  data-[state=open]:bg-slate-200  ">
-        <FaRegHeart />  <div className="text-xs ">Wishlist</div></Button></>}
+      {/* {typeof window !== 'undefined' && jwtToken !== null && (
+        <Button
+          onClick={() => {
+            setLiked(true);
+            setSheetOpenLikedCollection(true);
+          }}
+          variant={'ghost'}
+          className="flex flex-col h-14 data-[state=open]:bg-slate-200"
+        >
+          <FaRegHeart />
+          <span className="text-xs">Wishlist</span>
+        </Button>
+      )} */}
+
+      <Button
+        onClick={() => {
+          setLiked(true);
+          setSheetOpenLikedCollection(true);
+        }}
+        variant={'ghost'}
+        className="flex flex-col h-14 data-[state=open]:bg-slate-200"
+      >
+        <FaRegHeart />
+        <span className="text-xs">Wishlist</span>
+      </Button>
+
+
       {liked &&
         <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
           <SheetContent className="h-full overflow-y-auto" >

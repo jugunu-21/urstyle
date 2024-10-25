@@ -18,6 +18,17 @@ const App = () => {
         />
     );
 };
+
+const CollectionNotFound = () => {
+    return (
+        <DotLottieReact
+            className="h-40"
+            src="/Animation (2).lottie"
+            loop
+            autoplay
+        />
+    );
+};
 export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery });
     if (isLoading) { return <div>< App /> </div>; }
@@ -28,7 +39,10 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
     }
     if (response?.data.length == 0) {
         return (
-            <div>There is no collection available </div>
+            <>
+                <div><CollectionNotFound /> </div>
+                <div className="flex items-center justify-center"> No results found. Try a different search or browse our collections.
+                </div></>
         )
     }
     if (response) {
@@ -39,7 +53,6 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
                         <div className="col-span-1  mx-2 " >
                             <Card productColl={productCollection} refetch={refetch} />
                         </div>
-
                     </div>
                 )
                 )}</div>
