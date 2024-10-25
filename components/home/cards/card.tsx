@@ -106,7 +106,7 @@ export const Card = ({ productColl, refetch }: { productColl: ProductCollection,
                     </Link>
                 </span>
 
-                <Button variant="ghost" className="flex flex-row  m-0 p-0    " >
+                <Button variant="ghost" className="flex flex-row  m-0 pl-1  py-0   " >
                     <Link href={`/details/${productColl.collectionId}`} className=" text-black  hover:text-rose-600 " > see all details</Link>
                 </Button>
 

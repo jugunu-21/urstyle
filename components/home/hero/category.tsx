@@ -21,7 +21,7 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
         ></div>
         <div className="flex gap-1 ">
           {fashionCategory.map((fashion, index) => (
-            <Button variant="ghost" key={index} onClick={() => setCategoryQuery('hey')} className="h-28 w-20 flex flex-col items-center focus:bg-slate-200 hover:border-2 hover:border-cyan-800 rounded-2xl  hover:bg-slate-100">
+            <Button variant="ghost" key={index} onClick={() => setCategoryQuery(fashion.look)} className="h-28 w-20 flex flex-col items-center focus:bg-slate-200 hover:border-2 hover:border-cyan-800 rounded-2xl  hover:bg-slate-100">
               <div className="w-16 h-16 ">
                 <Image
                   src={fashion.image}
