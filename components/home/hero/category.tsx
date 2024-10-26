@@ -6,7 +6,7 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
   const scrollbarRef = React.useRef(null);
   return (
     <div className="relative">
-      <div className="absolute top-0 bottom-0 left-0 w-6 z-10 bg-gradient-to-r from-white to-transparent" />
+      <div className="absolute top-0 bottom-0 left-0 w-6 z-10 bg-gradient-to-r from-slate-100 to-transparent" />
       <div className="  flex h-32 overflow-x-auto w-full gap-1 ">
 
         <Button variant="ghost" onClick={() => setCategoryQuery('')} className="h-32 rounded-2xl aspect-square flex flex-col justify-center items-center ">
@@ -41,7 +41,7 @@ export function Category({ setCategoryQuery }: { setCategoryQuery: (category: st
           ))}
         </div>
       </div>
-      <div className="absolute top-0 bottom-0 right-0 w-6 z-10 bg-gradient-to-l from-white to-transparent" />
+      <div className="absolute top-0 bottom-0 right-0 w-6 z-10 bg-gradient-to-l from-slate-100 to-transparent" />
     </div>
   )
 }
