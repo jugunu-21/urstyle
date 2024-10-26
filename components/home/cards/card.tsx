@@ -1,16 +1,16 @@
-
+import Image from "next/image";
 import { GoHeartFill } from "react-icons/go";
 import { IoHeartOutline } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
-import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
-import { api } from "@/trpc/react"
-import { useEffect, useState } from "react";
-import { RefetchOptions } from "@tanstack/react-query"
+import { api } from "@/trpc/react";
 import Link from "next/link";
-import { FaAmazon, } from "react-icons/fa";
+import { FaAmazon } from "react-icons/fa";
 import { CiShop } from "react-icons/ci";
 import { SiFlipkart } from "react-icons/si";
+import { TiShoppingCart } from "react-icons/ti";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { RefetchOptions } from "@tanstack/react-query"
 export interface Product {
     subCategory: string;
     name: string;
@@ -29,88 +29,131 @@ export interface ProductCollection {
     collectionId: string
     likestatus?: boolean
 }
-export const Card = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
-    const likemut = api.collection.collectionLike.useMutation()
-    const backgroundStyle = (url: string) => ({
-        backgroundImage: `url(${url})`,
-        backgroundSize: 'cover',
-        width: '100%',
-        height: '100%'
-    });
+export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
+    const likemut = api.collection.collectionLike.useMutation();
+
     return (
-        <Link className=" rounded-lg  text-lg font-semibold text-neutral-950" href={`/details/${productColl.collectionId}`}>
-            <div className="my-4 p-2 bg-white  ">
-                <div>{productColl.name}</div>
-                <div className=" relative h-72 md:h-80 grid grid-cols-3">
-                    <div className="mt-2 col-span-2">  <div className="" style={backgroundStyle(productColl.products[0].image)}></div>
-
-                    </div>
-                    <div className=" col-span-1 grid grid-rows-3 ">
-                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
-                            <div
-                                className="row-span-1"
-                                style={productColl.products[1] ? backgroundStyle(productColl.products[1]?.image) : {}}
-                            ></div>
-
-                        </div>
-
-                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
-                            <div
-                                className="row-span-1"
-                                style={productColl.products[2] ? backgroundStyle(productColl.products[2]?.image) : {}}
-                            ></div>
-
-                        </div>
-
-
-                        <div className={`mx-2 mt-2 relative ${productColl.products[3] ? "" : "bg-red-100"}`}>
-                            <div
-                                className="row-span-1"
-                                style={productColl.products[3] ? backgroundStyle(productColl.products[3]?.image) : {}}
-                            ></div>
-                            {productColl.products.length > 4 && (
-                                <div className="absolute inset-0 flex items-center justify-center z-10 h-full w-full">
-                                    <div className="bg-black bg-opacity-70 px-3 py-1 flex items-center justify-center text-white h-full w-full">
-                                        <FiPlus className="font-bold text-3xl " />
-                                        <span className="font-mono text-3xl">{productColl.products.length - 4}</span>
+        <Link
+            className="rounded-lg text-lg font-semibold text-neutral-950"
+            href={`/details/${productColl.collectionId}`}
+        >
+            <Card>
+                <CardHeader>
+                    <CardTitle>{productColl.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="bg-white">
+                        <div className="relative h-72 md:h-80 grid grid-cols-3 gap-2">
+                            <div className=" col-span-2 relative">
+                                {productColl.products[0] ? (
+                                    <Image
+                                        src={productColl.products[0].image}
+                                        alt={productColl.products[0].name}
+                                        fill // Automatically fills the parent container
+                                        className=" w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="bg-red-100 h-full w-full"></div>
+                                )}
+                            </div>
+                            <div className="col-span-1 grid grid-rows-3 gap-2">
+                                {productColl.products[1] ? (
+                                    <div className="relative h-full">
+                                        <Image
+                                            src={productColl.products[1].image}
+                                            alt={productColl.products[1].name}
+                                            fill
+                                            className=" w-full h-full object-cover"
+                                        />
                                     </div>
+                                ) : (
+                                    <div className="bg-red-100 h-full w-full"></div>
+                                )}
+                                {productColl.products[2] ? (
+                                    <div className="relative h-full">
+                                        <Image
+                                            src={productColl.products[2].image}
+                                            alt={productColl.products[2].name}
+                                            fill
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="bg-red-100 h-full w-full"></div>
+                                )}
+                                <div className="relative h-full">
+                                    {productColl.products[3] ? (
+                                        <Image
+                                            src={productColl.products[3].image}
+                                            alt={productColl.products[3].name}
+                                            fill
+                                            className=" w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <div className="bg-red-100 h-full w-full"></div>
+                                    )}
+                                    {productColl.products.length > 4 && (
+                                        <div className="absolute inset-0 flex items-center justify-center z-10 h-full w-full">
+                                            <div className="bg-black bg-opacity-70 px-3 py-1 flex items-center justify-center text-white h-full w-full">
+                                                <FiPlus className="font-bold text-3xl" />
+                                                <span className="font-mono text-3xl">
+                                                    {productColl.products.length - 4}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            </div>
+                            <div className="absolute -bottom-2 right-1 z-30 flex flex-row gap-1">
+                                {productColl.hasOwnProperty("likestatus") && (
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            likemut.mutateAsync({
+                                                collectionId: productColl.collectionId,
+                                            });
+                                            refetch();
+                                        }}
+                                    >
+                                        {productColl.likestatus ? (
+                                            <GoHeartFill
+                                                fill="#ff8000"
+                                                className="aspect-square rounded-full h-8 w-8 p-1 bg-white"
+                                            />
+                                        ) : (
+                                            <IoHeartOutline
+                                                className="aspect-square rounded-full h-8 w-8 p-1 bg-white"
+                                            />
+                                        )}
+                                    </button>
+                                )}
+                                <button>
+                                    <TiShoppingCart className="aspect-square rounded-full h-8 w-8 p-1 bg-white" />
+                                </button>
+                            </div>
                         </div>
-
-
+                        <span className="inline-flex sm:ml-auto sm:mt-0 justify-center sm:justify-start p-2">
+                            <Link href="#" className="text-xl">
+                                <FaAmazon className="text-cyan-800 hover:text-rose-600" />
+                            </Link>
+                            <Link href="#" className="ml-3 text-xl">
+                                <SiFlipkart className="text-cyan-800 hover:text-rose-600" />
+                            </Link>
+                            <Link href="#" className="ml-3 text-xl">
+                                <CiShop className="text-cyan-800 hover:text-rose-600" />
+                            </Link>
+                        </span>
+                        <Button variant="ghost" className="flex flex-row m-0 pl-1 py-0">
+                            <Link
+                                href={`/details/${productColl.collectionId}`}
+                                className="text-black hover:text-rose-600"
+                            >
+                                See all details
+                            </Link>
+                        </Button>
                     </div>
-
-
-                    {productColl.hasOwnProperty('likestatus') &&
-                        <button className="absolute bottom-0  right-1 z-30" onClick={(e) => {
-                            e.preventDefault();
-                            likemut.mutateAsync({ collectionId: productColl.collectionId })
-                            refetch()
-                        }}>
-                            {productColl.likestatus ? <GoHeartFill fill='#ff8000' className=" aspect-square rounded-full h-8 w-8  p-1  bg-white" /> :
-                                <IoHeartOutline className=" aspect-square rounded-full h-8 w-8  p-1  bg-white" />
-                            }
-                        </button>
-                    }
-                </div>
-                <span className="inline-flex sm:ml-auto sm:mt-0  justify-center sm:justify-start p-2">
-                    <Link href="#" className="text-xl">
-                        <FaAmazon className="text-cyan-800 hover:text-rose-600" />
-                    </Link>
-                    <Link href="#" className="ml-3  text-xl ">
-                        <SiFlipkart className="text-cyan-800 hover:text-rose-600" />
-                    </Link>
-                    <Link href="#" className="ml-3   text-xl ">
-                        <CiShop className="text-cyan-800 hover:text-rose-600" />
-                    </Link>
-                </span>
-
-                <Button variant="ghost" className="flex flex-row  m-0 pl-1  py-0   " >
-                    <Link href={`/details/${productColl.collectionId}`} className=" text-black  hover:text-rose-600 " > see all details</Link>
-                </Button>
-
-
-            </div>
-        </Link>)
-}
+                </CardContent>
+            </Card>
+        </Link>
+    );
+};

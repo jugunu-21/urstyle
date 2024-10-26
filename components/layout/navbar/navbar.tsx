@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 import { FaHeart } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { Collection } from "@/components/home/hero/card-collection";
+import { Collection } from "@/components/home/hero/collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet"
 export const FlipNavWrapper = () => {

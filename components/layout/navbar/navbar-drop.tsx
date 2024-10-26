@@ -20,7 +20,6 @@ import { useToken } from "@/components/authentications/auth-utils/helpers/zustan
 interface UserInfo {
   phone_number?: string;
 }
-import { Collection } from "@/components/home/hero/card-collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { FaUser } from "react-icons/fa6";

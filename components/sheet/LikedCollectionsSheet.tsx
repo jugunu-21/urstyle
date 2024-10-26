@@ -3,7 +3,7 @@
 import React from 'react';
 import { Sheet, SheetContent, SheetFooter, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Collection } from "@/components/home/hero/card-collection";
+import { Collection } from "@/components/home/hero/collection";
 interface LikedCollectionsSheetProps {
     isOpen: boolean;
     onClose: () => void;
