@@ -7,10 +7,11 @@ import { FiMenu, FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Collection } from "@/components/home/hero/card-collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
+import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet"
 export const FlipNavWrapper = () => {
   return (
     <div className="bg-gray-50 sticky top-0 h-20 z-50   ">
@@ -87,7 +88,7 @@ const NavRight = () => {
   const [liked, setLiked] = useState<boolean>(false);
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
-    <div className="gap-4  flex ">
+    <div className="gap-0  flex ">
       {/* {typeof window !== 'undefined' && jwtToken !== null && (
         <Button
           onClick={() => {
@@ -110,8 +111,8 @@ const NavRight = () => {
         variant={'ghost'}
         className="flex flex-col h-14 data-[state=open]:bg-slate-200"
       >
-        <FaRegHeart />
-        <span className="text-xs">Wishlist</span>
+        <FaHeart />
+        <span className="text-xs pt-1">Wishlist</span>
       </Button>
 
 
@@ -128,7 +129,12 @@ const NavRight = () => {
             </SheetFooter>
           </SheetContent>
         </Sheet>}
-
+      {liked && (
+        <LikedCollectionsSheet
+          isOpen={sheetOpenLikedCollection}
+          onClose={() => setSheetOpenLikedCollection(false)}
+        />
+      )}
 
       <Navbardrop />
     </div>

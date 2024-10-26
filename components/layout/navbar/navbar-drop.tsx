@@ -24,6 +24,7 @@ import { Collection } from "@/components/home/hero/card-collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { FaUser } from "react-icons/fa6";
+import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet";
 export default function Navbardrop() {
   const jwtToken = useToken().token
   const [liked, setLiked] = useState<boolean>(false);
@@ -47,9 +48,9 @@ export default function Navbardrop() {
   return (
     <div className="">
       <DropdownMenu >
-        <DropdownMenuTrigger className=" p-3   rounded-lg     gap-1 items-center   h-14 hover:bg-slate-100  data-[state=open]:bg-slate-200 "  >
+        <DropdownMenuTrigger className=" h-full w-full rounded-lg  flex flex-col justify-center items-center   gap-1 hover:bg-slate-100  data-[state=open]:bg-slate-200  px-3 "  >
 
-          <FaUser className=" " />
+          <FaUser />
           <div className="text-xs">Profile</div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -68,19 +69,14 @@ export default function Navbardrop() {
           }
         </DropdownMenuContent>
       </DropdownMenu>
-      {liked &&
-        <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
-          <SheetContent className="h-full overflow-y-auto" >
-            <div className=" overflow-y-auto w-full  h-full">
-              <Collection likedQuery="user" />
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit" onClick={() => setSheetOpenLikedCollection(false)}>close</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>}
+
+      {liked && (
+        <LikedCollectionsSheet
+          isOpen={sheetOpenLikedCollection}
+          onClose={() => setSheetOpenLikedCollection(false)}
+        />
+      )}
+
     </div>
   );
 }
