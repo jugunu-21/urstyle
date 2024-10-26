@@ -89,24 +89,19 @@ const NavRight = () => {
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div className="gap-0  flex ">
-      {/* {typeof window !== 'undefined' && jwtToken !== null && (
-        <Button
-          onClick={() => {
-            setLiked(true);
-            setSheetOpenLikedCollection(true);
-          }}
-          variant={'ghost'}
-          className="flex flex-col h-14 data-[state=open]:bg-slate-200"
-        >
-          <FaRegHeart />
-          <span className="text-xs">Wishlist</span>
-        </Button>
-      )} */}
+
 
       <Button
         onClick={() => {
-          setLiked(true);
-          setSheetOpenLikedCollection(true);
+          if (jwtToken != null) {
+            setLiked(true);
+            setSheetOpenLikedCollection(true);
+
+          }
+          else {
+            router.push("/sign-in")
+          }
+
         }}
         variant={'ghost'}
         className="flex flex-col h-14 data-[state=open]:bg-slate-200"
@@ -115,20 +110,6 @@ const NavRight = () => {
         <span className="text-xs pt-1">Wishlist</span>
       </Button>
 
-
-      {liked &&
-        <Sheet open={sheetOpenLikedCollection} onOpenChange={setSheetOpenLikedCollection}>
-          <SheetContent className="h-full overflow-y-auto" >
-            <div className=" overflow-y-auto w-full  h-full">
-              <Collection likedQuery="user" />
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit" onClick={() => setSheetOpenLikedCollection(false)}>close</Button>
-              </SheetClose>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>}
       {liked && (
         <LikedCollectionsSheet
           isOpen={sheetOpenLikedCollection}

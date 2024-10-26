@@ -11,6 +11,8 @@ import { TiShoppingCart } from "react-icons/ti";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RefetchOptions } from "@tanstack/react-query"
+import { boolean } from "zod";
+import { useState } from "react";
 export interface Product {
     subCategory: string;
     name: string;
@@ -30,8 +32,35 @@ export interface ProductCollection {
     likestatus?: boolean
 }
 export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
+
+    const [likeButton, setLikeButton] = useState<boolean>(productColl.likestatus || false);
     const likemut = api.collection.collectionLike.useMutation();
 
+    const handleLikeClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        // Toggle the like button state immediately
+        setLikeButton((prev) => !prev);
+
+        try {
+            // Call the mutation
+            const result = await likemut.mutateAsync({
+                collectionId: productColl.collectionId,
+            });
+
+            // Check if the API response is successful
+            if (!result.status) {
+                // If the API response status is not true, revert the like button state
+                setLikeButton((prev) => !prev);
+            } else {
+                // Optionally refetch to sync data
+                refetch();
+            }
+        } catch (error) {
+            // On error, revert the like button state
+            setLikeButton((prev) => !prev);
+        }
+    };
     return (
         <Link
             className="rounded-lg text-lg font-semibold text-neutral-950"
@@ -106,16 +135,8 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                             </div>
                             <div className="absolute -bottom-2 right-1 z-30 flex flex-row gap-1">
                                 {productColl.hasOwnProperty("likestatus") && (
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            likemut.mutateAsync({
-                                                collectionId: productColl.collectionId,
-                                            });
-                                            refetch();
-                                        }}
-                                    >
-                                        {productColl.likestatus ? (
+                                    <button onClick={handleLikeClick}>
+                                        {likeButton ? (
                                             <GoHeartFill
                                                 fill="#ff8000"
                                                 className="aspect-square rounded-full h-8 w-8 p-1 bg-white"
