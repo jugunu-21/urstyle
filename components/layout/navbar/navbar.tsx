@@ -36,7 +36,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="font-serif text-cyan-800 text-xl font-extrabold hover:bg-gray-100 focus:bg-gray-200 p-2 rounded-lg"
+      className="font-serif text-[#ff0366] text-xl font-extrabold hover:bg-gray-100 focus:bg-gray-200 p-2 rounded-lg"
     >
       URSTYLE
     </Link>
@@ -75,7 +75,7 @@ const NavLink = ({ text, link }: { text: string, link: string }) => {
     >
       <motion.div whileHover={{ y: -30 }}>
         <span className="flex items-center h-[30px] text-gray-800">{text}</span>
-        <span className="flex items-center h-[30px] text-indigo-600">
+        <span className="flex items-center h-[30px] text-[#ff0366] ">
           {text}
         </span>
       </motion.div>

@@ -155,21 +155,21 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                         </div>
                         <span className="inline-flex sm:ml-auto sm:mt-0 justify-center sm:justify-start p-2">
                             <Link href="#" className="text-xl">
-                                <FaAmazon className="text-cyan-800 hover:text-rose-600" />
+                                <FaAmazon className="text-[#157A6E] hover:text-[#FFD639] " />
                             </Link>
                             <Link href="#" className="ml-3 text-xl">
-                                <SiFlipkart className="text-cyan-800 hover:text-rose-600" />
+                                <SiFlipkart className="text-[#157A6E] hover:text-[#FFD639] " />
                             </Link>
                             <Link href="#" className="ml-3 text-xl">
-                                <CiShop className="text-cyan-800 hover:text-rose-600" />
+                                <CiShop className="text-[#157A6E] hover:text-[#FFD639] " />
                             </Link>
                         </span>
-                        <Button variant="ghost" className="flex flex-row m-0 pl-1 py-0">
+                        <Button className="flex flex-row  ml-1 my-0 hover:bg-[#FFD639] hover:text-black bg-[#ff0366] ">
                             <Link
                                 href={`/details/${productColl.collectionId}`}
-                                className="text-black hover:text-rose-600"
+                                className=" "
                             >
-                                See all details
+                                Details
                             </Link>
                         </Button>
                     </div>

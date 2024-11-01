@@ -60,11 +60,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
+import { ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
 import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
-import {collectionproductInterface} from "../../collection/collection-utils/collection-interface"
+import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 // import { useRouter } from "next/navigation"
 export default function Dashboard() {
     const LIMIT = 4
@@ -76,7 +76,7 @@ export default function Dashboard() {
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
     const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit: LIMIT });
-   
+
     const trigger = () => {
         return (
             <>
@@ -86,7 +86,7 @@ export default function Dashboard() {
         )
     }
     const label = "Action"
-    const item = [ "Update"]
+    const item = ["Update"]
     const itemsLength = item.length;
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
@@ -199,22 +199,22 @@ export default function Dashboard() {
                                                                 </TableCell>
                                                                 {selectProduct ? <TableCell className="">
                                                                     <div className="flex items-center space-x-2">
-                                                                        <Checkbox id="terms"   checked={collection.some(item => item.productId === product.id)} onClick={()=>{ 
-                                                                             const existingIndex = collection.findIndex(item => item.productId === product.id);
-                                                                             if (existingIndex >= 0) {
-                                                                               // Product exists in the collection, remove it
-                                                                               setCollection(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
-                                                                             } else {
-                                                                               // Product does not exist in the collection, add it
-                                                                               const collectionproduct = {
-                                                                                 productId: product.id,
-                                                                                 productName: product.name,
-                                                                                 ProductImage: product.image
-                                                                               };
-                                                                               setCollection(prev => [...prev, collectionproduct]);
-                                                                             }
-                                                                             console.log("Updated collection:", collection);
-                                                                        }}/>
+                                                                        <Checkbox id="terms" checked={collection.some(item => item.productId === product.id)} onClick={() => {
+                                                                            const existingIndex = collection.findIndex(item => item.productId === product.id);
+                                                                            if (existingIndex >= 0) {
+                                                                                // Product exists in the collection, remove it
+                                                                                setCollection(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
+                                                                            } else {
+                                                                                // Product does not exist in the collection, add it
+                                                                                const collectionproduct = {
+                                                                                    productId: product.id,
+                                                                                    productName: product.name,
+                                                                                    ProductImage: product.image
+                                                                                };
+                                                                                setCollection(prev => [...prev, collectionproduct]);
+                                                                            }
+                                                                            console.log("Updated collection:", collection);
+                                                                        }} />
 
                                                                     </div>
                                                                 </TableCell> : null}
@@ -243,7 +243,7 @@ export default function Dashboard() {
                                 <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
                                     <SheetContent >
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <ProductCollection  setSelectProduct={ setSelectProduct} setCollection={setCollection} collection={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
+                                            <ProductCollection setSelectProduct={setSelectProduct} setCollection={setCollection} collection={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
                                         </div>
                                     </SheetContent>
                                 </Sheet>
@@ -285,5 +285,5 @@ export default function Dashboard() {
             } </>
         )
     }
-    
+
 }
