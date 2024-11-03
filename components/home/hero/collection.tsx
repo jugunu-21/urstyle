@@ -45,9 +45,10 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
         )
     }
     if (response) {
-        return (
+        return (<>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-                <div className="sm:col-span-2 sm:row-span-2 w-full h-full aspect-[3/4]">
+                <div className="sm:col-span-2   sm:max-w-[400px] mx-auto aspect-[3/4]  w-full">
                     <InteractiveImage look={categoryQuery || ''} />
                 </div>
                 {response.data.map((productCollection, index) => (
@@ -58,6 +59,10 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
                     </div>
                 ))}
             </div>
+
+
+        </>
+
 
 
 

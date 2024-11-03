@@ -5,6 +5,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import { fashionCategory } from '@/public/category';
 
 // Define the background styling for the main image
 const backgroundStyle = (url: string) => ({
@@ -16,7 +17,7 @@ const backgroundStyle = (url: string) => ({
 });
 
 export default function InteractiveImage({ look }: { look: string }) {
-    const lookdetail = shopLookdata.find((item) => item.look === look) || {
+    const lookdetail = fashionCategory.find((item) => item.look === look) || {
         look: '',
         image: '',
         individualImages: [
@@ -28,17 +29,18 @@ export default function InteractiveImage({ look }: { look: string }) {
     };
     return (
         <div
-            className="relative"
+            className="relative "
             style={backgroundStyle(lookdetail.image)}
         >
             {lookdetail.individualImages.map((item, index) => (
                 <Popover key={index}>
                     <PopoverTrigger
-                        className="absolute w-6 h-6 bg-blue-500 rounded-full cursor-pointer hover:bg-blue-700 transition"
+                        className="absolute w-6 h-6 bg-blue-700 rounded-full cursor-pointer hover:bg-blue-900 transition border-[6px] border-blue-500 opacity-70"
                         style={{
                             top: item.relativePlace.top,
                             left: item.relativePlace.left,
                             transform: 'translate(-50%, -50%)',
+                            // Adjust the blur radius and color as needed
                         }}
                     />
                     <PopoverContent className="h-32 w-32 p-2 bg-white shadow-md rounded-lg">
@@ -55,16 +57,4 @@ export default function InteractiveImage({ look }: { look: string }) {
     );
 }
 
-const shopLookdata = [
-    {
-        look: "Casual Look",
-        image: "/pexels-sensorysoft-20356188.jpg",
-        individualImages: [
-            { relativePlace: { top: '10%', left: '20%' }, image: '/accessory1.jpg' },
-            { relativePlace: { top: '20%', left: '40%' }, image: '/accessory2.jpg' },
-            // { relativePlace: { top: '80%', left: '30%' }, image: '/accessory3.jpg' },
-            { relativePlace: { top: '42%', left: '63%' }, image: '/accessory4.jpg' }
-        ]
-    },
-    // Add other looks as needed...
-];
+
