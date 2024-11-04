@@ -1,5 +1,5 @@
 
-import { ProductDataInterface,  } from "@/components/admin/product/product-utils/product-interface"
+import { ProductDataInterface, } from "@/components/admin/product/product-utils/product-interface"
 import axios, { AxiosRequestConfig } from 'axios';
 import { decodeBase64, srctoBase64 } from "@/components/admin/product/product-utils/product-services/image-services"
 import { error } from "console";
@@ -16,7 +16,6 @@ type ApiFetchProductsprops = {
 async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
-
     const formData = new FormData();
     if (requestBody) {
       Object.entries(requestBody).forEach(([key, value]) => {
@@ -30,16 +29,10 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
         const blob = srctoBase64(requestBody.image);
         const file = decodeBase64(blob);
         formData.append('image', file);
-
       }
       catch {
-
         formData.append('image', requestBody.image);
-
       }
-
-
-
     }
     console.log("formData", formData)
     const response = axios({
@@ -67,7 +60,7 @@ export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: st
   };
   return SubmitHandler();
 }
-export async function ApiFetchProductById({ jwtToken, productId }: { jwtToken?: string, productId : string }) {
+export async function ApiFetchProductById({ jwtToken, productId }: { jwtToken?: string, productId: string }) {
   const apiroute = `/product/fetch/${productId}`
   console.log("apiroute", apiroute)
   const SubmitHandler = async () => {
@@ -91,10 +84,8 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
   return SubmitHandler();
 }
 export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
-
   const apiroute = "/product/upload"
   const SubmitHandler = async () => {
-
     const response = await PostApiCall({ jwtToken, apiroute, requestBody });
     return response.data;
   };
@@ -123,14 +114,12 @@ export async function ApiUploadImage(imaggg: File, jwtToken: string) {
 export async function ApiUploadMultipleImages(formData: FormData, jwtToken: string) {
   try {
     const response = await axios.post('http://localhost:8000/media/images/upload', formData, {
-
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${jwtToken}`
       }
     });
     return response.data
-
   } catch (error) {
     throw error
 

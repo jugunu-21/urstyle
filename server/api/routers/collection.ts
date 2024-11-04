@@ -15,6 +15,7 @@ const zsimplifiedProducts = z.object({
     id: z.string(),
     category: z.string(),
     name: z.string(),
+    webLink: z.string(),
     subCategory: z.string(),
     price: z.string(),
     link: z.string(),

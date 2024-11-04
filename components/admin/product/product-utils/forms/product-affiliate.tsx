@@ -1,24 +1,10 @@
 import Image from "next/image"
-import Link from "next/link"
-import {
-  ChevronLeft,
-
-  PlusCircle,
-
-} from "lucide-react"
-
-import { Badge } from "@/components/ui/badge"
-
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -28,30 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Textarea } from "@/components/ui/textarea"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
 type ProductAffiandCategProps = {
-  subCategory: string|null;
+  subCategory: string | null;
   setSubCategory: (subCategory: string) => void;
-  link: string|null;
+  link: string | null;
   setLink: (link: string) => void;
-  category: string|null;
+  webLink: string | null;
+  setWebLink: (link: string) => void;
+  category: string | null;
   setCategory: (category: string) => void;
 };
-const item = ["heyy", "hlww"]
-const label = "LL"
 const trigger: () => JSX.Element = () => {
   return (
     <Image
@@ -64,46 +36,24 @@ const trigger: () => JSX.Element = () => {
   );
 };
 import { useState } from "react"
-export default function ProductAffiandCateg({ subCategory, setSubCategory, link, setLink, category, setCategory }: ProductAffiandCategProps) {
-  const [prelink,setPrelink]=useState("")
-
+export default function ProductAffiandCateg({ subCategory, setSubCategory, link, setLink, webLink, setWebLink, category, setCategory }: ProductAffiandCategProps) {
   const [categories, setCategories] = useState([
     { id: 1, name: 'Clothing', subCategoryegories: ['T-Shirts', 'Sweatshirts', 'Hoodies'] },
     { id: 2, name: 'Footwear', subCategoryegories: ['Shoes', 'Boots', 'Sandals'] },
     { id: 3, name: 'Accessories', subCategoryegories: ['Hats', 'Scarves', 'Belts'] }
   ]);
-
-  const [selectedCategoryId, setSelectedCategoryId] = useState(category|| '');
+  const [selectedCategoryId, setSelectedCategoryId] = useState(category || '');
   const [selectedsubCategoryegoryId, setSelectedsubCategoryegoryId] = useState(subCategory || '');
-
   const handleCategoryChange = (value: string) => {
-    console.log("value",value)
+    console.log("value", value)
     setSelectedCategoryId(value);
     setSelectedsubCategoryegoryId('');
     setCategory(value);
-  ;
   };
-
-  const handlesubCategoryegoryChange = (value: string ) => {
+  const handlesubCategoryegoryChange = (value: string) => {
     setSelectedsubCategoryegoryId(value);
     setSubCategory(value);
   };
-
-//   const urlInput = document.getElementById('urlInput');
-//   if (urlInput !== null) {
-//     urlInput.addEventListener('input', (event) => {
-//       if (event.target instanceof HTMLInputElement && event.target.value.startsWith(prelink)) {
-//           const inputValue = event.target.value;
-//           const isValid = true; // Since we've already checked startsWith('https://')
-          
-//           if (!isValid) {
-//               // Handle invalid input, e.g., display an error message
-//               event.target.value = 'https://'; // Or clear the input
-//               // You can also add custom validation logic here
-//           }
-//       }
-//   });
-// }
   return (
     <Card x-chunk="dashboard-07-chunk-2">
       <CardHeader>
@@ -118,17 +68,20 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 id="category"
                 aria-label="Select category"
               >
-                <SelectValue placeholder="website" />
+                <SelectValue placeholder={webLink ? webLink : "select website"} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="clothing" onClick={()=>{setPrelink("https://amzn.to/"); console.log(prelink)}}>
+                <SelectItem value=" Amazon" onClick={() => setWebLink("Amazon")}>
                   Amazon
                 </SelectItem>
-                <SelectItem value="electronics"  onClick={()=>setPrelink(" Flipkart")} >
+                <SelectItem value=" Flipkart" onClick={() => setWebLink("Flipkart")} >
                   Flipkart
                 </SelectItem>
-                <SelectItem value="accessories"  onClick={()=>setPrelink(" Meesho")}>
+                <SelectItem value="Meesho" onClick={() => setWebLink(" Meesho")}>
                   Meesho
+                </SelectItem>
+                <SelectItem value="Myntra" onClick={() => setWebLink("Myntra")}>
+                  Myntra
                 </SelectItem>
               </SelectContent>
             </Select>
@@ -141,14 +94,13 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
               className="w-full grid-cols-2"
               type="url"
               placeholder="Enter the url "
-              defaultValue={link?link:''}
+              defaultValue={link ? link : ''}
               // id="urlInput"
               onChange={(e) => setLink(e.target.value)}
             />
           </div>
         </div>
       </CardContent>
-      {/* <Card x-chunk="dashboard-07-chunk-2"> */}
       <CardHeader>
         <CardTitle>Product affiliate details </CardTitle>
       </CardHeader>
@@ -174,7 +126,7 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 <SelectValue placeholder="Select subCategoryegory" />
               </SelectTrigger>
               <SelectContent>
-                {selectedCategoryId.length!==0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map(subCategoryegory => (
+                {selectedCategoryId.length !== 0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map(subCategoryegory => (
                   <SelectItem value={subCategoryegory} key={subCategoryegory}>{subCategoryegory}</SelectItem>
                 ))}
               </SelectContent>
@@ -182,7 +134,7 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
           </div>
         </div>
       </CardContent>
-    {/* </Card> */}
+      {/* </Card> */}
     </Card>
   )
 }

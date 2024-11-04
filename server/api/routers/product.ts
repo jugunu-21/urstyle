@@ -6,18 +6,20 @@ const zproductDataInterface = z.object({
   name: z.string(),
   subCategory: z.string(),
   link: z.string(),
+  webLink: z.string(),
   description: z.string(),
   price: z.string(),
-  image: z.string() 
+  image: z.string()
 })
 const simplifiedProducts = z.object({
   image: z.string(),
-  id:  z.string(),
+  id: z.string(),
   category: z.string(),
   name: z.string(),
   subCategory: z.string(),
   price: z.string(),
   link: z.string(),
+  webLink: z.string(),
   review: z.array(z.record(z.unknown())),
   description: z.string(),
 })

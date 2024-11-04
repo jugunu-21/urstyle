@@ -50,6 +50,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
   const [name, setName] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
+  const [productWebsite, setProductWebsite] = useState<string | null>(null);
   const requestBody = {
     collectionName: name ?? '', // Provide a default empty string if name is null
     collectionDescription: description ?? '', // Provide a default empty string if description is null
@@ -172,10 +173,10 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <ul className="list-disc list-inside" >
-                  {category.map((cat, index) => (
-                    //  <li key={name}>{name}</li>
-                    <li key={index}>{cat}</li>
-                  ))}</ul>
+                    {category.map((cat, index) => (
+                      //  <li key={name}>{name}</li>
+                      <li key={index}>{cat}</li>
+                    ))}</ul>
 
                 </div>
               </div>

@@ -8,6 +8,7 @@ export const minimalProductArray: productsProp = [{
     subCategory: '',
     category: '',
     image: '',
+    webLink: '',
     description: '',
     name: '',
     price: '',
@@ -19,6 +20,7 @@ export type productsProp = [{
     link: string,
     category: string,
     image: string,
+    webLink: string;
     description: string,
     name: string,
     price: string,
@@ -30,6 +32,7 @@ export type productlistprop = {
     link: string;
     description: string;
     category: string;
+    webLink: string;
     price: string;
     image: string;
     review: Record<string, unknown>[];
@@ -40,19 +43,20 @@ export interface ProductDataInterface {
     category: string;
     name: string;
     subCategory: string;
+    webLink: string;
     link: string;
     description: string;
     price: string;
-    image: string ; // Assuming image can be null or a string URL
-  }
-  export interface ProductDataInterfacewithid {
-    id:string
+    image: string; // Assuming image can be null or a string URL
+}
+export interface ProductDataInterfacewithid {
+    id: string
     category: string;
-      name: string;
-      subCategory: string;
-      link: string;
-      description: string;
-      price: string;
-      image: string ; // Assuming image can be null or a string URL
-    }
-    
+    name: string;
+    subCategory: string;
+    link: string;
+    webLink: string
+    description: string;
+    price: string;
+    image: string; // Assuming image can be null or a string URL
+}

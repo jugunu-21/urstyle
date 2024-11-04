@@ -19,6 +19,7 @@ export interface Product {
     subCategory: string;
     name: string;
     link: string;
+    webLink: string;
     description: string;
     category: string;
     price: string;
@@ -157,19 +158,28 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                             </div>
                         </div>
                         <div className="grid grid-cols-2 py-4">
-                            <span className="inline-flex sm:mt-0 justify-start space-x-2">
-                                <Link href="#" className="text-xl">
-                                    <FaAmazon className="text-[#157A6E] hover:text-[#FFD639] " />
-                                </Link>
-                                <Link href="#" className="ml-3 text-xl">
-                                    <SiFlipkart className="text-[#157A6E] hover:text-[#FFD639] " />
-                                </Link>
-                                <Link href="#" className="ml-3 text-xl">
-                                    <CiShop className="text-[#157A6E] hover:text-[#FFD639] " />
-                                </Link>
+                            <span className="inline-flex sm:mt-0 justify-start space-x-1">
+                                {productColl.products.map((item, index) => (
+                                    <span key={index}>
+                                        {item.webLink === 'amazon' && (
+                                            <Link href="https://amazon.com" className="text-xl">
+                                                <FaAmazon className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        )}
+                                        {item.webLink === 'flipkart' && (
+                                            <Link href="https://flipkart.com" className="-xl">
+                                                <SiFlipkart className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        )}
+                                        {item.webLink === 'messho' && (
+                                            <Link href="https://meesho.com" className="text-xl">
+                                                <CiShop className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        )}
+                                    </span>
+                                ))}
+
                             </span>
-
-
                             <div className="flex items-center justify-end">
                                 <StarRatinginWords rating={4.5} totalStars={5} />
                             </div>

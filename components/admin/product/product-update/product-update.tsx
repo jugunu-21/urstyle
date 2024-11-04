@@ -53,7 +53,7 @@ type addprops = {
   setSheetOpen: (sheetOpen: boolean) => void,
   refetch?: (options?: RefetchOptions) => Promise<any>;
 }
-export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: addprops) {
+export default function Dashboard({ selectedProduct, setSheetOpen, refetch }: addprops) {
   const utils = api.useUtils();
   const productUpdatepost = api.product.productUpdate.useMutation({
     onSuccess: async () => {
@@ -64,15 +64,16 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
   const [category, setCategory] = useState<string | null>(null);
   const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
-  const [subCategory, setSubCategory] = useState<string | null>(null);0
+  const [webLink, setWebLink] = useState<string | null>("");
+  const [subCategory, setSubCategory] = useState<string | null>(null); 0
   const [link, setLink] = useState<string | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [price, setPrice] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [rawdata, setRawdata] = useState<ProductDataInterfacewithid>()
   useEffect(() => {
-      {selectedProduct && setRawdata(selectedProduct) }
-  },[selectedProduct])
+    { selectedProduct && setRawdata(selectedProduct) }
+  }, [selectedProduct])
   const requestBody = {
     category: category ?? rawdata?.category ?? '', // Default to 0 if pid is null or undefined
     name: name ?? rawdata?.name ?? '', // Default to empty string if name is null or undefined
@@ -81,20 +82,24 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
     description: description ?? rawdata?.description ?? '', // Default to empty string if description is null or undefined
     price: price ?? rawdata?.price ?? '', // Ensure price is a string, defaulting to "0"
     image: image ?? rawdata?.image ?? '',
+    webLink: webLink ?? rawdata?.webLink ?? ''
+
   };
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader  requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={ setSheetOpen} refetch={refetch} />
+        <ProductHeader requestBody={requestBody} id={rawdata ? rawdata.id : undefined} setSheetOpen={setSheetOpen} refetch={refetch} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)}  />
+            <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)} />
             <ProductAffiandCateg
               subCategory={rawdata ? rawdata.subCategory : null}
               setSubCategory={setSubCategory}
               link={rawdata ? rawdata.link : null}
               setLink={setLink}
+              webLink={webLink || ''}
+              setWebLink={setWebLink}
               category={rawdata ? rawdata.category : null}
               setCategory={setCategory}
             />
@@ -111,22 +116,22 @@ export default function Dashboard({ selectedProduct, setSheetOpen,refetch }: add
           </Button>
           <Button size="sm" onClick=
             {() => {
-                productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
-                  .then
-                  (() => {
-                    console.log("updateedcompleteinfetch")
-                    try {
-                      setSheetOpen(false)
-                     {refetch&&refetch();}
-                      console.log("refetch",refetch)
-                      toast.success("sucessfully updated");
+              productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
+                .then
+                (() => {
+                  console.log("updateedcompleteinfetch")
+                  try {
+                    setSheetOpen(false)
+                    { refetch && refetch(); }
+                    console.log("refetch", refetch)
+                    toast.success("sucessfully updated");
 
-                    }
-                    catch (error) {
-                      console.error("Error updating product:", error);
-                    }
+                  }
+                  catch (error) {
+                    console.error("Error updating product:", error);
+                  }
 
-                  }).catch((error) => console.error("submission error:", error))
+                }).catch((error) => console.error("submission error:", error))
             }}
           >Save Product</Button>
         </div>

@@ -10,15 +10,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 interface ProductDetailFormProps {
-  name: string|null;
+  name: string | null;
   setName: (value: string) => void;
-  description: string|null;
+  description: string | null;
   setDescription: (value: string) => void;
-  price: string|null;
+  price: string | null;
   setPrice: (value: string) => void;
   setSheetOpen?: (value: boolean) => void;
 }
-const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice}: ProductDetailFormProps) => {
+const Productnamedespridetails = ({ name, setName, description, setDescription, price, setPrice }: ProductDetailFormProps) => {
   return (
     <Card x-chunk="dashboard-07-chunk-0 mb-4">
       <CardHeader>
@@ -36,7 +36,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               type="text"
               className="w-full"
               placeholder="Enter Name of Product"
-              defaultValue={name?name:''}
+              defaultValue={name ? name : ''}
               onChange={(e) => {
                 setName(e.target.value);
                 console.log(name);
@@ -49,23 +49,24 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               id="description"
               placeholder="Enter description."
               className="min-h-32"
-              defaultValue={description?description:''}
+              defaultValue={description ? description : ''}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="grid gap-3">
             <Label htmlFor="price">Price</Label>
+
             <Input
-              type="number"
               id="price"
-            pattern="\d*" 
+              type="number"
               className="w-full"
-              defaultValue={price?price:''}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Enter price..."
-             
+              placeholder="Enter Price"
+              defaultValue={name ? name : ''}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                console.log(name);
+              }}
             />
-            
           </div>
 
         </div>
