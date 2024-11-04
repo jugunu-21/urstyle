@@ -16,9 +16,10 @@ export const fashionCategory = [
         keyPieces: ["Suits", "Tuxedos", "Evening Gowns", "Dress Shirts", "Formal Shoes"],
         image: "/pexels-emrekeshavarz-3707987.jpg",
         individualImages: [
-            { relativePlace: { top: '10%', left: '20%' }, image: '/accessory1.jpg' },
-            { relativePlace: { top: '20%', left: '40%' }, image: '/accessory2.jpg' },
-            { relativePlace: { top: '42%', left: '63%' }, image: '/accessory4.jpg' }
+            { relativePlace: { top: '40%', left: '40%' }, image: '/accessory1.jpg' },
+            { relativePlace: { top: '62%', left: '63%' }, image: '/accessory2.jpg' },
+            { relativePlace: { top: '81%', left: '84%' }, image: '/accessory2.jpg' },
+            { relativePlace: { top: '94%', left: '73%' }, image: '/accessory4.jpg' }
         ]
     },
     {

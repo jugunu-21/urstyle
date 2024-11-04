@@ -6,6 +6,7 @@ import { api } from "@/trpc/react";
 import Link from "next/link";
 import { FaAmazon } from "react-icons/fa";
 import { CiShop } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 import { SiFlipkart } from "react-icons/si";
 import { TiShoppingCart } from "react-icons/ti";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RefetchOptions } from "@tanstack/react-query"
 import { boolean } from "zod";
 import { useState } from "react";
+import StarRating from "@/components/reusable-components/star-icon";
 export interface Product {
     subCategory: string;
     name: string;
@@ -24,6 +26,8 @@ export interface Product {
     id: string;
     review: Record<string, unknown>[];
 }
+
+import { IoArrowRedoSharp } from "react-icons/io5";
 export interface ProductCollection {
     name: string;
     description: string;
@@ -32,7 +36,7 @@ export interface ProductCollection {
     likestatus?: boolean
 }
 export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
-
+    const router = useRouter()
     const [likeButton, setLikeButton] = useState<boolean>(productColl.likestatus || false);
     const likemut = api.collection.collectionLike.useMutation();
 
@@ -40,8 +44,7 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
         e.preventDefault();
 
         // Toggle the like button state immediately
-        setLikeButton((prev) => !prev);
-
+        setLikeButton((prev) => !prev)
         try {
             // Call the mutation
             const result = await likemut.mutateAsync({
@@ -148,30 +151,39 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                                         )}
                                     </button>
                                 )}
-                                <button>
-                                    <TiShoppingCart className="aspect-square rounded-full h-8 w-8 p-1 bg-white" />
+                                <button onClick={() => router.push("/details/${productColl.collectionId")}>
+                                    <IoArrowRedoSharp className="aspect-square rounded-full h-8 w-8 p-1 bg-white" />
                                 </button>
                             </div>
                         </div>
-                        <span className="inline-flex sm:ml-auto sm:mt-0 justify-center sm:justify-start p-2">
-                            <Link href="#" className="text-xl">
-                                <FaAmazon className="text-[#157A6E] hover:text-[#FFD639] " />
-                            </Link>
-                            <Link href="#" className="ml-3 text-xl">
-                                <SiFlipkart className="text-[#157A6E] hover:text-[#FFD639] " />
-                            </Link>
-                            <Link href="#" className="ml-3 text-xl">
-                                <CiShop className="text-[#157A6E] hover:text-[#FFD639] " />
-                            </Link>
-                        </span>
-                        <Button className="flex flex-row  ml-1 my-0 hover:bg-[#FFD639] hover:text-black bg-[#ff0366] ">
+                        <div className="grid grid-cols-2 py-4">
+                            <span className="inline-flex sm:mt-0 justify-start space-x-2">
+                                <Link href="#" className="text-xl">
+                                    <FaAmazon className="text-[#157A6E] hover:text-[#FFD639] " />
+                                </Link>
+                                <Link href="#" className="ml-3 text-xl">
+                                    <SiFlipkart className="text-[#157A6E] hover:text-[#FFD639] " />
+                                </Link>
+                                <Link href="#" className="ml-3 text-xl">
+                                    <CiShop className="text-[#157A6E] hover:text-[#FFD639] " />
+                                </Link>
+                            </span>
+
+
+                            <div className="flex items-center justify-end">
+                                <StarRating rating={4} totalStars={5} />
+                            </div>
+                        </div>
+
+
+                        {/* <Button className="flex flex-row  ml-1 my-0 hover:bg-[#FFD639] hover:text-black bg-[#ff0366] ">
                             <Link
                                 href={`/details/${productColl.collectionId}`}
                                 className=" "
                             >
                                 Details
                             </Link>
-                        </Button>
+                        </Button> */}
                     </div>
                 </CardContent>
             </Card>

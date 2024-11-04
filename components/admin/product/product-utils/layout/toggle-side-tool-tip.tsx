@@ -72,19 +72,19 @@ import {
   TooltipProvider
 } from "@/components/ui/tooltip"
 import { useState } from "react"
-export function ToggleSideToolTip(){
+export function ToggleSideToolTip() {
 
-const [sheet,setSheet]=useState("open")
-    return(
-        <Sheet >
-        <SheetTrigger asChild>
-          <Button size="icon" variant="outline" className="sm:hidden" onClick={()=>setSheet("open")} >
-            <PanelLeft className="h-5 w-5" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SheetTrigger>
-        {sheet=="open" &&
-        <SheetContent side="left" className="sm:max-w-xs" onClick={()=>setSheet("close")}>
+  const [sheet, setSheet] = useState("open")
+  return (
+    <Sheet >
+      <SheetTrigger asChild>
+        <Button size="icon" variant="outline" className="sm:hidden" onClick={() => setSheet("open")} >
+          <PanelLeft className="h-5 w-5" />
+          <span className="sr-only">Toggle Menu</span>
+        </Button>
+      </SheetTrigger>
+      {sheet == "open" &&
+        <SheetContent side="left" className="sm:max-w-xs" onClick={() => setSheet("close")}>
           <nav className="grid gap-6 text-lg font-medium">
             <Link
               href="#"
@@ -101,23 +101,23 @@ const [sheet,setSheet]=useState("open")
               Dashboard
             </Link>
             <Link
-             href="/admin/product/productfetch"
+              href="/admin/product/productfetch"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
-              <ShoppingCart className="h-5 w-5"  />
+              <ShoppingCart className="h-5 w-5" />
               ProductsTable
             </Link>
             <Link
-           href="/admin/product/productadd"
+              href="/"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
-              <Package className="h-5 w-5" />
-              AddProducts
+              <Home className="h-5 w-5" />
+              Main Page
             </Link>
-           
-           
+
+
           </nav>
         </SheetContent>}
-      </Sheet>
-    )
+    </Sheet>
+  )
 }

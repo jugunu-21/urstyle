@@ -97,7 +97,7 @@ export function SideToolTip() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button className=' bg-blue focus:none hover:bg-blue'
-                  // onClick={async () =>onclickfun()}
+                // onClick={async () =>onclickfun()}
                 >
                   <Link
                     href="/admin/product/productfetch" // Use React Router's `to` prop for navigation
@@ -110,7 +110,7 @@ export function SideToolTip() {
               </TooltipTrigger>
               <TooltipContent side="right">Products Table</TooltipContent>
             </Tooltip>
-            <Tooltip>
+            {/* <Tooltip>
               <TooltipTrigger asChild>
                 <Link
                   href="/admin/product/productadd"
@@ -121,7 +121,7 @@ export function SideToolTip() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Add Product</TooltipContent>
-            </Tooltip>
+            </Tooltip> */}
             {/* <Tooltip>
               <TooltipTrigger asChild>
                 <Link
@@ -148,6 +148,18 @@ export function SideToolTip() {
             </Tooltip> */}
           </nav>
           <nav className="mt-auto flex flex-col items-center focus:bg-accent gap-4 px-2 sm:py-5">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="#"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <Home className="h-5 w-5" />
+                  <span className="sr-only">Main Page</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Main Page</TooltipContent>
+            </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link

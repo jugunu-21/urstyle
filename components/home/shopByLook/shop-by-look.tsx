@@ -11,6 +11,8 @@ import { fashionCategory } from '@/public/category';
 const backgroundStyle = (url: string) => ({
     backgroundImage: `url(${url})`,
     backgroundSize: 'contain',
+    backgroundPosition: 'center',
+
     backgroundRepeat: 'no-repeat',
     width: '100%',
     height: '100%'
@@ -29,7 +31,7 @@ export default function InteractiveImage({ look }: { look: string }) {
     };
     return (
         <div
-            className="relative "
+            className="relative rounded-lg  "
             style={backgroundStyle(lookdetail.image)}
         >
             {lookdetail.individualImages.map((item, index) => (

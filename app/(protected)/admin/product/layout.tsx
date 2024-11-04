@@ -90,7 +90,7 @@ export default function RootLayout({
                   className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
                 />
               </div>
-              <TooltipProvider>
+              {/* <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link
@@ -104,7 +104,7 @@ export default function RootLayout({
                   </TooltipTrigger>
 
                   <TooltipContent side="bottom">Main Page</TooltipContent>
-                </Tooltip></TooltipProvider>
+                </Tooltip></TooltipProvider> */}
               <DropDownMenu item={item} label={label} trigger={trigger} />
             </header>
           </div>

@@ -48,9 +48,48 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
         return (<>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-                <div className="sm:col-span-2   sm:max-w-[400px] mx-auto aspect-[3/4]  w-full">
+                <div className="sm:col-span-2   sm:max-w-[400px] mx-auto aspect-[3/4]  w-full p-2  ">
                     <InteractiveImage look={categoryQuery || ''} />
                 </div>
+                {response.data.map((productCollection, index) => (
+                    <div key={productCollection.name} className="mx-14 my-2 sm:m-0">
+                        <div className="m-2">
+                            <CollectionCard productColl={productCollection} refetch={refetch} />
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+
+        </>
+
+
+
+
+        )
+    }
+}
+export function CollectionforWishlist({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
+    const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery });
+    if (isLoading) { return <div className="h-64">< App /> </div>; }
+    if (error) {
+        return <div>Error:
+            {error.message}
+        </div>;
+    }
+    if (response?.data.length == 0) {
+        return (
+            <>
+                <div><CollectionNotFound /> </div>
+                <div className="flex items-center justify-center"> No results found. Try a different search or browse our collections.
+                </div></>
+        )
+    }
+    if (response) {
+        return (<>
+
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+
                 {response.data.map((productCollection, index) => (
                     <div key={productCollection.name} className="mx-14 my-2 sm:m-0">
                         <div className="m-2">
