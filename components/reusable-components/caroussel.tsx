@@ -9,20 +9,20 @@ import {
  CarouselPrevious,
 } from "@/components/ui/carousel";
 
-interface CaropicItem {
+interface carouselImageItem {
  url: string;
 }
 
 // Define the props for the Carrousel component
 interface CarrouselProps {
- caropic: CaropicItem[];
+ carouselImage: carouselImageItem[];
 }
 
-const Carrousel: React.FC<CarrouselProps> = ({ caropic }) => {
+const Carrousel: React.FC<CarrouselProps> = ({ carouselImage }) => {
  return (
     <Carousel className="  w-full">
       <CarouselContent>
-        {caropic.map((item, index) => {
+        {carouselImage.map((item, index) => {
           const backgroundStyle = {
             backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0) ,
                                rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9) , rgba(245, 245, 244, 1)), url(${item.url})`,
@@ -63,7 +63,7 @@ export default Carrousel;
 // import itemsData from "@/public/items.json"
 // import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
-// export default function Carrousel({caropic}) {
+// export default function Carrousel({carouselImage}) {
  
 //     const [currentIndexes, setCurrentIndexes] = useState(
 //         Array(itemsData.length + 1).fill(0)
@@ -100,12 +100,12 @@ export default Carrousel;
 //     <div className="w-vw  h-[512px]  m-auto py-8 px-2 relative group  ">
 //     <button
 //       style={{
-//         backgroundImage:caropic[
+//         backgroundImage:carouselImage[
 //           currentIndexes[currentIndexes.length - 1]
 //         ]
 //           ? ` linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0) ,
 //                     rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.0) , rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.9) , rgba(245, 245, 244, 1)) ,url(${
-//                       caropic[currentIndexes[currentIndexes.length - 1]]
+//                       carouselImage[currentIndexes[currentIndexes.length - 1]]
 //                         .url
 //                     })`
 //           : "",
@@ -122,7 +122,7 @@ export default Carrousel;
 //     <div
 //       className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
 //       onClick={() =>
-//         prevSlide(currentIndexes.length - 1, caropic.length)
+//         prevSlide(currentIndexes.length - 1, carouselImage.length)
 //       }
 //     >
 //       <BsChevronCompactLeft size={30} />
@@ -131,7 +131,7 @@ export default Carrousel;
 //     <div
 //       className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"
 //       onClick={() =>
-//         nextSlide(currentIndexes.length - 1, caropic.length)
+//         nextSlide(currentIndexes.length - 1, carouselImage.length)
 //       }
 //     >
 //       <BsChevronCompactRight size={30} />

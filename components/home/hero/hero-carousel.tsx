@@ -1,5 +1,5 @@
 import * as React from "react";
-import caropic from "@/public/caropicData";
+import { carrouselImage } from "@/public/carrouselImage";
 export function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const slideInterval = 3000; // 3 seconds
@@ -7,16 +7,16 @@ export function HeroCarousel() {
 
   React.useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % caropic.length);
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % carrouselImage.length);
     }, slideInterval);
 
     return () => clearInterval(interval);
-  }, [caropic.length]);
+  }, [carrouselImage.length]);
 
   return (
     <div id="default-carousel" className="relative w-full h-52" data-carousel="slide">
       <div className="relative h-48 overflow-hidden rounded-lg md:h-96">
-        {caropic.map((pair, index) => (
+        {carrouselImage.map((pair, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
@@ -29,7 +29,7 @@ export function HeroCarousel() {
                 alt={`Image ${index + 1}`}
               />
               <img
-                src={caropic[(index + 1) % caropic.length]?.url}
+                src={carrouselImage[(index + 1) % carrouselImage.length]?.url}
                 className=" w-1/2 h-48  object-cover hidden sm:block"
                 alt={`Image ${index + 2}`}
               />
@@ -38,7 +38,7 @@ export function HeroCarousel() {
         ))}
       </div>
       <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
-        {caropic.map((_, index) => (
+        {carrouselImage.map((_, index) => (
           <button
             key={index}
             type="button"
@@ -51,7 +51,7 @@ export function HeroCarousel() {
       <button
         type="button"
         className="absolute top-0 start-0 z-30  items-center justify-center h-full px-4 cursor-pointer group hidden"
-        onClick={() => setCurrentSlide((prev) => (prev - 1 + caropic.length) % caropic.length)}
+        onClick={() => setCurrentSlide((prev) => (prev - 1 + carrouselImage.length) % carrouselImage.length)}
       >
         <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30">
           <svg className="w-4 h-4 text-white" viewBox="0 0 6 10">
@@ -62,7 +62,7 @@ export function HeroCarousel() {
       <button
         type="button"
         className="absolute top-0 end-0 z-30 hidden items-center justify-center h-full px-4 cursor-pointer group "
-        onClick={() => setCurrentSlide((prev) => (prev + 1) % caropic.length)}
+        onClick={() => setCurrentSlide((prev) => (prev + 1) % carrouselImage.length)}
       >
         <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30">
           <svg className="w-4 h-4 text-white" viewBox="0 0 6 10">

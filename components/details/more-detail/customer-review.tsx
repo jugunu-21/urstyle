@@ -1,6 +1,4 @@
 import React from 'react';
-import Star from "@/components/reusable-components/star-icon";
-
 interface Review {
   image: string;
   rname: string;
@@ -21,8 +19,8 @@ const Customereview: React.FC<Props> = ({ reviewData }) => {
           <div className="flex">
             <div className="flex-shrink-0">
               <Image
-              width={100}
-              height={100}
+                width={100}
+                height={100}
                 className="h-10 w-10 rounded-full"
                 src={review.image}
                 alt=""
@@ -32,7 +30,7 @@ const Customereview: React.FC<Props> = ({ reviewData }) => {
               <div className="font-medium">{review.rname}</div>
               <div>{review.date}</div>
               <div className="flex items-center my-2">
-                <Star len={review.rating} />
+                {/* <Star len={review.rating} /> */}
               </div>
               <div className="mt-2">{review.content}</div>
             </div>

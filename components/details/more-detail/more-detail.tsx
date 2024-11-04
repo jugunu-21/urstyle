@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Sitelink from "@/components/reusable-components/site-link";
 import Image from "next/image";
-import Star from '@/components/reusable-components/star-icon';
+
 import Faq from "./faq"
 import Customereview from "./customer-review"
 import License from "./license"
@@ -18,8 +18,8 @@ interface interfaceProduct {
     link: string;
     review: Record<string, unknown>[];
     description: string;
-  }
-export default function Moredetails({ product }: { product : interfaceProduct}) {
+}
+export default function Moredetails({ product }: { product: interfaceProduct }) {
     const [selectedContent, setSelectedContent] = useState("customers");
     interface Review {
         rating: number;

@@ -60,17 +60,17 @@
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import CalendarIcon from "@/components/reusable-components/calendar-icon";
-import Star from "@/components/reusable-components/star-icon";
-import { ImageCollage} from "./detail-image-collage";
+
+import { ImageCollage } from "./detail-image-collage";
 import Summary from "./detail-card";
 import { IProduct } from "../interface";
-import {ICollectionData } from "../interface";
-function Details({ filteredItems}: { filteredItems: ICollectionData }) {
+import { ICollectionData } from "../interface";
+function Details({ filteredItems }: { filteredItems: ICollectionData }) {
   // const images = filteredItems.products.map(product => product.image);
 
   return (
     <div className=" m-1">
-   
+
       <div className="sm:grid grid-cols-3 rounded-lg    m-2 ">
         <div className="m-4    ">
           <div className="m-1 font-bold text-xl">
@@ -96,12 +96,12 @@ function Details({ filteredItems}: { filteredItems: ICollectionData }) {
           </div>
 
         </div>
-        <div className=" m-4 col-span-2 items-end justify-end  ">  
-                 <ImageCollage products ={filteredItems.products} />
-                 </div>
+        <div className=" m-4 col-span-2 items-end justify-end  ">
+          <ImageCollage products={filteredItems.products} />
+        </div>
 
       </div>
-     
+
       <div>
         <Summary products={filteredItems.products} collectionId={filteredItems.collectionId} />
       </div>

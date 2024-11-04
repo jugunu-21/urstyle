@@ -1,5 +1,5 @@
 
-const caropic =
+export const carrouselImage =
   [
 
     {
@@ -20,5 +20,5 @@ const caropic =
     }
   ]
 
-export default caropic;
+
 

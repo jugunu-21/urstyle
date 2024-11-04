@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RefetchOptions } from "@tanstack/react-query"
 import { boolean } from "zod";
 import { useState } from "react";
-import StarRating from "@/components/reusable-components/star-icon";
+import { StarRating, StarRatinginWords } from "@/components/reusable-components/star-icon";
 export interface Product {
     subCategory: string;
     name: string;
@@ -171,7 +171,7 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
 
 
                             <div className="flex items-center justify-end">
-                                <StarRating rating={4} totalStars={5} />
+                                <StarRatinginWords rating={4.5} totalStars={5} />
                             </div>
                         </div>
 

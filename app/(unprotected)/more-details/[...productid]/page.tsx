@@ -9,7 +9,7 @@
 
 // import itemsData from "@/public/items.json"
 
-// import Star from '@/components/reusable-components/star-icon';
+
 // import Moredetails from "@/components/details/more-detail/more-detail"
 // export default function Page() {
 //   const [selectedContent, setSelectedContent] = useState("customers");
@@ -47,19 +47,19 @@ function Dashboard() {
   const params = useParams();
   const productIdArray = Array.isArray(params.productid) ? params.productid : [params.productid];
   const [param1, param2] = productIdArray;
-  const productId = param2 
-  console.log(productId,"productId")
-  const { data: response, isLoading, refetch ,error }  = api.product.productfetchById.useQuery({productId:productId});
-    if (isLoading) { return <div>Loading...</div>; }
-    if (error) {
-        return <div>Error:
-            {error.message}</div>;
-    }
-    if (response?.data ) {
-      return (
-        <Moredetails product={response.data.simplifiedProducts} />
-      );
-    }
+  const productId = param2
+  console.log(productId, "productId")
+  const { data: response, isLoading, refetch, error } = api.product.productfetchById.useQuery({ productId: productId });
+  if (isLoading) { return <div>Loading...</div>; }
+  if (error) {
+    return <div>Error:
+      {error.message}</div>;
+  }
+  if (response?.data) {
+    return (
+      <Moredetails product={response.data.simplifiedProducts} />
+    );
+  }
 
   return (
     <div>Cannot Find the products</div>
