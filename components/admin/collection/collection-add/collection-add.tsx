@@ -13,21 +13,13 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { api } from "@/trpc/react"
-import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
-import { RefetchOptions } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
-type addprops = {
-  collection: Array<collectionproductInterface>,
-  setSheetOpen: (sheetOpen: boolean) => void,
-  setCollection: (collection: Array<collectionproductInterface>) => (void);
-  refetch?: (options?: RefetchOptions) => Promise<any>;
-  setSelectProduct: (sheetOpen: boolean) => void,
-}
+
 import React, { useState } from "react";
 import { MultiSelect } from "@/components/admin/collection/collection-utils/layout/multi-select";
 import CollectionImageCard from "../collection-utils/layout/collection-image"
-
+import { addprops } from "../../collection/collection-utils/collection-interface";
 import {
   DropdownMenu,
   DropdownMenuContent,

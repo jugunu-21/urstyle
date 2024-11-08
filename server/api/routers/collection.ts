@@ -54,7 +54,7 @@ export const collectionRouter = createTRPCRouter({
             }
             console.log("modifiedInput", modifiedInput)
             const response = await ApiFetchCollection(modifiedInput)
-            console.log("collectionfetch", response)
+            console.log("collectionfetchhhh", response)
             return response;
         }),
     collectionFetchById: publicAndProtectedProcedure

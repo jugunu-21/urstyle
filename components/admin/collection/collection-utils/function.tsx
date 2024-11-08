@@ -1,20 +1,7 @@
 
 import { ProductDataInterface, } from "@/components/admin/product/product-utils/product-interface"
 import axios, { AxiosRequestConfig } from 'axios';
-type collectionInterface = {
-  collectionName: string,
-  collectionDescription: string,
-  collectionIds: string[],
-  collectionCategory: string[],
-}
-type ApiUploadCollectionprops = {
-  jwtToken: string
-  requestBody: collectionInterface
-}
-type ApiLikeCollectionprops = {
-  jwtToken: string
-  collectionId:string
-}
+import { collectionInterface, ApiUploadCollectionprops, ApiLikeCollectionprops } from "./collection-interface";
 async function PostApiCollectionCall(args: { requestBody?: collectionInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
@@ -50,7 +37,7 @@ export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollecti
   };
   return SubmitHandler();
 }
-export function ApiLikeCollection({ jwtToken, collectionId}: ApiLikeCollectionprops) {
+export function ApiLikeCollection({ jwtToken, collectionId }: ApiLikeCollectionprops) {
   const apiroute = `/collection/Like/${collectionId}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ jwtToken, apiroute });
@@ -59,21 +46,19 @@ export function ApiLikeCollection({ jwtToken, collectionId}: ApiLikeCollectionpr
   };
   return SubmitHandler();
 }
-export function ApiFetchCollection({ categoryQuery,jwtToken,likedQuery }: { categoryQuery?: string,jwtToken:string,likedQuery?: string }) {
+export function ApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { categoryQuery?: string, jwtToken: string, likedQuery?: string }) {
   const apiroute = `/collection/fetch?categoryQuery=${categoryQuery}&likedQuery=${likedQuery}`
   const SubmitHandler = async () => {
-    const response = await PostApiCollectionCall({ apiroute ,jwtToken});
-    console.log("response.data.data.products", response.data.data.products)
+    const response = await PostApiCollectionCall({ apiroute, jwtToken });
+
     return response.data;
   };
   return SubmitHandler();
 }
-export function ApiFetchCollectionById({collectionId,jwtToken }: { collectionId: string,jwtToken:string }) 
-{
+export function ApiFetchCollectionById({ collectionId, jwtToken }: { collectionId: string, jwtToken: string }) {
   const apiroute = `/collection/collectionById/${collectionId}`
   const SubmitHandler = async () => {
-    const response = await PostApiCollectionCall({ apiroute ,jwtToken});
-    console.log("response.data.data.products", response.data.data.products)
+    const response = await PostApiCollectionCall({ apiroute, jwtToken });
     return response.data;
   };
   return SubmitHandler();

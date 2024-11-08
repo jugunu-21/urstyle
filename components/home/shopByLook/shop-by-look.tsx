@@ -21,10 +21,18 @@ const backgroundStyle = (url: string) => ({
 export default function InteractiveImage({ look }: { look: string }) {
     const lookdetail = fashionCategory.find((item) => item.look === look) || {
         look: '',
-        image: '',
+        image: '/business-look.jpg',
         individualImages: [
             {
-                relativePlace: { top: '50%', left: '50%' },
+                relativePlace: { top: '25%', left: '52%' },
+                image: '',
+            },
+            {
+                relativePlace: { top: '34%', left: '40%' },
+                image: '',
+            },
+            {
+                relativePlace: { top: '70%', left: '53%' },
                 image: '',
             },
         ],

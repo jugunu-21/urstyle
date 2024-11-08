@@ -1,9 +1,7 @@
 
 import React from "react"
 import axios from "axios";
-type requestBodyprops = {
-    phone_number: string,
-};
+import { requestBodyprops } from "./auth-interface";
 const ApiSignin = async (requestBody: requestBodyprops) => {
     const route = '/auth/sign-in';
     try {
@@ -59,24 +57,24 @@ const deleteUser = async (jwtToken: string) => {
     catch (error) {
         throw error
     }
-} 
+}
 export { deleteUser }
-const ApiUserDetail = async (jwtToken:string) => {
+const ApiUserDetail = async (jwtToken: string) => {
     const route = '/me';
     try {
-      const response = await axios({
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}${route}`,
-        method: "GET",
-        withCredentials: true,
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`
-          }
-      });
-      return response.data;
+        const response = await axios({
+            url: `${process.env.NEXT_PUBLIC_BASE_URL}${route}`,
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwtToken}`
+            }
+        });
+        return response.data;
     } catch (error) {
         console.error('API sign-up failed:', error);
         throw error;
     }
-  };
-  export { ApiUserDetail} 
+};
+export { ApiUserDetail } 

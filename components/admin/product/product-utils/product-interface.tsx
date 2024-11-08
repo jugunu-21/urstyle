@@ -1,5 +1,5 @@
 export type MyObjectType = {
-    myArray: productsProp; // Replace YourArrayType with the actual type of elements in the array
+    myArray: productsProp;
     myString: string;
 };
 export const minimalProductArray: productsProp = [{

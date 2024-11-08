@@ -1,20 +1,18 @@
-// src/components/LikedCollectionsSheet.tsx
 
 import React from 'react';
 import { Sheet, SheetContent, SheetFooter, SheetClose } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { CollectionforWishlist } from "@/components/home/hero/collection";
+import { Collection } from "@/components/home/hero/collection";
 interface LikedCollectionsSheetProps {
     isOpen: boolean;
     onClose: () => void;
 }
-
 export const LikedCollectionsSheet: React.FC<LikedCollectionsSheetProps> = ({ isOpen, onClose }) => {
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="h-full overflow-y-auto">
                 <div className="overflow-y-auto w-full h-full">
-                    <CollectionforWishlist likedQuery="user" />
+                    <Collection likedQuery="likedCollection" />
                 </div>
                 <SheetFooter>
                     <SheetClose asChild>
@@ -25,5 +23,4 @@ export const LikedCollectionsSheet: React.FC<LikedCollectionsSheetProps> = ({ is
         </Sheet>
     );
 };
-
 export default LikedCollectionsSheet;
