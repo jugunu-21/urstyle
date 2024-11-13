@@ -11,16 +11,16 @@ function Dashboard() {
     : [params.index];
   const [param1] = productIdArray;
   const collectionId = String(param1);
-  const { data: response, isLoading, refetch ,error }  = api.collection.collectionFetchById.useQuery({collectionId:collectionId});
-    if (isLoading) { return <div>Loading...</div>; }
-    if (error) {
-        return <div>Error:
-            {error.message}</div>;
-    }
-    if (response?.data) {
-      return (
-        <Details filteredItems={response.data} />
-      );
+  const { data: response, isLoading, refetch, error } = api.collection.collectionFetchByCollectionId.useQuery({ collectionId: collectionId });
+  if (isLoading) { return <div>Loading...</div>; }
+  if (error) {
+    return <div>Error:
+      {error.message}</div>;
+  }
+  if (response?.data) {
+    return (
+      <Details filteredItems={response.data} />
+    );
   }
 
   return (

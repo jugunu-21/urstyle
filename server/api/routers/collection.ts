@@ -57,7 +57,7 @@ export const collectionRouter = createTRPCRouter({
             console.log("collectionfetchhhh", response)
             return response;
         }),
-    collectionFetchById: publicAndProtectedProcedure
+    collectionFetchByCollectionId: publicAndProtectedProcedure
         .input(z.object({
             collectionId: z.string()
 

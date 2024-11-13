@@ -56,7 +56,7 @@ export function ApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { ca
   return SubmitHandler();
 }
 export function ApiFetchCollectionById({ collectionId, jwtToken }: { collectionId: string, jwtToken: string }) {
-  const apiroute = `/collection/collectionById/${collectionId}`
+  const apiroute = `/collection/collectionByCollectionId/${collectionId}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ apiroute, jwtToken });
     return response.data;
