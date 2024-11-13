@@ -26,10 +26,10 @@ function IndividualProductDetail({ products, collectionId }: {
     <>
       {products.map((cart, cartIndex) => (
         <Card key={cartIndex} className='m-2' >
-          <CardContent>
-            <Button variant="outline" className='  h-60 w-full'>
+          <CardContent className=''>
+            <Button variant="outline" className=' h-[400] sm:h-60 w-full  m-4 hover:bg-red-50 '>
               {cart && (
-                <div className="flex  m-2 w-full  items-start justify-start ">
+                <div className=" sm:flex   m-2 w-full   ">
                   <Image
                     width={240}
                     height={100}
@@ -37,7 +37,7 @@ function IndividualProductDetail({ products, collectionId }: {
                     src={cart.image}
                     alt=""
                   />
-                  <div className=" p-2  w-full text-left">
+                  <div className=" p-2 ml-8 w-full text-left">
                     <div className=" font-bold">
                       {cart.name}
                     </div>

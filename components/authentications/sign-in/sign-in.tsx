@@ -186,7 +186,7 @@ export default function Signin() {
                         {otp === "" ? (
                           <>Enter your one-time otp</>
                         ) : (
-                          <>You entered: {otp}</>
+                          <></>
                         )}
                       </div>
                     </div>

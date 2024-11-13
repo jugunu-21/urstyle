@@ -14,32 +14,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import toast from "react-hot-toast";
-import Image from "next/image";
 import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 interface UserInfo {
   phone_number?: string;
 }
-import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 import { FaUser } from "react-icons/fa6";
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet";
+import { handleLogout } from "@/components/authentications/sign-out/sign-out";
+import { useRouter } from "next/navigation";
 export default function Navbardrop() {
   const jwtToken = useToken().token
   const [liked, setLiked] = useState<boolean>(false);
-  const auth = getAuth(app)
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        Cookies.remove('jwtToken', { path: '/' });
-        console.log("Signed out successfully and session cookie cleared");
-        window.location.reload()
-        toast.success("successfully sign Out")
-      })
-      .catch((error) => {
-        console.error("Error signing out:", error);
-      });
-  };
+  const router = useRouter()
   const handledeleteuser = () => {
     deleteUser();
   }
@@ -48,7 +34,6 @@ export default function Navbardrop() {
     <div className="">
       <DropdownMenu >
         <DropdownMenuTrigger className=" h-full w-full rounded-lg  flex flex-col justify-center items-center   gap-1 hover:bg-slate-100  data-[state=open]:bg-slate-200  px-3 "  >
-
           <FaUser />
           <div className="text-xs">Profile</div>
         </DropdownMenuTrigger>
@@ -58,7 +43,7 @@ export default function Navbardrop() {
           {jwtToken !== null && <>
             <DropdownMenuItem onClick={() => { setLiked(true); setSheetOpenLikedCollection(true) }}>Wishlist</DropdownMenuItem>
             <DropdownMenuItem >   <Link href="/admin/product">Admin Dashboard</Link></DropdownMenuItem>
-            <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleLogout(router)}>Logout</DropdownMenuItem>
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>
           </>}
           {jwtToken === null && <> <DropdownMenuItem>
@@ -68,7 +53,6 @@ export default function Navbardrop() {
           }
         </DropdownMenuContent>
       </DropdownMenu>
-
       {liked && (
         <LikedCollectionsSheet
           isOpen={sheetOpenLikedCollection}

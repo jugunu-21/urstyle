@@ -24,15 +24,14 @@ const CollectionNotFound = () => {
     );
 };
 export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
-    const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery },
-        {
-            staleTime: 0,
-            refetchOnWindowFocus: true,
-            refetchInterval: 5000,
-        }
+    const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery }
+        // ,
+        // {
+        //     staleTime: 0,
+        //     refetchOnWindowFocus: true,
+        //     refetchInterval: 5000,
+        // }
     );
-
-
     if (isLoading) { return <div className="h-64">< App /> </div>; }
     if (error) {
         return <div>Error:
@@ -54,7 +53,6 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
                     <InteractiveImage look={categoryQuery || ''} />
                 </div>
                 }
-
                 {response.data.map((productCollection, index) => (
                     <div key={productCollection.name} className="mx-14 my-2 sm:m-0">
                         <div className="m-2">
