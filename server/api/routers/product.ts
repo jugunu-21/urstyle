@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure, protectedProcedure, publicAndProtectedProcedure } from "@/server/api/trpc";
-import { ApiUpdateProduct, ApiUploadImage, ApiFetchProducts, ApiUploadProduct, ApiFetchProductById } from "@/components/admin/product/product-utils/function";
+import { ApiUpdateProduct, ApiUploadImage, ApiFetchProducts, ApiUploadProduct, ApiFetchProductById, ApiDeleteProductByProductId } from "@/components/admin/product/product-utils/function";
 const zproductDataInterface = z.object({
   category: z.string(),
   name: z.string(),
@@ -69,6 +69,25 @@ export const productRouter = createTRPCRouter({
       const response = await ApiFetchProductById(modifiedInput)
       return response;
     }),
+  productDeleteByProductId: protectedProcedure
+    .input(z.object({
+      productId: z.string(),
+    }))
+    .output(z.object({ message: z.string(), status: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      const token = ctx.token
+      const { productId } = input
+      const modifiedInput = {
+        jwtToken: token,
+        productId
+
+      }
+      console.log(" modifiedInput", modifiedInput)
+      const response = await ApiDeleteProductByProductId(modifiedInput)
+
+      return response;
+    }),
+
   productfetch: protectedProcedure
     .input(paginationSchema)
     .output(z.object({ data: z.object({ simplifiedProducts: z.array(simplifiedProducts), totalDocs: z.number() }), message: z.string(), status: z.number() }))

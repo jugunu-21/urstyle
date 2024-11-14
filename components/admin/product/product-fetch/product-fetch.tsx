@@ -82,14 +82,17 @@ export default function Dashboard() {
             </>
         )
     }
+    const deleteProduct = api.product.productDeleteByProductId.useMutation()
+
     const label = "Action"
-    const item = ["Update"]
+    const item = ["Update", "Delete"]
     const itemsLength = item.length;
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
         return <div>Error:
             {error.message}</div>;
     }
+
     if (response) {
         const fetchedData = response.data.simplifiedProducts
         const totalDocs = response.data.totalDocs
@@ -180,6 +183,12 @@ export default function Dashboard() {
                                                                                             { setSheetOpenUpdate && setSheetOpenUpdate(true) }
                                                                                             setSelectedProduct(product)
 
+                                                                                        }
+                                                                                        if (item === "Delete") {
+
+                                                                                            deleteProduct.mutateAsync({ productId: product.id })
+                                                                                            console.log("id", product.id)
+                                                                                            // refetch()
                                                                                         }
                                                                                     }}
                                                                                 >

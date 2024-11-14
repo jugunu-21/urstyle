@@ -63,7 +63,15 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="grid gap-3">
             <Label htmlFor="category">Affiliate webssite</Label>
-            <Select>
+
+
+            <Select
+              value={webLink ? webLink : ''}
+              onValueChange={(value) => {
+                setWebLink(value as string);
+
+              }}
+            >
               <SelectTrigger
                 id="category"
                 aria-label="Select category"
@@ -71,18 +79,10 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 <SelectValue placeholder={webLink ? webLink : "select website"} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value=" Amazon" onClick={() => setWebLink("Amazon")}>
-                  Amazon
-                </SelectItem>
-                <SelectItem value=" Flipkart" onClick={() => setWebLink("Flipkart")} >
-                  Flipkart
-                </SelectItem>
-                <SelectItem value="Meesho" onClick={() => setWebLink(" Meesho")}>
-                  Meesho
-                </SelectItem>
-                <SelectItem value="Myntra" onClick={() => setWebLink("Myntra")}>
-                  Myntra
-                </SelectItem>
+                <SelectItem value="Amazon">Amazon</SelectItem>
+                <SelectItem value="Flipkart">Flipkart</SelectItem>
+                <SelectItem value="Meesho">Meesho</SelectItem>
+                <SelectItem value="Myntra">Myntra</SelectItem>
               </SelectContent>
             </Select>
           </div>

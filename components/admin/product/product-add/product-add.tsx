@@ -1,44 +1,6 @@
-import Image from "next/image"
-import Link from "next/link"
-import {
-  ChevronLeft,
-  PlusCircle,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { Textarea } from "@/components/ui/textarea"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+import { Button } from "@/components/ui/button"
 import toast from "react-hot-toast"
-import ProductStatus from "@/components/admin/product/product-utils/forms/product-status"
 import { useState, useEffect } from "react";;
 import Productnamedespridetails from "@/components/admin/product/product-utils/forms/product-name-despridetails"
 import ProductImageCard from "@/components/admin/product/product-utils/forms/product-image"
@@ -79,16 +41,12 @@ export default function Dashboard() {
       });
   }
   return (
-    // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
         <ProductHeader requestBody={requestBody} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || "0"} setPrice={(value: string) => setPrice(value)} />
-
-            {/* <ProductTable price={price} setprice={setPrice}/> */}
-
             <ProductAffiandCateg
               subCategory={subCategory || ""}
               setSubCategory={setSubCategory}
@@ -101,9 +59,7 @@ export default function Dashboard() {
             />
           </div>
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
-            {/* <ProductStatus /> */}
             <ProductImageCard image={image || ""} setImage={setImage} />
-            {/* <ProductArchieve /> */}
           </div>
         </div>
         <div className="flex items-center justify-center gap-2 md:hidden">

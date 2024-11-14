@@ -13,7 +13,45 @@ type ApiFetchProductsprops = {
   requestBody: ProductDataInterface
   id?: string
 }
-async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
+async function PostProductApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
+  try {
+
+    const { requestBody, jwtToken, apiroute } = args;
+    const formData = new FormData();
+    if (requestBody) {
+      Object.entries(requestBody).forEach(([key, value]) => {
+        if (key !== 'image') {
+          formData.append(key, String(value));
+        }
+      });
+    }
+    if (requestBody?.image) {
+      try {
+        const blob = srctoBase64(requestBody.image);
+        const file = decodeBase64(blob);
+        formData.append('image', file);
+      }
+      catch {
+        formData.append('image', requestBody.image);
+      }
+    }
+    console.log("requestBody", formData)
+    const response = axios({
+      method: 'post',
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
+async function DeleteProductApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
     const formData = new FormData();
@@ -34,9 +72,9 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
         formData.append('image', requestBody.image);
       }
     }
-    console.log("formData", formData)
+
     const response = axios({
-      method: 'post',
+      method: 'delete',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
       data: formData,
       headers: {
@@ -50,34 +88,40 @@ async function PostApiCall(args: { requestBody?: ProductDataInterface | null; jw
     throw error
   }
 }
-
 export async function ApiFetchProducts({ jwtToken, page, limit }: { jwtToken: string, page: number, limit: number }) {
   const apiroute = `/product/fetch?page=${page}&&limit=${limit}`
-  console.log("apiroute", apiroute)
+
   const SubmitHandler = async () => {
-    const response = await PostApiCall({ jwtToken, apiroute })
+    const response = await PostProductApiCall({ jwtToken, apiroute })
     return response.data;
   };
   return SubmitHandler();
 }
 export async function ApiFetchProductById({ jwtToken, productId }: { jwtToken?: string, productId: string }) {
   const apiroute = `/product/fetch/${productId}`
-  console.log("apiroute", apiroute)
+
   const SubmitHandler = async () => {
-    const response = await PostApiCall({ jwtToken, apiroute })
+    const response = await PostProductApiCall({ jwtToken, apiroute })
+    return response.data;
+  };
+  return SubmitHandler();
+}
+export async function ApiDeleteProductByProductId({ jwtToken, productId }: { jwtToken?: string, productId: string }) {
+  const apiroute = `/product/delete/${productId}`
+  const SubmitHandler = async () => {
+    const response = await DeleteProductApiCall({ jwtToken, apiroute })
     return response.data;
   };
   return SubmitHandler();
 }
 export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchProductsprops) {
   const apiroute = `/product/update/${id}`
-
   const SubmitHandler = async () => {
     if (jwtToken === null) {
       console.error("JWT Token is required");
       throw error;
     }
-    const result = await PostApiCall({ jwtToken, apiroute, requestBody });
+    const result = await PostProductApiCall({ jwtToken, apiroute, requestBody });
     console.log("sucessufully updated")
     return result.data;
   };
@@ -86,7 +130,7 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
 export function ApiUploadProduct({ jwtToken, requestBody }: ApiUploadProductsprops) {
   const apiroute = "/product/upload"
   const SubmitHandler = async () => {
-    const response = await PostApiCall({ jwtToken, apiroute, requestBody });
+    const response = await PostProductApiCall({ jwtToken, apiroute, requestBody });
     return response.data;
   };
   return SubmitHandler();

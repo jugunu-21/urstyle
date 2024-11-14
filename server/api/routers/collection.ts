@@ -22,8 +22,6 @@ const zsimplifiedProducts = z.object({
     review: z.array(z.record(z.unknown())),
     description: z.string()
 });
-
-
 export const collectionRouter = createTRPCRouter({
     collectionAdd: protectedProcedure.input(apiProductsAddZodSchema)
         .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
@@ -54,7 +52,7 @@ export const collectionRouter = createTRPCRouter({
             }
             console.log("modifiedInput", modifiedInput)
             const response = await ApiFetchCollection(modifiedInput)
-            console.log("collectionfetchhhh", response)
+            console.log("collectionfetchhhh", response.data)
             return response;
         }),
     collectionFetchByCollectionId: publicAndProtectedProcedure

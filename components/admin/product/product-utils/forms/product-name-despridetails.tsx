@@ -61,7 +61,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               type="number"
               className="w-full"
               placeholder="Enter Price"
-              defaultValue={name ? name : ''}
+              defaultValue={price ? price : ''}
               onChange={(e) => {
                 setPrice(e.target.value);
                 console.log(name);
