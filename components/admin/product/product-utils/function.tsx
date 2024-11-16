@@ -51,32 +51,13 @@ async function PostProductApiCall(args: { requestBody?: ProductDataInterface | n
     throw error
   }
 }
-async function DeleteProductApiCall(args: { requestBody?: ProductDataInterface | null; jwtToken?: string, apiroute: string }) {
+async function DeleteProductApiCall(args: { jwtToken?: string, apiroute: string }) {
   try {
-    const { requestBody, jwtToken, apiroute } = args;
-    const formData = new FormData();
-    if (requestBody) {
-      Object.entries(requestBody).forEach(([key, value]) => {
-        if (key !== 'image') {
-          formData.append(key, String(value));
-        }
-      });
-    }
-    if (requestBody?.image) {
-      try {
-        const blob = srctoBase64(requestBody.image);
-        const file = decodeBase64(blob);
-        formData.append('image', file);
-      }
-      catch {
-        formData.append('image', requestBody.image);
-      }
-    }
+    const { jwtToken, apiroute } = args;
 
     const response = axios({
       method: 'delete',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
-      data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${jwtToken}`,

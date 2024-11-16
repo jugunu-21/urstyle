@@ -113,8 +113,8 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map(category => (
-                  <SelectItem value={`${category.name}`} key={category.id}>{category.name}</SelectItem>
+                {categories.map((category, index) => (
+                  <SelectItem value={`${category.name}`} key={index}>{category.name}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -126,8 +126,8 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 <SelectValue placeholder="Select subCategoryegory" />
               </SelectTrigger>
               <SelectContent>
-                {selectedCategoryId.length !== 0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map(subCategoryegory => (
-                  <SelectItem value={subCategoryegory} key={subCategoryegory}>{subCategoryegory}</SelectItem>
+                {selectedCategoryId.length !== 0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map((subCategoryegory, index) => (
+                  <SelectItem value={subCategoryegory} key={index}>{subCategoryegory}</SelectItem>
                 ))}
               </SelectContent>
             </Select>

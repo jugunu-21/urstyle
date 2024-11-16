@@ -24,29 +24,46 @@ export default function Dashboard() {
     subCategory: subCategory ?? "", // Default to empty string if subCategory is null or undefined
     link: link ?? "", // Default to empty string if link is null or undefined
     description: description ?? "", // Default to empty string if description is null or undefined
-    price: price ?? "0", // Ensure price is a string, defaulting to "0"
+    price: price ?? "", // Ensure price is a string, defaulting to "0"
     image: image ?? "",
     webLink: webLink ?? "",
   };
   const productAddPost = api.product.productAdd.useMutation();
-  const handler = async () => {
-    productAddPost.mutateAsync({ requestBody })
-      .then(() => {
-        router.push("/admin/product/productfetch")
-        toast.success("sucessfully uploaded");
-      })
-      .catch(function (error) {
-        console.log("apiaddproduct", error);
-        toast.error("failed to upload product")
-      });
+  const hasAnyFieldEmptyOrNull = Object.entries(requestBody).some(([key, value]) => {
+    if (value === '' || value === undefined) {
+      return true;
+    }
+
+
+    return false;
+  });
+
+  const addProducthandler = async () => {
+    if (hasAnyFieldEmptyOrNull) {
+      toast.error("please fill all the deatils ")
+      alert("please fill all the deatils ")
+      console.log("has field emptyy", hasAnyFieldEmptyOrNull, requestBody)
+    } else {
+      console.log("has field not emptyy", hasAnyFieldEmptyOrNull, requestBody)
+      productAddPost.mutateAsync({ requestBody })
+        .then(() => {
+          router.push("/admin/product/productfetch")
+          toast.success("sucessfully uploaded");
+        })
+        .catch(function (error) {
+          console.log("apiaddproduct", error);
+          toast.error("failed to upload product")
+        });
+    }
+
   }
   return (
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader requestBody={requestBody} />
+        <ProductHeader requestBody={requestBody} addProducthandler={addProducthandler} />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-            <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || "0"} setPrice={(value: string) => setPrice(value)} />
+            <Productnamedespridetails name={name || ""} setName={setName} description={description || ""} setDescription={setDescription} price={price || ""} setPrice={(value: string) => setPrice(value)} />
             <ProductAffiandCateg
               subCategory={subCategory || ""}
               setSubCategory={setSubCategory}
@@ -67,7 +84,7 @@ export default function Dashboard() {
             Discard
           </Button>
           <Button size="sm" onClick={() =>
-            handler()}
+            addProducthandler()}
           >Save Product</Button>
         </div>
       </div>
