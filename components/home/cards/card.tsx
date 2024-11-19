@@ -25,6 +25,7 @@ export interface Product {
     review: Record<string, unknown>[];
 }
 import { IoArrowRedoSharp } from "react-icons/io5";
+import { calculateTotalPrice } from "@/components/reusable-components/total-product-price";
 export interface ProductCollection {
     name: string;
     description: string;
@@ -32,16 +33,7 @@ export interface ProductCollection {
     collectionId: string
     likestatus?: boolean
 }
-function calculateTotalPrice(products: Product[]) {
-    return products.reduce((total, product) => {
-        const price = parseFloat(product.price);
-        if (isNaN(price)) {
-            console.error(`Invalid price: ${product.price}`);
-            return total;
-        }
-        return total + price;
-    }, 0);
-}
+
 export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
     const router = useRouter()
     const [likeButton, setLikeButton] = useState<boolean>(productColl.likestatus || false);
@@ -65,10 +57,10 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
     };
     return (
         <Link
-            className="rounded-lg text-lg font-semibold text-neutral-950"
+            className="rounded-lg text-lg font-semibold text-neutral-950 "
             href={`/details/${productColl.collectionId}`}
         >
-            <Card>
+            <Card className="hover:bg-[#fbe4ed]">
                 <CardHeader>
                     <CardTitle className="text-lg">{productColl.name}</CardTitle>
                 </CardHeader>

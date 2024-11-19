@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Link from "next/link";
-import Sitelink from "@/components/reusable-components/site-link";
+// import Sitelink from "@/components/reusable-components/site-link";
 import Image from "next/image";
 
 import Faq from "./faq"
@@ -67,7 +67,7 @@ export default function Moredetails({ product }: { product: interfaceProduct }) 
                 </div>
 
                 <div className="h-8 w-28 my-2 ">
-                    <Sitelink setsitelink={product.image} sitelink={product.link} />
+                    {/* <Sitelink setsitelink={product.image} sitelink={product.link} /> */}
                 </div>
                 <div className="my-2 border-t border-gray-200  "></div>
 

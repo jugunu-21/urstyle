@@ -6,18 +6,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { fashionCategory } from '@/public/category';
-
-// Define the background styling for the main image
-const backgroundStyle = (url: string) => ({
-    backgroundImage: `url(${url})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'top',
-
-    backgroundRepeat: 'no-repeat',
-    width: '100%',
-    height: '100%'
-});
-
 export default function InteractiveImage({ look }: { look: string }) {
     const lookdetail = fashionCategory.find((item) => item.look === look) || {
         look: '',
@@ -25,25 +13,24 @@ export default function InteractiveImage({ look }: { look: string }) {
         individualImages: [
             {
                 relativePlace: { top: '33%', left: '52%' },
-                image: '',
+                image: 'https://m.media-amazon.com/images/I/71hndo6875L._SY879_.jpg',
             },
             {
                 relativePlace: { top: '39%', left: '40%' },
-                image: '',
+                image: 'https://m.media-amazon.com/images/I/51lUi691Q2L._SY879_.jpg',
             },
             {
-                relativePlace: { top: '78%', left: '53%' },
-                image: '',
+                relativePlace: { top: '70%', left: '53%' },
+                image: 'https://m.media-amazon.com/images/I/51p+CqAP4oL._SY879_.jpg',
             },
         ],
     };
     return (
-        // <div className='flex '>
-        <div className="  aspect-[3/4]  ">
-            <div
-                className="relative rounded-lg aspect-[3/4]  "
-                style={backgroundStyle(lookdetail.image)}
+        <div className="flex">
+            <div className='aspect-[3/4] sm:max-w-[370px] '>   <div
+                className="relative rounded-lg aspect-[3/4]"
             >
+                <Image alt={"gvhbjnl"} src={lookdetail.image} height={100} width={100} className='h-full w-full'></Image>
                 {lookdetail.individualImages.map((item, index) => (
                     <Popover key={index}>
                         <PopoverTrigger
@@ -52,10 +39,9 @@ export default function InteractiveImage({ look }: { look: string }) {
                                 top: item.relativePlace.top,
                                 left: item.relativePlace.left,
                                 transform: 'translate(-50%, -50%)',
-                                // Adjust the blur radius and color as needed
                             }}
                         />
-                        <PopoverContent className="h-32 w-32 p-2 bg-white shadow-md rounded-lg">
+                        <PopoverContent className="h-32 w-32 p-2 bg-white shadow-md rounded-lg ">
                             <Image
                                 src={item.image}
                                 alt="Accessory detail"
@@ -65,10 +51,21 @@ export default function InteractiveImage({ look }: { look: string }) {
                         </PopoverContent>
                     </Popover>
                 ))}
-            </div>   </div>
-
-        // <div>bgujhk</div>
-        // </div>
+            </div></div>
+            <div className='h-[488px] w-[180px] hidden  mx-auto max-w-[190px] lg:grid lg:grid-rows ' >
+                {lookdetail.individualImages.map((item, index) => (
+                    <div key={index}>
+                        <Image
+                            alt="gvhbjnl"
+                            src={item.image}
+                            width={110}
+                            height={100}
+                            className=" h-[150px] w-[160px] grid-cols-1  rounded-lg mx-auto "
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 }
 

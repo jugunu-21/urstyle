@@ -2,7 +2,7 @@ import React from 'react';
 import { IProduct } from '../interface';
 
 import Image from 'next/image';
-function ImageCollage({ products }: { products: IProduct[] }) {
+function DetailImageCollage({ products }: { products: IProduct[] }) {
   const backgroundStyle = (url: string) => ({
     backgroundImage: `url(${url})`,
     backgroundSize: 'cover',
@@ -56,4 +56,4 @@ function ImageCollage({ products }: { products: IProduct[] }) {
   );
 }
 
-export { ImageCollage };
+export { DetailImageCollage };

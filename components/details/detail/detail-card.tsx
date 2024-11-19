@@ -2,15 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import Sitelink from '@/components/reusable-components/site-link';
+import { WebsiteButtons } from '@/components/reusable-components/website-button';
 import { IProduct } from '../interface';
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 import { Button } from '@/components/ui/button';
 const backgroundStyle = (url: string) => ({
@@ -24,33 +20,33 @@ function IndividualProductDetail({ products, collectionId }: {
 }) {
   return (
     <>
-      {products.map((cart, cartIndex) => (
-        <Card key={cartIndex} className='m-2' >
-          <CardContent className=''>
-            <Button variant="outline" className=' h-[400] sm:h-60 w-full  m-4 hover:bg-red-50 '>
-              {cart && (
-                <div className=" sm:flex   m-2 w-full   ">
+      {products.map((item, itemIndex) => (
+        <Card key={itemIndex} className='m-2' >
+          <CardContent className='m-2'>
+            <Button variant="outline" className=' h-[400] sm:h-60 w-full  m-4 hover:bg-[#f5d4e1]'>
+              {item && (
+                <div className=" sm:flex w-full  ">
                   <Image
-                    width={240}
+                    width={250}
                     height={100}
-                    className=" h-60 object-cover align-middle border-2 "
-                    src={cart.image}
+                    className=" h-60 object-cover align-middle p-4"
+                    src={item.image}
                     alt=""
                   />
                   <div className=" p-2 ml-8 w-full text-left">
                     <div className=" font-bold">
-                      {cart.name}
+                      {item.name}
                     </div>
-                    <div className="font-semibold my-1">{cart.price}</div>
-                    <div className="mb-2">{cart.description}</div>
-                    <div className="h-8 w-28 my-2">
-                      <Sitelink setsitelink={cart.image} sitelink={cart.link} />
-                    </div>
-                    <div className=" flex my-2 items-center space-x-3 font-medium">
+                    <div className="font-semibold my-1">Rs. {item.price}</div>
+                    <div className="mb-2 overflow-hidden whitespace-normal">{item.description}</div>
+
+                    <WebsiteButtons webLink={item.webLink} link={item.link} />
+
+                    <div className=" h-10 w-28 ">
                       <Link
-                        href={`/more-details/${collectionId}/${cart.id}`}
-                        // rel="noopener noreferrer"
-                        className=" flex   items-center   rounded-lg bg-stone-300 hover:bg-stone-400 p-1  "
+                        href={`/more-details/${collectionId}/${item.id}`}
+
+                        className=" flex  py-1 px-3 items-center   rounded-lg bg-stone-100 text-[#ff0366] font-bold text-lg hover:bg-stone-200 border-2 hover:border-[#f5a5c5] "
                       >
                         Details
                         <svg

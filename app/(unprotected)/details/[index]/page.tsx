@@ -19,7 +19,7 @@ function Dashboard() {
   }
   if (response?.data) {
     return (
-      <Details filteredItems={response.data} />
+      <Details singleCollection={response.data} />
     );
   }
 
