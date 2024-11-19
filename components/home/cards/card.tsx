@@ -8,7 +8,7 @@ import { FaAmazon } from "react-icons/fa";
 import { CiShop } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { SiFlipkart } from "react-icons/si";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { RefetchOptions } from "@tanstack/react-query"
 import { useState } from "react";
 import { StarRatinginWords } from "@/components/reusable-components/star-icon";
@@ -31,6 +31,16 @@ export interface ProductCollection {
     products: Product[];
     collectionId: string
     likestatus?: boolean
+}
+function calculateTotalPrice(products: Product[]) {
+    return products.reduce((total, product) => {
+        const price = parseFloat(product.price);
+        if (isNaN(price)) {
+            console.error(`Invalid price: ${product.price}`);
+            return total;
+        }
+        return total + price;
+    }, 0);
 }
 export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
     const router = useRouter()
@@ -125,6 +135,7 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                                     )}
                                 </div>
                             </div>
+
                             <div className="absolute -bottom-2 right-1 z-30 flex flex-row gap-1">
                                 {productColl.hasOwnProperty("likestatus") && (
                                     <button onClick={handleLikeClick}>
@@ -145,35 +156,41 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                                 </button>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 py-4">
-                            <span className="inline-flex sm:mt-0 justify-start space-x-1">
-                                {['amazon', 'flipkart', 'messho'].map((platform) => {
-                                    const amazonItem = productColl.products.find(item => item.webLink === platform);
-                                    return amazonItem && (
-                                        <span key={platform}>
-                                            {platform === 'amazon' ? (
-                                                <Link href="https://amazon.com" className="text-xl">
-                                                    <FaAmazon className="text-[#157A6E] hover:text-[#cf8750]" />
-                                                </Link>
-                                            ) : platform === 'flipkart' ? (
-                                                <Link href="https://flipkart.com" className="-xl">
-                                                    <SiFlipkart className="text-[#157A6E] hover:text-[#cf8750]" />
-                                                </Link>
-                                            ) : (
-                                                <Link href="https://meesho.com" className="text-xl">
-                                                    <CiShop className="text-[#157A6E] hover:text-[#cf8750]" />
-                                                </Link>
-                                            )}
-                                        </span>
-                                    );
-                                })}
-                            </span>
-                            <div className="flex items-center justify-end">
-                                <StarRatinginWords rating={4.5} totalStars={5} />
-                            </div>
-                        </div>
+
                     </div>
                 </CardContent>
+                <CardFooter className="grid grid-cols-2 " >
+
+                    <div className="">
+                        <span className="inline-flex sm:mt-0 justify-start space-x-1">
+                            {['Amazon', 'Flipkart', 'messho'].map((platform) => {
+                                const amazonItem = productColl.products.find(item => item.webLink === platform);
+                                return amazonItem && (
+                                    <span key={platform}>
+                                        {platform === 'Amazon' ? (
+                                            <Link href="https://amazon.com" className="text-xl">
+                                                <FaAmazon className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        ) : platform === 'Flipkart' ? (
+                                            <Link href="https://flipkart.com" className="-xl">
+                                                <SiFlipkart className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        ) : (
+                                            <Link href="https://meesho.com" className="text-xl">
+                                                <CiShop className="text-[#157A6E] hover:text-[#cf8750]" />
+                                            </Link>
+                                        )}
+                                    </span>
+                                );
+                            })}
+                        </span>
+
+                    </div>
+                    <div className="flex items-top justify-end">
+                        <StarRatinginWords rating={4.5} totalStars={5} />
+                    </div>
+                    <div className="text-[12px]"> Rs. {calculateTotalPrice(productColl.products)}</div>
+                </CardFooter>
             </Card>
         </Link>
     );

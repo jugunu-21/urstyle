@@ -47,6 +47,7 @@ export default function Dashboard() {
       console.log("has field not emptyy", hasAnyFieldEmptyOrNull, requestBody)
       productAddPost.mutateAsync({ requestBody })
         .then(() => {
+
           router.push("/admin/product/productfetch")
           toast.success("sucessfully uploaded");
         })

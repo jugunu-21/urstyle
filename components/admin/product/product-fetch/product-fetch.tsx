@@ -82,7 +82,11 @@ export default function Dashboard() {
             </>
         )
     }
-    const deleteProduct = api.product.productDeleteByProductId.useMutation()
+    const deleteProduct = api.product.productDeleteByProductId.useMutation({
+        onSuccess: () => {
+            refetch();
+        },
+    })
 
     const label = "Action"
     const item = ["Update", "Delete"]
@@ -188,7 +192,7 @@ export default function Dashboard() {
 
                                                                                             deleteProduct.mutateAsync({ productId: product.id })
                                                                                             console.log("id", product.id)
-                                                                                            // refetch()
+
                                                                                         }
                                                                                     }}
                                                                                 >

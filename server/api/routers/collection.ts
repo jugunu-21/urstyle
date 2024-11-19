@@ -50,9 +50,7 @@ export const collectionRouter = createTRPCRouter({
                 jwtToken: token,
                 ...input
             }
-            console.log("modifiedInput", modifiedInput)
             const response = await ApiFetchCollection(modifiedInput)
-            console.log("collectionfetchhhh", response.data)
             return response;
         }),
     collectionFetchByCollectionId: publicAndProtectedProcedure

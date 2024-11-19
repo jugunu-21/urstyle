@@ -5,9 +5,9 @@ export const fashionCategory = [
         keyPieces: ["Jeans", "T-shirts", "Sneakers", "Hoodies", "Casual Dresses"],
         image: '/casualDress.jpg',
         individualImages: [
-            { relativePlace: { top: '25%', left: '45%' }, image: 'https://m.media-amazon.com/images/I/61DXaDAy+NL._SY879_.jpg' },
-            { relativePlace: { top: '44%', left: '29%' }, image: 'https://m.media-amazon.com/images/I/51Bft9svt+L._SX679_.jpg' },
-            { relativePlace: { top: '92%', left: '37%' }, image: 'https://m.media-amazon.com/images/I/71a7JYHu5tL._SY695_.jpg' }
+            { relativePlace: { top: '28%', left: '45%' }, image: 'https://m.media-amazon.com/images/I/61DXaDAy+NL._SY879_.jpg' },
+            { relativePlace: { top: '48%', left: '29%' }, image: 'https://m.media-amazon.com/images/I/51Bft9svt+L._SX679_.jpg' },
+            { relativePlace: { top: '44%', left: '50%' }, image: 'https://m.media-amazon.com/images/I/71a7JYHu5tL._SY695_.jpg' }
         ]
     },
     {
