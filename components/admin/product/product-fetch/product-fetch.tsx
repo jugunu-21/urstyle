@@ -250,7 +250,7 @@ export default function Dashboard() {
                                 <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
                                     <SheetContent >
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} Products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
+                                            <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
                                         </div>
                                     </SheetContent>
                                 </Sheet>

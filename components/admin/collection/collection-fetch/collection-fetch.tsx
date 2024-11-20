@@ -67,14 +67,14 @@ import ProductUpdate from "@/components/admin/product/product-update/product-upd
 import CollectionAdd from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import CollectionUpdate from "@/components/admin/collection/collection-update/collection-update"
-import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
+import { collectionInterfacewithproducts, collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 export default function Dashboard() {
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
     const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
     const [selectProduct, setSelectProduct] = useState(false);
     const [page, setPage] = useState(1)
-    const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
+    const [selectedCollection, setSelectedCollection] = useState<collectionInterfacewithproducts>();
     const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetchbyAdmin.useQuery({ page: page, limit: LIMIT });
     const trigger = () => {
@@ -207,7 +207,7 @@ export default function Dashboard() {
                                                                                     onClick={() => {
                                                                                         if (item === "Update") {
                                                                                             { setSheetOpenCollection && setSheetOpenCollection(true) }
-                                                                                            // setSelectedProduct(collection)
+                                                                                            setSelectedCollection(collection)
 
                                                                                         }
                                                                                         if (item === "Delete") {
@@ -275,7 +275,19 @@ export default function Dashboard() {
                                             <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} Products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
                                         </div> */}
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <CollectionUpdate />
+                                            {selectedCollection && (
+                                                <CollectionUpdate
+                                                    collectionToUpdate={selectedCollection}
+                                                    setSheetOpen={setSheetOpenCollection}
+                                                    refetch={refetch}
+                                                />
+                                            )}
+                                            {/* <CollectionAdd
+                                            setSelectProduct={setSelectProduct}
+                                            setCollection={setCollection}
+                                            products={collection}
+                                            setSheetOpen={setSheetOpenCollection}
+                                            refetch={refetch} /> */}
                                         </div>
                                     </SheetContent>
                                 </Sheet>

@@ -1,7 +1,7 @@
 
 import { ProductDataInterface, } from "@/components/admin/product/product-utils/product-interface"
 import axios, { AxiosRequestConfig } from 'axios';
-import { collectionInterface, ApiUploadCollectionprops, ApiLikeCollectionprops } from "./collection-interface";
+import { collectionInterface, ApiUploadCollectionprops, ApiLikeCollectionprops, ApiUpdateCollectionprops } from "./collection-interface";
 async function PostApiCollectionCall(args: { requestBody?: collectionInterface | null; jwtToken?: string, apiroute: string }) {
   try {
     const { requestBody, jwtToken, apiroute } = args;
@@ -11,6 +11,7 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
       Ids: requestBody?.collectionIds,
       collectionCategory: requestBody?.collectionCategory
     }
+
     const response = await axios({
       method: "POST",
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
@@ -30,6 +31,15 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
 }
 export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollectionprops) {
   const apiroute = "/collection/upload"
+  const SubmitHandler = async () => {
+    const response = await PostApiCollectionCall({ jwtToken, apiroute, requestBody });
+    console.log("response.data", response.data)
+    return response.data;
+  };
+  return SubmitHandler();
+}
+export function ApiUpdateCollection({ jwtToken, requestBody, collectionId }: ApiUpdateCollectionprops) {
+  const apiroute = `/collection/update/${collectionId}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ jwtToken, apiroute, requestBody });
     console.log("response.data", response.data)

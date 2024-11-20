@@ -49,7 +49,9 @@ export interface ProductDataInterface {
     price: string;
     image: string; // Assuming image can be null or a string URL
 }
+
 export interface ProductDataInterfacewithid {
+
     id: string
     category: string;
     name: string;
@@ -58,5 +60,6 @@ export interface ProductDataInterfacewithid {
     webLink: string
     description: string;
     price: string;
-    image: string; // Assuming image can be null or a string URL
+    image: string;
+    review: Record<string, unknown>[];// Assuming image can be null or a string URL
 }

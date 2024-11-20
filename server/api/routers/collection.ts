@@ -1,14 +1,19 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure, protectedProcedure, publicAndProtectedProcedure } from "@/server/api/trpc";
-import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById, AdminApiFetchCollection } from "@/components/admin/collection/collection-utils/function";
+import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById, AdminApiFetchCollection, ApiUpdateCollection } from "@/components/admin/collection/collection-utils/function";
+
 const zcollectiontDataInterface = z.object({
     collectionName: z.string(),
     collectionDescription: z.string(),
     collectionIds: z.array(z.string()),
     collectionCategory: z.array(z.string()),
 })
-const apiProductsAddZodSchema = z.object({
+const apiCollectionAddZodSchema = z.object({
     requestBody: zcollectiontDataInterface,
+});
+const apicollaectionUpdateZodSchema = z.object({
+    requestBody: zcollectiontDataInterface,
+    collectionId: z.string(),
 });
 const zsimplifiedProducts = z.object({
     image: z.string(),
@@ -27,7 +32,7 @@ const paginationSchema = z.object({
     limit: z.number(),
 });
 export const collectionRouter = createTRPCRouter({
-    collectionAdd: protectedProcedure.input(apiProductsAddZodSchema)
+    collectionAdd: protectedProcedure.input(apiCollectionAddZodSchema)
         .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
         .mutation(async ({ ctx, input }) => {
             const token = ctx.token
@@ -122,4 +127,16 @@ export const collectionRouter = createTRPCRouter({
             console.log("response", response)
             return response;
         }),
+    collectionUpdate: protectedProcedure.input(apicollaectionUpdateZodSchema)
+        .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
+        .mutation(async ({ input, ctx }) => {
+            const token = ctx.token
+            const modifiedInput = {
+                ...input,
+                jwtToken: token
+            }
+            const response = await ApiUpdateCollection(modifiedInput)
+            console.log("addproduct")
+            return response;
+        })
 })
