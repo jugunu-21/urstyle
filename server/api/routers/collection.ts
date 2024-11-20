@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure, protectedProcedure, publicAndProtectedProcedure } from "@/server/api/trpc";
-import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById, AdminApiFetchCollection, ApiUpdateCollection } from "@/components/admin/collection/collection-utils/function";
+import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById, AdminApiFetchCollection, ApiUpdateCollection, ApiDeleteCollection } from "@/components/admin/collection/collection-utils/function";
 
 const zcollectiontDataInterface = z.object({
     collectionName: z.string(),
@@ -60,6 +60,21 @@ export const collectionRouter = createTRPCRouter({
                 ...input
             }
             const response = await ApiFetchCollection(modifiedInput)
+            return response;
+        }),
+    collectionDelete: protectedProcedure
+        .input(z.object({ collectionId: z.string() }))
+        .output(z.object({
+            data: z.string()
+            , message: z.string(), status: z.number()
+        }))
+        .mutation(async ({ input, ctx }) => {
+            const token = ctx.token
+            const modifiedInput = {
+                jwtToken: token,
+                ...input
+            }
+            const response = await ApiDeleteCollection(modifiedInput)
             return response;
         }),
     collectionFetchbyAdmin: protectedProcedure

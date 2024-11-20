@@ -29,6 +29,28 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
     throw error
   }
 }
+async function DeleteApiCollectionCall(args: { jwtToken?: string, apiroute: string }) {
+  try {
+    const { jwtToken, apiroute } = args;
+
+
+    const response = await axios({
+      method: "DELETE",
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
+      withCredentials: true,
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`,
+        'Cache-Control': 'public, max-age=3600',
+      },
+    });
+    return response
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+}
 export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollectionprops) {
   const apiroute = "/collection/upload"
   const SubmitHandler = async () => {
@@ -60,6 +82,15 @@ export function ApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { ca
   const apiroute = `/collection/fetch?categoryQuery=${categoryQuery}&likedQuery=${likedQuery}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ apiroute, jwtToken });
+
+    return response.data;
+  };
+  return SubmitHandler();
+}
+export function ApiDeleteCollection({ collectionId, jwtToken }: { collectionId: string, jwtToken: string }) {
+  const apiroute = `/collection/delete/${collectionId}`
+  const SubmitHandler = async () => {
+    const response = await DeleteApiCollectionCall({ apiroute, jwtToken });
 
     return response.data;
   };

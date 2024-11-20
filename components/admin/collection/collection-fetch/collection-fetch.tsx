@@ -85,7 +85,7 @@ export default function Dashboard() {
             </>
         )
     }
-    const deleteProduct = api.product.productDeleteByProductId.useMutation({
+    const deleteCollection = api.collection.collectionDelete.useMutation({
         onSuccess: () => {
             refetch();
         },
@@ -212,8 +212,8 @@ export default function Dashboard() {
                                                                                         }
                                                                                         if (item === "Delete") {
 
-                                                                                            // deleteProduct.mutateAsync({ productId: product.id })
-                                                                                            // console.log("id", product.id)
+                                                                                            deleteCollection.mutateAsync({ collectionId: collection.collectionId })
+
 
                                                                                         }
                                                                                     }}
