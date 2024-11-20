@@ -20,7 +20,8 @@ interface UserInfo {
 }
 import { FaUser } from "react-icons/fa6";
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet";
-import { handleLogout } from "@/components/authentications/sign-out/sign-out";
+
+import { handleLogout } from "@/components/authentications/auth-utils/helpers/log-out";
 import { useRouter } from "next/navigation";
 export default function Navbardrop() {
   const jwtToken = useToken().token

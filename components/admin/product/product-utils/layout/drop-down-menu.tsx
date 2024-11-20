@@ -8,12 +8,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { handleLogout } from "@/components/authentications/auth-utils/helpers/log-out";
 type dropdownmenuprops = {
   item: string[],
   trigger: () => JSX.Element,
   label: string,
 }
-import { handleLogout } from "@/components/authentications/sign-out/sign-out"
+
 export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
   const itemsLength = item.length;
   const router = useRouter()

@@ -9,20 +9,11 @@ import Cookies from 'js-cookie';
 import { useParams } from "next/navigation";
 import getJwtTokenFromCookies from "../auth-utils/helpers/get-cookie";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { handleLogout } from "../auth-utils/helpers/log-out";
 interface UserInfo {
   phone_number?: string;
 }
-export const handleLogout = (router: AppRouterInstance) => {
-  try {
-    const auth = getAuth(app);
-    signOut(auth).then(
-    );
-    toast.success("You Signed Out ");
-    router.push("/");
-  } catch (error) {
-    console.error("Error signing out:", error);
-  }
-};
+
 export const Signout = () => {
   const router = useRouter()
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
