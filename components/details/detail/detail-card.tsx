@@ -34,11 +34,11 @@ function IndividualProductDetail({ products, collectionId }: {
                     alt=""
                   />
                   <div className=" p-2 ml-8 w-full text-left">
-                    <div className=" font-bold">
+                    <div className=" text-[16px] font-bold">
                       {item.name}
                     </div>
-                    <div className="font-semibold my-1">Rs. {item.price}</div>
-                    <div className="mb-2 overflow-hidden whitespace-normal">{item.description}</div>
+                    <div className="font-semibold text-base my-1">Rs. {item.price}</div>
+                    <div className="mb-2 overflow-hidden whitespace-normal text-base">{item.description}</div>
 
                     <WebsiteButtons webLink={item.webLink} link={item.link} />
 

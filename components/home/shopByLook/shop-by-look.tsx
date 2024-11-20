@@ -6,6 +6,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { fashionCategory } from '@/public/category';
+
 export default function InteractiveImage({ look }: { look: string }) {
     const lookdetail = fashionCategory.find((item) => item.look === look) || {
         look: '',
@@ -25,6 +26,7 @@ export default function InteractiveImage({ look }: { look: string }) {
             },
         ],
     };
+    const [selectedIndex, setSelectedIndex] = useState('')
     return (
         <div className="flex">
             <div className='aspect-[3/4] sm:max-w-[370px] '>   <div
@@ -34,6 +36,7 @@ export default function InteractiveImage({ look }: { look: string }) {
                 {lookdetail.individualImages.map((item, index) => (
                     <Popover key={index}>
                         <PopoverTrigger
+                            onClick={() => setSelectedIndex(item.image)}
                             className="absolute w-6 h-6 bg-blue-700 rounded-full cursor-pointer hover:bg-blue-900 transition border-[6px] border-blue-500 opacity-70"
                             style={{
                                 top: item.relativePlace.top,
@@ -60,7 +63,7 @@ export default function InteractiveImage({ look }: { look: string }) {
                             src={item.image}
                             width={110}
                             height={100}
-                            className=" h-[150px] w-[160px] grid-cols-1  rounded-lg mx-auto "
+                            className={`h-[150px] w-[160px] grid-cols-1 rounded-lg mx-auto ${selectedIndex === item.image ? 'border border-gray-500' : ''}`}
                         />
                     </div>
                 ))}

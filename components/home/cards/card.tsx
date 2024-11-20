@@ -26,6 +26,7 @@ export interface Product {
 }
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { calculateTotalPrice } from "@/components/reusable-components/total-product-price";
+import { PlatformLinks } from "@/components/reusable-components/small-web-icons";
 export interface ProductCollection {
     name: string;
     description: string;
@@ -152,32 +153,8 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
                     </div>
                 </CardContent>
                 <CardFooter className="grid grid-cols-2 " >
+                    <div className="text-xl"><PlatformLinks productColl={productColl} /></div>
 
-                    <div className="">
-                        <span className="inline-flex sm:mt-0 justify-start space-x-1">
-                            {['Amazon', 'Flipkart', 'messho'].map((platform) => {
-                                const amazonItem = productColl.products.find(item => item.webLink === platform);
-                                return amazonItem && (
-                                    <span key={platform}>
-                                        {platform === 'Amazon' ? (
-                                            <Link href="https://amazon.com" className="text-xl">
-                                                <FaAmazon className="text-[#157A6E] hover:text-[#cf8750]" />
-                                            </Link>
-                                        ) : platform === 'Flipkart' ? (
-                                            <Link href="https://flipkart.com" className="-xl">
-                                                <SiFlipkart className="text-[#157A6E] hover:text-[#cf8750]" />
-                                            </Link>
-                                        ) : (
-                                            <Link href="https://meesho.com" className="text-xl">
-                                                <CiShop className="text-[#157A6E] hover:text-[#cf8750]" />
-                                            </Link>
-                                        )}
-                                    </span>
-                                );
-                            })}
-                        </span>
-
-                    </div>
                     <div className="flex items-top justify-end">
                         <StarRatinginWords rating={4.5} totalStars={5} />
                     </div>
