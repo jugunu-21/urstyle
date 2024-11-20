@@ -62,7 +62,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
-import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
+import CollectionAdd from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 export default function Dashboard() {
@@ -250,7 +250,7 @@ export default function Dashboard() {
                                 <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
                                     <SheetContent >
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <ProductCollection setSelectProduct={setSelectProduct} setCollection={setCollection} collection={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
+                                            <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} Products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
                                         </div>
                                     </SheetContent>
                                 </Sheet>

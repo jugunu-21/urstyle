@@ -32,8 +32,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { fashionCategory } from "@/public/category"
 import { Checkbox } from "@/components/ui/checkbox";
-export default function Dashboard({ setSelectProduct, collection, setCollection, setSheetOpen, refetch }: addprops) {
-  const collectionIds = () => collection.map((product => product.productId));
+export default function Dashboard({ setSelectProduct, Products, setCollection, setSheetOpen, refetch }: addprops) {
+  const collectionIds = () => Products.map((product => product.productId));
   const [selectedIds, setSelectedIds] = useState<string[]>(collectionIds);
   const collectionAddPost = api.collection.collectionAdd.useMutation();
   const [category, setCategory] = useState<string[]>([])
@@ -51,7 +51,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
     collectionCategory: category
   }
 
-  const productInclude = collection?.filter((product) => {
+  const productInclude = Products?.filter((product) => {
     const isIncluded = selectedIds.includes(product.productId);
     return isIncluded ? product.ProductImage : null;
   }).filter(image => image !== null);
@@ -71,9 +71,9 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
         toast.error("failed to add collection")
       });
   }
-  const imgg = collection.filter(product => selectedIds.includes(product.productId)).map(product => product.ProductImage);
+  const imgg = Products.filter(product => selectedIds.includes(product.productId)).map(product => product.ProductImage);
 
-  const selectedNames = collection.filter(product => selectedIds.includes(product.productId)).map(product => product.productName);
+  const selectedNames = Products.filter(product => selectedIds.includes(product.productId)).map(product => product.productName);
   return (
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div >
@@ -113,7 +113,7 @@ export default function Dashboard({ setSelectProduct, collection, setCollection,
               <div className=" max-w-xl">
                 <Label className="text-xl" htmlFor="name">Products to Add In Collection</Label>
                 <MultiSelect
-                  options={collection}
+                  options={Products}
                   onValueChange={setSelectedIds}
                   defaultValue={selectedIds}
                   placeholder="Select Products"

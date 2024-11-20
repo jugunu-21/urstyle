@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { createTRPCRouter, publicProcedure, protectedProcedure, publicAndProtectedProcedure } from "@/server/api/trpc";
-import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById } from "@/components/admin/collection/collection-utils/function";
+import { ApiUploadCollection, ApiFetchCollection, ApiLikeCollection, ApiFetchCollectionById, AdminApiFetchCollection } from "@/components/admin/collection/collection-utils/function";
 const zcollectiontDataInterface = z.object({
     collectionName: z.string(),
     collectionDescription: z.string(),
@@ -21,6 +21,10 @@ const zsimplifiedProducts = z.object({
     link: z.string(),
     review: z.array(z.record(z.unknown())),
     description: z.string()
+});
+const paginationSchema = z.object({
+    page: z.number(),
+    limit: z.number(),
 });
 export const collectionRouter = createTRPCRouter({
     collectionAdd: protectedProcedure.input(apiProductsAddZodSchema)
@@ -51,6 +55,35 @@ export const collectionRouter = createTRPCRouter({
                 ...input
             }
             const response = await ApiFetchCollection(modifiedInput)
+            return response;
+        }),
+    collectionFetchbyAdmin: protectedProcedure
+        .input(paginationSchema
+
+        )
+        .output(z.object({
+            data: z.object({
+                simplifiedCollection: z.array(
+                    z.object({
+                        name: z.string(),
+                        collectionId: z.string(),
+                        description: z.string(),
+                        categories: z.array(z.string()),
+                        products: z.array(zsimplifiedProducts)
+                    })
+                ),
+                totalDocs: z.number()
+            }),
+            message: z.string(),
+            status: z.number()
+        }))
+        .query(async ({ input, ctx }) => {
+            const token = ctx.token
+            const modifiedInput = {
+                jwtToken: token,
+                ...input
+            }
+            const response = await AdminApiFetchCollection(modifiedInput)
             return response;
         }),
     collectionFetchByCollectionId: publicAndProtectedProcedure

@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import {
+    Divide,
     MoreHorizontal,
 } from "lucide-react"
 import {
@@ -11,6 +12,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import {
     Table,
     TableBody,
@@ -62,8 +64,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import ProductUpdate from "@/components/admin/product/product-update/product-update"
-import ProductCollection from "@/components/admin/collection/collection-add/collection-add"
+import CollectionAdd from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
+import CollectionUpdate from "@/components/admin/collection/collection-update/collection-update"
 import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 export default function Dashboard() {
     const LIMIT = 4
@@ -73,7 +76,7 @@ export default function Dashboard() {
     const [page, setPage] = useState(1)
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
-    const { data: response, isLoading, refetch, error } = api.product.productfetch.useQuery({ page: page, limit: LIMIT });
+    const { data: response, isLoading, refetch, error } = api.collection.collectionFetchbyAdmin.useQuery({ page: page, limit: LIMIT });
     const trigger = () => {
         return (
             <>
@@ -98,7 +101,7 @@ export default function Dashboard() {
     }
 
     if (response) {
-        const fetchedData = response.data.simplifiedProducts
+        const fetchedData = response.data.simplifiedCollection
         const totalDocs = response.data.totalDocs
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
         const startno = ((page - 1) * LIMIT) + 1
@@ -114,26 +117,29 @@ export default function Dashboard() {
                                     <TabsContent value="all">
                                         <Card x-chunk="dashboard-06-chunk-0">
                                             <CardHeader>
-                                                <CardTitle>Products</CardTitle>
+                                                <CardTitle>Collections</CardTitle>
                                                 <CardDescription>
-                                                    Manage your products and view their sales performance.
+                                                    Manage your collections and view their information.
                                                 </CardDescription>
                                             </CardHeader>
                                             <CardContent>
                                                 <Table>
                                                     <TableHeader>
                                                         <TableRow>
-                                                            <TableHead className="hidden w-[100px] sm:table-cell">Image</TableHead>
+                                                            <TableHead className="hidden w-[240px] sm:table-cell ml-8">Image</TableHead>
                                                             <TableHead>Name</TableHead>
-                                                            <TableHead>Price(in rupee)
+                                                            {/* <TableHead>Price(in rupee)
 
-                                                            </TableHead>
+                                                            </TableHead> */}
                                                             <TableHead className="hidden md:table-cell">
                                                                 Description
                                                             </TableHead>
                                                             <TableHead className="hidden md:table-cell">
-                                                                Link
+                                                                Categories
                                                             </TableHead>
+                                                            {/* <TableHead className="hidden md:table-cell">
+                                                                Link
+                                                            </TableHead> */}
                                                             <TableHead >
                                                                 Action
                                                             </TableHead>
@@ -143,33 +149,49 @@ export default function Dashboard() {
 
                                                         </TableRow>
                                                     </TableHeader>
-                                                    <TableBody>
-                                                        {fetchedData.map((product) => (
+                                                    <TableBody className="">
+                                                        {fetchedData.map((collection) => (
 
-                                                            <TableRow key={product.id}>
+                                                            <TableRow key={collection.collectionId}>
 
                                                                 <TableCell className="hidden w-[100px] sm:table-cell">
-                                                                    <Image
-                                                                        alt="Product image"
-                                                                        className="aspect-square rounded-md object-cover"
-                                                                        height="64"
-                                                                        src={product.image}
-                                                                        width="64"
-                                                                    />
+                                                                    <div className="grid grid-cols-2 gap-0 ">
+                                                                        {collection.products?.map((product) =>
+                                                                            <div key={product.id} className=" m-0">
+                                                                                <Image
+                                                                                    alt="Product image"
+                                                                                    className="  aspect-square rounded-md object-cover"
+                                                                                    height="90"
+                                                                                    src={product.image}
+                                                                                    width="90"
+                                                                                />
+                                                                            </div>
+                                                                        )}</div>
+
                                                                 </TableCell>
                                                                 <TableCell className="font-medium">
-                                                                    {product.name}
+                                                                    {collection.name}
                                                                 </TableCell>
 
-                                                                <TableCell className="font-medium">
+                                                                {/* <TableCell className="font-medium">
                                                                     {product.price}
+                                                                </TableCell> */}
+                                                                <TableCell className="hidden md:table-cell">
+                                                                    {collection.description}
                                                                 </TableCell>
                                                                 <TableCell className="hidden md:table-cell">
-                                                                    {product.description}
+
+                                                                    {collection.categories.map((category, index) =>
+                                                                        <div key={index} className="m-1">
+                                                                            <Badge variant="secondary">{category}
+
+                                                                            </Badge>
+                                                                        </div>
+                                                                    )}
                                                                 </TableCell>
-                                                                <TableCell className="hidden md:table-cell">
+                                                                {/* <TableCell className="hidden md:table-cell">
                                                                     {product.link}
-                                                                </TableCell>
+                                                                </TableCell> */}
                                                                 <TableCell>
                                                                     <DropdownMenu>
                                                                         <DropdownMenuTrigger >
@@ -184,14 +206,14 @@ export default function Dashboard() {
                                                                                 <div key={i}
                                                                                     onClick={() => {
                                                                                         if (item === "Update") {
-                                                                                            { setSheetOpenUpdate && setSheetOpenUpdate(true) }
-                                                                                            setSelectedProduct(product)
+                                                                                            { setSheetOpenCollection && setSheetOpenCollection(true) }
+                                                                                            // setSelectedProduct(collection)
 
                                                                                         }
                                                                                         if (item === "Delete") {
 
-                                                                                            deleteProduct.mutateAsync({ productId: product.id })
-                                                                                            console.log("id", product.id)
+                                                                                            // deleteProduct.mutateAsync({ productId: product.id })
+                                                                                            // console.log("id", product.id)
 
                                                                                         }
                                                                                     }}
@@ -204,7 +226,7 @@ export default function Dashboard() {
                                                                         </DropdownMenuContent>
                                                                     </DropdownMenu>
                                                                 </TableCell>
-                                                                {selectProduct ? <TableCell className="">
+                                                                {/* {selectProduct ? <TableCell className="">
                                                                     <div className="flex items-center space-x-2">
                                                                         <Checkbox id="terms" checked={collection.some(item => item.productId === product.id)} onClick={() => {
                                                                             const existingIndex = collection.findIndex(item => item.productId === product.id);
@@ -224,7 +246,7 @@ export default function Dashboard() {
                                                                         }} />
 
                                                                     </div>
-                                                                </TableCell> : null}
+                                                                </TableCell> : null} */}
                                                             </TableRow>
 
                                                         ))}
@@ -240,17 +262,20 @@ export default function Dashboard() {
                                         </Card>
                                     </TabsContent>
                                 </Tabs>
-                                <Sheet open={sheetOpenUpdate} onOpenChange={setSheetOpenUpdate}>
+                                {/* <Sheet open={sheetOpenUpdate} onOpenChange={setSheetOpenUpdate}>
                                     <SheetContent >
                                         <div className=" overflow-y-auto w-full  h-full">
                                             <ProductUpdate selectedProduct={selectedProduct} setSheetOpen={setSheetOpenUpdate} refetch={refetch} />
                                         </div>
                                     </SheetContent>
-                                </Sheet>
+                                </Sheet> */}
                                 <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
                                     <SheetContent >
+                                        {/* <div className=" overflow-y-auto w-full  h-full">
+                                            <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} Products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
+                                        </div> */}
                                         <div className=" overflow-y-auto w-full  h-full">
-                                            <ProductCollection setSelectProduct={setSelectProduct} setCollection={setCollection} collection={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
+                                            <CollectionUpdate />
                                         </div>
                                     </SheetContent>
                                 </Sheet>

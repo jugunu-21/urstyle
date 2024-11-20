@@ -7,7 +7,7 @@ export interface collectionproductInterface {
 
 }
 export type addprops = {
-    collection: Array<collectionproductInterface>,
+    Products: Array<collectionproductInterface>,
     setSheetOpen: (sheetOpen: boolean) => void,
     setCollection: (collection: Array<collectionproductInterface>) => (void);
     refetch?: (options?: RefetchOptions) => Promise<any>;

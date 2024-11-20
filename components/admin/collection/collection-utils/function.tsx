@@ -55,6 +55,15 @@ export function ApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { ca
   };
   return SubmitHandler();
 }
+export function AdminApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { categoryQuery?: string, jwtToken: string, likedQuery?: string }) {
+  const apiroute = `/collection/admincollectionfetch?categoryQuery=${categoryQuery}&likedQuery=${likedQuery}`
+  const SubmitHandler = async () => {
+    const response = await PostApiCollectionCall({ apiroute, jwtToken });
+
+    return response.data;
+  };
+  return SubmitHandler();
+}
 export function ApiFetchCollectionById({ collectionId, jwtToken }: { collectionId: string, jwtToken: string }) {
   const apiroute = `/collection/collectionByCollectionId/${collectionId}`
   const SubmitHandler = async () => {
