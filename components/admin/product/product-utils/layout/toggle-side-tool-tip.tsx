@@ -94,7 +94,7 @@ export function ToggleSideToolTip() {
               <span className="sr-only">Acme Inc</span>
             </Link>
             <Link
-              href="/admin/product"
+              href="/admin"
               className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
             >
               <Home className="h-5 w-5" />
@@ -106,6 +106,13 @@ export function ToggleSideToolTip() {
             >
               <ShoppingCart className="h-5 w-5" />
               ProductsTable
+            </Link>
+            <Link
+              href="/admin/collection/collectionfetch"
+              className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              CollectionTable
             </Link>
             <Link
               href="/"

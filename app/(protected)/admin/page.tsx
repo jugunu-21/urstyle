@@ -70,7 +70,7 @@ export default function AdminDashboard() {
                                     <p className="leading-relaxed text-base">
                                         Organize and manage your product collections. Update details, remove outdated items, and ensure your catalog is always fresh and relevant for your users.
                                     </p>
-                                    <a href="/admin/product/productfetch" className="mt-3 black inline-flex items-center">Manage Collection
+                                    <a href="/admin/collection/collectionfetch " className="mt-3 black inline-flex items-center">Manage Collection
                                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                                         </svg>

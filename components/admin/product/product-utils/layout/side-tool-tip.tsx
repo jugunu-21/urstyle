@@ -87,7 +87,7 @@ export function SideToolTip() {
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
-              href="/admin/product"
+              href="/admin"
               className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             >
               <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
@@ -109,6 +109,22 @@ export function SideToolTip() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">Products Table</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button className=' bg-blue focus:none hover:bg-blue'
+                // onClick={async () =>onclickfun()}
+                >
+                  <Link
+                    href="/admin/collection/collectionfetch" // Use React Router's `to` prop for navigation
+                    className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                  >
+                    <Table2 className="h-5 w-5" />
+                    <span className="sr-only">Collection Table </span>
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="right">Collection Table </TooltipContent>
             </Tooltip>
             {/* <Tooltip>
               <TooltipTrigger asChild>

@@ -42,7 +42,7 @@ export default function Navbardrop() {
           <DropdownMenuSeparator />
           {jwtToken !== null && <>
             <DropdownMenuItem onClick={() => { setLiked(true); setSheetOpenLikedCollection(true) }}>Wishlist</DropdownMenuItem>
-            <DropdownMenuItem >   <Link href="/admin/product">Admin Dashboard</Link></DropdownMenuItem>
+            <DropdownMenuItem >   <Link href="/admin">Admin Dashboard</Link></DropdownMenuItem>
             <DropdownMenuItem onClick={() => handleLogout(router)}>Logout</DropdownMenuItem>
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>
           </>}
