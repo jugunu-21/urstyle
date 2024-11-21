@@ -17,44 +17,23 @@ function CollectionImageCard({ image }: { image: string[] }) {
   return (
     <Card
       className="overflow-hidden my-4 " x-chunk="dashboard-07-chunk-4">
-      {/* <CardHeader>
-        <CardTitle>Products Images</CardTitle>
-      </CardHeader> */}
-      <Label className="text-xl" htmlFor="description">Products Images</Label>
       <CardContent>
         <div className="grid gap-2 m-2">
           <div className="grid grid-cols-4 gap-2">
             {image && image.map((image) => {
-              console.log("imageee",image)
+              console.log("imageee", image)
               return (
                 <>
-                {image? <Image key={image}
-                alt="image"
-                className="aspect-square w-full rounded-md object-cover"
-                height="84"
-                src={image ? image : '/placeholder.svg'}
-                width="84"
-              />:<ImagePlus/>}
-                
-                </> )
+                  {image ? <Image key={image}
+                    alt="image"
+                    className="aspect-square w-full rounded-md object-cover"
+                    height="84"
+                    src={image ? image : '/placeholder.svg'}
+                    width="84"
+                  /> : <ImagePlus />}
+
+                </>)
             })}
-            {/* <Image
-              alt="Product image"
-              className="aspect-square w-full rounded-md object-cover"
-              height="84"
-              src="/placeholder.svg"
-              width="84"
-            />
-
-
-            <Image
-              alt="Product image"
-              className="aspect-square w-full rounded-md object-cover"
-              height="84"
-              src="/placeholder.svg"
-              width="84"
-            /> */}
-
           </div>
         </div>
       </CardContent>
