@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { fashionCategory } from "@/public/category"
 import { Checkbox } from "@/components/ui/checkbox";
+import { MultiSelectCategory } from "../collection-utils/layout/category-multi-select";
 
 export default function Dashboard({ collectionToUpdate, setSheetOpen, refetch }: collectionupdateprops) {
     const collectionIds = () => collectionToUpdate.products.map((product => product.id));
@@ -129,47 +130,22 @@ export default function Dashboard({ collectionToUpdate, setSheetOpen, refetch }:
                                 />
 
                                 {(imgg.length > 0) && <CollectionImageCard image={imgg} />}
-                                <div className="mt-4">
-                                    {/* <h2 className=" font-semibold">Selected Products</h2> */}
-                                    <Label className="text-xl" htmlFor="name">Selected Products</Label>
-                                    <ul className="list-disc list-inside">
-                                        {selectedNames.map((name) => (
-                                            <li key={name}>{name}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                <Label className="text-xl" htmlFor="name">Select the Categories</Label>
+                                <MultiSelectCategory onChange={() => console.log("collecbhjntion", category)}
+                                    options={fashionCategory.map((item, index) => ({
+                                        category: item.look,
+                                        categoryId: index, // Convert index to string if needed
+                                    }))}
+                                    onValueChange={setCategory}
+                                    defaultValue={category}
+                                    placeholder="Select Products"
+                                    variant="inverted"
+                                    animation={2}
+                                    maxCount={3}
+                                />
+
                                 <div className="mt-4 ">
 
-                                    <DropdownMenu >
-                                        <DropdownMenuTrigger asChild className=" pl-0 mt-2" >
-                                            {/* <button className="text-xl" htmlFor="name">Select the Collection Type</Label> */}
-                                            <Button variant="outline" className="text-lg ml-0">Select the Categories</Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent className="w-56 overflow-y-auto max-h-[200px]">
-                                            <DropdownMenuLabel>Panel category</DropdownMenuLabel>
-                                            <DropdownMenuSeparator />
-
-                                            {fashionCategory.map((fashion, index) => (
-                                                <div key={index} className="h-full"  >
-                                                    <DropdownMenuItem >{fashion.look}
-                                                        <Checkbox className="mx-2 " id="terms" checked={category.some(item => item === fashion.look)} onClick={() => {
-                                                            const existingIndex = category.findIndex(item => item === fashion.look);
-                                                            if (existingIndex >= 0) {
-
-                                                                setCategory(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
-                                                            } else {
-
-
-                                                                setCategory(prev => [...prev, fashion.look]);
-                                                            }
-                                                            console.log("Updated catgeory:", category);
-                                                        }} /></DropdownMenuItem>
-                                                    {index !== fashionCategoryLength - 1 && <DropdownMenuSeparator />}
-                                                </div>
-                                            ))}
-
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
                                     <ul className="list-disc list-inside" >
                                         {category.map((cat, index) => (
                                             //  <li key={name}>{name}</li>

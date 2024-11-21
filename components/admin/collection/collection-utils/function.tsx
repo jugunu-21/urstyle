@@ -96,8 +96,8 @@ export function ApiDeleteCollection({ collectionId, jwtToken }: { collectionId: 
   };
   return SubmitHandler();
 }
-export function AdminApiFetchCollection({ categoryQuery, jwtToken, likedQuery }: { categoryQuery?: string, jwtToken: string, likedQuery?: string }) {
-  const apiroute = `/collection/admincollectionfetch?categoryQuery=${categoryQuery}&likedQuery=${likedQuery}`
+export function AdminApiFetchCollection({ categoryQuery, jwtToken, likedQuery, page, limit }: { categoryQuery?: string, jwtToken: string, likedQuery?: string, page: number, limit: number }) {
+  const apiroute = `/collection/admincollectionfetch?page=${page}&&limit=${limit}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ apiroute, jwtToken });
 

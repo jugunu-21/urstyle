@@ -27,7 +27,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import StatusandFilter from "@/components/admin/product/product-utils/layout/fetch-product-header"
+import { StatusandFilterForCollection } from "@/components/admin/product/product-utils/layout/fetch-product-header"
 import { DropDownMenu } from "@/components/admin/product/product-utils/layout/drop-down-menu"
 import { useState, useEffect } from "react";
 import {
@@ -104,6 +104,7 @@ export default function Dashboard() {
         const fetchedData = response.data.simplifiedCollection
         const totalDocs = response.data.totalDocs
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
+        console.log("totalpage", page, LIMIT,)
         const startno = ((page - 1) * LIMIT) + 1
         const endno = (startno + LIMIT - 1) > totalDocs ? totalDocs : startno + LIMIT - 1
         return (<>
@@ -113,7 +114,7 @@ export default function Dashboard() {
                         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
                             <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
                                 <Tabs defaultValue="all">
-                                    <StatusandFilter setSheetOpenCollection={setSheetOpenCollection} setSelectProduct={setSelectProduct} collection={collection} />
+                                    <StatusandFilterForCollection setSheetOpenCollection={setSheetOpenCollection} setSelectProduct={setSelectProduct} collection={collection} />
                                     <TabsContent value="all">
                                         <Card x-chunk="dashboard-06-chunk-0">
                                             <CardHeader>

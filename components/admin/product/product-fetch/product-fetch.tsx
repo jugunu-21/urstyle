@@ -65,11 +65,17 @@ import ProductUpdate from "@/components/admin/product/product-update/product-upd
 import CollectionAdd from "@/components/admin/collection/collection-add/collection-add"
 import { Checkbox } from "@/components/ui/checkbox"
 import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
+import { useParams, useSearchParams } from "next/navigation"
 export default function Dashboard() {
+    const searchParams = useSearchParams();
+
+    const selectProductfromCollection = searchParams.get('selectProduct') === 'true';
+    console.log("selectProductfromCollection", searchParams.get('selectProduct'))
+
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
     const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
-    const [selectProduct, setSelectProduct] = useState(false);
+    const [selectProduct, setSelectProduct] = useState(selectProductfromCollection);
     const [page, setPage] = useState(1)
     const [selectedProduct, setSelectedProduct] = useState<ProductDataInterfacewithid>();
     const [collection, setCollection] = useState<Array<collectionproductInterface>>([]);
