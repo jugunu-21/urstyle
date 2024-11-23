@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { useSignUp } from "@clerk/nextjs";
 import { isFirebaseAuthError } from '@/utils/firebase-auth-error';
 import {
   getAuth,
@@ -23,6 +24,7 @@ import toast from "react-hot-toast";
 import { ConfirmationResult } from "firebase/auth";
 import { useToken } from "../auth-utils/helpers/zustand";
 export default function Signup() {
+  const { signUp, isLoaded: isSignUpLoaded } = useSignUp();
   const changeToken = useToken((state) => (state.changeToken))
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
@@ -31,34 +33,47 @@ export default function Signup() {
   const [otpSentYN, setOtpSentYN] = useState("");
   const auth = getAuth(app);
   const router = useRouter();
-  useEffect(() => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size: "invisible",
-        callback: (response: any) => { },
-        "expired-callback": () => { },
-      }
-    );
-  }, [auth]);
+  const generateTicketId = (): string => {
+    return Math.random().toString(36).substr(2, 9);
+  };
   const handlePhoneNumberChange = (value: string) => {
     setPhoneNumber(value);
   };
-  const signUp = api.auth.sIgnup.useMutation();
+  const signUptrpc = api.auth.sIgnup.useMutation();
   const handleSendOtp = async () => {
     try {
+      if (!isSignUpLoaded) {
+        toast.error("Signup service is not ready. Please try again.");
+        return;
+      }
+      const phone = `+${phoneNumber.replace(/\D/g, "")}`;
+      const formattedPhoneNumberr = `+${phoneNumber.replace(/\D/g, "")}`;
+      console.log("phone", formattedPhoneNumberr)
+      const ticketId = generateTicketId();
+      const response = await signUp.create({
+        phoneNumber: formattedPhoneNumberr,
+      });
+      await signUp.preparePhoneNumberVerification({
+        strategy: "phone_code",
+
+      })
+      console.log("response", response)
+      console.log("Missing required fields:", response.requiredFields);
+      if (response.verifications?.phoneNumber.status === "failed") {
+        throw new Error("Unexpected error during phone number verification.");
+
+      } else {
+        setOtpSent(true);
+
+      }
 
       console.log("send otp");
       const formattedPhoneNumber = `+${phoneNumber.replace(
         /\D/g,
         ""
       )}`;
-      console.log("auth", process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN)
+
       console.log("formattedPhoneNumber", formattedPhoneNumber);
-      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, window.recaptchaVerifier);
-      console.log("confirmation", confirmation);
-      setConfirmationResult(confirmation);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
@@ -84,7 +99,13 @@ export default function Signup() {
   };
   const handleOtpSubmit = async () => {
     try {
-      await confirmationResult?.confirm(otp);
+      if (!otp || !isSignUpLoaded) {
+        toast.error("Please enter a valid OTP.");
+        return;
+      }
+      await signUp.attemptPhoneNumberVerification({
+        code: otp,
+      });
       setOtp("");
       const phonenumbertosend = `${phoneNumber.replace(
         /\D/g,
@@ -95,17 +116,14 @@ export default function Signup() {
         phone_number: phonenumbertosend,
       };
       console.log(requestBody);
-      const result = await signUp.mutateAsync(requestBody)
-
+      const result = await signUptrpc.mutateAsync(requestBody)
       const jwtToken = result.data;
       Cookies.set('jwtToken', jwtToken, { expires: 2, path: '/', secure: true });
       changeToken(jwtToken)
       router.push("/");
       toast.success("sucessfully signup");
       setPhoneNumber("");
-
     } catch (error) {
-
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
           toast.error("The verification code you entered is incorrect. Please try again.");
@@ -229,3 +247,4 @@ export default function Signup() {
     </div>
   );
 }
+
