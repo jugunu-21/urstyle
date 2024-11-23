@@ -1,12 +1,4 @@
 
-/**
- * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
- * 1. You want to modify request context (see Part 1).
- * 2. You want to create a new middleware or type of procedure (see Part 3).
- *
- * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
- * need to use are documented accordingly near the end.
- */
 import { NextApiRequest } from 'next';
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -57,7 +49,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
  * errors on the backend.
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
+  // transformer: superjson,
   errorFormatter({ shape, error }) {
     return {
       ...shape,
@@ -80,14 +72,14 @@ const enforceUserIsHavingToken = t.middleware(async ({ next, ctx }) => {
       code: "UNAUTHORIZED",
     });
   }
-  else{
+  else {
     return next({
       ctx: {
         token: token,
       },
     });
   }
-  
+
 });
 const UserMayHaveToken = t.middleware(async ({ next, ctx }) => {
   const token = ctx.token
@@ -98,13 +90,13 @@ const UserMayHaveToken = t.middleware(async ({ next, ctx }) => {
   //   });
   // }
   // else{ 
-    return next({
-      ctx: {
-        token: token,
-      },
-    });
+  return next({
+    ctx: {
+      token: token,
+    },
+  });
   // }
-  
+
 });
 /**
  * Create a server-side caller.

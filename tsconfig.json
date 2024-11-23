@@ -1,13 +1,18 @@
 {
   "$schema": "./tsconfig-schema.json",
   "compilerOptions": {
+    "types": [
+      "node"
+    ],
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "typeRoots": ["./types", "./node_modules/@types"],
-
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -37,8 +42,9 @@
     "**/*.tsx",
     "**/*.jsx",
     "**/*.js",
-    ".next/types/**/*.ts"
-, "components/details/detail/detail-image-collage"  ],
+    ".next/types/**/*.ts",
+    "components/details/detail/detail-image-collage"
+  ],
   "exclude": [
     "node_modules"
   ]
