@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton, SignOutButton, SignUpButton } from '@clerk/nextjs'
 import Cookies from 'js-cookie';
 import { app } from "@/app/config"
 import { signOut } from "firebase/auth";
@@ -20,13 +21,12 @@ interface UserInfo {
 }
 import { FaUser } from "react-icons/fa6";
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet";
-
 import { handleLogout } from "@/components/authentications/auth-utils/helpers/log-out";
 import { useRouter } from "next/navigation";
 export default function Navbardrop() {
   const jwtToken = useToken().token
-  const [liked, setLiked] = useState<boolean>(false);
   const router = useRouter()
+  const [liked, setLiked] = useState<boolean>(false);
   const handledeleteuser = () => {
     deleteUser();
   }
@@ -41,17 +41,29 @@ export default function Navbardrop() {
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {jwtToken !== null && <>
+          <SignedIn >
+            <DropdownMenuItem >  <SignedIn>
+              <UserButton />
+            </SignedIn > </DropdownMenuItem>
             <DropdownMenuItem onClick={() => { setLiked(true); setSheetOpenLikedCollection(true) }}>Wishlist</DropdownMenuItem>
             <DropdownMenuItem >   <Link href="/admin">Admin Dashboard</Link></DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleLogout(router)}>Logout</DropdownMenuItem>
             <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem>
-          </>}
-          {jwtToken === null && <> <DropdownMenuItem>
-            <Link href="/sign-up">Signup</Link>
-          </DropdownMenuItem>
-            <DropdownMenuItem>   <Link href="/sign-in">Login</Link></DropdownMenuItem></>
-          }
+
+            <DropdownMenuItem onClick={() => Cookies.remove('jwtToken', { expires: 0 })}>
+              <SignOutButton />
+            </DropdownMenuItem>
+
+          </SignedIn >
+          <SignedOut>
+
+            <DropdownMenuItem>
+              <SignInButton />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <SignUpButton />
+            </DropdownMenuItem>
+          </SignedOut>
+
         </DropdownMenuContent>
       </DropdownMenu>
       {liked && (
