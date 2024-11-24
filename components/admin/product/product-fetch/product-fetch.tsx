@@ -67,11 +67,12 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 import { useParams, useSearchParams } from "next/navigation"
 export default function Dashboard() {
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
 
-    const selectProductfromCollection = searchParams.get('selectProduct') === 'true';
-    console.log("selectProductfromCollection", searchParams.get('selectProduct'))
+    // const selectProductfromCollection = searchParams.get('selectProduct') === 'true';
+    // console.log("selectProductfromCollection", searchParams.get('selectProduct'))
 
+    const selectProductfromCollection = false
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
     const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
