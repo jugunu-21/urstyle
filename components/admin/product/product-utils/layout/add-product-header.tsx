@@ -8,19 +8,17 @@ import { Button } from "@/components/ui/button"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
-  requestBody: ProductDataInterface
-  id?: string | undefined
-  setSheetOpen?: (value: boolean) => void;
-  refetch?: (options?: RefetchOptions) => Promise<any>;
-  addProducthandler: () => Promise<void>
+
+  handler: () => Promise<void>;
+  // updateProducthandler?: () => Promise<void>
 }
 import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
 import { RefetchOptions } from "@tanstack/react-query"
-export default function ProductHeader({ requestBody, addProducthandler, id, setSheetOpen, refetch }: SubmitHandlerInterface) {
-  const router = useRouter();
-  const productaddpost = api.product.productAdd.useMutation();
-  const productUpdatepost = api.product.productUpdate.useMutation();
+export default function ProductHeader({ handler }: SubmitHandlerInterface) {
+  // const router = useRouter();
+  // const productaddpost = api.product.productAdd.useMutation();
+  // const productUpdatepost = api.product.productUpdate.useMutation();
 
 
   // const handlerupload = async () => {
@@ -35,19 +33,19 @@ export default function ProductHeader({ requestBody, addProducthandler, id, setS
   //       toast.error("failed to upload product")
   //     });
   // }
-  const handlerupdate = async (id: string) => {
-    if (id) {
-      productUpdatepost.mutateAsync({ requestBody, id: id })
-        .then
-        (() => {
-          { setSheetOpen && setSheetOpen(false) }
-          { refetch && refetch() }
-          // router.push("/admin/product/productfetch")
-          toast.success("sucessfully updated");
-        }
-        ).catch((error) => console.error("submission error:", error))
-    }
-  }
+  // const updateProducthandler = async (id: string) => {
+  //   if (id) {
+  //     productUpdatepost.mutateAsync({ requestBody, id: id })
+  //       .then
+  //       (() => {
+  //         { setSheetOpen && setSheetOpen(false) }
+  //         { refetch && refetch() }
+  //         // router.push("/admin/product/productfetch")
+  //         toast.success("sucessfully updated");
+  //       }
+  //       ).catch((error) => console.error("submission error:", error))
+  //   }
+  // }
   return (
     <div className="flex items-center gap-4">
       <Button variant="outline" size="icon" className="h-7 w-7">
@@ -68,10 +66,10 @@ export default function ProductHeader({ requestBody, addProducthandler, id, setS
           Discard
         </Button>
 
-        {id == null ? (
-          <Button size="sm" onClick={() => addProducthandler()}>Save Product</Button>
 
-        ) : (<Button size="sm" onClick={() => handlerupdate(id)}>Save Product</Button>)}
+        <Button size="sm" onClick={() => handler()}>Save Product</Button>
+
+
       </div>
     </div>
   )
