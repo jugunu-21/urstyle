@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image"
 import {
-    Divide,
     MoreHorizontal,
 } from "lucide-react"
 import {
@@ -24,11 +23,8 @@ import {
 import {
     Tabs,
     TabsContent,
-    TabsList,
-    TabsTrigger,
 } from "@/components/ui/tabs"
 import { StatusandFilterForCollection } from "@/components/admin/product/product-utils/layout/fetch-product-header"
-import { DropDownMenu } from "@/components/admin/product/product-utils/layout/drop-down-menu"
 import { useState, useEffect } from "react";
 import {
     Pagination,
@@ -45,13 +41,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
 } from "@/components/ui/sheet"
 
 import {
@@ -62,16 +52,11 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
-import ProductUpdate from "@/components/admin/product/product-update/product-update"
-import CollectionAdd from "@/components/admin/collection/collection-add/collection-add"
-import { Checkbox } from "@/components/ui/checkbox"
 import CollectionUpdate from "@/components/admin/collection/collection-update/collection-update"
 import { collectionInterfacewithproducts, collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 export default function Dashboard() {
     const LIMIT = 4
-    const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
     const [sheetOpenCollection, setSheetOpenCollection] = useState(false);
     const [selectProduct, setSelectProduct] = useState(false);
     const [page, setPage] = useState(1)
@@ -172,15 +157,11 @@ export default function Dashboard() {
                                                             <TableHead className="hidden md:table-cell">
                                                                 Categories
                                                             </TableHead>
-                                                            {/* <TableHead className="hidden md:table-cell">
-                                                                Link
-                                                            </TableHead> */}
+
                                                             <TableHead >
                                                                 Action
                                                             </TableHead>
-                                                            {selectProduct ? <TableHead >
-                                                                Select
-                                                            </TableHead> : null}
+
 
                                                         </TableRow>
                                                     </TableHeader>
@@ -224,9 +205,7 @@ export default function Dashboard() {
                                                                         </div>
                                                                     )}
                                                                 </TableCell>
-                                                                {/* <TableCell className="hidden md:table-cell">
-                                                                    {product.link}
-                                                                </TableCell> */}
+
                                                                 <TableCell>
                                                                     <DropdownMenu>
                                                                         <DropdownMenuTrigger >
@@ -261,27 +240,7 @@ export default function Dashboard() {
                                                                         </DropdownMenuContent>
                                                                     </DropdownMenu>
                                                                 </TableCell>
-                                                                {/* {selectProduct ? <TableCell className="">
-                                                                    <div className="flex items-center space-x-2">
-                                                                        <Checkbox id="terms" checked={collection.some(item => item.productId === product.id)} onClick={() => {
-                                                                            const existingIndex = collection.findIndex(item => item.productId === product.id);
-                                                                            if (existingIndex >= 0) {
-                                                                                // Product exists in the collection, remove it
-                                                                                setCollection(prev => [...prev.slice(0, existingIndex), ...prev.slice(existingIndex + 1)]);
-                                                                            } else {
-                                                                                // Product does not exist in the collection, add it
-                                                                                const collectionproduct = {
-                                                                                    productId: product.id,
-                                                                                    productName: product.name,
-                                                                                    ProductImage: product.image
-                                                                                };
-                                                                                setCollection(prev => [...prev, collectionproduct]);
-                                                                            }
-                                                                            console.log("Updated collection:", collection);
-                                                                        }} />
 
-                                                                    </div>
-                                                                </TableCell> : null} */}
                                                             </TableRow>
 
                                                         ))}
@@ -294,7 +253,7 @@ export default function Dashboard() {
                                                 (
                                                 <div className="text-xs text-muted-foreground">
                                                     Showing <strong>{startno}-{endno}</strong> of <strong>{totalDocs}</strong>{" "}
-                                                    products
+                                                    Collections
                                                 </div>
                                                 )
 
@@ -302,18 +261,10 @@ export default function Dashboard() {
                                         </Card>
                                     </TabsContent>
                                 </Tabs>
-                                {/* <Sheet open={sheetOpenUpdate} onOpenChange={setSheetOpenUpdate}>
-                                    <SheetContent >
-                                        <div className=" overflow-y-auto w-full  h-full">
-                                            <ProductUpdate selectedProduct={selectedProduct} setSheetOpen={setSheetOpenUpdate} refetch={refetch} />
-                                        </div>
-                                    </SheetContent>
-                                </Sheet> */}
+
                                 <Sheet open={sheetOpenCollection} onOpenChange={setSheetOpenCollection}>
                                     <SheetContent >
-                                        {/* <div className=" overflow-y-auto w-full  h-full">
-                                            <CollectionAdd setSelectProduct={setSelectProduct} setCollection={setCollection} Products={collection} setSheetOpen={setSheetOpenCollection} refetch={refetch} />
-                                        </div> */}
+
                                         <div className=" overflow-y-auto w-full  h-full">
                                             {selectedCollection && (
                                                 <CollectionUpdate
@@ -322,12 +273,7 @@ export default function Dashboard() {
                                                     refetch={refetch}
                                                 />
                                             )}
-                                            {/* <CollectionAdd
-                                            setSelectProduct={setSelectProduct}
-                                            setCollection={setCollection}
-                                            products={collection}
-                                            setSheetOpen={setSheetOpenCollection}
-                                            refetch={refetch} /> */}
+
                                         </div>
                                     </SheetContent>
                                 </Sheet>

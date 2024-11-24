@@ -23,7 +23,7 @@ const CollectionNotFound = () => {
         />
     );
 };
-export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: string, likedQuery?: string }) {
+export function Collection({ categoryQuery, likedQuery, className }: { className: string, categoryQuery?: string, likedQuery?: string }) {
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery }
         // ,
         // {
@@ -49,12 +49,7 @@ export function Collection({ categoryQuery, likedQuery }: { categoryQuery?: stri
     if (response) {
         return (
             <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mx-auto">
-                    {/* {likedQuery !== "likedCollection" &&
-                        <div className=" col-span-1 lg:col-span-2   w-full pl-4 py-4 s">
-                            <InteractiveImage look={categoryQuery || ''} /> </div>
-
-                    } */}
+                <div className={`${className} `}>
                     {response.data.map((productCollection, index) => (
                         <div key={productCollection.name} className="mx-14 my-2 sm:m-0 ">
                             <div className="m-2">

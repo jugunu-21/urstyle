@@ -12,7 +12,7 @@ export const LikedCollectionsSheet: React.FC<LikedCollectionsSheetProps> = ({ is
         <Sheet open={isOpen} onOpenChange={onClose}>
             <SheetContent className="h-full overflow-y-auto">
                 <div className="overflow-y-auto w-full h-full">
-                    <Collection likedQuery="likedCollection" />
+                    <Collection likedQuery="likedCollection" className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-1 mx-auto' />
                 </div>
                 <SheetFooter>
                     <SheetClose asChild>
