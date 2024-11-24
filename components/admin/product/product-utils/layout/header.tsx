@@ -10,12 +10,13 @@ import toast from "react-hot-toast";
 interface SubmitHandlerInterface {
 
   handler: () => Promise<void>;
+  title: string
   // updateProducthandler?: () => Promise<void>
 }
 import { useRouter } from "next/navigation";
 import { api } from "@/trpc/react";
 import { RefetchOptions } from "@tanstack/react-query"
-export default function ProductHeader({ handler }: SubmitHandlerInterface) {
+export default function Header({ handler, title }: SubmitHandlerInterface) {
   // const router = useRouter();
   // const productaddpost = api.product.productAdd.useMutation();
   // const productUpdatepost = api.product.productUpdate.useMutation();
@@ -56,7 +57,7 @@ export default function ProductHeader({ handler }: SubmitHandlerInterface) {
         <span className="sr-only">Back</span>
       </Button>
       <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
-        Add Product
+        {title}
       </h1>
       <Badge variant="outline" className="ml-auto sm:ml-0">
         In stock

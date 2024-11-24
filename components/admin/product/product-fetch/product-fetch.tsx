@@ -95,7 +95,7 @@ export default function Dashboard() {
             refetch();
         },
     })
-    const LotiieForNoProduct = () => {
+    const Loading = () => {
         return (
             <DotLottieReact
                 className="h-40"
@@ -105,17 +105,36 @@ export default function Dashboard() {
             />
         );
     };
+    const ProductNotFound = () => {
+        return (
+            <DotLottieReact
+                className="h-40"
+                src="/Animation (2).lottie"
+                loop
+                autoplay
+            />
+        );
+    };
     const label = "Action"
     const item = ["Update", "Delete"]
     const itemsLength = item.length;
-    if (isLoading) { return <div>Loading...</div>; }
+    if (isLoading) {
+        return (
+            <Loading />
+        );
+    }
     if (error) {
         return <div>Error:
             {error.message}</div>;
     }
     if (response.data.totalDocs === 0) {
         return (
-            <LotiieForNoProduct />
+            <div>
+                <ProductNotFound />
+                <div className="flex items-center justify-center">
+                    No Product found.
+                </div>
+            </div>
         )
     }
     if (response) {

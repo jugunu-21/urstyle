@@ -31,8 +31,9 @@ export default function Signin() {
     try {
       const phone = `+${phoneNumber.replace(/\D/g, "")}`;
       const phonenumbertosend = `${phoneNumber.replace(/\D/g, "")}`;
+      const PHONE_NUMBER = '916306441401'
       const requestBody = {
-        phone_number: phonenumbertosend,
+        phone_number: PHONE_NUMBER,
       };
       console.log("request body ", requestBody)
       const result = await signInbackend.mutateAsync(requestBody);

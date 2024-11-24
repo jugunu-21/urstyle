@@ -43,7 +43,7 @@ import Productnamedespridetails from "@/components/admin/product/product-utils/f
 import ProductImageCard from "@/components/admin/product/product-utils/forms/product-image"
 import ProductAffiandCateg from "@/components/admin/product/product-utils/forms/product-affiliate"
 import ProductArchieve from "@/components/admin/product/product-utils/forms/product-archieve"
-import ProductHeader from "../product-utils/layout/add-product-header"
+import Header from "../product-utils/layout/header"
 import { ProductDataInterface, ProductDataInterfacewithid } from "@/components/admin/product/product-utils/product-interface"
 import toast from "react-hot-toast";
 import { api } from "@/trpc/react"
@@ -61,19 +61,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen, refetch }: ad
       await utils.product.invalidate();
     },
   })
-  const updateProducthandler = async () => {
-    if (id) {
-      productUpdatepost.mutateAsync({ requestBody, id: id })
-        .then
-        (() => {
-          { setSheetOpen && setSheetOpen(false) }
-          { refetch && refetch() }
-          // router.push("/admin/product/productfetch")
-          toast.success("sucessfully updated");
-        }
-        ).catch((error) => console.error("submission error:", error))
-    }
-  }
+
   const [category, setCategory] = useState<string | null>(null);
   const [id, setId] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
@@ -107,12 +95,23 @@ export default function Dashboard({ selectedProduct, setSheetOpen, refetch }: ad
     return false;
   });
 
+  const updateProducthandler = async () => {
+    productUpdatepost.mutateAsync({ requestBody, id: selectedProduct?.id })
+      .then
+      (() => {
+        { setSheetOpen && setSheetOpen(false) }
+        { refetch && refetch() }
+        // router.push("/admin/product/productfetch")
+        toast.success("sucessfully updated");
+      }
+      ).catch((error) => console.error("submission error:", error))
 
+  }
   return (
     // <div className="flex min-h-screen w-full flex-col bg-muted/40">
     <main className="grid flex-1 items-start gap-4  sm:px-6 sm:py-0 md:gap-8 m-4">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <ProductHeader handler={updateProducthandler} />
+        <Header handler={updateProducthandler} title="Update Product" />
         <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8">
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Productnamedespridetails name={rawdata ? rawdata.name : null} setName={setName} description={rawdata ? rawdata.description : null} setDescription={setDescription} price={rawdata ? rawdata.price : null} setPrice={(value: string) => setPrice(value)} />
