@@ -36,11 +36,11 @@ import { MultiSelectCategory } from "../collection-utils/layout/category-multi-s
 
 export default function Dashboard({ collectionToUpdate, setSheetOpen, refetch }: collectionupdateprops) {
     const collectionIds = () => collectionToUpdate.products.map((product => product.id));
-
+    const selectedcategories = collectionToUpdate.categories;
     const [selectedIds, setSelectedIds] = useState<string[]>(collectionIds);
     const collectionAddPost = api.collection.collectionAdd.useMutation();
     const collectUpdatePost = api.collection.collectionUpdate.useMutation();
-    const [category, setCategory] = useState<string[]>([])
+    const [category, setCategory] = useState<string[]>(selectedcategories)
     const fashionCategoryLength = fashionCategory.length;
 
     const [name, setName] = useState<string | null>(collectionToUpdate.name);
@@ -138,7 +138,7 @@ export default function Dashboard({ collectionToUpdate, setSheetOpen, refetch }:
                                     }))}
                                     onValueChange={setCategory}
                                     defaultValue={category}
-                                    placeholder="Select Products"
+                                    placeholder="Select Categories"
                                     variant="inverted"
                                     animation={2}
                                     maxCount={3}

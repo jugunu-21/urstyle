@@ -149,7 +149,7 @@ export default function Dashboard({ setSelectProduct, products, setCollection, s
                   }))}
                   onValueChange={setCategory}
                   defaultValue={category}
-                  placeholder="Select Products"
+                  placeholder="Select Categories"
                   variant="inverted"
                   animation={2}
                   maxCount={3}
