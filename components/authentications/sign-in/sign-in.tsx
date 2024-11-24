@@ -29,21 +29,19 @@ export default function Signin() {
   const handleSendOtp = async () => {
     if (!isLoaded) return;
     try {
-      const phone = `+${phoneNumber.replace(/\D/g, "")}`;
       const phonenumbertosend = `${phoneNumber.replace(/\D/g, "")}`;
       const PHONE_NUMBER = '916306441401'
       const requestBody = {
         phone_number: PHONE_NUMBER,
       };
-      console.log("request body ", requestBody)
-      const result = await signInbackend.mutateAsync(requestBody);
-      const response = result.data;
-      console.log("response  ", response)
-      setJwtToken(response);
+      const phoneNumberForClerk = `+${phoneNumber.replace(/\D/g, "")}`;
       await signIn.create({
         strategy: "phone_code",
-        identifier: phone,
+        identifier: phoneNumberForClerk,
       });
+      const result = await signInbackend.mutateAsync(requestBody);
+      const response = result.data;
+      setJwtToken(response);
       console.log("request body ", requestBody)
       setOtpSent(true); setOtpSentYN("yes");
       toast.success("OTP sent successfully!");
@@ -63,12 +61,12 @@ export default function Signin() {
       });
 
       if (completeSignIn.status === "complete") {
-        setOtp("");
+        router.push("/");
         await setActive({ session: completeSignIn.createdSessionId });
         toast.success("You have successfully signed in!");
         Cookies.set('jwtToken', jwtToken!, { expires: 2, path: '/', secure: true });
         changeToken(jwtToken!);
-        router.push("/");
+        setOtp("");
       } else {
         toast.error("OTP verification failed. Please try again.");
       }
@@ -114,6 +112,7 @@ export default function Signin() {
                 <Button
                   type="submit"
                   className="w-full"
+
                   onClick={handleSendOtp}
                 >
                   Send OTP

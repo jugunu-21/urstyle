@@ -38,12 +38,12 @@ export interface ProductCollection {
 export const CollectionCard = ({ productColl, refetch }: { productColl: ProductCollection, refetch: (options?: RefetchOptions) => Promise<any>; }) => {
     const router = useRouter()
     const [likeButton, setLikeButton] = useState<boolean>(productColl.likestatus || false);
-    const likemut = api.collection.collectionLike.useMutation();
+    const likeMutation = api.collection.collectionLike.useMutation();
     const handleLikeClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setLikeButton((prev) => !prev)
         try {
-            const result = await likemut.mutateAsync({
+            const result = await likeMutation.mutateAsync({
                 collectionId: productColl.collectionId,
             });
             if (!result.status) {

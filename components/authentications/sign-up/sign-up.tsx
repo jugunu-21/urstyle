@@ -46,34 +46,19 @@ export default function Signup() {
         toast.error("Signup service is not ready. Please try again.");
         return;
       }
-      const phone = `+${phoneNumber.replace(/\D/g, "")}`;
-      const formattedPhoneNumberr = `+${phoneNumber.replace(/\D/g, "")}`;
-      console.log("phone", formattedPhoneNumberr)
-      const ticketId = generateTicketId();
+      const phoneNumberForClerk = `+${phoneNumber.replace(/\D/g, "")}`;
       const response = await signUp.create({
-        phoneNumber: formattedPhoneNumberr,
+        phoneNumber: phoneNumberForClerk
       });
       await signUp.preparePhoneNumberVerification({
         strategy: "phone_code",
 
       })
-      console.log("response", response)
-      console.log("Missing required fields:", response.requiredFields);
       if (response.verifications?.phoneNumber.status === "failed") {
         throw new Error("Unexpected error during phone number verification.");
-
       } else {
         setOtpSent(true);
-
       }
-
-      console.log("send otp");
-      const formattedPhoneNumber = `+${phoneNumber.replace(
-        /\D/g,
-        ""
-      )}`;
-
-      console.log("formattedPhoneNumber", formattedPhoneNumber);
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
@@ -106,7 +91,7 @@ export default function Signup() {
       await signUp.attemptPhoneNumberVerification({
         code: otp,
       });
-      setOtp("");
+
       const phonenumbertosend = `${phoneNumber.replace(
         /\D/g,
         ""
@@ -117,12 +102,14 @@ export default function Signup() {
       };
       console.log(requestBody);
       const result = await signUptrpc.mutateAsync(requestBody)
+      router.push("/");
       const jwtToken = result.data;
       Cookies.set('jwtToken', jwtToken, { expires: 2, path: '/', secure: true });
       changeToken(jwtToken)
-      router.push("/");
+
       toast.success("sucessfully signup");
       setPhoneNumber("");
+      setOtp("");
     } catch (error) {
       if (isFirebaseAuthError(error)) {
         if ((error as any).code === 'auth/invalid-verification-code') {
