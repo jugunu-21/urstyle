@@ -4,7 +4,7 @@ import itemsData from "@/public/items.json";
 import Link from "next/link";
 import { clickFiltersData } from "@/public/clickFiltersData";
 import avgg from "@/components/reusable-components/average-review";
-import Sitelink from "@/components/reusable-components/site-link";
+// import Sitelink from "@/components/reusable-components/site-link";
 import Menudropdown from "@/components/reusable-components/menu-drop-down";
 
 import Image from "next/image";
@@ -69,10 +69,10 @@ function Clothes() {
                           />
                           <div className=" ml-4 h-8 w-28 my-2">
 
-                            <Sitelink
+                            {/* <Sitelink
                               setsitelink={cart.image_url}
                               sitelink={cart.link}
-                            />
+                            /> */}
 
                           </div>
 

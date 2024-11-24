@@ -68,6 +68,7 @@ import CollectionAdd from "@/components/admin/collection/collection-add/collecti
 import { Checkbox } from "@/components/ui/checkbox"
 import CollectionUpdate from "@/components/admin/collection/collection-update/collection-update"
 import { collectionInterfacewithproducts, collectionproductInterface } from "../../collection/collection-utils/collection-interface"
+import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 export default function Dashboard() {
     const LIMIT = 4
     const [sheetOpenUpdate, setSheetOpenUpdate] = useState(false);
@@ -94,12 +95,26 @@ export default function Dashboard() {
     const label = "Action"
     const item = ["Update", "Delete"]
     const itemsLength = item.length;
+    const LotiieForNoProduct = () => {
+        return (
+            <DotLottieReact
+                className="h-40"
+                src="/Animation.lottie"
+                loop
+                autoplay
+            />
+        );
+    };
     if (isLoading) { return <div>Loading...</div>; }
     if (error) {
         return <div>Error:
             {error.message}</div>;
     }
-
+    if (response.data.totalDocs === 0) {
+        return (
+            <LotiieForNoProduct />
+        )
+    }
     if (response) {
         const fetchedData = response.data.simplifiedCollection
         const totalDocs = response.data.totalDocs
@@ -255,10 +270,15 @@ export default function Dashboard() {
                                                 </Table>
                                             </CardContent>
                                             <CardFooter>
+
+
+                                                (
                                                 <div className="text-xs text-muted-foreground">
                                                     Showing <strong>{startno}-{endno}</strong> of <strong>{totalDocs}</strong>{" "}
                                                     products
                                                 </div>
+                                                )
+
                                             </CardFooter>
                                         </Card>
                                     </TabsContent>

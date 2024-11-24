@@ -66,6 +66,7 @@ import CollectionAdd from "@/components/admin/collection/collection-add/collecti
 import { Checkbox } from "@/components/ui/checkbox"
 import { collectionproductInterface } from "../../collection/collection-utils/collection-interface"
 import { useParams, useSearchParams } from "next/navigation"
+import { DotLottieReact } from "@lottiefiles/dotlottie-react"
 export default function Dashboard() {
     // const searchParams = useSearchParams();
 
@@ -94,7 +95,16 @@ export default function Dashboard() {
             refetch();
         },
     })
-
+    const LotiieForNoProduct = () => {
+        return (
+            <DotLottieReact
+                className="h-40"
+                src="/Animation.lottie"
+                loop
+                autoplay
+            />
+        );
+    };
     const label = "Action"
     const item = ["Update", "Delete"]
     const itemsLength = item.length;
@@ -103,7 +113,11 @@ export default function Dashboard() {
         return <div>Error:
             {error.message}</div>;
     }
-
+    if (response.data.totalDocs === 0) {
+        return (
+            <LotiieForNoProduct />
+        )
+    }
     if (response) {
         const fetchedData = response.data.simplifiedProducts
         const totalDocs = response.data.totalDocs
