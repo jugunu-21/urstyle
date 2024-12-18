@@ -37,11 +37,90 @@ const trigger: () => JSX.Element = () => {
 };
 import { useState } from "react"
 export default function ProductAffiandCateg({ subCategory, setSubCategory, link, setLink, webLink, setWebLink, category, setCategory }: ProductAffiandCategProps) {
-  const [categories, setCategories] = useState([
-    { id: 1, name: 'Clothing', subCategoryegories: ['T-Shirts', 'Sweatshirts', 'Hoodies'] },
-    { id: 2, name: 'Footwear', subCategoryegories: ['Shoes', 'Boots', 'Sandals'] },
-    { id: 3, name: 'Accessories', subCategoryegories: ['Hats', 'Scarves', 'Belts'] }
-  ]);
+  const [categories, setCategories] = useState(
+    //   [
+    //   { id: 1, name: 'Clothing', subCategoryegories: ['T-Shirts', 'Sweatshirts', 'Hoodies'] },
+    //   { id: 2, name: 'Footwear', subCategoryegories: ['Shoes', 'Boots', 'Sandals'] },
+    //   { id: 3, name: 'Accessories', subCategoryegories: ['Hats', 'Scarves', 'Belts'] }
+    // ]
+
+    [
+      {
+        id: 1,
+        name: 'Clothing',
+        subCategories: [
+          'T-Shirts',
+          'Polo Shirts',
+          'Sweatshirts',
+          'Hoodies',
+          'Casual Shirts',
+          'Denim Jackets',
+        ],
+      },
+      {
+        id: 2,
+        name: 'Footwear',
+        subCategories: [
+          'Running Shoes',
+          'Formal Shoes',
+          'Hiking Boots',
+          'Slip-On Sneakers',
+          'Flat Sandals',
+          'Ankle Boots',
+        ],
+      },
+      {
+        id: 3,
+        name: 'Accessories',
+        subCategories: [
+          'Beanies',
+          'Silk Scarves',
+          'Leather Belts',
+          'Luxury Watches',
+          'Aviator Sunglasses',
+          'Travel Wallets',
+        ],
+      },
+      {
+        id: 4,
+        name: 'Bags',
+        subCategories: [
+          'Backpacks',
+          'Tote Bags',
+          'Messenger Bags',
+          'Duffel Bags',
+          'Laptop Bags',
+          'Clutches',
+        ],
+      },
+      {
+        id: 5,
+        name: 'Jewelry',
+        subCategories: [
+          'Necklaces',
+          'Bracelets',
+          'Earrings',
+          'Rings',
+          'Brooches',
+          'Anklets',
+        ],
+      },
+      {
+        id: 6,
+        name: 'Activewear',
+        subCategories: [
+          'Sports Bras',
+          'Leggings',
+          'Track Pants',
+          'Tank Tops',
+          'Running Shorts',
+          'Workout Hoodies',
+        ],
+      },
+    ]
+
+
+  );
   const [selectedCategoryId, setSelectedCategoryId] = useState(category || '');
   const [selectedsubCategoryegoryId, setSelectedsubCategoryegoryId] = useState(subCategory || '');
   const handleCategoryChange = (value: string) => {
@@ -126,7 +205,7 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
                 <SelectValue placeholder="Select subCategoryegory" />
               </SelectTrigger>
               <SelectContent>
-                {selectedCategoryId.length !== 0 && categories.find(c => c.name === selectedCategoryId)?.subCategoryegories?.map((subCategoryegory, index) => (
+                {selectedCategoryId.length !== 0 && categories.find(c => c.name === selectedCategoryId)?.subCategories?.map((subCategoryegory, index) => (
                   <SelectItem value={subCategoryegory} key={index}>{subCategoryegory}</SelectItem>
                 ))}
               </SelectContent>

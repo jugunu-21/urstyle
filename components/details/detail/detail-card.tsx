@@ -44,8 +44,8 @@ function IndividualProductDetail({ products, collectionId }: {
 
                     <div className=" h-10 w-28 ">
                       <Link
-                        href={`/more-details/${collectionId}/${item.id}`}
-
+                        href={item.link}
+                        target='_blank'
                         className=" flex  py-1 px-3 items-center   rounded-lg bg-stone-100 text-[#ff0366] font-bold text-lg hover:bg-stone-200 border-2 hover:border-[#f5a5c5] "
                       >
                         Details

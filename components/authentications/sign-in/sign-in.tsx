@@ -32,7 +32,7 @@ export default function Signin() {
       const phonenumbertosend = `${phoneNumber.replace(/\D/g, "")}`;
       const PHONE_NUMBER = '916306441401'
       const requestBody = {
-        phone_number: PHONE_NUMBER,
+        phone_number: phonenumbertosend,
       };
       const phoneNumberForClerk = `+${phoneNumber.replace(/\D/g, "")}`;
       await signIn.create({

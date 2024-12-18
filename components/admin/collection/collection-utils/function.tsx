@@ -11,7 +11,8 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
       Ids: requestBody?.collectionIds,
       collectionCategory: requestBody?.collectionCategory
     }
-
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`
+    // console.log("url", url)
     const response = await axios({
       method: "POST",
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
@@ -23,6 +24,7 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
         'Cache-Control': 'public, max-age=3600',
       },
     });
+    console.log("url", response)
     return response
   } catch (error) {
     console.log(error)
