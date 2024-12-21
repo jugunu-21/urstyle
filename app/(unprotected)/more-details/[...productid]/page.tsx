@@ -43,6 +43,7 @@ import Moredetails from "@/components/details/more-detail/more-detail"
 import React from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { api } from "@/trpc/react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 function Dashboard() {
   const params = useParams();
   const productIdArray = Array.isArray(params.productid) ? params.productid : [params.productid];
@@ -50,7 +51,14 @@ function Dashboard() {
   const productId = param2
   console.log(productId, "productId")
   const { data: response, isLoading, refetch, error } = api.product.productfetchById.useQuery({ productId: productId });
-  if (isLoading) { return <div>Loading...</div>; }
+  if (isLoading) {
+    return <DotLottieReact
+      className="h-40"
+      src="/Animation.lottie"
+      loop
+      autoplay
+    />;
+  }
   if (error) {
     return <div>Error:
       {error.message}</div>;
