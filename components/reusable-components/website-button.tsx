@@ -18,7 +18,7 @@ export function WebsiteButtons({ webLink, link }: { webLink: string, link: strin
 
   return (
 
-    <Link href={link} >
+    <Link href={link} target='_blank'>
       <div
         className="h-8 w-28 my-2  flex items-center justify-center rounded-lg bg-cover bg-center"
         style={{
