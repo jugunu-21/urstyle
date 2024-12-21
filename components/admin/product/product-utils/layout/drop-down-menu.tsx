@@ -1,5 +1,6 @@
 
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { handleLogout } from "@/components/authentications/auth-utils/helpers/log-out";
 type dropdownmenuprops = {
-  item: string[],
+  item: (string | JSX.Element)[],
   trigger: () => JSX.Element,
   label: string,
 }
@@ -34,7 +35,8 @@ export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
                   router.push("/")
                 }
                 if (item === "Logout") {
-                  handleLogout(router);
+                  Cookies.remove('jwtToken', { expires: 0 })
+                  router.push("/")
                 }
               }}>{item}</DropdownMenuItem>
               {i !== itemsLength - 1 && <DropdownMenuSeparator />}

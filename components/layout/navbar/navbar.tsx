@@ -58,11 +58,12 @@ const NavLeft = ({
         <FiMenu />
       </motion.button>
       <Logo />
-      <NavLink text="About" link="/Component/About" />
-      <NavLink text="Home" link="/Component/Home" />
-      <NavLink text="Contact" link="/Component/Contact" />
-      {/* <NavLink text="Testimonials" link="/#testimonial" />
-      <NavLink text="Features" link="/#feature" /> */}
+      {/* <NavLink text="About" link="#" />
+      <NavLink text="Home" link="#" />
+      <NavLink text="Contact" link="#" /> */}
+
+
+
     </div>
   );
 };
@@ -129,12 +130,13 @@ const NavMenu = ({ isOpen, handler }: { isOpen: boolean, handler: () => void }) 
       animate={isOpen ? "open" : "closed"}
       className="absolute p-4 bg-white shadow-lg left-0 right-0 top-full origin-top flex flex-col gap-4"
     >
-      {/* <NavLink text="About" link="/Component/About" /> */}
-      <MenuLink handler={handler} text="About" link="/Component/About" />
-      <MenuLink handler={handler} text="Home" link="/" />
-      <MenuLink handler={handler} text="Contact" link="/Component/Contact" />
-      {/* <MenuLink handler={handler} text="Testimonials" link="#" />
-      <MenuLink handler={handler} text="Features" link="#" /> */}
+
+
+      {/* <MenuLink handler={handler} text="About" link="#" />
+      <MenuLink handler={handler} text="Home" link="#" />
+      <MenuLink handler={handler} text="Contact" link="#" /> */}
+
+
     </motion.div>
   );
 };

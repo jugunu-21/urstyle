@@ -49,7 +49,12 @@ export default function Navbardrop() {
             <DropdownMenuItem >   <Link href="/admin">Admin Dashboard</Link></DropdownMenuItem>
             {/* <DropdownMenuItem onClick={handledeleteuser}>Delete User</DropdownMenuItem> */}
 
-            <DropdownMenuItem onClick={() => Cookies.remove('jwtToken', { expires: 0 })}>
+            <DropdownMenuItem onClick={() => {
+              Cookies.remove('jwtToken', { expires: 0 })
+
+            }
+            }
+            >
               <SignOutButton />
             </DropdownMenuItem>
 

@@ -33,6 +33,7 @@ import { Label } from "@/components/ui/label"
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useState } from 'react';
+import { SignOutButton } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({
@@ -61,8 +62,7 @@ export default function RootLayout({
     return acc;
   }, [])
   const transformedLabels = crumbs.map(crumb => crumb.label.split('/').map(part => part.trim()));
-  const item = ["Logout", "Home"
-  ]
+  const item = [<SignOutButton />, "Home"]
   const label = "My Account"
   const trigger: () => JSX.Element = () => {
     return (
