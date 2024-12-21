@@ -15,7 +15,7 @@ export default function statusandFilter({ setSheetOpenCollection, collection, se
         <div className="flex items-center">
             <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="">Active</TabsTrigger>
+                {/* <TabsTrigger value="">Active</TabsTrigger> */}
             </TabsList>
             <div className="ml-auto flex items-center gap-2">
                 <Button size="sm" variant="outline" className="h-8">
@@ -57,7 +57,7 @@ function StatusandFilterForCollection({ setSheetOpenCollection, collection, setS
         <div className="flex items-center">
             <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="">Active</TabsTrigger>
+                {/* <TabsTrigger value="">Active</TabsTrigger> */}
             </TabsList>
             <div className="ml-auto flex items-center gap-2">
 
