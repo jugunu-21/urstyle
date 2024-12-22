@@ -30,6 +30,7 @@ export default function Navbardrop() {
   const handledeleteuser = () => {
     deleteUser();
   }
+  const changeToken = useToken((state) => (state.changeToken));
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div className="">
@@ -51,6 +52,7 @@ export default function Navbardrop() {
 
             <DropdownMenuItem onClick={() => {
               Cookies.remove('jwtToken', { expires: 0 })
+              changeToken('')
 
             }
             }

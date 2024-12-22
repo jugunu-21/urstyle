@@ -90,11 +90,10 @@ const NavRight = () => {
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div className="gap-0  flex ">
-
-
       <Button
         onClick={() => {
-          if (jwtToken != null) {
+          if (jwtToken != null && jwtToken != '') {
+
             setLiked(true);
             setSheetOpenLikedCollection(true);
 

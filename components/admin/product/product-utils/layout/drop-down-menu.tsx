@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { handleLogout } from "@/components/authentications/auth-utils/helpers/log-out";
+import { useToken } from "@/components/authentications/auth-utils/helpers/zustand";
 type dropdownmenuprops = {
   item: (string | JSX.Element)[],
   trigger: () => JSX.Element,
@@ -19,6 +20,7 @@ type dropdownmenuprops = {
 export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
   const itemsLength = item.length;
   const router = useRouter()
+  const changeToken = useToken((state) => (state.changeToken));
   return (
     <>
       <DropdownMenu>
@@ -34,9 +36,10 @@ export function DropDownMenu({ item, label, trigger }: dropdownmenuprops) {
                 if (item === "Home") {
                   router.push("/")
                 }
-                if (item === "Logout") {
+                else {
                   Cookies.remove('jwtToken', { expires: 0 })
                   router.push("/")
+                  changeToken('')
                 }
               }}>{item}</DropdownMenuItem>
               {i !== itemsLength - 1 && <DropdownMenuSeparator />}
