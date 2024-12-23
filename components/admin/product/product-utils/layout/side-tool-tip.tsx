@@ -18,7 +18,7 @@ import {
   Table2,
   Users2,
 } from "lucide-react"
-
+import { GiClothes } from "react-icons/gi";
 import { Badge } from "@/components/ui/badge"
 import {
   Breadcrumb,
@@ -47,6 +47,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { GiDress } from "react-icons/gi";
+
 import {
   Select,
   SelectContent,
@@ -103,7 +105,8 @@ export function SideToolTip() {
                     href="/admin/product/productfetch" // Use React Router's `to` prop for navigation
                     className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   >
-                    <Table2 className="h-5 w-5" />
+                    <GiDress className="h-5 w-5" />
+
                     <span className="sr-only">Products Table</span>
                   </Link>
                 </Button>
@@ -119,7 +122,8 @@ export function SideToolTip() {
                     href="/admin/collection/collectionfetch" // Use React Router's `to` prop for navigation
                     className="flex h-9 w-9 items-center focus:bg-accent justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   >
-                    <Table2 className="h-5 w-5" />
+
+                    <GiClothes className="h-5 w-5" />
                     <span className="sr-only">Collection Table </span>
                   </Link>
                 </Button>
