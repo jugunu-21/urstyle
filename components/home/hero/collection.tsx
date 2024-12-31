@@ -25,7 +25,7 @@ const CollectionNotFound = () => {
 };
 export function Collection({ categoryQuery, likedQuery, className }: { className: string, categoryQuery?: string, likedQuery?: string }) {
     const { data: response, isLoading, refetch, error } = api.collection.collectionFetch.useQuery({ categoryQuery: categoryQuery, likedQuery: likedQuery }
-        // ,
+        ,
         // {
         //     staleTime: 0,
         //     refetchOnWindowFocus: true,
@@ -51,7 +51,7 @@ export function Collection({ categoryQuery, likedQuery, className }: { className
             <>
                 <div className={`${className} `}>
                     {response.data.map((productCollection, index) => (
-                        <div key={productCollection.name} className="mx-14 my-2 sm:m-0 ">
+                        <div key={index} className="mx-14 my-2 sm:m-0 ">
                             <div className="m-2">
                                 <CollectionCard productColl={productCollection} refetch={refetch} />
                             </div>

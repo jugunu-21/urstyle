@@ -62,7 +62,10 @@ export default function RootLayout({
     return acc;
   }, [])
   const transformedLabels = crumbs.map(crumb => crumb.label.split('/').map(part => part.trim()));
-  const item = [<SignOutButton />, "Home"]
+  const item = [
+    <SignOutButton key="sign-out-button" />,
+    "Home"
+  ]
   const label = "My Account"
   const trigger: () => JSX.Element = () => {
     return (

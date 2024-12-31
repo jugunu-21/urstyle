@@ -52,6 +52,7 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
             else {
                 refetch();
             }
+
         } catch (error) {
             setLikeButton((prev) => !prev);
         }
