@@ -7,11 +7,11 @@ export default function Page() {
   const [categoryQuery, setCategoryQuery] = useState<string>('')
   return (
     <main className="w-full ">
-      <div className="justify-center  items-center  my-8 px-32  ">
+      <div className="justify-center  items-center  my-8 px-4 sm:px-32  ">
         <Category setCategoryQuery={setCategoryQuery} />
       </div>
       <HeroCarousel />
-      <Collection categoryQuery={categoryQuery} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mx-auto" />
+      <Collection categoryQuery={categoryQuery} className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mx-auto" />
     </main>
   );
 }

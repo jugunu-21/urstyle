@@ -42,9 +42,9 @@ export default function Dashboard() {
     if (hasAnyFieldEmptyOrNull) {
       toast.error("please fill all the deatils ")
       alert("please fill all the deatils ")
-      console.log("has field emptyy", hasAnyFieldEmptyOrNull, requestBody)
+      // console.log("has field emptyy", hasAnyFieldEmptyOrNull, requestBody)
     } else {
-      console.log("has field not emptyy", hasAnyFieldEmptyOrNull, requestBody)
+      // console.log("has field not emptyy", hasAnyFieldEmptyOrNull, requestBody)
       productAddPost.mutateAsync({ requestBody })
         .then(() => {
 

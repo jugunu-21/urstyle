@@ -82,7 +82,7 @@ export default function Dashboard({ setSelectProduct, products, setCollection, s
           toast.success("sucessfully created the collection")
         })
         .catch(function (error) {
-          console.log("apicollectionUpload ", error);
+          // console.log("apicollectionUpload ", error);
           toast.error("failed to add collection")
         });
     }
@@ -113,7 +113,7 @@ export default function Dashboard({ setSelectProduct, products, setCollection, s
                   defaultValue={name ? name : ''}
                   onChange={(e) => {
                     setName(e.target.value);
-                    console.log(name);
+                    // console.log(name);
                   }}
                 />
               </div>

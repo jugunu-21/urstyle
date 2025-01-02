@@ -100,7 +100,7 @@ export default function Dashboard({ collectionToUpdate, setSheetOpen, refetch }:
                                     defaultValue={name ? name : ''}
                                     onChange={(e) => {
                                         setName(e.target.value);
-                                        console.log(name);
+                                        // console.log(name);
                                     }}
                                 />
                             </div>

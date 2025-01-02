@@ -62,7 +62,7 @@ export default function Signup() {
       setOtpSent(true);
       setOtpSentYN("yes");
       toast.success("Otp has been sent");
-      console.log("handlsendotp");
+      // console.log("handlsendotp");
     } catch (error) {
       console.log("eror", error)
       if (isFirebaseAuthError(error)) {
@@ -100,7 +100,7 @@ export default function Signup() {
       const requestBody = {
         phone_number: phonenumbertosend,
       };
-      console.log(requestBody);
+      // console.log(requestBody);
       const result = await signUptrpc.mutateAsync(requestBody)
       router.push("/");
       const jwtToken = result.data;

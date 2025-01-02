@@ -20,7 +20,7 @@ const deleteUser = async (jwtToken: string) => {
             throw new Error("Failed to fetch user details");
         }
         else {
-            console.log("deleted user")
+            // console.log("deleted user")
         }
         ;
     } catch (error) {

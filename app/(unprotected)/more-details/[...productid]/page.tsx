@@ -49,7 +49,7 @@ function Dashboard() {
   const productIdArray = Array.isArray(params.productid) ? params.productid : [params.productid];
   const [param1, param2] = productIdArray;
   const productId = param2
-  console.log(productId, "productId")
+  // console.log(productId, "productId")
   const { data: response, isLoading, refetch, error } = api.product.productfetchById.useQuery({ productId: productId });
   if (isLoading) {
     return <DotLottieReact

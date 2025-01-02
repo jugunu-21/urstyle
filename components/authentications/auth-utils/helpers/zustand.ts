@@ -4,7 +4,7 @@ import getJwtTokenFromCookies from "../helpers/get-cookie";
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { minimalProductArray, productsProp, productlistprop } from '@/components/admin/product/product-utils/product-interface';
 const jwt = getJwtTokenFromCookies()
-console.log("tokeninz", jwt)
+// console.log("tokeninz", jwt)
 interface Store {
   data: productsProp;
   setData: (data: productsProp) => void;

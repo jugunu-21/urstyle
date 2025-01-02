@@ -57,7 +57,7 @@ export default function Dashboard({ selectedProduct, setSheetOpen, refetch }: ad
   const utils = api.useUtils();
   const productUpdatepost = api.product.productUpdate.useMutation({
     onSuccess: async () => {
-      console.log("successful")
+      // console.log("successful")
       await utils.product.invalidate();
     },
   })
@@ -141,11 +141,11 @@ export default function Dashboard({ selectedProduct, setSheetOpen, refetch }: ad
               productUpdatepost.mutateAsync({ requestBody, id: rawdata ? rawdata.id : undefined })
                 .then
                 (() => {
-                  console.log("updateedcompleteinfetch")
+                  // console.log("updateedcompleteinfetch")
                   try {
                     setSheetOpen(false)
                     { refetch && refetch(); }
-                    console.log("refetch", refetch)
+                    // console.log("refetch", refetch)
                     toast.success("sucessfully updated");
 
                   }

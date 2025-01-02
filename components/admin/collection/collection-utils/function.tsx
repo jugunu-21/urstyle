@@ -24,7 +24,7 @@ async function PostApiCollectionCall(args: { requestBody?: collectionInterface |
         'Cache-Control': 'public, max-age=3600',
       },
     });
-    console.log("url", response)
+    // console.log("url", response)
     return response
   } catch (error) {
     console.log(error)
@@ -57,7 +57,7 @@ export function ApiUploadCollection({ jwtToken, requestBody }: ApiUploadCollecti
   const apiroute = "/collection/upload"
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ jwtToken, apiroute, requestBody });
-    console.log("response.data", response.data)
+    // console.log("response.data", response.data)
     return response.data;
   };
   return SubmitHandler();
@@ -66,7 +66,7 @@ export function ApiUpdateCollection({ jwtToken, requestBody, collectionId }: Api
   const apiroute = `/collection/update/${collectionId}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ jwtToken, apiroute, requestBody });
-    console.log("response.data", response.data)
+    // console.log("response.data", response.data)
     return response.data;
   };
   return SubmitHandler();
@@ -75,7 +75,7 @@ export function ApiLikeCollection({ jwtToken, collectionId }: ApiLikeCollectionp
   const apiroute = `/collection/Like/${collectionId}`
   const SubmitHandler = async () => {
     const response = await PostApiCollectionCall({ jwtToken, apiroute });
-    console.log("response.data", response.data)
+    // console.log("response.data", response.data)
     return response.data;
   };
   return SubmitHandler();

@@ -14,14 +14,14 @@ export const authRouter = createTRPCRouter({
     .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
     .mutation(async ({ input }) => {
       const response = await ApiSignup(input)
-      console.log("response", response)
+      // console.log("response", response)
       return response
     }),
   userDetail: protectedProcedure
     .output(z.object({ data: z.string(), message: z.string(), status: z.number() }))
     .mutation(async ({ ctx }) => {
       const response = await ApiUserDetail(ctx.token)
-      console.log("response", response)
+      // console.log("response", response)
       return response
     })
 });

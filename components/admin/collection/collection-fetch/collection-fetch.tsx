@@ -123,7 +123,7 @@ export default function Dashboard() {
         const fetchedData = response.data.simplifiedCollection
         const totalDocs = response.data.totalDocs
         const totalPages = Math.floor(totalDocs / LIMIT) + 1;
-        console.log("totalpage", page, LIMIT,)
+        // console.log("totalpage", page, LIMIT,)
         const startno = ((page - 1) * LIMIT) + 1
         const endno = (startno + LIMIT - 1) > totalDocs ? totalDocs : startno + LIMIT - 1
         return (<>

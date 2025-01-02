@@ -143,7 +143,7 @@ export default function ProductAffiandCateg({ subCategory, setSubCategory, link,
   const [selectedCategoryId, setSelectedCategoryId] = useState(category || '');
   const [selectedsubCategoryegoryId, setSelectedsubCategoryegoryId] = useState(subCategory || '');
   const handleCategoryChange = (value: string) => {
-    console.log("value", value)
+    // console.log("value", value)
     setSelectedCategoryId(value);
     setSelectedsubCategoryegoryId('');
     setCategory(value);

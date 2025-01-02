@@ -41,7 +41,7 @@ export const collectionRouter = createTRPCRouter({
                 jwtToken: token
             }
             const response = await ApiUploadCollection(modifiedInput)
-            console.log("collection")
+            // console.log("collection")
             return response;
         }),
     collectionFetch: publicAndProtectedProcedure
@@ -136,10 +136,10 @@ export const collectionRouter = createTRPCRouter({
                 ...input,
                 jwtToken: token
             }
-            console.log("modifiedInput", modifiedInput)
+            // console.log("modifiedInput", modifiedInput)
             // console.log("modifiedInput", collectionId)
             const response = await ApiLikeCollection(modifiedInput)
-            console.log("response", response)
+            // console.log("response", response)
             return response;
         }),
     collectionUpdate: protectedProcedure.input(apicollaectionUpdateZodSchema)
@@ -151,7 +151,7 @@ export const collectionRouter = createTRPCRouter({
                 jwtToken: token
             }
             const response = await ApiUpdateCollection(modifiedInput)
-            console.log("addproduct")
+            // console.log("addproduct")
             return response;
         })
 })

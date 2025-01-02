@@ -48,7 +48,7 @@ export const productRouter = createTRPCRouter({
         jwtToken: token
       }
       const response = await ApiUploadProduct(modifiedInput)
-      console.log("adddproduct")
+      // console.log("adddproduct")
       return response;
     }),
 
@@ -65,7 +65,7 @@ export const productRouter = createTRPCRouter({
         productId
 
       }
-      console.log(" modifiedInput", modifiedInput)
+      // console.log(" modifiedInput", modifiedInput)
       const response = await ApiFetchProductById(modifiedInput)
       return response;
     }),
@@ -82,7 +82,7 @@ export const productRouter = createTRPCRouter({
         productId
 
       }
-      console.log(" modifiedInput", modifiedInput)
+      // console.log(" modifiedInput", modifiedInput)
       const response = await ApiDeleteProductByProductId(modifiedInput)
 
       return response;
@@ -100,7 +100,7 @@ export const productRouter = createTRPCRouter({
         page: page,
         limit: limit
       }
-      console.log(" modifiedInput", modifiedInput)
+      // console.log(" modifiedInput", modifiedInput)
       const response = await ApiFetchProducts(modifiedInput)
       return response;
     }),
@@ -113,7 +113,7 @@ export const productRouter = createTRPCRouter({
         jwtToken: token
       }
       const response = await ApiUpdateProduct(modifiedInput)
-      console.log("addproduct")
+      // console.log("addproduct")
       return response;
     })
   // imageUpload: protectedProcedure.input()

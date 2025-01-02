@@ -51,7 +51,7 @@ export function Collection({ categoryQuery, likedQuery, className }: { className
             <>
                 <div className={`${className} `}>
                     {response.data.map((productCollection, index) => (
-                        <div key={index} className="mx-14 my-2 sm:m-0 ">
+                        <div key={index} className=" ">
                             <div className="m-2">
                                 <CollectionCard productColl={productCollection} refetch={refetch} />
                             </div>

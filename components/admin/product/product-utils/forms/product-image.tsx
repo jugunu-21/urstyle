@@ -28,15 +28,15 @@ function ProductImageCard({ image, setImage }: ProductImageCardprops) {
       </CardHeader>
       <CardContent>
         <div className="grid gap-2">
-      
-        {image? <Image
+
+          {image ? <Image
             src={image ? image : ""}
             alt=""
             className="aspect-square w-full rounded-md object-cover"
             height="300"
             width="300"
-          />:  <ImagePlus />}
-         
+          /> : <ImagePlus />}
+
           <div className="grid grid-cols-3 gap-2">
             {/* <button>
               <Image

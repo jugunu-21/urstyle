@@ -35,7 +35,7 @@ async function PostProductApiCall(args: { requestBody?: ProductDataInterface | n
         formData.append('image', requestBody.image);
       }
     }
-    console.log("requestBody", formData)
+    // console.log("requestBody", formData)
     const response = axios({
       method: 'post',
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${apiroute}`,
@@ -103,7 +103,7 @@ export async function ApiUpdateProduct({ jwtToken, requestBody, id }: ApiFetchPr
       throw error;
     }
     const result = await PostProductApiCall({ jwtToken, apiroute, requestBody });
-    console.log("sucessufully updated")
+    // console.log("sucessufully updated")
     return result.data;
   };
   return SubmitHandler();
@@ -129,7 +129,7 @@ export async function ApiUploadImage(imaggg: File, jwtToken: string) {
           Authorization: `Bearer ${jwtToken}`
         }
       });
-      console.log('Image upload successful:', response.data);
+      // console.log('Image upload successful:', response.data);
       return response.data
     } catch (error) {
       console.error('Image upload failed:', error);

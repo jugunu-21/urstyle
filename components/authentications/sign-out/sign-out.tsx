@@ -40,10 +40,10 @@ export const Signout = () => {
       return null;
     }
   };
-  console.log("redirectUrllll", redirectUrl);
+  // console.log("redirectUrllll", redirectUrl);
   const fetchData = async () => {
     const jwtToken = getJwtTokenFromCookies();
-    console.log("jwttokenn", jwtToken)
+    // console.log("jwttokenn", jwtToken)
     if (jwtToken) {
       const userDetails = await fetchUserDetails(jwtToken);
       setUserInfo(userDetails);

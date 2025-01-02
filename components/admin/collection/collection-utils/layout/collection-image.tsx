@@ -21,7 +21,7 @@ function CollectionImageCard({ image }: { image: string[] }) {
         <div className="grid gap-2 m-2">
           <div className="grid grid-cols-4 gap-2">
             {image && image.map((image) => {
-              console.log("imageee", image)
+              // console.log("imageee", image)
               return (
                 <>
                   {image ? <Image key={image}

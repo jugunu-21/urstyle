@@ -42,7 +42,7 @@ export default function Signin() {
       const result = await signInbackend.mutateAsync(requestBody);
       const response = result.data;
       setJwtToken(response);
-      console.log("request body ", requestBody)
+      // console.log("request body ", requestBody)
       setOtpSent(true); setOtpSentYN("yes");
       toast.success("OTP sent successfully!");
     } catch (error) {

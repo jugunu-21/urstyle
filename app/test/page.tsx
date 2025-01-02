@@ -11,9 +11,9 @@ function Dashboard() {
     ? params.index
     : [params.index];
   const [param1] = productIdArray;
-  console.log(param1, "groupIndex")
+  // console.log(param1, "groupIndex")
   const groupIndex = String(param1);
-  console.log(groupIndex, "groupIndex")
+  // console.log(groupIndex, "groupIndex")
 
   const { data: response, isLoading, refetch, error } = api.product.productfetchById.useQuery({ productId: groupIndex });
   if (isLoading) {

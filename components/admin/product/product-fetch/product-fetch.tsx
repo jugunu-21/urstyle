@@ -71,7 +71,7 @@ export default function Dashboard() {
     const searchParams = useSearchParams();
 
     const selectProductfromCollection = searchParams.get('selectProduct') === 'true';
-    console.log("selectProductfromCollection", searchParams.get('selectProduct'))
+    // console.log("selectProductfromCollection", searchParams.get('selectProduct'))
 
     // const selectProductfromCollection = false
     const LIMIT = 4
@@ -231,7 +231,7 @@ export default function Dashboard() {
                                                                                         if (item === "Delete") {
 
                                                                                             deleteProduct.mutateAsync({ productId: product.id })
-                                                                                            console.log("id", product.id)
+                                                                                            // console.log("id", product.id)
 
                                                                                         }
                                                                                     }}
@@ -260,7 +260,7 @@ export default function Dashboard() {
                                                                                 };
                                                                                 setCollection(prev => [...prev, collectionproduct]);
                                                                             }
-                                                                            console.log("Updated collection:", collection);
+                                                                            // console.log("Updated collection:", collection);
                                                                         }} />
 
                                                                     </div>

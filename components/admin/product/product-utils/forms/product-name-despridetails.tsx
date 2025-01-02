@@ -39,7 +39,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               defaultValue={name ? name : ''}
               onChange={(e) => {
                 setName(e.target.value);
-                console.log(name);
+                // console.log(name);
               }}
             />
           </div>
@@ -64,7 +64,7 @@ const Productnamedespridetails = ({ name, setName, description, setDescription, 
               defaultValue={price ? price : ''}
               onChange={(e) => {
                 setPrice(e.target.value);
-                console.log(name);
+                // console.log(name);
               }}
             />
           </div>

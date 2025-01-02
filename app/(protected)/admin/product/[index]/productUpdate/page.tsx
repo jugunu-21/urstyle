@@ -13,14 +13,14 @@ export default function ProductUpdate() {
   const [param1] = productIdArray;
   const groupIndex = param1 ? parseInt(param1, 10) : undefined;
 
-  console.log("groupIndex", groupIndex)
+  // console.log("groupIndex", groupIndex)
   return (
     <div >
       try to fetch from some other place {groupIndex}
 
       {/* <Dashboard index={ groupIndex} /> */}
 
-    </div>   
+    </div>
 
   )
 }
