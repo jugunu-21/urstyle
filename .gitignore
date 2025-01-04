@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.env
+   .env.local
+   .env.development.local
+   .env.test.local
+   .env.production.local
 
 # testing
 /coverage
@@ -27,7 +32,8 @@ yarn-error.log*
 
 # local env files
 .env*.local
-
+# env files (can opt-in for committing if needed)
+.env*
 # vercel
 .vercel
 
