@@ -23,7 +23,7 @@ function IndividualProductDetail({ products, collectionId }: {
       {products.map((item, itemIndex) => (
         <Card key={itemIndex} className='m-2' >
           <CardContent className='m-2'>
-            <Button variant="outline" className=' h-[400] sm:h-60 w-full  m-4 hover:bg-[#f5d4e1]'>
+            <Button variant="outline" className=' h-[400] sm:h-60 w-full  m-4 hover:bg-shade'>
               {item && (
                 <div className=" sm:flex w-full  ">
                   <Image

@@ -62,7 +62,7 @@ export const CollectionCard = ({ productColl, refetch }: { productColl: ProductC
             className="rounded-lg text-lg font-semibold text-neutral-950 "
             href={`/details/${productColl.collectionId}`}
         >
-            <Card className="hover:bg-[#fbe4ed]">
+            <Card className="hover:bg-shade">
                 <CardHeader>
                     <CardTitle className="text-lg">{productColl.name}</CardTitle>
                 </CardHeader>

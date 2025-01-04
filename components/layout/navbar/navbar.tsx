@@ -11,6 +11,8 @@ import { FaHeart } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Collection } from "@/components/home/hero/collection";
 import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sheet";
+import { RiAdminFill } from "react-icons/ri";
+
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet"
 export const FlipNavWrapper = () => {
   return (
@@ -90,6 +92,23 @@ const NavRight = () => {
   const [sheetOpenLikedCollection, setSheetOpenLikedCollection] = useState(false);
   return (
     <div className="gap-0  flex ">
+      <Button
+        onClick={() => {
+          if (jwtToken != null && jwtToken != '') {
+            router.push("/admin")
+
+          }
+          else {
+            router.push("/sign-in")
+          }
+
+        }}
+        variant={'ghost'}
+        className="flex flex-col h-14 data-[state=open]:bg-slate-200"
+      >
+        <RiAdminFill />
+        <span className="text-xs pt-1">Admin Dashboard</span>
+      </Button>
       <Button
         onClick={() => {
           if (jwtToken != null && jwtToken != '') {

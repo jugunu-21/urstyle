@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx,js}',
     './app/**/*.{ts,tsx,js}',
     './src/**/*.{ts,tsx,js}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,6 +19,7 @@ const config = {
     },
     extend: {
       colors: {
+        shade: '#ffebee',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
