@@ -239,10 +239,10 @@ import { Sheet, SheetClose, SheetContent, SheetFooter } from "@/components/ui/sh
 import { RiAdminFill } from "react-icons/ri";
 
 import LikedCollectionsSheet from "@/components/sheet/LikedCollectionsSheet"
-import { SignedIn, SignedOut, SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton, SignOutButton, SignUpButton } from '@clerk/nextjs'
 export const FlipNavWrapper = () => {
   return (
-    <div className="bg-gray-50 sticky top-0 h-20 z-50   ">
+    <div className="bg-gray-50 sticky top-0 h-18 z-50   ">
       <FlipNav />
     </div>
   );
@@ -319,42 +319,33 @@ const NavRight = () => {
   return (
     <div className=" flex gap-1 ">
       <SignedIn >
+
         <Button
           onClick={() => {
-            if (jwtToken != null && jwtToken != '') {
-              router.push("/admin")
-            }
-            else {
-              router.push("/sign-in")
-            }
+            setLiked(true);
           }}
           variant={'ghost'}
-          className="flex flex-col h-14 data-[state=open]:bg-slate-200 gap-1"
-        >
-          <RiAdminFill />
-          <span className="text-xs ">Admin Dashboard</span>
-        </Button>
-        <Button
-          onClick={() => {
-            if (jwtToken != null && jwtToken != '') {
-              setLiked(true);
-              setSheetOpenLikedCollection(true);
-            }
-            else {
-              router.push("/sign-in")
-            }
-          }}
-          variant={'ghost'}
-          className="flex flex-col h-14 data-[state=open]:bg-slate-200 gap-1"
+          className=" data-[state=open]:bg-slate-200 gap-1"
         >
           <FaHeart />
-          <span className="text-xs ">Wishlist</span>
+          <span className="text-sm ">Wishlist</span>
         </Button>
 
 
-        <Button variant={'destructive'} className="mt-2" >
-          <SignOutButton /></Button>
+        <Button className="mb-2 " variant={'ghost'}>
+          < UserButton /></Button>
+        <Button
+          onClick={() => {
 
+            router.push("/admin")
+
+          }}
+
+          className="  data-[state=open]:bg-slate-200 gap-1"
+        >
+          <RiAdminFill />
+          <span className="text-sm ">Admin Dashboard</span>
+        </Button>
       </SignedIn>
       <SignedOut>
         <Button className="text-sm " variant={'secondary'} >
