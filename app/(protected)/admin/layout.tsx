@@ -76,8 +76,8 @@ export default function RootLayout({
   return (
     <>
       {/* <ThemeProvider attribute="class" defaultTheme="dark" enableSystem> */}
-      <div className='flex'>
-        <div className=" flex-col bg-muted/40">
+      <div className='flex bg-muted/10 ' >
+        <div className=" flex-col ">
           <SideToolTip />
         </div>
         <div className='w-full'>

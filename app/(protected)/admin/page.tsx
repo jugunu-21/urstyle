@@ -3,7 +3,7 @@ import React from "react"
 
 export default function AdminDashboard() {
     return (
-        <div className="ml-8">
+        <div className="ml-4 bg-background mt-4" >
 
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">

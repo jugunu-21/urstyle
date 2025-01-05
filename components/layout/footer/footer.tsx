@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <>
-      <footer className="bg-white">
+      <footer className="bg-white" style={{ backgroundColor: `hsl(var(--background))` }}>
         <div className="container mx-auto py-[10rem]">
           {/* Footer container */}
           <div className="flex justify-between flex-col md:flex-row items-center md:items-start md:gap-[5rem] text-left">
