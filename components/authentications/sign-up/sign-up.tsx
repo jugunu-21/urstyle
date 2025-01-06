@@ -133,7 +133,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className="w-full lg:grid  mt-8 pt-4 ml-0 h-[75vh] ">
+    <div className="w-full   mt-8 pt-4 ml-0 h-[75vh] ">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center ">
         <div className="mx-auto grid w-[350px] gap-6">
