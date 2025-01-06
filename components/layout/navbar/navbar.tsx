@@ -348,9 +348,10 @@ const NavRight = () => {
         </Button>
       </SignedIn>
       <SignedOut>
-        <Button className="text-sm " variant={'secondary'} >
-          <SignInButton /></Button>
+
         <Button className="text-sm" variant={'secondary'}> <SignUpButton /></Button>
+        <Button className="text-sm "  >
+          <SignInButton /></Button>
       </SignedOut>
       {liked && (
         <LikedCollectionsSheet

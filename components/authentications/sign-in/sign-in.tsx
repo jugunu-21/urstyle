@@ -83,7 +83,7 @@ export default function Signin() {
     }
   };
   return (
-    <div className="w-full lg:grid mt-8 pt-4 ml-0 my-0">
+    <div className="w-full lg:grid mt-8 pt-4 h-[75vh] ">
       <div className="flex items-center justify-center">
         <div className="grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
