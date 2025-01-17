@@ -14,7 +14,6 @@ import {
   signOut,
 } from "firebase/auth";
 import { api } from "@/trpc/react";
-import { app } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -23,6 +22,7 @@ import OtpInput from "../auth-utils/layout/otp-input";
 import toast from "react-hot-toast";
 import { ConfirmationResult } from "firebase/auth";
 import { useToken } from "../auth-utils/helpers/zustand";
+import { Card } from "@/components/ui/card";
 export default function Signup() {
   const { signUp, isLoaded: isSignUpLoaded } = useSignUp();
   const changeToken = useToken((state) => (state.changeToken))
@@ -31,7 +31,6 @@ export default function Signup() {
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [otpSent, setOtpSent] = useState(false);
   const [otpSentYN, setOtpSentYN] = useState("");
-  const auth = getAuth(app);
   const router = useRouter();
   const generateTicketId = (): string => {
     return Math.random().toString(36).substr(2, 9);
@@ -220,6 +219,13 @@ export default function Signup() {
               Sign in
             </Link>
           </div>
+          <Card className='w-full'>
+            <div className='text-slate-900 text-muted-foreground p-4'>
+              Admin login phone number-15555550100
+              OTP-424242
+              <br />OTP is currently not being send as it exceeded monthly free tier limit
+            </div>
+          </Card>
         </div>
       </div>
       {/* <div className="hidden bg-muted lg:block">

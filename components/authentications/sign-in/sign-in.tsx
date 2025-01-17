@@ -12,6 +12,7 @@ import "react-phone-input-2/lib/style.css";
 import { api } from "@/trpc/react";
 import { useToken } from "../auth-utils/helpers/zustand";
 import { Token } from '@clerk/nextjs/server';
+import { Card } from '@/components/ui/card';
 export default function Signin() {
   const changeToken = useToken((state) => (state.changeToken));
   const useTokenn = useToken((state) => (state.token));
@@ -89,7 +90,7 @@ export default function Signin() {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Sign-In</h1>
           </div>
-          <p className="text-balance text-muted-foreground my-2 left-0">
+          <p className="text-balance text-muted-foreground my-2 ">
             Enter your phone number below to sign in
           </p>
           <div className="grid gap-4">
@@ -118,35 +119,46 @@ export default function Signin() {
                   Send OTP
                 </Button>
               )}
-            </div>
-            {otpSentYN === "yes" ? (
 
-              <div>
-                <div className="grid gap-2">
-                  <div className="items-center">
-                    <Label>Enter OTP</Label>
-                    <div className="space-y-2">
-                      <OtpInput otp={otp} setOtp={setOtp} />
-                      <div className="text-center text-sm">
-                        {otp === "" && <>Enter the one-time code sent to your phone</>}
+              {otpSentYN === "yes" ? (
+
+                <div>
+                  <div className="grid gap-2">
+                    <div className="items-center">
+                      <Label>Enter OTP</Label>
+                      <div className="space-y-2">
+                        <OtpInput otp={otp} setOtp={setOtp} />
+                        <div className="text-center text-sm">
+                          {otp === "" && <>Enter the one-time code sent to your phone</>}
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <Button type="submit" className='w-full' onClick={handleOtpSubmit}>
+                    Sign In
+                  </Button>
+
                 </div>
-                <Button type="submit" className="w-full" onClick={handleOtpSubmit}>
-                  Sign In
-                </Button>
-              </div>
-            ) : (
-              <></>
-            )}
+              ) : (
+                <></>
+              )}
+            </div>
           </div>
+
+
           <div className="mt-4 text-center text-sm">
             No account?{" "}
             <a href="/sign-up" className="underline">
               Create one
             </a>
           </div>
+          <Card className='w-full'>
+            <div className='text-slate-900 text-muted-foreground p-4'>
+              Admin login phone number-15555550100
+              OTP-424242
+              <br />OTP is currently not being send as it exceeded monthly free tier limit
+            </div>
+          </Card>
         </div>
       </div>
     </div>
