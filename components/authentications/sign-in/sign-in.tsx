@@ -167,9 +167,9 @@ export default function Signin() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <span className='font-semibold'>  Phone number</span>-15555550100
+                <span className='font-semibold'>  Phone number</span> - 15555550100
                 <br />
-                <span className='font-semibold'>OTP</span>-424242
+                <span className='font-semibold'>OTP</span> - 424242
                 <br />
                 <Alert className='mt-2'>
                   <Terminal className="h-4 w-4" />
