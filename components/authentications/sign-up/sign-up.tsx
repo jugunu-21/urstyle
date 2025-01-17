@@ -22,7 +22,9 @@ import OtpInput from "../auth-utils/layout/otp-input";
 import toast from "react-hot-toast";
 import { ConfirmationResult } from "firebase/auth";
 import { useToken } from "../auth-utils/helpers/zustand";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, } from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
 export default function Signup() {
   const { signUp, isLoaded: isSignUpLoaded } = useSignUp();
   const changeToken = useToken((state) => (state.changeToken))
@@ -132,7 +134,7 @@ export default function Signup() {
     }
   };
   return (
-    <div className="w-full   mt-8 pt-4 ml-0 h-[75vh] ">
+    <div className="w-full   mt-6 pt-4 ml-0 h-screen ">
       {!otpSent ? <div id="recaptcha-container"></div> : null}
       <div className="flex items-center justify-center ">
         <div className="mx-auto grid w-[350px] gap-6">
@@ -219,13 +221,27 @@ export default function Signup() {
               Sign in
             </Link>
           </div>
-          <Card className='w-full'>
-            <div className='text-slate-900 text-muted-foreground p-4'>
-              Admin login phone number-15555550100
-              OTP-424242
-              <br />OTP is currently not being send as it exceeded monthly free tier limit
-            </div>
-          </Card>
+          <div className='mr-6'>
+            <Card className='w-full p-2 '>
+              <CardHeader className=''>
+                <CardTitle className='text-xl'>Admin Credentials
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <span className='font-semibold'>  Phone number</span> -15555550100
+                <br />
+                <span className='font-semibold'>OTP</span>-424242
+                <br />
+                <Alert className='mt-2'>
+                  <Terminal className="h-4 w-4" />
+                  <AlertTitle> Important Notice!</AlertTitle>
+                  <AlertDescription>
+                    OTP is currently not being send as it exceeded monthly free tier limit
+                  </AlertDescription>
+                </Alert>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
       {/* <div className="hidden bg-muted lg:block">

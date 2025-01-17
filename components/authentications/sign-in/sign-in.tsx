@@ -12,7 +12,17 @@ import "react-phone-input-2/lib/style.css";
 import { api } from "@/trpc/react";
 import { useToken } from "../auth-utils/helpers/zustand";
 import { Token } from '@clerk/nextjs/server';
-import { Card } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Terminal } from 'lucide-react';
+
 export default function Signin() {
   const changeToken = useToken((state) => (state.changeToken));
   const useTokenn = useToken((state) => (state.token));
@@ -84,7 +94,7 @@ export default function Signin() {
     }
   };
   return (
-    <div className="w-full  mt-8 pt-4 h-[75vh] ">
+    <div className="w-full  mt-4 pt-4 mb-4 h-full ">
       <div className="flex items-center justify-center">
         <div className="grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -144,21 +154,35 @@ export default function Signin() {
               )}
             </div>
           </div>
-
-
           <div className="mt-4 text-center text-sm">
             No account?{" "}
             <a href="/sign-up" className="underline">
               Create one
             </a>
           </div>
-          <Card className='w-full'>
-            <div className='text-slate-900 text-muted-foreground p-4'>
-              Admin login phone number-15555550100
-              OTP-424242
-              <br />OTP is currently not being send as it exceeded monthly free tier limit
-            </div>
-          </Card>
+          <div className='mr-6'>
+            <Card className='w-full p-2 '>
+              <CardHeader className=''>
+                <CardTitle className='text-xl'>Admin Credentials
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <span className='font-semibold'>  Phone number</span>-15555550100
+                <br />
+                <span className='font-semibold'>OTP</span>-424242
+                <br />
+                <Alert className='mt-2'>
+                  <Terminal className="h-4 w-4" />
+                  <AlertTitle> Important Notice!</AlertTitle>
+                  <AlertDescription>
+                    OTP is currently not being send as it exceeded monthly free tier limit
+
+                  </AlertDescription>
+                </Alert>
+              </CardContent>
+            </Card>
+          </div>
+
         </div>
       </div>
     </div>
